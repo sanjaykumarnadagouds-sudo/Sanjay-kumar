@@ -1,0 +1,784 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>C++ Programming Practical | STUDENTVERSE</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:Arial,sans-serif;color:#fff;background:radial-gradient(circle at top,#172554,#080d20 55%,#030712);min-height:100vh}
+body:before{content:"";position:fixed;inset:0;z-index:-1;background-image:radial-gradient(white 1px,transparent 1px);background-size:45px 45px;opacity:.22;animation:stars 25s linear infinite}
+@keyframes stars{to{background-position:300px 300px}}
+nav{padding:17px 7%;display:flex;justify-content:space-between;align-items:center;background:#080d20dd;border-bottom:1px solid #38bdf855;position:sticky;top:0;z-index:10;backdrop-filter:blur(12px)}
+nav h2{color:#38bdf8;letter-spacing:2px}
+nav a{color:white;text-decoration:none;margin-left:18px}
+nav a:hover{color:#38bdf8}
+header{text-align:center;padding:55px 15px 30px}
+header h1{font-size:clamp(28px,5vw,45px);color:#67e8f9;text-shadow:0 0 20px #0ea5e9}
+header p{margin-top:10px;color:#cbd5e1}
+.actions{text-align:center;margin:10px 0 25px}
+button{border:0;border-radius:9px;padding:11px 17px;background:linear-gradient(120deg,#0284c7,#7c3aed);color:white;font-weight:bold;cursor:pointer;margin:5px}
+button:hover{transform:translateY(-2px);box-shadow:0 0 15px #38bdf8}
+.search{display:block;width:min(650px,90%);margin:20px auto;padding:14px;border-radius:10px;border:1px solid #38bdf8;background:#0f172a;color:white;font-size:16px}
+nav.subnav{position:static;background:transparent;border:0;justify-content:center;flex-wrap:wrap}
+.subnav a{display:inline-block;padding:10px 15px;border:1px solid #38bdf866;border-radius:9px;margin:5px}
+.container{width:min(1100px,92%);margin:auto}
+.section-title{text-align:center;color:#a5f3fc;font-size:27px;margin:35px 0 20px;scroll-margin-top:90px}
+.program{background:linear-gradient(145deg,#111c38ee,#111827ee);border:1px solid #38bdf844;border-radius:15px;padding:23px;margin:20px 0;box-shadow:0 8px 25px #0005;scroll-margin-top:85px}
+.program h3{color:#67e8f9;margin-bottom:15px}
+.program h4{color:#c4b5fd;margin:16px 0 8px}
+.program p{color:#cbd5e1;line-height:1.6}
+pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#020617;border:1px solid #334155;border-radius:9px;padding:16px;color:#bbf7d0;line-height:1.55;overflow-x:auto;font-size:13px}
+.output{color:#fde68a}
+.tag{display:inline-block;color:#bae6fd;background:#07598566;padding:5px 9px;border-radius:6px;margin-bottom:12px;font-size:12px}
+#noResults{text-align:center;color:#fca5a5;padding:25px;display:none}
+footer{text-align:center;padding:35px;color:#94a3b8}
+#topBtn{position:fixed;right:20px;bottom:20px;display:none}
+@media(max-width:600px){nav{padding:14px 4%}nav a{margin-left:8px;font-size:13px}.program{padding:15px}pre{font-size:12px}}
+@media print{
+body{background:white;color:black}
+body:before,nav,.actions,.search,.subnav,#topBtn{display:none!important}
+header{padding:15px;color:black}
+header h1,.section-title,.program h3,.program h4{color:black;text-shadow:none}
+.program{background:white;color:black;border:1px solid #aaa;box-shadow:none;break-inside:avoid}
+.program p{color:black}
+pre{background:#f3f4f6;color:black;border:1px solid #aaa;white-space:pre-wrap}
+.output{color:black}
+footer{color:black}
+}
+</style>
+</head>
+<body>
+
+<nav>
+<h2>STUDENTVERSE</h2>
+<div>
+<a href="index.html">Home</a>
+<a href="studyhub.html">StudyHub</a>
+</div>
+</nav>
+
+<header>
+<h1>C++ PROGRAMMING</h1>
+<p>CAM12P | BCA Semester 1</p>
+<p>University of Mysore – Practical Programs</p>
+</header>
+
+<div class="actions">
+<button onclick="window.print()">📥 Download / Save as PDF</button>
+</div>
+
+<input class="search" id="searchBox" type="text" placeholder="🔍 Search practical programs..." oninput="searchPrograms()">
+
+<nav class="subnav">
+<a href="#partA">Part A – Basic Programs</a>
+<a href="#partB">Part B – OOP Programs</a>
+</nav>
+
+<div class="container">
+
+<h2 class="section-title" id="partA">PART A – BASIC C++ PROGRAMS</h2>
+
+<div class="program">
+<span class="tag">PART A – PROGRAM 1</span>
+<h3>1. Swap Two Numbers With and Without Temporary Variable</h3>
+<h4>Aim</h4><p>To swap two numbers using a temporary variable and without using a temporary variable.</p>
+<h4>Source Code</h4>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int a, b, temp;
+    cout &lt;&lt; "Enter two numbers: ";
+    cin &gt;&gt; a &gt;&gt; b;
+
+    temp = a;
+    a = b;
+    b = temp;
+    cout &lt;&lt; "Using temporary variable: " &lt;&lt; a &lt;&lt; " " &lt;&lt; b &lt;&lt; endl;
+
+    a = a + b;
+    b = a - b;
+    a = a - b;
+    cout &lt;&lt; "Without temporary variable: " &lt;&lt; a &lt;&lt; " " &lt;&lt; b;
+
+    return 0;
+}</code></pre>
+<h4>Sample Output</h4><pre class="output">Enter two numbers: 10 20
+Using temporary variable: 20 10
+Without temporary variable: 10 20</pre>
+<h4>Result</h4><p>Thus, two numbers are swapped using both methods.</p>
+</div>
+
+<div class="program">
+<span class="tag">PART A – PROGRAM 2</span>
+<h3>2. Convert Fahrenheit to Celsius and Celsius to Fahrenheit</h3>
+<h4>Aim</h4><p>To convert temperature from Fahrenheit to Celsius and Celsius to Fahrenheit.</p>
+<h4>Source Code</h4>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    float c, f;
+    cout &lt;&lt; "Enter temperature in Celsius: ";
+    cin &gt;&gt; c;
+    f = (c * 9 / 5) + 32;
+    cout &lt;&lt; "Fahrenheit = " &lt;&lt; f &lt;&lt; endl;
+
+    cout &lt;&lt; "Enter temperature in Fahrenheit: ";
+    cin &gt;&gt; f;
+    c = (f - 32) * 5 / 9;
+    cout &lt;&lt; "Celsius = " &lt;&lt; c;
+
+    return 0;
+}</code></pre>
+<h4>Sample Output</h4><pre class="output">Enter temperature in Celsius: 100
+Fahrenheit = 212
+Enter temperature in Fahrenheit: 98.6
+Celsius = 37</pre>
+<h4>Result</h4><p>Thus, temperature conversion is performed successfully.</p>
+</div>
+
+<div class="program">
+<span class="tag">PART A – PROGRAM 3</span>
+<h3>3. Add and Multiply Two Complex Numbers</h3>
+<h4>Aim</h4><p>To add and multiply two complex numbers.</p>
+<h4>Source Code</h4>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int a, b, c, d;
+    cout &lt;&lt; "Enter real and imaginary parts of first number: ";
+    cin &gt;&gt; a &gt;&gt; b;
+    cout &lt;&lt; "Enter real and imaginary parts of second number: ";
+    cin &gt;&gt; c &gt;&gt; d;
+
+    cout &lt;&lt; "Addition = " &lt;&lt; a+c &lt;&lt; " + " &lt;&lt; b+d &lt;&lt; "i" &lt;&lt; endl;
+    cout &lt;&lt; "Multiplication = " &lt;&lt; a*c-b*d
+         &lt;&lt; " + " &lt;&lt; a*d+b*c &lt;&lt; "i";
+
+    return 0;
+}</code></pre>
+<h4>Sample Output</h4><pre class="output">Enter real and imaginary parts of first number: 2 3
+Enter real and imaginary parts of second number: 4 5
+Addition = 6 + 8i
+Multiplication = -7 + 22i</pre>
+<h4>Result</h4><p>Thus, addition and multiplication of complex numbers are performed.</p>
+</div>
+
+<div class="program">
+<span class="tag">PART A – PROGRAM 4</span>
+<h3>4. Simple Calculator Using Functions</h3>
+<h4>Aim</h4><p>To perform addition, subtraction, multiplication and division using functions and switch statement.</p>
+<h4>Source Code</h4>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+float add(float a, float b) { return a+b; }
+float sub(float a, float b) { return a-b; }
+float mul(float a, float b) { return a*b; }
+float divide(float a, float b) { return a/b; }
+
+int main() {
+    float a, b;
+    int choice;
+    cout &lt;&lt; "Enter two numbers: ";
+    cin &gt;&gt; a &gt;&gt; b;
+
+    cout &lt;&lt; "1.Add  2.Subtract  3.Multiply  4.Divide\n";
+    cout &lt;&lt; "Enter choice: ";
+    cin &gt;&gt; choice;
+
+    switch(choice) {
+        case 1: cout &lt;&lt; add(a,b); break;
+        case 2: cout &lt;&lt; sub(a,b); break;
+        case 3: cout &lt;&lt; mul(a,b); break;
+        case 4:
+            if(b != 0) cout &lt;&lt; divide(a,b);
+            else cout &lt;&lt; "Division by zero not allowed";
+            break;
+        default: cout &lt;&lt; "Invalid choice";
+    }
+    return 0;
+}</code></pre>
+<h4>Sample Output</h4><pre class="output">Enter two numbers: 20 5
+1.Add  2.Subtract  3.Multiply  4.Divide
+Enter choice: 3
+100</pre>
+<h4>Result</h4><p>Thus, a simple calculator is implemented using functions.</p>
+</div>
+
+<div class="program">
+<span class="tag">PART A – PROGRAM 5</span>
+<h3>5. Multiplication Table of a Given Number</h3>
+<h4>Aim</h4><p>To display the multiplication table of a given number.</p>
+<h4>Source Code</h4>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int n;
+    cout &lt;&lt; "Enter a number: ";
+    cin &gt;&gt; n;
+
+    for(int i=1; i&lt;=10; i++)
+        cout &lt;&lt; n &lt;&lt; " x " &lt;&lt; i &lt;&lt; " = " &lt;&lt; n*i &lt;&lt; endl;
+
+    return 0;
+}</code></pre>
+<h4>Sample Output</h4><pre class="output">Enter a number: 5
+5 x 1 = 5
+5 x 2 = 10
+5 x 3 = 15
+5 x 4 = 20
+5 x 5 = 25
+5 x 6 = 30
+5 x 7 = 35
+5 x 8 = 40
+5 x 9 = 45
+5 x 10 = 50</pre>
+<h4>Result</h4><p>Thus, the multiplication table is displayed successfully.</p>
+</div>
+
+<div class="program">
+<span class="tag">PART A – PROGRAM 6</span>
+<h3>6. Check Whether a Number is Palindrome</h3>
+<h4>Aim</h4><p>To check whether a given number is a palindrome or not.</p>
+<h4>Source Code</h4>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int n, original, reverse=0, digit;
+    cout &lt;&lt; "Enter a number: ";
+    cin &gt;&gt; n;
+    original = n;
+
+    while(n &gt; 0) {
+        digit = n % 10;
+        reverse = reverse * 10 + digit;
+        n = n / 10;
+    }
+
+    if(original == reverse)
+        cout &lt;&lt; "Palindrome number";
+    else
+        cout &lt;&lt; "Not a palindrome number";
+
+    return 0;
+}</code></pre>
+<h4>Sample Output</h4><pre class="output">Enter a number: 121
+Palindrome number</pre>
+<h4>Result</h4><p>Thus, the given number is checked for palindrome.</p>
+</div>
+
+<div class="program">
+<span class="tag">PART A – PROGRAM 7</span>
+<h3>7. Generate Fibonacci Series</h3>
+<h4>Aim</h4><p>To generate the Fibonacci series for a given number of terms.</p>
+<h4>Source Code</h4>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int n, a=0, b=1, next;
+    cout &lt;&lt; "Enter number of terms: ";
+    cin &gt;&gt; n;
+
+    for(int i=1; i&lt;=n; i++) {
+        cout &lt;&lt; a &lt;&lt; " ";
+        next = a + b;
+        a = b;
+        b = next;
+    }
+
+    return 0;
+}</code></pre>
+<h4>Sample Output</h4><pre class="output">Enter number of terms: 7
+0 1 1 2 3 5 8</pre>
+<h4>Result</h4><p>Thus, the Fibonacci series is generated successfully.</p>
+</div>
+
+<div class="program">
+<span class="tag">PART A – PROGRAM 8</span>
+<h3>8. Sum of Principal, Lower and Upper Diagonal Elements of a Matrix</h3>
+<h4>Aim</h4><p>To calculate the sums of principal diagonal, lower triangle and upper triangle elements of a square matrix.</p>
+<h4>Source Code</h4>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int a[10][10], n;
+    int principal=0, lower=0, upper=0;
+
+    cout &lt;&lt; "Enter order of matrix: ";
+    cin &gt;&gt; n;
+
+    cout &lt;&lt; "Enter matrix elements:\n";
+    for(int i=0; i&lt;n; i++)
+        for(int j=0; j&lt;n; j++)
+            cin &gt;&gt; a[i][j];
+
+    for(int i=0; i&lt;n; i++) {
+        for(int j=0; j&lt;n; j++) {
+            if(i == j) principal += a[i][j];
+            else if(i &gt; j) lower += a[i][j];
+            else upper += a[i][j];
+        }
+    }
+
+    cout &lt;&lt; "Principal diagonal sum = " &lt;&lt; principal &lt;&lt; endl;
+    cout &lt;&lt; "Lower triangle sum = " &lt;&lt; lower &lt;&lt; endl;
+    cout &lt;&lt; "Upper triangle sum = " &lt;&lt; upper;
+
+    return 0;
+}</code></pre>
+<h4>Sample Output</h4><pre class="output">Enter order of matrix: 3
+Enter matrix elements:
+1 2 3
+4 5 6
+7 8 9
+Principal diagonal sum = 15
+Lower triangle sum = 19
+Upper triangle sum = 11</pre>
+<h4>Result</h4><p>Thus, the three matrix sums are calculated successfully. Lower and upper sums exclude the principal diagonal.</p>
+</div>
+
+<div class="program">
+<span class="tag">PART A – PROGRAM 9</span>
+<h3>9. Reverse a String Without Using Built-in Function</h3>
+<h4>Aim</h4><p>To reverse a given string without using a built-in reverse function.</p>
+<h4>Source Code</h4>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+using namespace std;
+
+int main() {
+    char str[100];
+    int len=0;
+
+    cout &lt;&lt; "Enter a string: ";
+    cin.getline(str,100);
+
+    while(str[len] != '\0')
+        len++;
+
+    cout &lt;&lt; "Reversed string: ";
+    for(int i=len-1; i&gt;=0; i--)
+        cout &lt;&lt; str[i];
+
+    return 0;
+}</code></pre>
+<h4>Sample Output</h4><pre class="output">Enter a string: STUDENT
+Reversed string: TNEDUTS</pre>
+<h4>Result</h4><p>Thus, the string is reversed without using a built-in reverse function.</p>
+</div>
+
+<div class="program">
+<span class="tag">PART A – PROGRAM 10</span>
+<h3>10. Demonstrate Five Math Library Functions</h3>
+<h4>Aim</h4><p>To demonstrate five mathematical library functions in C++.</p>
+<h4>Source Code</h4>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;cmath&gt;
+using namespace std;
+
+int main() {
+    double n=25, x=2.5;
+
+    cout &lt;&lt; "Square root of 25 = " &lt;&lt; sqrt(n) &lt;&lt; endl;
+    cout &lt;&lt; "Power 2.5^2 = " &lt;&lt; pow(x,2) &lt;&lt; endl;
+    cout &lt;&lt; "Ceiling of 2.5 = " &lt;&lt; ceil(x) &lt;&lt; endl;
+    cout &lt;&lt; "Floor of 2.5 = " &lt;&lt; floor(x) &lt;&lt; endl;
+    cout &lt;&lt; "Absolute value of -10 = " &lt;&lt; abs(-10);
+
+    return 0;
+}</code></pre>
+<h4>Sample Output</h4><pre class="output">Square root of 25 = 5
+Power 2.5^2 = 6.25
+Ceiling of 2.5 = 3
+Floor of 2.5 = 2
+Absolute value of -10 = 10</pre>
+<h4>Result</h4><p>Thus, five mathematical library functions are demonstrated.</p>
+</div>
+
+<h2 class="section-title" id="partB">PART B – OBJECT ORIENTED PROGRAMS</h2>
+
+<div class="program">
+<span class="tag">PART B – PROGRAM 1</span>
+<h3>11. Call by Value and Call by Reference</h3>
+<h4>Aim</h4><p>To demonstrate call by value and call by reference in C++.</p>
+<h4>Source Code</h4>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+void callByValue(int x) {
+    x = x + 10;
+    cout &lt;&lt; "Inside call by value: " &lt;&lt; x &lt;&lt; endl;
+}
+
+void callByReference(int &amp;x) {
+    x = x + 10;
+    cout &lt;&lt; "Inside call by reference: " &lt;&lt; x &lt;&lt; endl;
+}
+
+int main() {
+    int a=10, b=10;
+
+    callByValue(a);
+    cout &lt;&lt; "After call by value: " &lt;&lt; a &lt;&lt; endl;
+
+    callByReference(b);
+    cout &lt;&lt; "After call by reference: " &lt;&lt; b;
+
+    return 0;
+}</code></pre>
+<h4>Sample Output</h4><pre class="output">Inside call by value: 20
+After call by value: 10
+Inside call by reference: 20
+After call by reference: 20</pre>
+<h4>Result</h4><p>Thus, call by value and call by reference are demonstrated.</p>
+</div>
+
+<div class="program">
+<span class="tag">PART B – PROGRAM 2</span>
+<h3>12. Factorial Using Recursion</h3>
+<h4>Aim</h4><p>To find the factorial of a number using a recursive function.</p>
+<h4>Source Code</h4>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+int factorial(int n) {
+    if(n &lt;= 1)
+        return 1;
+    return n * factorial(n-1);
+}
+
+int main() {
+    int n;
+    cout &lt;&lt; "Enter a number: ";
+    cin &gt;&gt; n;
+
+    if(n &lt; 0)
+        cout &lt;&lt; "Factorial is not defined for negative numbers";
+    else
+        cout &lt;&lt; "Factorial = " &lt;&lt; factorial(n);
+
+    return 0;
+}</code></pre>
+<h4>Sample Output</h4><pre class="output">Enter a number: 5
+Factorial = 120</pre>
+<h4>Result</h4><p>Thus, factorial is calculated using recursion.</p>
+</div>
+
+<div class="program">
+<span class="tag">PART B – PROGRAM 3</span>
+<h3>13. Student Class with Member Functions</h3>
+<h4>Aim</h4><p>To create a Student class with member functions to accept and display student details.</p>
+<h4>Source Code</h4>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+class Student {
+    int rollNo;
+    char name[50];
+    float marks;
+
+public:
+    void accept() {
+        cout &lt;&lt; "Enter roll number: ";
+        cin &gt;&gt; rollNo;
+        cout &lt;&lt; "Enter name: ";
+        cin &gt;&gt; name;
+        cout &lt;&lt; "Enter marks: ";
+        cin &gt;&gt; marks;
+    }
+
+    void display() {
+        cout &lt;&lt; "\nStudent Details\n";
+        cout &lt;&lt; "Roll Number: " &lt;&lt; rollNo &lt;&lt; endl;
+        cout &lt;&lt; "Name: " &lt;&lt; name &lt;&lt; endl;
+        cout &lt;&lt; "Marks: " &lt;&lt; marks;
+    }
+};
+
+int main() {
+    Student s;
+    s.accept();
+    s.display();
+    return 0;
+}</code></pre>
+<h4>Sample Output</h4><pre class="output">Enter roll number: 101
+Enter name: Sanjay
+Enter marks: 85
+
+Student Details
+Roll Number: 101
+Name: Sanjay
+Marks: 85</pre>
+<h4>Result</h4><p>Thus, student details are accepted and displayed using a class.</p>
+</div>
+
+<div class="program">
+<span class="tag">PART B – PROGRAM 4</span>
+<h3>14. Function Overloading</h3>
+<h4>Aim</h4><p>To demonstrate function overloading using functions with different parameters.</p>
+<h4>Source Code</h4>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+int add(int a, int b) {
+    return a+b;
+}
+
+int add(int a, int b, int c) {
+    return a+b+c;
+}
+
+float add(float a, float b) {
+    return a+b;
+}
+
+int main() {
+    cout &lt;&lt; "Sum of two integers = " &lt;&lt; add(10,20) &lt;&lt; endl;
+    cout &lt;&lt; "Sum of three integers = " &lt;&lt; add(10,20,30) &lt;&lt; endl;
+    cout &lt;&lt; "Sum of two floats = " &lt;&lt; add(2.5f,3.5f);
+
+    return 0;
+}</code></pre>
+<h4>Sample Output</h4><pre class="output">Sum of two integers = 30
+Sum of three integers = 60
+Sum of two floats = 6</pre>
+<h4>Result</h4><p>Thus, function overloading is demonstrated successfully.</p>
+</div>
+
+<div class="program">
+<span class="tag">PART B – PROGRAM 5</span>
+<h3>15. Friend Function</h3>
+<h4>Aim</h4><p>To demonstrate the use of a friend function to access private class members.</p>
+<h4>Source Code</h4>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+class Number {
+    int a, b;
+
+public:
+    void getData() {
+        cout &lt;&lt; "Enter two numbers: ";
+        cin &gt;&gt; a &gt;&gt; b;
+    }
+
+    friend int sum(Number n);
+};
+
+int sum(Number n) {
+    return n.a + n.b;
+}
+
+int main() {
+    Number obj;
+    obj.getData();
+    cout &lt;&lt; "Sum = " &lt;&lt; sum(obj);
+    return 0;
+}</code></pre>
+<h4>Sample Output</h4><pre class="output">Enter two numbers: 15 25
+Sum = 40</pre>
+<h4>Result</h4><p>Thus, a friend function accesses private data members of a class.</p>
+</div>
+
+<div class="program">
+<span class="tag">PART B – PROGRAM 6</span>
+<h3>16. Single Inheritance</h3>
+<h4>Aim</h4><p>To demonstrate single inheritance in C++.</p>
+<h4>Source Code</h4>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+class Person {
+public:
+    char name[30];
+
+    void getName() {
+        cout &lt;&lt; "Enter name: ";
+        cin &gt;&gt; name;
+    }
+};
+
+class Student : public Person {
+public:
+    int rollNo;
+
+    void getRollNo() {
+        cout &lt;&lt; "Enter roll number: ";
+        cin &gt;&gt; rollNo;
+    }
+
+    void display() {
+        cout &lt;&lt; "\nName: " &lt;&lt; name;
+        cout &lt;&lt; "\nRoll Number: " &lt;&lt; rollNo;
+    }
+};
+
+int main() {
+    Student s;
+    s.getName();
+    s.getRollNo();
+    s.display();
+    return 0;
+}</code></pre>
+<h4>Sample Output</h4><pre class="output">Enter name: Sanjay
+Enter roll number: 101
+
+Name: Sanjay
+Roll Number: 101</pre>
+<h4>Result</h4><p>Thus, single inheritance is implemented successfully.</p>
+</div>
+
+<div class="program">
+<span class="tag">PART B – PROGRAM 7</span>
+<h3>17. Multilevel Inheritance</h3>
+<h4>Aim</h4><p>To demonstrate multilevel inheritance using three classes.</p>
+<h4>Source Code</h4>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+class Grandfather {
+public:
+    void showGrandfather() {
+        cout &lt;&lt; "Grandfather class" &lt;&lt; endl;
+    }
+};
+
+class Father : public Grandfather {
+public:
+    void showFather() {
+        cout &lt;&lt; "Father class" &lt;&lt; endl;
+    }
+};
+
+class Son : public Father {
+public:
+    void showSon() {
+        cout &lt;&lt; "Son class" &lt;&lt; endl;
+    }
+};
+
+int main() {
+    Son obj;
+    obj.showGrandfather();
+    obj.showFather();
+    obj.showSon();
+    return 0;
+}</code></pre>
+<h4>Sample Output</h4><pre class="output">Grandfather class
+Father class
+Son class</pre>
+<h4>Result</h4><p>Thus, multilevel inheritance is demonstrated successfully.</p>
+</div>
+
+<div class="program">
+<span class="tag">PART B – PROGRAM 8</span>
+<h3>18. Operator Overloading</h3>
+<h4>Aim</h4><p>To demonstrate binary operator overloading using the plus (+) operator.</p>
+<h4>Source Code</h4>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+class Number {
+    int value;
+
+public:
+    Number(int v=0) {
+        value = v;
+    }
+
+    Number operator +(Number obj) {
+        Number temp;
+        temp.value = value + obj.value;
+        return temp;
+    }
+
+    void display() {
+        cout &lt;&lt; value;
+    }
+};
+
+int main() {
+    Number n1(10), n2(20), n3;
+    n3 = n1 + n2;
+
+    cout &lt;&lt; "First number = ";
+    n1.display();
+
+    cout &lt;&lt; "\nSecond number = ";
+    n2.display();
+
+    cout &lt;&lt; "\nSum = ";
+    n3.display();
+
+    return 0;
+}</code></pre>
+<h4>Sample Output</h4><pre class="output">First number = 10
+Second number = 20
+Sum = 30</pre>
+<h4>Result</h4><p>Thus, the plus operator is overloaded to add two objects.</p>
+</div>
+
+<h2 class="section-title">Practical Examination Preparation</h2>
+<div class="program">
+<h3>Important Practical Viva Questions</h3>
+<p><b>1. What is C++?</b><br>C++ is a general-purpose programming language that supports procedural and object-oriented programming.</p>
+<p><b>2. What is a class?</b><br>A class is a user-defined data type that contains data members and member functions.</p>
+<p><b>3. What is an object?</b><br>An object is an instance of a class.</p>
+<p><b>4. What is recursion?</b><br>Recursion is a process in which a function calls itself.</p>
+<p><b>5. What is function overloading?</b><br>Defining multiple functions with the same name but different parameter lists.</p>
+<p><b>6. What is a friend function?</b><br>A non-member function that is allowed to access private and protected members of a class.</p>
+<p><b>7. What is inheritance?</b><br>Inheritance allows one class to acquire the properties and functions of another class.</p>
+<p><b>8. What is operator overloading?</b><br>Giving a special meaning to an existing operator for user-defined data types.</p>
+<p><b>9. What is call by value?</b><br>A copy of the argument is passed to the function.</p>
+<p><b>10. What is call by reference?</b><br>A reference to the original variable is passed to the function.</p>
+</div>
+
+</div>
+
+<footer>
+<p>© STUDENTVERSE | BCA Semester 1 – C++ Programming CAM12P</p>
+<p>Learn • Practice • Execute • Succeed</p>
+</footer>
+
+<button id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">⬆ Top</button>
+
+<script>
+function searchPrograms() {
+    const value = document.getElementById("searchBox").value.toLowerCase();
+    const programs = document.querySelectorAll(".program");
+    let visible = 0;
+
+    programs.forEach(program => {
+        const match = program.innerText.toLowerCase().includes(value);
+        program.style.display = match ? "block" : "none";
+        if(match) visible++;
+    });
+
+    document.querySelectorAll(".section-title").forEach(title => {
+        if(title.id === "partA") {
+            title.style.display = [...document.querySelectorAll("#partA ~ .program")].some(p => p.style.display !== "none") ? "block" : "none";
+        }
+        if(title.id === "partB") {
+            title.style.display = [...document.querySelectorAll("#partB ~ .program")].some(p => p.style.display !== "none") ? "block" : "none";
+        }
+    });
+}
+
+window.addEventListener("scroll", function() {
+    document.getElementById("topBtn").style.display =
+        window.scrollY > 300 ? "block" : "none";
+});
+</script>
+
+</body>
+</html>

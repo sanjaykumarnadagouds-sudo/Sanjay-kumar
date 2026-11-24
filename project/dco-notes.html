@@ -1,0 +1,1225 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Computer Organization | STUDENTVERSE</title>
+
+<style>
+
+.main-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 6%;
+    background: rgba(12, 8, 35, 0.85);
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+    backdrop-filter: blur(15px);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-logo {
+    color: #d8b4fe;
+    font-size: 21px;
+    font-weight: bold;
+}
+
+.nav-links {
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: #c084fc;
+    text-shadow: 0 0 12px #a855f7;
+}
+
+@media (max-width: 650px) {
+    .main-navbar {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .nav-links {
+        justify-content: center;
+        gap: 15px;
+    }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #08091c;
+    color: white;
+    line-height: 1.7;
+}
+
+header {
+    padding: 20px 8%;
+    background: #11132b;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h2 {
+    color: #a78bfa;
+}
+
+header a {
+    color: white;
+    text-decoration: none;
+}
+
+.hero {
+    padding: 55px 8%;
+    background: linear-gradient(120deg, #241052, #101a42);
+}
+
+.hero p {
+    color: #c4b5fd;
+}
+
+.hero h1 {
+    font-size: 34px;
+    margin: 10px 0;
+}
+
+.container {
+    width: 84%;
+    max-width: 1000px;
+    margin: 35px auto;
+}
+
+.unit {
+    background: #151832;
+    border: 1px solid #34385f;
+    border-radius: 14px;
+    padding: 25px;
+    margin-bottom: 25px;
+}
+
+.unit h2 {
+    color: #c4b5fd;
+    margin-bottom: 15px;
+}
+
+.topic {
+    margin: 22px 0;
+}
+
+.topic h3 {
+    color: #67e8f9;
+    margin-bottom: 8px;
+}
+
+.topic p, .topic li {
+    color: #d1d5db;
+}
+
+ul, ol {
+    padding-left: 25px;
+}
+
+.example {
+    background: #20264b;
+    border-left: 4px solid #a78bfa;
+    padding: 15px;
+    margin: 12px 0;
+    border-radius: 5px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+}
+
+th, td {
+    border: 1px solid #45496c;
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background: #29234f;
+}
+
+details {
+    background: #20264b;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 12px;
+}
+
+summary {
+    color: #a78bfa;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+footer {
+    text-align: center;
+    padding: 25px;
+    color: #aaa;
+}
+
+button {
+    background: #8055ed;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 15px 0;
+}
+.unit-nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 18px;
+    margin: 20px auto;
+}
+
+.unit-nav a {
+    color: white;
+    text-decoration: none;
+    background: linear-gradient(135deg, #7928ca, #ff0080);
+    padding: 12px 22px;
+    border-radius: 25px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.unit-nav a:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px #7928ca;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.unit {
+    scroll-margin-top: 25px;
+}
+.print-btn {
+    display: block;
+    margin: 20px auto;
+    padding: 14px 25px;
+    background: linear-gradient(135deg, #7928ca, #ff0080);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+@media print {
+    .unit-nav,
+    .print-btn,
+    header,
+    footer {
+        display: none !important;
+    }
+
+    body {
+        background: white !important;
+        color: black !important;
+    }
+
+    .unit {
+        break-inside: avoid;
+        color: black !important;
+    }
+}
+.notes-search {
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+.notes-search input {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #8b5cf6;
+    border-radius: 15px;
+    font-size: 16px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.notes-search input:focus {
+    box-shadow: 0 0 15px #8b5cf6;
+}
+#topBtn {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    padding: 14px 20px;
+    background: linear-gradient(135deg, #7928ca, #ff0080);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: bold;
+    z-index: 1000;
+}
+
+/* Professional topic cards */
+.topic {
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(160, 120, 255, 0.35);
+    border-radius: 16px;
+    padding: 22px;
+    margin: 22px 0;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.topic:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(130, 80, 255, 0.25);
+}
+
+.topic h3 {
+    color: #c9a7ff;
+    margin-top: 0;
+}
+
+.topic p,
+.topic li {
+    line-height: 1.8;
+}
+
+/* Better tables */
+.topic table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.topic th,
+.topic td {
+    border: 1px solid rgba(180, 150, 255, 0.4);
+    padding: 12px;
+    text-align: center;
+}
+
+/* Mobile support */
+@media (max-width: 600px) {
+    .topic {
+        padding: 15px;
+    }
+
+    .topic table {
+        font-size: 13px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<nav class="main-navbar">
+    <div class="nav-logo">🌌 STUDENTVERSE</div>
+
+    <div class="nav-links">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="studyhub.html">StudyHub</a>
+        <a href="skillup.html">SkillUp</a>
+        <a href="index.html">Home</a>
+    </div>
+</nav>
+
+<header>
+    <h2>STUDENTVERSE</h2>
+    <a href="studyhub.html">← Back to StudyHub</a>
+</header>
+
+<section class="hero">
+    <p>UNIVERSITY OF MYSORE | BCA SEMESTER 1</p>
+    <h1>Digital Computer Organization</h1>
+    <p>Paper Code: CAM11T | Theory</p>
+    <p>Unit 1 – Computer Fundamentals</p>
+    <p>Unit 2 – Number Systems and Binary Arithmetic</p>
+    <p>Unit 3 – Boolean Algebra and Logic Gates</p>
+    <p>Unit 4 – Combinational and Sequential Logic Circuits</p>
+</section>
+<nav class="unit-nav">
+    <a href="#unit1">Unit 1</a>
+    <a href="#unit2">Unit 2</a>
+    <a href="#unit3">Unit 3</a>
+    <a href="#unit4">Unit 4</a>
+</nav>
+<main class="container">
+<div class="notes-search">
+    <input
+        type="text"
+        id="notesSearch"
+        placeholder="🔍 Search topics in your notes..."
+    >
+</div>
+    <button class="print-btn" onclick="window.print()">
+        📄 Download / Save Notes as PDF
+    </button>
+
+    <!-- UNIT 1 starts here -->
+<section class="unit">
+<h2 id="unit1">UNIT 1 – COMPUTER FUNDAMENTALS</h2>
+
+<div class="topic">
+<h3>1. What is a Computer?</h3>
+<p>
+A computer is an electronic device that accepts data as input,
+processes the data according to instructions, stores information
+and produces meaningful results as output.
+</p>
+
+<div class="example">
+<strong>Example:</strong> When we enter two numbers into a calculator,
+the computer processes them and displays their sum.
+</div>
+</div>
+
+<div class="topic">
+<h3>2. Basic Functions of a Computer</h3>
+<ol>
+<li><strong>Input:</strong> Accepts data from the user.</li>
+<li><strong>Processing:</strong> Performs calculations and operations.</li>
+<li><strong>Storage:</strong> Saves data and information.</li>
+<li><strong>Output:</strong> Displays the final result.</li>
+</ol>
+
+<div class="example">
+<strong>Example:</strong><br>
+Input: 10 + 20<br>
+Processing: Addition<br>
+Output: 30
+</div>
+</div>
+
+<div class="topic">
+<h3>3. Characteristics of a Computer</h3>
+<ul>
+<li><strong>Speed:</strong> Performs millions of operations quickly.</li>
+<li><strong>Accuracy:</strong> Produces accurate results when correct data and instructions are given.</li>
+<li><strong>Diligence:</strong> Can work continuously without getting tired.</li>
+<li><strong>Storage:</strong> Stores large amounts of data.</li>
+<li><strong>Versatility:</strong> Performs different types of tasks.</li>
+<li><strong>Automation:</strong> Works automatically when instructions are provided.</li>
+</ul>
+</div>
+
+<div class="topic">
+<h3>4. Basic Components of a Computer</h3>
+<p>A computer system has four major functional units:</p>
+
+<table>
+<tr>
+<th>Component</th>
+<th>Function</th>
+</tr>
+<tr>
+<td>Input Unit</td>
+<td>Accepts data and instructions.</td>
+</tr>
+<tr>
+<td>CPU</td>
+<td>Processes data and controls operations.</td>
+</tr>
+<tr>
+<td>Memory Unit</td>
+<td>Stores data and instructions.</td>
+</tr>
+<tr>
+<td>Output Unit</td>
+<td>Displays the processed results.</td>
+</tr>
+</table>
+
+<h3>Central Processing Unit (CPU)</h3>
+<p>The CPU is called the brain of the computer. Its main parts include:</p>
+<ul>
+<li><strong>ALU:</strong> Arithmetic Logic Unit performs mathematical and logical operations.</li>
+<li><strong>CU:</strong> Control Unit controls and coordinates computer activities.</li>
+<li><strong>Registers:</strong> Small, fast storage locations inside the CPU.</li>
+</ul>
+</div>
+
+<div class="topic">
+<h3>5. Input Devices</h3>
+<p>Input devices are used to enter data and instructions into a computer.</p>
+<ul>
+<li>Keyboard – enters text and numbers.</li>
+<li>Mouse – selects and controls items.</li>
+<li>Scanner – converts paper documents into digital form.</li>
+<li>Microphone – inputs sound.</li>
+<li>Webcam – captures images and video.</li>
+</ul>
+</div>
+
+<div class="topic">
+<h3>6. Output Devices</h3>
+<p>Output devices display the results produced by a computer.</p>
+<ul>
+<li>Monitor – displays information on a screen.</li>
+<li>Printer – produces printed documents.</li>
+<li>Speaker – produces sound.</li>
+<li>Projector – displays images on a large screen.</li>
+</ul>
+</div>
+
+<div class="topic">
+<h3>7. Memory of a Computer</h3>
+<p>Memory is used to store data, instructions and results.</p>
+
+<table>
+<tr>
+<th>Primary Memory</th>
+<th>Secondary Memory</th>
+</tr>
+<tr>
+<td>Directly accessible by the CPU.</td>
+<td>Used for long-term storage.</td>
+</tr>
+<tr>
+<td>Examples: RAM and ROM.</td>
+<td>Examples: Hard disk, SSD and pen drive.</td>
+</tr>
+<tr>
+<td>Generally faster.</td>
+<td>Generally slower than primary memory.</td>
+</tr>
+</table>
+
+<p><strong>RAM:</strong> Random Access Memory is temporary memory. Its contents are normally lost when power is switched off.</p>
+
+<p><strong>ROM:</strong> Read Only Memory is non-volatile memory. It retains its contents without power.</p>
+</div>
+
+<div class="topic">
+<h3>8. Types of Software</h3>
+<p>Software is a collection of programs and instructions that tell a computer what to do.</p>
+
+<ul>
+<li><strong>System Software:</strong> Manages computer hardware and provides a platform for applications. Example: Windows and Linux.</li>
+<li><strong>Application Software:</strong> Helps users perform specific tasks. Example: MS Word and web browsers.</li>
+</ul>
+</div>
+
+<div class="topic">
+<h3>9. Computer Languages</h3>
+<ul>
+<li><strong>Machine Language:</strong> Uses binary digits (0 and 1). It is directly understood by the computer.</li>
+<li><strong>Assembly Language:</strong> Uses symbolic instructions such as ADD and SUB.</li>
+<li><strong>High-Level Language:</strong> Uses human-readable instructions. Examples: C, C++ and Java.</li>
+</ul>
+</div>
+
+<div class="topic">
+<h3>10. Types of Computers</h3>
+<ul>
+<li><strong>Supercomputer:</strong> Used for complex scientific calculations and weather forecasting.</li>
+<li><strong>Mainframe Computer:</strong> Handles large amounts of data and many users.</li>
+<li><strong>Minicomputer:</strong> A mid-range multi-user computer category.</li>
+<li><strong>Microcomputer:</strong> A personal computer such as a desktop or laptop.</li>
+</ul>
+</div>
+
+</section>
+
+<section class="unit">
+<h2>UNIT 1 – IMPORTANT EXAM QUESTIONS</h2>
+
+<details>
+<summary>2-Mark Questions</summary>
+<ol>
+<li>Define computer.</li>
+<li>What is CPU?</li>
+<li>Expand ALU and CU.</li>
+<li>Define input device.</li>
+<li>What is RAM?</li>
+<li>What is ROM?</li>
+<li>Define software.</li>
+</ol>
+</details>
+
+<details>
+<summary>5-Mark Questions</summary>
+<ol>
+<li>Explain the characteristics of a computer.</li>
+<li>Explain the basic functions of a computer.</li>
+<li>Differentiate between RAM and ROM.</li>
+<li>Explain the types of software.</li>
+<li>Explain input and output devices with examples.</li>
+</ol>
+</details>
+
+<details>
+<summary>10-Mark Questions</summary>
+<ol>
+<li>Explain the functional units of a computer with a neat diagram.</li>
+<li>Explain the CPU and its components.</li>
+<li>Explain the classification of computers.</li>
+<li>Explain computer memory and its types.</li>
+</ol>
+</details>
+</section>
+
+<button onclick="window.print()">Print / Save as PDF</button>
+
+<section class="unit">
+<h2 id="unit2">UNIT 2 – NUMBER SYSTEMS AND BINARY ARITHMETIC</h2>
+
+<div class="topic">
+<h3>1. What is a Number System?</h3>
+<p>
+A number system is a method of representing numbers using a
+set of symbols or digits. Computers use different number systems
+to represent and process data.
+</p>
+
+<table>
+<tr><th>Number System</th><th>Base</th><th>Digits Used</th></tr>
+<tr><td>Decimal</td><td>10</td><td>0 to 9</td></tr>
+<tr><td>Binary</td><td>2</td><td>0 and 1</td></tr>
+<tr><td>Octal</td><td>8</td><td>0 to 7</td></tr>
+<tr><td>Hexadecimal</td><td>16</td><td>0 to 9 and A to F</td></tr>
+</table>
+</div>
+
+<div class="topic">
+<h3>2. Decimal Number System</h3>
+<p>
+The decimal number system has base 10. It uses ten digits
+from 0 to 9. It is commonly used in everyday calculations.
+</p>
+<div class="example">
+Example: 245<br>
+= 2 × 100 + 4 × 10 + 5 × 1<br>
+= 200 + 40 + 5
+</div>
+</div>
+
+<div class="topic">
+<h3>3. Binary Number System</h3>
+<p>
+The binary number system has base 2. It uses only two digits,
+0 and 1. Computers use binary because digital electronic
+circuits can represent two states.
+</p>
+<div class="example">
+Example: (1011)₂<br>
+= 1 × 8 + 0 × 4 + 1 × 2 + 1 × 1<br>
+= 8 + 0 + 2 + 1<br>
+= (11)₁₀
+</div>
+</div>
+
+<div class="topic">
+<h3>4. Octal Number System</h3>
+<p>
+The octal number system has base 8. It uses digits from 0 to 7.
+</p>
+<div class="example">
+Example: (157)₈<br>
+= 1 × 64 + 5 × 8 + 7 × 1<br>
+= 64 + 40 + 7<br>
+= (111)₁₀
+</div>
+</div>
+
+<div class="topic">
+<h3>5. Hexadecimal Number System</h3>
+<p>
+The hexadecimal number system has base 16. It uses digits
+0 to 9 and letters A to F.
+</p>
+<table>
+<tr><th>Symbol</th><th>Value</th></tr>
+<tr><td>A</td><td>10</td></tr>
+<tr><td>B</td><td>11</td></tr>
+<tr><td>C</td><td>12</td></tr>
+<tr><td>D</td><td>13</td></tr>
+<tr><td>E</td><td>14</td></tr>
+<tr><td>F</td><td>15</td></tr>
+</table>
+<div class="example">
+Example: (2A)₁₆<br>
+= 2 × 16 + 10 × 1<br>
+= 32 + 10<br>
+= (42)₁₀
+</div>
+</div>
+
+<div class="topic">
+<h3>6. Decimal to Binary Conversion</h3>
+<p>Divide the decimal number repeatedly by 2. Write down
+the remainders and read them from bottom to top.</p>
+<div class="example">
+Convert (13)₁₀ into binary:<br><br>
+13 ÷ 2 = 6 remainder 1<br>
+6 ÷ 2 = 3 remainder 0<br>
+3 ÷ 2 = 1 remainder 1<br>
+1 ÷ 2 = 0 remainder 1<br><br>
+Answer: (1101)₂
+</div>
+</div>
+
+<div class="topic">
+<h3>7. Binary to Decimal Conversion</h3>
+<p>Multiply each binary digit by its corresponding power
+of 2, starting from the right with 2⁰.</p>
+<div class="example">
+Convert (1101)₂ into decimal:<br><br>
+= 1 × 2³ + 1 × 2² + 0 × 2¹ + 1 × 2⁰<br>
+= 8 + 4 + 0 + 1<br>
+= (13)₁₀
+</div>
+</div>
+
+<div class="topic">
+<h3>8. Binary Addition</h3>
+<p>Binary addition follows four basic rules:</p>
+<table>
+<tr><th>Addition</th><th>Result</th></tr>
+<tr><td>0 + 0</td><td>0</td></tr>
+<tr><td>0 + 1</td><td>1</td></tr>
+<tr><td>1 + 0</td><td>1</td></tr>
+<tr><td>1 + 1</td><td>10 (carry 1)</td></tr>
+</table>
+<div class="example">
+Example:<br>
+&nbsp;&nbsp; 101<br>
++ 011<br>
+--------<br>
+&nbsp;1000
+</div>
+</div>
+
+<div class="topic">
+<h3>9. Binary Subtraction</h3>
+<table>
+<tr><th>Subtraction</th><th>Result</th></tr>
+<tr><td>0 − 0</td><td>0</td></tr>
+<tr><td>1 − 0</td><td>1</td></tr>
+<tr><td>1 − 1</td><td>0</td></tr>
+<tr><td>0 − 1</td><td>Borrow 1: result 1</td></tr>
+</table>
+<div class="example">
+Example:<br>
+&nbsp;&nbsp; 110<br>
+− 011<br>
+--------<br>
+&nbsp;&nbsp;011
+</div>
+</div>
+
+<div class="topic">
+<h3>10. BCD (Binary Coded Decimal)</h3>
+<p>
+BCD is a coding system in which each decimal digit is
+represented separately using four binary bits.
+</p>
+<div class="example">
+Example: Decimal 25<br>
+2 = 0010<br>
+5 = 0101<br>
+BCD = 0010 0101
+</div>
+</div>
+
+<div class="topic">
+<h3>11. Gray Code</h3>
+<p>
+Gray code is a binary code in which two consecutive
+values differ by only one bit. It helps reduce errors
+during certain digital transitions.
+</p>
+<div class="example">
+Binary: 000, 001, 010, 011<br>
+Gray:   000, 001, 011, 010
+</div>
+</div>
+
+</section>
+
+<section class="unit">
+<h2>UNIT 2 – IMPORTANT EXAM QUESTIONS</h2>
+
+<details>
+<summary>2-Mark Questions</summary>
+<ol>
+<li>Define number system.</li>
+<li>What is binary number system?</li>
+<li>What is the base of octal number system?</li>
+<li>Define hexadecimal number system.</li>
+<li>What is BCD?</li>
+<li>What is Gray code?</li>
+</ol>
+</details>
+
+<details>
+<summary>5-Mark Questions</summary>
+<ol>
+<li>Explain the different types of number systems.</li>
+<li>Convert decimal 25 into binary.</li>
+<li>Convert (10110)₂ into decimal.</li>
+<li>Explain BCD with an example.</li>
+<li>Explain Gray code.</li>
+</ol>
+</details>
+
+<details>
+<summary>10-Mark Questions</summary>
+<ol>
+<li>Explain number systems with examples.</li>
+<li>Explain decimal-to-binary and binary-to-decimal conversions.</li>
+<li>Explain binary addition and subtraction with examples.</li>
+<li>Explain BCD and Gray code with examples.</li>
+</ol>
+</details>
+</section>
+<button onclick="window.print()">Print / Save as PDF</button>
+<section class="unit">
+<h2 id="unit3">UNIT 3 – BOOLEAN ALGEBRA AND LOGIC GATES</h2>
+
+<div class="topic">
+<h3>1. What is Boolean Algebra?</h3>
+<p>
+Boolean algebra is a branch of mathematics used in digital
+electronics and computer systems. It works with only two values:
+0 (False) and 1 (True).
+</p>
+<div class="example">
+Example:<br>
+A = 1<br>
+B = 0<br>
+A AND B = 0
+</div>
+</div>
+
+<div class="topic">
+<h3>2. Basic Boolean Operations</h3>
+<ul>
+<li><strong>AND:</strong> Gives 1 only when all inputs are 1.</li>
+<li><strong>OR:</strong> Gives 1 when at least one input is 1.</li>
+<li><strong>NOT:</strong> Changes 1 to 0 and 0 to 1.</li>
+</ul>
+</div>
+
+<div class="topic">
+<h3>3. AND Gate</h3>
+<p>The AND gate produces output 1 only when both inputs are 1.</p>
+<table>
+<tr><th>A</th><th>B</th><th>Output Y = A · B</th></tr>
+<tr><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>0</td><td>1</td><td>0</td></tr>
+<tr><td>1</td><td>0</td><td>0</td></tr>
+<tr><td>1</td><td>1</td><td>1</td></tr>
+</table>
+</div>
+
+<div class="topic">
+<h3>4. OR Gate</h3>
+<p>The OR gate produces output 1 when at least one input is 1.</p>
+<table>
+<tr><th>A</th><th>B</th><th>Output Y = A + B</th></tr>
+<tr><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>0</td><td>1</td><td>1</td></tr>
+<tr><td>1</td><td>0</td><td>1</td></tr>
+<tr><td>1</td><td>1</td><td>1</td></tr>
+</table>
+</div>
+
+<div class="topic">
+<h3>5. NOT Gate</h3>
+<p>The NOT gate reverses the input value. It is also called an inverter.</p>
+<table>
+<tr><th>Input A</th><th>Output Y = NOT A</th></tr>
+<tr><td>0</td><td>1</td></tr>
+<tr><td>1</td><td>0</td></tr>
+</table>
+</div>
+
+<div class="topic">
+<h3>6. NAND Gate</h3>
+<p>
+A NAND gate is the opposite of an AND gate.
+It produces output 0 only when both inputs are 1.
+</p>
+<table>
+<tr><th>A</th><th>B</th><th>Output Y = (A · B)'</th></tr>
+<tr><td>0</td><td>0</td><td>1</td></tr>
+<tr><td>0</td><td>1</td><td>1</td></tr>
+<tr><td>1</td><td>0</td><td>1</td></tr>
+<tr><td>1</td><td>1</td><td>0</td></tr>
+</table>
+</div>
+
+<div class="topic">
+<h3>7. NOR Gate</h3>
+<p>
+A NOR gate is the opposite of an OR gate.
+It produces output 1 only when both inputs are 0.
+</p>
+<table>
+<tr><th>A</th><th>B</th><th>Output Y = (A + B)'</th></tr>
+<tr><td>0</td><td>0</td><td>1</td></tr>
+<tr><td>0</td><td>1</td><td>0</td></tr>
+<tr><td>1</td><td>0</td><td>0</td></tr>
+<tr><td>1</td><td>1</td><td>0</td></tr>
+</table>
+</div>
+
+<div class="topic">
+<h3>8. XOR Gate</h3>
+<p>
+The XOR (Exclusive OR) gate produces output 1 when
+the two inputs are different.
+</p>
+<table>
+<tr><th>A</th><th>B</th><th>Output Y = A ⊕ B</th></tr>
+<tr><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>0</td><td>1</td><td>1</td></tr>
+<tr><td>1</td><td>0</td><td>1</td></tr>
+<tr><td>1</td><td>1</td><td>0</td></tr>
+</table>
+</div>
+
+<div class="topic">
+<h3>9. XNOR Gate</h3>
+<p>
+The XNOR gate produces output 1 when both inputs
+are the same.
+</p>
+<table>
+<tr><th>A</th><th>B</th><th>Output Y = (A ⊕ B)'</th></tr>
+<tr><td>0</td><td>0</td><td>1</td></tr>
+<tr><td>0</td><td>1</td><td>0</td></tr>
+<tr><td>1</td><td>0</td><td>0</td></tr>
+<tr><td>1</td><td>1</td><td>1</td></tr>
+</table>
+</div>
+
+<div class="topic">
+<h3>10. Boolean Algebra Laws</h3>
+<table>
+<tr><th>Law</th><th>Expression</th></tr>
+<tr><td>Identity</td><td>A + 0 = A; A · 1 = A</td></tr>
+<tr><td>Null</td><td>A + 1 = 1; A · 0 = 0</td></tr>
+<tr><td>Idempotent</td><td>A + A = A; A · A = A</td></tr>
+<tr><td>Complement</td><td>A + A' = 1; A · A' = 0</td></tr>
+<tr><td>Double Negation</td><td>(A')' = A</td></tr>
+</table>
+</div>
+
+<div class="topic">
+<h3>11. De Morgan's Theorems</h3>
+<p>There are two important De Morgan's theorems:</p>
+<div class="example">
+<strong>First theorem:</strong><br>
+(A · B)' = A' + B'<br><br>
+<strong>Second theorem:</strong><br>
+(A + B)' = A' · B'
+</div>
+<p>These theorems are used to simplify Boolean expressions and digital circuits.</p>
+</div>
+
+<div class="topic">
+<h3>12. Karnaugh Map (K-Map)</h3>
+<p>
+A Karnaugh Map is a graphical method used to simplify
+Boolean expressions. It helps reduce the number of logic
+gates required in a digital circuit.
+</p>
+<p>For two variables, the K-map has four cells representing
+the combinations 00, 01, 10 and 11.</p>
+</div>
+</section>
+
+<section class="unit">
+<h2>UNIT 3 – IMPORTANT EXAM QUESTIONS</h2>
+
+<details>
+<summary>2-Mark Questions</summary>
+<ol>
+<li>Define Boolean algebra.</li>
+<li>What is a logic gate?</li>
+<li>Define AND gate.</li>
+<li>What is a universal gate?</li>
+<li>State De Morgan's theorems.</li>
+<li>What is a K-map?</li>
+</ol>
+</details>
+
+<details>
+<summary>5-Mark Questions</summary>
+<ol>
+<li>Explain AND, OR and NOT gates with truth tables.</li>
+<li>Explain NAND and NOR gates.</li>
+<li>Explain XOR and XNOR gates.</li>
+<li>Explain the basic laws of Boolean algebra.</li>
+<li>Explain De Morgan's theorems with examples.</li>
+</ol>
+</details>
+
+<details>
+<summary>10-Mark Questions</summary>
+<ol>
+<li>Explain all basic and derived logic gates with truth tables.</li>
+<li>Explain Boolean algebra laws with examples.</li>
+<li>Explain De Morgan's theorems and their applications.</li>
+<li>Explain Karnaugh Map and its uses.</li>
+</ol>
+</details>
+</section>
+<button onclick="window.print()">Print / Save as PDF</button>
+
+<section class="unit">
+<h2 id="unit4">UNIT 4 – COMBINATIONAL AND SEQUENTIAL LOGIC CIRCUITS</h2>
+<div class="topic">
+<h3>1. Combinational Logic Circuits</h3>
+<p>A combinational logic circuit is a digital circuit in which the output depends only on the present inputs. It does not store previous information.</p>
+<p><strong>Examples:</strong> Adders, subtractors, encoders, decoders and multiplexers.</p>
+</div>
+
+<div class="topic">
+<h3>2. Half Adder</h3>
+<p>A half adder is a combinational circuit used to add two binary bits. It produces Sum and Carry.</p>
+<p><strong>Equations:</strong></p>
+<div class="example">Sum = A ⊕ B<br>Carry = A · B</div>
+<table>
+<tr><th>A</th><th>B</th><th>Sum</th><th>Carry</th></tr>
+<tr><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>0</td><td>1</td><td>1</td><td>0</td></tr>
+<tr><td>1</td><td>0</td><td>1</td><td>0</td></tr>
+<tr><td>1</td><td>1</td><td>0</td><td>1</td></tr>
+</table>
+</div>
+
+<div class="topic">
+<h3>3. Full Adder</h3>
+<p>A full adder adds three binary bits: A, B and Carry-in. It produces Sum and Carry-out.</p>
+<div class="example">Sum = A ⊕ B ⊕ Cin<br>Carry = AB + BCin + ACin</div>
+<p>A full adder can be constructed using two half adders and one OR gate.</p>
+</div>
+
+<div class="topic">
+<h3>4. Half Subtractor</h3>
+<p>A half subtractor subtracts one binary bit from another. It produces Difference and Borrow.</p>
+<div class="example">Difference = A ⊕ B<br>Borrow = A' · B</div>
+<table>
+<tr><th>A</th><th>B</th><th>Difference</th><th>Borrow</th></tr>
+<tr><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>0</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td>1</td><td>0</td><td>1</td><td>0</td></tr>
+<tr><td>1</td><td>1</td><td>0</td><td>0</td></tr>
+</table>
+</div>
+
+<div class="topic">
+<h3>5. Full Subtractor</h3>
+<p>A full subtractor subtracts two bits and a borrow-in. It produces Difference and Borrow-out.</p>
+<div class="example">Difference = A ⊕ B ⊕ Bin<br>Borrow = A'B + A'Bin + BBin</div>
+<p>It can be constructed using two half subtractors and one OR gate.</p>
+</div>
+
+<div class="topic">
+<h3>6. Sequential Logic Circuits</h3>
+<p>A sequential logic circuit is a digital circuit whose output depends on present inputs and previous states. It uses memory elements to store information.</p>
+<p><strong>Examples:</strong> Flip-flops, counters and shift registers.</p>
+</div>
+
+<div class="topic">
+<h3>7. Flip-Flops</h3>
+<p>A flip-flop is a basic memory element used to store one bit of binary information.</p>
+<p><strong>Types of flip-flops:</strong></p>
+<ul>
+<li>SR Flip-Flop</li>
+<li>JK Flip-Flop</li>
+<li>Master-Slave JK Flip-Flop</li>
+<li>T Flip-Flop</li>
+</ul>
+</div>
+
+<div class="topic">
+<h3>8. SR Flip-Flop</h3>
+<p>SR stands for Set-Reset. It has two inputs: S and R.</p>
+<table>
+<tr><th>S</th><th>R</th><th>Output</th></tr>
+<tr><td>0</td><td>0</td><td>No Change</td></tr>
+<tr><td>0</td><td>1</td><td>Reset (0)</td></tr>
+<tr><td>1</td><td>0</td><td>Set (1)</td></tr>
+<tr><td>1</td><td>1</td><td>Invalid</td></tr>
+</table>
+</div>
+
+<div class="topic">
+<h3>9. JK Flip-Flop</h3>
+<p>JK flip-flop is an improved version of the SR flip-flop. It has two inputs J and K.</p>
+<table>
+<tr><th>J</th><th>K</th><th>Output</th></tr>
+<tr><td>0</td><td>0</td><td>No Change</td></tr>
+<tr><td>0</td><td>1</td><td>Reset (0)</td></tr>
+<tr><td>1</td><td>0</td><td>Set (1)</td></tr>
+<tr><td>1</td><td>1</td><td>Toggle</td></tr>
+</table>
+</div>
+
+<div class="topic">
+<h3>10. Master-Slave JK Flip-Flop</h3>
+<p>It consists of two JK flip-flops connected together: Master and Slave.</p>
+<p>The Master receives the input first, and the Slave updates the output at the opposite clock phase. It helps prevent the race-around condition.</p>
+</div>
+
+<div class="topic">
+<h3>11. T Flip-Flop</h3>
+<p>T stands for Toggle. It changes its output when T = 1.</p>
+<table>
+<tr><th>T</th><th>Output</th></tr>
+<tr><td>0</td><td>No Change</td></tr>
+<tr><td>1</td><td>Toggle</td></tr>
+</table>
+</div>
+
+<div class="topic">
+<h3>12. Decoder – 3 to 8 Lines</h3>
+<p>A decoder is a combinational circuit that converts binary input information into one of several output lines.</p>
+<p>A 3-to-8 decoder has 3 input lines and 8 output lines. For each valid input combination, one output becomes active.</p>
+<p><strong>Applications:</strong> Memory selection and digital systems.</p>
+</div>
+
+<div class="topic">
+<h3>13. Encoder – Octal to Binary</h3>
+<p>An encoder converts an active input line into a binary code.</p>
+<p>An octal-to-binary encoder has 8 input lines and 3 output lines.</p>
+<p><strong>Example:</strong> If input line 5 is active, the binary output is 101.</p>
+</div>
+
+<div class="topic">
+<h3>14. Multiplexer – 4 to 1 Line</h3>
+<p>A multiplexer (MUX) is a digital circuit that selects one input from multiple inputs and sends it to a single output.</p>
+<p>A 4-to-1 multiplexer has:</p>
+<ul>
+<li>4 data inputs (I0, I1, I2, I3)</li>
+<li>2 selection lines (S1, S0)</li>
+<li>1 output (Y)</li>
+</ul>
+<table>
+<tr><th>S1</th><th>S0</th><th>Selected Input</th></tr>
+<tr><td>0</td><td>0</td><td>I0</td></tr>
+<tr><td>0</td><td>1</td><td>I1</td></tr>
+<tr><td>1</td><td>0</td><td>I2</td></tr>
+<tr><td>1</td><td>1</td><td>I3</td></tr>
+</table>
+</div>
+
+<div class="topic">
+<h3>15. 3-Bit Binary Ripple Counter</h3>
+<p>A counter is a sequential circuit used to count clock pulses.</p>
+<p>A 3-bit binary ripple counter uses 3 flip-flops and counts from 000 to 111 (0 to 7). It then repeats the sequence.</p>
+<div class="example">
+000 → 001 → 010 → 011 → 100 → 101 → 110 → 111
+</div>
+</div>
+
+<div class="topic">
+<h3>16. Shift Registers</h3>
+<p>A shift register is a sequential circuit used to store and move binary data from one flip-flop to another.</p>
+<p><strong>Types in this syllabus:</strong></p>
+<ul>
+<li><strong>SIPO:</strong> Serial-In-Parallel-Out. Data enters one bit at a time and is available together at the outputs.</li>
+<li><strong>PISO:</strong> Parallel-In-Serial-Out. Data enters together and is sent out one bit at a time.</li>
+</ul>
+<p><strong>Applications:</strong> Data storage and data transfer.</p>
+</div>
+</section>
+
+<section class="unit">
+<h2>UNIT 4 – IMPORTANT EXAM QUESTIONS</h2>
+
+<details>
+<summary>2-Mark Questions</summary>
+<ol>
+<li>Define combinational logic circuit.</li>
+<li>What is a half adder?</li>
+<li>Define full adder.</li>
+<li>What is a flip-flop?</li>
+<li>Define multiplexer.</li>
+<li>What is a decoder?</li>
+<li>What is a shift register?</li>
+</ol>
+</details>
+
+<details>
+<summary>5-Mark Questions</summary>
+<ol>
+<li>Explain half adder with truth table.</li>
+<li>Explain half subtractor with truth table.</li>
+<li>Explain SR and JK flip-flops.</li>
+<li>Explain 3-to-8 decoder.</li>
+<li>Explain 4-to-1 multiplexer.</li>
+<li>Differentiate between SIPO and PISO.</li>
+</ol>
+</details>
+
+<details>
+<summary>10-Mark Questions</summary>
+<ol>
+<li>Explain half adder and full adder with truth tables.</li>
+<li>Explain half subtractor and full subtractor.</li>
+<li>Explain different types of flip-flops with truth tables.</li>
+<li>Explain encoder and decoder with examples.</li>
+<li>Explain a 4-to-1 multiplexer with its truth table.</li>
+<li>Explain a 3-bit binary ripple counter and shift registers.</li>
+</ol>
+</details>
+</section>
+<button onclick="window.print()">Print / Save as PDF</button>
+</main>
+
+<footer>
+STUDENTVERSE | Learn • Practice • Succeed
+</footer>
+<script>
+const searchBox = document.getElementById("notesSearch");
+
+searchBox.addEventListener("input", function () {
+    const searchText = this.value.toLowerCase();
+
+    document.querySelectorAll(".unit .topic").forEach(topic => {
+        const content = topic.textContent.toLowerCase();
+
+        topic.style.display = content.includes(searchText)
+            ? ""
+            : "none";
+    });
+});
+</script>
+<button id="topBtn" onclick="window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+})">
+    ↑ Back to Top
+</button>
+</body>
+</html>

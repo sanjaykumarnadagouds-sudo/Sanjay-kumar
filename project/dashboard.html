@@ -1,0 +1,167 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STUDENTVERSE | Student Dashboard</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+ <link rel="stylesheet" href="dashboard.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+
+<body>
+
+    <canvas id="dashboard-universe"></canvas>
+
+    <header class="topbar">
+        <a href="index.html" class="logo">STUDENT<span>VERSE</span></a>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="#modules">Modules</a>
+            <a href="#progress">Progress</a>
+        </nav>
+
+        <div class="profile-mini">
+            <div class="avatar">S</div>
+            <span>Student</span>
+        </div>
+    </header>
+
+    <main class="dashboard">
+
+        <section class="welcome">
+            <div>
+                <p class="eyebrow">YOUR LEARNING UNIVERSE</p>
+                <h1>Welcome Back,<br><span>Explorer!</span></h1>
+                <p class="welcome-text">
+                    Your journey to knowledge starts here.
+                    Explore, learn and achieve your goals.
+                </p>
+                <a href="#modules" class="start-btn">Explore Your Universe ↗</a>
+            </div>
+
+            <div class="planet-area">
+                <div class="orbit orbit-one"></div>
+                <div class="orbit orbit-two"></div>
+                <div class="planet"></div>
+                <div class="planet-label">YOUR FUTURE IS IN ORBIT</div>
+            </div>
+        </section>
+
+<section class="stats" id="stats">
+
+    <div class="stat-card">
+        <span>📚</span>
+        <h2 class="counter" data-target="6">0</h2>
+        <p>Learning Modules</p>
+    </div>
+
+    <div class="stat-card">
+        <span>🎯</span>
+        <h2><span class="counter" data-target="0">0</span>%</h2>
+        <p>Overall Progress</p>
+    </div>
+
+    <div class="stat-card">
+        <span>⚡</span>
+        <h2><span class="counter" data-target="0">0</span></h2>
+        <p>Learning Hours</p>
+    </div>
+
+    <div class="stat-card">
+        <span>🏆</span>
+        <h2 class="counter" data-target="0">0</h2>
+        <p>Achievements</p>
+    </div>
+
+</section>
+
+      
+        <section class="modules-section" id="modules">
+            <div class="section-heading">
+                <p class="eyebrow">DISCOVER YOUR POTENTIAL</p>
+                <h2>Your Learning <span>Modules</span></h2>
+            </div>
+
+            <div class="module-grid">
+
+                <a href="studyhub.html" class="module-card">
+                    <span class="module-icon">📚</span>
+                    <h3>StudyHub</h3>
+                    <p>Notes, materials and previous year question papers.</p>
+                    <span class="module-link">Explore Module ↗</span>
+                </a>
+
+                <a href="skillup.html" class="module-card">
+                    <span class="module-icon">🚀</span>
+                    <h3>SkillUp</h3>
+                    <p>Improve programming, communication and technical skills.</p>
+                    <span class="module-link">Explore Module ↗</span>
+                </a>
+
+               
+
+                <a href="career-path.html" class="module-card">
+                    <span class="module-icon">💼</span>
+                    <h3>CareerPath</h3>
+                    <p>Discover jobs, internships and career opportunities.</p>
+                    <span class="module-link">Explore Module ↗</span>
+                </a>
+
+                
+
+                <a href="progress-track.html" class="module-card">
+                    <span class="module-icon">📊</span>
+                    <h3>Progress Tracker</h3>
+                    <p>Monitor your learning progress and study goals.</p>
+                    <span class="module-link">Explore Module ↗</span>
+                </a>
+
+            </div>
+        </section>
+
+        
+<section class="progress-section" id="progress">
+
+    <div>
+        <p class="eyebrow">KEEP MOVING FORWARD</p>
+        <h2>Your Progress <span>Journey</span></h2>
+        <p>Every small step takes you closer to success.</p>
+
+        <div class="daily-goal">
+            <h3>Today's Study Goal</h3>
+            <p id="goal-text">0 of 3 hours completed</p>
+            <div class="goal-track">
+                <div class="goal-fill" id="goal-fill"></div>
+            </div>
+            <button id="study-btn" class="study-btn">
+                + Add 30 Minutes
+            </button>
+            <button id="reset-btn" class="reset-btn">
+    ↻ Reset Progress
+</button>
+        </div>
+    </div>
+
+    <div class="progress-ring" id="progress-ring">
+        <div class="ring-inner">
+            <strong id="progress-value">0%</strong>
+            <span>Completed</span>
+        </div>
+    </div>
+
+</section>
+
+
+    </main>
+
+    <footer>
+        <p>© 2026 STUDENTVERSE | Explore • Learn • Achieve</p>
+    </footer>
+<script src="dashboard.js"></script>
+</body>
+</html>

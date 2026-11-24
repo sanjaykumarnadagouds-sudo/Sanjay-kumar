@@ -1,0 +1,1402 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>C#.NET Practical | STUDENTVERSE</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #050816;
+    color: #fff;
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* COSMIC BACKGROUND */
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    width: 450px;
+    height: 450px;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: .22;
+    z-index: -1;
+    animation: float 9s infinite alternate ease-in-out;
+}
+
+body::before {
+    background: #7c3aed;
+    top: -120px;
+    left: -120px;
+}
+
+body::after {
+    background: #0891b2;
+    right: -120px;
+    bottom: -120px;
+    animation-delay: 2s;
+}
+
+@keyframes float {
+    to {
+        transform: translate(100px, 80px) scale(1.2);
+    }
+}
+
+/* NAVBAR */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 7%;
+    background: rgba(10, 15, 35, .85);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid #34365c;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 23px;
+    font-weight: bold;
+    color: #a78bfa;
+    letter-spacing: 2px;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 14px;
+}
+
+.navbar a:hover {
+    color: #a78bfa;
+}
+
+/* HEADER */
+header {
+    text-align: center;
+    padding: 65px 20px 35px;
+}
+
+header h1 {
+    font-size: clamp(28px, 5vw, 43px);
+    color: #c4b5fd;
+    text-shadow: 0 0 20px #7c3aed;
+}
+
+header p {
+    color: #b7bdd8;
+    margin-top: 10px;
+}
+
+/* ACTION BUTTONS */
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    padding: 15px;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    padding: 11px 18px;
+    border-radius: 8px;
+    background: linear-gradient(120deg, #7c3aed, #2563eb);
+    color: white;
+    font-weight: bold;
+    transition: .3s;
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 15px #7c3aed;
+}
+
+/* NAVIGATION */
+.unit-nav {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    padding: 25px 15px;
+}
+
+.unit-nav a {
+    color: #ddd6fe;
+    text-decoration: none;
+    border: 1px solid #6d5ca8;
+    padding: 9px 17px;
+    border-radius: 20px;
+    transition: .3s;
+}
+
+.unit-nav a:hover {
+    background: #7c3aed;
+    color: white;
+}
+
+/* SEARCH */
+.search-area {
+    text-align: center;
+    margin: 20px auto 30px;
+    padding: 0 15px;
+}
+
+.search-area input {
+    width: min(90%, 500px);
+    padding: 14px;
+    border-radius: 10px;
+    border: 1px solid #6d5ca8;
+    background: #10162e;
+    color: white;
+    outline: none;
+    font-size: 15px;
+}
+
+/* SECTION */
+.section-heading {
+    text-align: center;
+    font-size: 27px;
+    color: #c4b5fd;
+    margin: 45px 10px 25px;
+}
+
+.program-container {
+    width: 90%;
+    max-width: 1050px;
+    margin: auto;
+}
+
+.program-card {
+    background: rgba(19, 27, 55, .88);
+    border: 1px solid #373b69;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 28px;
+    box-shadow: 0 8px 30px rgba(0,0,0,.25);
+    animation: appear .6s ease;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.program-card h2 {
+    color: #c4b5fd;
+    font-size: 21px;
+    margin-bottom: 18px;
+}
+
+.program-card h3 {
+    color: #67e8f9;
+    margin: 20px 0 8px;
+    font-size: 16px;
+}
+
+.program-card p {
+    color: #d5d9ec;
+    margin-bottom: 8px;
+}
+
+.program-card ol {
+    padding-left: 25px;
+    color: #d5d9ec;
+}
+
+.program-card li {
+    margin-bottom: 5px;
+}
+
+/* CODE */
+pre {
+    background: #050a19;
+    color: #a7f3d0;
+    padding: 18px;
+    border-radius: 10px;
+    overflow-x: auto;
+    white-space: pre;
+    border: 1px solid #303957;
+    font-size: 13px;
+    line-height: 1.7;
+    margin-top: 10px;
+}
+
+.output {
+    background: #071b20;
+    color: #67e8f9;
+    padding: 15px;
+    border-radius: 9px;
+    border-left: 4px solid #06b6d4;
+    white-space: pre-wrap;
+    margin-top: 10px;
+    font-family: monospace;
+}
+
+.copy-btn {
+    margin-top: 10px;
+    padding: 8px 13px;
+    font-size: 12px;
+}
+
+.result {
+    color: #86efac !important;
+    margin-top: 15px;
+}
+
+.no-results {
+    text-align: center;
+    color: #fca5a5;
+    padding: 30px;
+    display: none;
+}
+
+footer {
+    text-align: center;
+    padding: 30px;
+    margin-top: 60px;
+    border-top: 1px solid #373b69;
+    color: #aaa;
+}
+
+#backToTop {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    display: none;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+    padding: 0;
+    z-index: 90;
+}
+
+@media(max-width:600px) {
+    .navbar {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .navbar a {
+        margin: 0 7px;
+    }
+
+    .program-card {
+        padding: 17px;
+    }
+
+    pre {
+        font-size: 12px;
+    }
+}
+
+/* PDF PRINT */
+@media print {
+    body {
+        background: white;
+        color: black;
+    }
+
+    body::before,
+    body::after {
+        display: none;
+    }
+
+    .navbar,
+    .action-buttons,
+    .unit-nav,
+    .search-area,
+    .copy-btn,
+    #backToTop,
+    footer {
+        display: none !important;
+    }
+
+    header {
+        padding: 15px;
+    }
+
+    header h1,
+    header p,
+    .section-heading,
+    .program-card h2,
+    .program-card h3,
+    .program-card p,
+    .program-card li {
+        color: black !important;
+        text-shadow: none;
+    }
+
+    .program-container {
+        width: 100%;
+    }
+
+    .program-card {
+        background: white;
+        color: black;
+        border: 1px solid #aaa;
+        box-shadow: none;
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+
+    pre,
+    .output {
+        background: #f2f2f2;
+        color: black;
+        border: 1px solid #aaa;
+        white-space: pre-wrap;
+        overflow: visible;
+    }
+
+    .result {
+        color: black !important;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav class="navbar">
+    <div class="logo">STUDENTVERSE</div>
+
+    <div>
+        <a href="index.html">Home</a>
+        <a href="studyhub.html">StudyHub</a>
+        <a href="csharp-notes.html">Theory Notes</a>
+    </div>
+</nav>
+
+<header>
+    <h1>C#.NET PROGRAMMING</h1>
+    <p>CAM31P | BCA Semester 3</p>
+    <p>University of Mysore | Practical Programs</p>
+</header>
+
+<div class="action-buttons">
+    <button onclick="window.print()">📥 Download / Save as PDF</button>
+    <button onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        ⬆ Back to Top
+    </button>
+</div>
+
+<div class="unit-nav">
+    <a href="#partA">PART A – Programs 1–8</a>
+    <a href="#partB">PART B – Programs 9–16</a>
+</div>
+
+<div class="search-area">
+    <input
+        type="text"
+        id="search"
+        placeholder="🔍 Search practical programs..."
+        oninput="searchPrograms()"
+    >
+    <button onclick="clearSearch()">Clear</button>
+</div>
+
+<h2 class="section-heading" id="partA">PART A – C# PROGRAMS</h2>
+
+<div class="program-container" id="partAPrograms"></div>
+
+<h2 class="section-heading" id="partB">PART B – C#, WINDOWS FORMS AND DATABASE</h2>
+
+<div class="program-container" id="partBPrograms"></div>
+
+<p class="no-results" id="noResults">
+    No matching programs found!
+</p>
+
+<footer>
+    <p>STUDENTVERSE © 2026</p>
+    <p>Learn • Practice • Grow</p>
+</footer>
+
+<button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    ↑
+</button>
+
+<script>
+
+/* PRACTICAL PROGRAM DATA */
+
+const programs = [
+
+/* PART A */
+
+{
+part: "A",
+title: "Program 1 – Addition Using Command-Line Arguments",
+aim: "To write a C# program to add two numbers using command-line arguments.",
+algorithm: [
+"Start the program.",
+"Read two numbers from command-line arguments.",
+"Convert the arguments into integers.",
+"Add the two numbers.",
+"Display the result.",
+"Stop the program."
+],
+code: String.raw`using System;
+
+class Addition
+{
+    static void Main(string[] args)
+    {
+        int a = Convert.ToInt32(args[0]);
+        int b = Convert.ToInt32(args[1]);
+
+        int sum = a + b;
+
+        Console.WriteLine("Sum = " + sum);
+    }
+}`,
+output: "Sum = 30",
+result: "Thus, the C# program to add two numbers using command-line arguments was executed successfully."
+},
+
+{
+part: "A",
+title: "Program 2 – Demonstration of Methods and Operators",
+aim: "To demonstrate methods and operators in C#.",
+algorithm: [
+"Start the program.",
+"Create a class containing an addition method.",
+"Read two integer values.",
+"Perform arithmetic operations.",
+"Call the method and display the results.",
+"Stop the program."
+],
+code: String.raw`using System;
+
+class Calculator
+{
+    int Add(int a, int b)
+    {
+        return a + b;
+    }
+
+    static void Main()
+    {
+        Calculator obj = new Calculator();
+
+        int a = 20, b = 10;
+
+        Console.WriteLine("Addition = " + obj.Add(a,b));
+        Console.WriteLine("Subtraction = " + (a-b));
+        Console.WriteLine("Multiplication = " + (a*b));
+        Console.WriteLine("Division = " + (a/b));
+    }
+}`,
+output: "Addition = 30\nSubtraction = 10\nMultiplication = 200\nDivision = 2",
+result: "Thus, methods and operators were demonstrated successfully."
+},
+
+{
+part: "A",
+title: "Program 3 – Operations on ArrayList",
+aim: "To demonstrate different operations on an ArrayList.",
+algorithm: [
+"Start the program.",
+"Import System.Collections.",
+"Create an ArrayList.",
+"Add elements to the ArrayList.",
+"Display the elements.",
+"Remove an element and display the updated list.",
+"Stop the program."
+],
+code: String.raw`using System;
+using System.Collections;
+
+class ArrayListDemo
+{
+    static void Main()
+    {
+        ArrayList list = new ArrayList();
+
+        list.Add("Apple");
+        list.Add("Mango");
+        list.Add("Orange");
+
+        Console.WriteLine("Original List:");
+
+        foreach (string item in list)
+            Console.WriteLine(item);
+
+        list.Remove("Mango");
+
+        Console.WriteLine("After Removing Mango:");
+
+        foreach (string item in list)
+            Console.WriteLine(item);
+    }
+}`,
+output: "Original List:\nApple\nMango\nOrange\nAfter Removing Mango:\nApple\nOrange",
+result: "Thus, ArrayList operations were demonstrated successfully."
+},
+
+{
+part: "A",
+title: "Program 4 – Demonstration of String Functions",
+aim: "To demonstrate string functions in C#.",
+algorithm: [
+"Start the program.",
+"Declare a string variable.",
+"Apply different string functions.",
+"Display uppercase and lowercase strings.",
+"Display length and substring.",
+"Stop the program."
+],
+code: String.raw`using System;
+
+class StringDemo
+{
+    static void Main()
+    {
+        string name = "StudentVerse";
+
+        Console.WriteLine("Original: " + name);
+        Console.WriteLine("Uppercase: " + name.ToUpper());
+        Console.WriteLine("Lowercase: " + name.ToLower());
+        Console.WriteLine("Length: " + name.Length);
+        Console.WriteLine("Substring: " + name.Substring(0,7));
+        Console.WriteLine("Replace: " + name.Replace("Student","Smart"));
+        Console.WriteLine("Contains: " + name.Contains("Verse"));
+    }
+}`,
+output: "Original: StudentVerse\nUppercase: STUDENTVERSE\nLowercase: studentverse\nLength: 12\nSubstring: Student\nReplace: SmartVerse\nContains: True",
+result: "Thus, different string functions were demonstrated successfully."
+},
+
+{
+part: "A",
+title: "Program 5 – Default and Parameterized Constructors",
+aim: "To demonstrate default and parameterized constructors using a Student class.",
+algorithm: [
+"Start the program.",
+"Create a Student class.",
+"Define a default constructor.",
+"Define a parameterized constructor.",
+"Create objects using both constructors.",
+"Display student details.",
+"Stop the program."
+],
+code: String.raw`using System;
+
+class Student
+{
+    int id;
+    string name;
+
+    public Student()
+    {
+        id = 0;
+        name = "Unknown";
+    }
+
+    public Student(int i, string n)
+    {
+        id = i;
+        name = n;
+    }
+
+    public void Display()
+    {
+        Console.WriteLine("ID: " + id);
+        Console.WriteLine("Name: " + name);
+    }
+
+    static void Main()
+    {
+        Student s1 = new Student();
+        Student s2 = new Student(101, "Rahul");
+
+        Console.WriteLine("Default Constructor:");
+        s1.Display();
+
+        Console.WriteLine("Parameterized Constructor:");
+        s2.Display();
+    }
+}`,
+output: "Default Constructor:\nID: 0\nName: Unknown\nParameterized Constructor:\nID: 101\nName: Rahul",
+result: "Thus, default and parameterized constructors were demonstrated successfully."
+},
+
+{
+part: "A",
+title: "Program 6 – Multilevel Inheritance",
+aim: "To demonstrate multilevel inheritance using Person, Employee and Manager classes.",
+algorithm: [
+"Start the program.",
+"Create a Person base class.",
+"Create an Employee class derived from Person.",
+"Create a Manager class derived from Employee.",
+"Create a Manager object.",
+"Display inherited details.",
+"Stop the program."
+],
+code: String.raw`using System;
+
+class Person
+{
+    public string name = "Ravi";
+
+    public void ShowPerson()
+    {
+        Console.WriteLine("Name: " + name);
+    }
+}
+
+class Employee : Person
+{
+    public int salary = 30000;
+
+    public void ShowEmployee()
+    {
+        Console.WriteLine("Salary: " + salary);
+    }
+}
+
+class Manager : Employee
+{
+    public string department = "IT";
+
+    public void ShowManager()
+    {
+        Console.WriteLine("Department: " + department);
+    }
+}
+
+class Test
+{
+    static void Main()
+    {
+        Manager m = new Manager();
+
+        m.ShowPerson();
+        m.ShowEmployee();
+        m.ShowManager();
+    }
+}`,
+output: "Name: Ravi\nSalary: 30000\nDepartment: IT",
+result: "Thus, multilevel inheritance was demonstrated successfully."
+},
+
+{
+part: "A",
+title: "Program 7 – Method Overloading",
+aim: "To demonstrate method overloading in C#.",
+algorithm: [
+"Start the program.",
+"Create a class with methods having the same name.",
+"Use different parameter lists.",
+"Call the overloaded methods.",
+"Display the results.",
+"Stop the program."
+],
+code: String.raw`using System;
+
+class Addition
+{
+    int Add(int a, int b)
+    {
+        return a + b;
+    }
+
+    int Add(int a, int b, int c)
+    {
+        return a + b + c;
+    }
+
+    double Add(double a, double b)
+    {
+        return a + b;
+    }
+
+    static void Main()
+    {
+        Addition obj = new Addition();
+
+        Console.WriteLine(obj.Add(10,20));
+        Console.WriteLine(obj.Add(10,20,30));
+        Console.WriteLine(obj.Add(5.5,4.5));
+    }
+}`,
+output: "30\n60\n10",
+result: "Thus, method overloading was demonstrated successfully."
+},
+
+{
+part: "A",
+title: "Program 8 – Operator Overloading Using Complex Class",
+aim: "To overload the + operator to add two objects of a Complex class.",
+algorithm: [
+"Start the program.",
+"Create a Complex class.",
+"Declare real and imaginary parts.",
+"Overload the + operator.",
+"Create two Complex objects.",
+"Add the objects and display the result.",
+"Stop the program."
+],
+code: String.raw`using System;
+
+class Complex
+{
+    public int real, imag;
+
+    public Complex(int r, int i)
+    {
+        real = r;
+        imag = i;
+    }
+
+    public static Complex operator +(Complex a, Complex b)
+    {
+        return new Complex(
+            a.real + b.real,
+            a.imag + b.imag
+        );
+    }
+
+    public void Display()
+    {
+        Console.WriteLine(real + " + " + imag + "i");
+    }
+
+    static void Main()
+    {
+        Complex c1 = new Complex(3,4);
+        Complex c2 = new Complex(2,5);
+
+        Complex c3 = c1 + c2;
+
+        Console.Write("Result: ");
+        c3.Display();
+    }
+}`,
+output: "Result: 5 + 9i",
+result: "Thus, the + operator was overloaded successfully."
+},
+
+/* PART B */
+
+{
+part: "B",
+title: "Program 9 – Multicast Delegate",
+aim: "To implement a multicast delegate in C#.",
+algorithm: [
+"Start the program.",
+"Declare a delegate.",
+"Create two methods.",
+"Create a delegate object.",
+"Attach both methods using the += operator.",
+"Invoke the delegate.",
+"Stop the program."
+],
+code: String.raw`using System;
+
+delegate void MyDelegate();
+
+class DelegateDemo
+{
+    static void First()
+    {
+        Console.WriteLine("First Method");
+    }
+
+    static void Second()
+    {
+        Console.WriteLine("Second Method");
+    }
+
+    static void Main()
+    {
+        MyDelegate d = First;
+
+        d += Second;
+
+        d();
+    }
+}`,
+output: "First Method\nSecond Method",
+result: "Thus, multicast delegate was implemented successfully."
+},
+
+{
+part: "B",
+title: "Program 10 – Event Handler",
+aim: "To implement an event handler in C#.",
+algorithm: [
+"Start the program.",
+"Declare a delegate.",
+"Declare an event.",
+"Create a method to raise the event.",
+"Subscribe an event handler.",
+"Raise the event and display the message.",
+"Stop the program."
+],
+code: String.raw`using System;
+
+class EventDemo
+{
+    public event EventHandler MyEvent;
+
+    public void RaiseEvent()
+    {
+        MyEvent?.Invoke(this, EventArgs.Empty);
+    }
+
+    static void Main()
+    {
+        EventDemo obj = new EventDemo();
+
+        obj.MyEvent += (sender, e) =>
+        {
+            Console.WriteLine("Event Handler Executed");
+        };
+
+        obj.RaiseEvent();
+    }
+}`,
+output: "Event Handler Executed",
+result: "Thus, an event handler was implemented successfully."
+},
+
+{
+part: "B",
+title: "Program 11 – Numeric Formatting Types",
+aim: "To demonstrate numeric formatting types in C#.",
+algorithm: [
+"Start the program.",
+"Declare numeric variables.",
+"Use standard numeric format specifiers.",
+"Use currency, decimal and percentage formats.",
+"Display formatted values.",
+"Stop the program."
+],
+code: String.raw`using System;
+
+class NumericFormat
+{
+    static void Main()
+    {
+        double number = 1234.567;
+        double percent = 0.75;
+
+        Console.WriteLine("Number: " + number);
+        Console.WriteLine("Currency: " + number.ToString("C"));
+        Console.WriteLine("Decimal: " + number.ToString("F2"));
+        Console.WriteLine("Number Format: " + number.ToString("N2"));
+        Console.WriteLine("Percentage: " + percent.ToString("P"));
+        Console.WriteLine("Custom Format: " + number.ToString("00000.00"));
+    }
+}`,
+output: "Number: 1234.567\nCurrency: ₹1,234.57 (currency symbol depends on system culture)\nDecimal: 1234.57\nNumber Format: 1,234.57\nPercentage: 75.00%\nCustom Format: 01234.57",
+result: "Thus, numeric formatting types were demonstrated successfully."
+},
+
+{
+part: "B",
+title: "Program 12 – Writing and Reading a Text File",
+aim: "To write data into a text file and read the contents from the file.",
+algorithm: [
+"Start the program.",
+"Create a text file using StreamWriter.",
+"Write data into the file.",
+"Close the writer.",
+"Open the file using StreamReader.",
+"Read and display the contents.",
+"Stop the program."
+],
+code: String.raw`using System;
+using System.IO;
+
+class FileDemo
+{
+    static void Main()
+    {
+        string path = "student.txt";
+
+        using (StreamWriter sw = new StreamWriter(path))
+        {
+            sw.WriteLine("Welcome to C# Programming");
+            sw.WriteLine("STUDENTVERSE");
+        }
+
+        Console.WriteLine("File Contents:");
+
+        using (StreamReader sr = new StreamReader(path))
+        {
+            string line;
+
+            while ((line = sr.ReadLine()) != null)
+            {
+                Console.WriteLine(line);
+            }
+        }
+    }
+}`,
+output: "File Contents:\nWelcome to C# Programming\nSTUDENTVERSE",
+result: "Thus, writing and reading a text file was demonstrated successfully."
+},
+
+{
+part: "B",
+title: "Program 13 – Windows Forms Controls",
+aim: "To design a Windows Forms application using ListBox, CheckBox, RadioButton and Image Button.",
+algorithm: [
+"Create a Windows Forms application.",
+"Add a ListBox to display subjects.",
+"Add CheckBox controls.",
+"Add RadioButton controls.",
+"Add a Button with an image.",
+"Run the application and test the controls."
+],
+code: String.raw`using System;
+using System.Drawing;
+using System.Windows.Forms;
+
+class ControlDemo : Form
+{
+    public ControlDemo()
+    {
+        Text = "Windows Forms Controls";
+        Size = new Size(450, 400);
+
+        ListBox list = new ListBox();
+        list.Items.AddRange(new object[]
+        {
+            "C#", "Java", "Python"
+        });
+        list.SetBounds(30, 30, 150, 80);
+        Controls.Add(list);
+
+        CheckBox cb = new CheckBox();
+        cb.Text = "I like Programming";
+        cb.SetBounds(30, 130, 200, 30);
+        Controls.Add(cb);
+
+        RadioButton rb1 = new RadioButton();
+        rb1.Text = "Male";
+        rb1.SetBounds(30, 180, 100, 25);
+        Controls.Add(rb1);
+
+        RadioButton rb2 = new RadioButton();
+        rb2.Text = "Female";
+        rb2.SetBounds(140, 180, 100, 25);
+        Controls.Add(rb2);
+
+        Button btn = new Button();
+        btn.Text = "Submit";
+        btn.SetBounds(30, 230, 120, 40);
+        btn.Click += (s, e) =>
+        {
+            MessageBox.Show("Form Submitted");
+        };
+        Controls.Add(btn);
+    }
+
+    [STAThread]
+    static void Main()
+    {
+        Application.EnableVisualStyles();
+        Application.Run(new ControlDemo());
+    }
+}`,
+output: "A Windows Form opens containing a ListBox, CheckBox, two RadioButtons and a Submit button. Clicking Submit displays 'Form Submitted'.",
+result: "Thus, Windows Forms controls were demonstrated successfully."
+},
+
+{
+part: "B",
+title: "Program 14 – TrackBar, ProgressBar and GroupBox",
+aim: "To create a Windows Forms application demonstrating TrackBar, ProgressBar, GroupBox and Button.",
+algorithm: [
+"Create a Windows Forms application.",
+"Add a GroupBox.",
+"Add a TrackBar and ProgressBar.",
+"Add a Button.",
+"Connect the TrackBar value to the ProgressBar.",
+"Run the application and test the controls."
+],
+code: String.raw`using System;
+using System.Drawing;
+using System.Windows.Forms;
+
+class ProgressDemo : Form
+{
+    TrackBar track;
+    ProgressBar progress;
+
+    public ProgressDemo()
+    {
+        Text = "TrackBar and ProgressBar";
+        Size = new Size(450, 300);
+
+        GroupBox group = new GroupBox();
+        group.Text = "Progress Control";
+        group.SetBounds(30, 30, 350, 170);
+        Controls.Add(group);
+
+        track = new TrackBar();
+        track.Minimum = 0;
+        track.Maximum = 100;
+        track.SetBounds(20, 30, 280, 45);
+        group.Controls.Add(track);
+
+        progress = new ProgressBar();
+        progress.Minimum = 0;
+        progress.Maximum = 100;
+        progress.SetBounds(20, 90, 280, 25);
+        group.Controls.Add(progress);
+
+        track.Scroll += (s, e) =>
+        {
+            progress.Value = track.Value;
+        };
+
+        Button btn = new Button();
+        btn.Text = "Show Value";
+        btn.SetBounds(30, 215, 120, 30);
+        btn.Click += (s, e) =>
+        {
+            MessageBox.Show("Value: " + track.Value);
+        };
+        Controls.Add(btn);
+    }
+
+    [STAThread]
+    static void Main()
+    {
+        Application.EnableVisualStyles();
+        Application.Run(new ProgressDemo());
+    }
+}`,
+output: "A Windows Form displays a TrackBar and ProgressBar inside a GroupBox. Moving the TrackBar updates the ProgressBar. The button displays the selected value.",
+result: "Thus, TrackBar, ProgressBar, GroupBox and Button controls were demonstrated successfully."
+},
+
+{
+part: "B",
+title: "Program 15 – Calendar Control",
+aim: "To create a Windows Forms application that selects a date using a calendar control and displays it on a Label.",
+algorithm: [
+"Create a Windows Forms application.",
+"Add a MonthCalendar control.",
+"Add a Label control.",
+"Read the selected date from the calendar.",
+"Display the date on the Label.",
+"Run and test the application."
+],
+code: String.raw`using System;
+using System.Drawing;
+using System.Windows.Forms;
+
+class CalendarDemo : Form
+{
+    public CalendarDemo()
+    {
+        Text = "Calendar Application";
+        Size = new Size(400, 350);
+
+        MonthCalendar calendar = new MonthCalendar();
+        calendar.SetBounds(30, 30, 250, 180);
+        Controls.Add(calendar);
+
+        Label lbl = new Label();
+        lbl.SetBounds(30, 240, 300, 30);
+        lbl.Text = "Select a date";
+        Controls.Add(lbl);
+
+        calendar.DateSelected += (s, e) =>
+        {
+            lbl.Text = "Selected Date: " +
+                e.Start.ToShortDateString();
+        };
+    }
+
+    [STAThread]
+    static void Main()
+    {
+        Application.EnableVisualStyles();
+        Application.Run(new CalendarDemo());
+    }
+}`,
+output: "A calendar appears on the form. Selecting a date displays the selected date on the Label.",
+result: "Thus, a calendar control was used to select and display a date successfully."
+},
+
+{
+part: "B",
+title: "Program 16 – Database Connectivity Using OleDb and DataGridView",
+aim: "To connect a test database using ADO.NET and the OleDb provider, insert new records and display existing records using DataGridView.",
+algorithm: [
+"Create a test Microsoft Access database.",
+"Create a Student table with ID and Name fields.",
+"Create a Windows Forms application.",
+"Import System.Data and System.Data.OleDb.",
+"Establish an OleDb connection.",
+"Insert a new record using OleDbCommand.",
+"Retrieve records using OleDbDataAdapter.",
+"Display the records in DataGridView."
+],
+code: String.raw`using System;
+using System.Data;
+using System.Data.OleDb;
+using System.Drawing;
+using System.Windows.Forms;
+
+class DatabaseDemo : Form
+{
+    TextBox txtId, txtName;
+    DataGridView grid;
+
+    // Change the database path to your own file.
+    string connectionString =
+        @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=Student.accdb;";
+
+    public DatabaseDemo()
+    {
+        Text = "Student Database";
+        Size = new Size(650, 450);
+
+        Label l1 = new Label();
+        l1.Text = "Student ID";
+        l1.SetBounds(20, 20, 100, 25);
+        Controls.Add(l1);
+
+        txtId = new TextBox();
+        txtId.SetBounds(130, 20, 150, 25);
+        Controls.Add(txtId);
+
+        Label l2 = new Label();
+        l2.Text = "Student Name";
+        l2.SetBounds(20, 60, 100, 25);
+        Controls.Add(l2);
+
+        txtName = new TextBox();
+        txtName.SetBounds(130, 60, 150, 25);
+        Controls.Add(txtName);
+
+        Button btn = new Button();
+        btn.Text = "Insert";
+        btn.SetBounds(130, 100, 100, 30);
+        btn.Click += InsertRecord;
+        Controls.Add(btn);
+
+        grid = new DataGridView();
+        grid.SetBounds(20, 150, 580, 230);
+        grid.AutoSizeColumnsMode =
+            DataGridViewAutoSizeColumnsMode.Fill;
+        Controls.Add(grid);
+
+        LoadRecords();
+    }
+
+    void InsertRecord(object sender, EventArgs e)
+    {
+        using (OleDbConnection con =
+            new OleDbConnection(connectionString))
+        {
+            con.Open();
+
+            string query =
+                "INSERT INTO Student (ID, Name) VALUES (?, ?)";
+
+            using (OleDbCommand cmd =
+                new OleDbCommand(query, con))
+            {
+                cmd.Parameters.AddWithValue(
+                    "@ID", int.Parse(txtId.Text));
+
+                cmd.Parameters.AddWithValue(
+                    "@Name", txtName.Text);
+
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        MessageBox.Show("Record Inserted Successfully");
+
+        LoadRecords();
+    }
+
+    void LoadRecords()
+    {
+        using (OleDbConnection con =
+            new OleDbConnection(connectionString))
+        {
+            OleDbDataAdapter da =
+                new OleDbDataAdapter(
+                    "SELECT * FROM Student", con);
+
+            DataTable dt = new DataTable();
+
+            da.Fill(dt);
+            grid.DataSource = dt;
+        }
+    }
+
+    [STAThread]
+    static void Main()
+    {
+        Application.EnableVisualStyles();
+        Application.Run(new DatabaseDemo());
+    }
+}`,
+output: "A Windows Form displays Student ID and Student Name text boxes, an Insert button and a DataGridView. After inserting a record, the updated student records are displayed in the grid.",
+result: "Thus, database connectivity using ADO.NET and OleDb was demonstrated successfully."
+}
+
+];
+
+/* RENDER PROGRAMS */
+
+function renderPrograms() {
+
+    const partA = document.getElementById("partAPrograms");
+    const partB = document.getElementById("partBPrograms");
+
+    partA.innerHTML = "";
+    partB.innerHTML = "";
+
+    programs.forEach((p, index) => {
+
+        const card = document.createElement("div");
+        card.className = "program-card";
+        card.dataset.search =
+            (p.title + " " + p.aim + " " + p.code).toLowerCase();
+
+        const algorithm = p.algorithm.map(
+            step => "<li>" + step + "</li>"
+        ).join("");
+
+        card.innerHTML = `
+            <h2>${p.title}</h2>
+
+            <h3>🎯 Aim</h3>
+            <p>${p.aim}</p>
+
+            <h3>📋 Algorithm</h3>
+            <ol>${algorithm}</ol>
+
+            <h3>💻 C# Program</h3>
+            <pre id="code${index}"></pre>
+            <button class="copy-btn"
+                onclick="copyCode(${index})">
+                📋 Copy Code
+            </button>
+
+            <h3>🖥️ Sample Output</h3>
+            <div class="output"></div>
+
+            <h3>✅ Result</h3>
+            <p class="result">${p.result}</p>
+        `;
+
+        card.querySelector("pre").textContent = p.code;
+        card.querySelector(".output").textContent = p.output;
+
+        if (p.part === "A") {
+            partA.appendChild(card);
+        } else {
+            partB.appendChild(card);
+        }
+
+    });
+}
+
+/* SEARCH */
+
+function searchPrograms() {
+
+    const value = document
+        .getElementById("search")
+        .value.toLowerCase();
+
+    const cards = document.querySelectorAll(".program-card");
+
+    let found = 0;
+
+    cards.forEach(card => {
+
+        const match = card.dataset.search.includes(value);
+
+        card.style.display = match ? "block" : "none";
+
+        if (match) found++;
+
+    });
+
+    document.getElementById("noResults").style.display =
+        found === 0 ? "block" : "none";
+}
+
+/* CLEAR SEARCH */
+
+function clearSearch() {
+
+    document.getElementById("search").value = "";
+
+    searchPrograms();
+}
+
+/* COPY CODE */
+
+function copyCode(index) {
+
+    const code = programs[index].code;
+
+    navigator.clipboard.writeText(code)
+        .then(() => {
+            alert("Program copied successfully!");
+        })
+        .catch(() => {
+            alert("Copy failed. Please select and copy the code manually.");
+        });
+}
+
+/* BACK TO TOP */
+
+window.addEventListener("scroll", function() {
+
+    const btn = document.getElementById("backToTop");
+
+    btn.style.display =
+        window.scrollY > 300 ? "block" : "none";
+
+});
+
+/* INITIALIZE */
+
+renderPrograms();
+
+</script>
+
+</body>
+</html>

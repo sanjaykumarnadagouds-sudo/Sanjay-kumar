@@ -1,0 +1,639 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SkillUp | STUDENTVERSE</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+    min-height:100vh;
+    padding:25px 6%;
+    font-family:Poppins,sans-serif;
+    color:white;
+    background:
+    radial-gradient(circle at top,#35145e,transparent 45%),
+    radial-gradient(circle at bottom right,#171044,transparent 40%),
+    #080817;
+}
+
+.main-navbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:15px;
+    padding:18px 5%;
+    background:rgba(12,8,35,.88);
+    border:1px solid rgba(255,255,255,.15);
+    border-radius:18px;
+    backdrop-filter:blur(15px);
+    position:sticky;
+    top:10px;
+    z-index:100;
+}
+
+.nav-logo{
+    color:#d8b4fe;
+    font-size:21px;
+    font-weight:800;
+}
+
+.nav-links{
+    display:flex;
+    gap:22px;
+    flex-wrap:wrap;
+}
+
+.nav-links a{
+    color:white;
+    text-decoration:none;
+    transition:.3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active{
+    color:#c084fc;
+    text-shadow:0 0 12px #a855f7;
+}
+
+.hero{
+    text-align:center;
+    padding:75px 0 35px;
+}
+
+.hero h1{
+    font-size:clamp(35px,6vw,60px);
+}
+
+.hero h1 span{color:#b68aff}
+
+.hero p{
+    color:#c5bbdf;
+    margin-top:12px;
+}
+
+.hero .tag{
+    display:inline-block;
+    margin-top:20px;
+    padding:8px 18px;
+    border:1px solid #9b6cff;
+    border-radius:25px;
+    color:#d8b4fe;
+    font-size:13px;
+}
+
+.search{
+    display:block;
+    width:min(100%,550px);
+    margin:30px auto;
+    padding:15px 20px;
+    border:1px solid #7654c9;
+    border-radius:30px;
+    background:rgba(255,255,255,.08);
+    color:white;
+    outline:none;
+    font-family:inherit;
+}
+
+.search::placeholder{color:#bcb5d9}
+
+.section-title{
+    color:#d6bdff;
+    margin:35px 0 18px;
+    font-size:23px;
+}
+
+.categories{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-bottom:30px;
+}
+
+.category-btn{
+    padding:10px 18px;
+    border:1px solid rgba(169,138,255,.4);
+    border-radius:25px;
+    color:white;
+    background:rgba(255,255,255,.06);
+    cursor:pointer;
+    font-family:inherit;
+    transition:.3s;
+}
+
+.category-btn:hover,
+.category-btn.active{
+    background:linear-gradient(90deg,#7045ff,#a34dff);
+    border-color:#b99aff;
+    box-shadow:0 0 15px rgba(169,138,255,.3);
+}
+
+.player-section{
+    display:grid;
+    grid-template-columns:1.6fr 1fr;
+    gap:25px;
+    margin:25px 0 40px;
+    padding:22px;
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(169,138,255,.35);
+    border-radius:22px;
+    box-shadow:0 0 25px rgba(169,138,255,.1);
+}
+
+.video-frame{
+    width:100%;
+    aspect-ratio:16/9;
+    border:0;
+    border-radius:15px;
+    background:#000;
+}
+
+.player-info{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.player-info h2{
+    color:#d9c6ff;
+    font-size:21px;
+    margin-bottom:12px;
+}
+
+.player-info p{
+    color:#c3b9df;
+    font-size:14px;
+    line-height:1.8;
+}
+
+.player-info a{
+    display:inline-block;
+    margin-top:18px;
+    color:#85eaff;
+    text-decoration:none;
+}
+
+.video-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:22px;
+}
+
+.video-card{
+    overflow:hidden;
+    border:1px solid rgba(169,138,255,.3);
+    border-radius:19px;
+    background:rgba(255,255,255,.06);
+    transition:.3s;
+}
+
+.video-card:hover{
+    transform:translateY(-7px);
+    border-color:#a98aff;
+    box-shadow:0 0 22px rgba(169,138,255,.22);
+}
+
+.thumbnail{
+    min-height:135px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(135deg,#29105a,#13143f);
+    font-size:55px;
+}
+
+.video-details{padding:20px}
+
+.video-details h3{
+    color:#dfd0ff;
+    font-size:16px;
+    margin-bottom:9px;
+}
+
+.video-details p{
+    color:#bcb5d9;
+    font-size:12px;
+    line-height:1.7;
+}
+
+.video-details button{
+    margin-top:15px;
+    padding:10px 17px;
+    border:0;
+    border-radius:22px;
+    color:white;
+    background:#7045ff;
+    cursor:pointer;
+    font-family:inherit;
+}
+
+.video-details button:hover{background:#a34dff}
+
+.empty{
+    display:none;
+    text-align:center;
+    color:#c3b9df;
+    padding:35px;
+}
+
+.note{
+    margin-top:35px;
+    padding:20px;
+    border:1px solid rgba(169,138,255,.3);
+    border-radius:16px;
+    color:#c3b9df;
+    background:rgba(255,255,255,.04);
+    font-size:13px;
+    line-height:1.8;
+}
+
+footer{
+    text-align:center;
+    color:#89809f;
+    padding:35px 0 10px;
+}
+
+@media(max-width:800px){
+    .player-section{grid-template-columns:1fr}
+}
+
+@media(max-width:600px){
+    body{padding:15px 5%}
+    .main-navbar{justify-content:center}
+    .nav-links{justify-content:center;gap:14px}
+    .hero{padding-top:45px}
+}
+</style>
+</head>
+
+<body>
+
+<nav class="main-navbar">
+    <div class="nav-logo">🌌 STUDENTVERSE</div>
+
+    <div class="nav-links">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="studyhub.html">StudyHub</a>
+        <a href="skillup.html" class="active">SkillUp</a>
+        <a href="index.html">Home</a>
+    </div>
+</nav>
+
+<section class="hero">
+    <h1>Welcome to <span>SkillUp</span></h1>
+    <p>Learn new skills through Kannada video tutorials.</p>
+    <div class="tag">🎓 ಕನ್ನಡದಲ್ಲಿ ಕಲಿಯಿರಿ | Learn in Kannada</div>
+
+    <input
+        type="search"
+        class="search"
+        id="search"
+        placeholder="Search courses and video topics..."
+    >
+</section>
+
+<h2 class="section-title">📚 Explore Categories</h2>
+
+<div class="categories" id="categories"></div>
+
+<h2 class="section-title">▶️ Video Learning</h2>
+
+<section class="player-section">
+    <div>
+        <iframe
+            id="videoPlayer"
+            class="video-frame"
+            src="https://www.youtube-nocookie.com/embed/y6fzqBsi1-Y"
+            title="Kannada learning video"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen>
+        </iframe>
+    </div>
+
+    <div class="player-info">
+        <h2 id="playerTitle">HTML & CSS Full Course in Kannada</h2>
+        <p id="playerDescription">
+            Learn HTML and CSS from the basics with practical website examples.
+        </p>
+
+        <a id="youtubeLink"
+           href="https://www.youtube.com/watch?v=y6fzqBsi1-Y"
+           target="_blank"
+           rel="noopener">
+           Watch on YouTube ↗
+        </a>
+    </div>
+</section>
+
+<h2 class="section-title">🚀 Available Courses</h2>
+
+<section class="video-grid" id="videoGrid"></section>
+
+<p class="empty" id="empty">No videos or courses found.</p>
+
+<div class="note">
+    💡 <strong>Learning Tip:</strong>
+    Watch one lesson at a time, practise the concepts in VS Code,
+    and build small projects after completing each course.
+
+    <br><br>
+    Some categories open YouTube search results because a verified
+    individual video has not yet been added to the library.
+</div>
+
+<footer>
+    © 2026 STUDENTVERSE | SkillUp Kannada Learning Hub
+</footer>
+
+<script>
+
+/* VIDEO LIBRARY */
+
+const videos = [
+
+{
+    title:"HTML & CSS Full Course",
+    category:"Web Development",
+    icon:"🌐",
+    description:"Complete beginner-friendly HTML and CSS course in Kannada by MicroDegree.",
+    videoId:"y6fzqBsi1-Y",
+    type:"video"
+},
+
+{
+    title:"Web Development from Scratch",
+    category:"Web Development",
+    icon:"💻",
+    description:"Learn website development, HTML, CSS and build a real-world project in Kannada.",
+    videoId:"mVbsESNhDAk",
+    type:"video"
+},
+
+{
+    title:"CSS Introduction in Kannada",
+    category:"Web Development",
+    icon:"🎨",
+    description:"Understand CSS, why it is needed and how it styles HTML pages.",
+    videoId:"kt6vOtRBItA",
+    type:"video"
+},
+
+{
+    title:"Python Programming",
+    category:"Python",
+    icon:"🐍",
+    description:"Find Kannada Python tutorials from beginner to advanced level.",
+    query:"Python full course Kannada for beginners",
+    type:"search"
+},
+
+{
+    title:"JavaScript Programming",
+    category:"JavaScript",
+    icon:"⚡",
+    description:"Find Kannada JavaScript tutorials and practical coding lessons.",
+    query:"JavaScript full course Kannada",
+    type:"search"
+},
+
+{
+    title:"C and C++ Programming",
+    category:"C & C++",
+    icon:"💻",
+    description:"Learn programming fundamentals using C and C++ in Kannada.",
+    query:"C C++ programming full course Kannada",
+    type:"search"
+},
+
+{
+    title:"Java Programming",
+    category:"Java",
+    icon:"☕",
+    description:"Learn Java programming and object-oriented concepts in Kannada.",
+    query:"Java programming full course Kannada",
+    type:"search"
+},
+
+{
+    title:"SQL and DBMS",
+    category:"Database",
+    icon:"🗄️",
+    description:"Learn database concepts, SQL queries and MySQL in Kannada.",
+    query:"SQL DBMS MySQL tutorial Kannada",
+    type:"search"
+},
+
+{
+    title:"Data Structures and Algorithms",
+    category:"Data Structures",
+    icon:"📊",
+    description:"Learn DSA using C in Kannada through a video playlist.",
+    playlistId:"PLlGueSbLhZoCNnEEoeOXICh0k4wz0hG-V",
+    type:"playlist"
+},
+
+{
+    title:"Cybersecurity and Computer Networks",
+    category:"Cybersecurity",
+    icon:"🔐",
+    description:"Learn networking fundamentals and cybersecurity concepts in Kannada.",
+    videoId:"jDIx2gILgYE",
+    type:"video"
+},
+
+{
+    title:"Cloud Computing",
+    category:"Cloud Computing",
+    icon:"☁️",
+    description:"Find Kannada cloud computing and AWS learning videos.",
+    query:"Cloud computing AWS tutorial Kannada",
+    type:"search"
+}
+
+];
+
+
+/* CATEGORY FILTERS */
+
+const categoryNames = [
+    "All",
+    "Web Development",
+    "Python",
+    "JavaScript",
+    "C & C++",
+    "Java",
+    "Database",
+    "Data Structures",
+    "Cybersecurity",
+    "Cloud Computing"
+];
+
+let selectedCategory = "All";
+
+const categoriesContainer =
+    document.getElementById("categories");
+
+function displayCategories(){
+
+    categoriesContainer.innerHTML =
+        categoryNames.map(category => `
+            <button
+                class="category-btn ${selectedCategory === category ? "active" : ""}"
+                onclick="selectCategory('${category}')">
+                ${category}
+            </button>
+        `).join("");
+
+}
+
+function selectCategory(category){
+
+    selectedCategory = category;
+
+    displayCategories();
+    displayVideos();
+
+}
+
+
+/* VIDEO PLAYER */
+
+function playVideo(index){
+
+    const video = filteredVideos[index];
+
+    if(video.type === "search"){
+
+        const searchUrl =
+            "https://www.youtube.com/results?search_query=" +
+            encodeURIComponent(video.query);
+
+        window.open(searchUrl,"_blank","noopener");
+
+        return;
+    }
+
+    let playerUrl;
+
+    if(video.type === "playlist"){
+
+        playerUrl =
+            "https://www.youtube-nocookie.com/embed/videoseries?list=" +
+            video.playlistId;
+
+        document.getElementById("youtubeLink").href =
+            "https://www.youtube.com/playlist?list=" + video.playlistId;
+
+    } else {
+
+        playerUrl =
+            "https://www.youtube-nocookie.com/embed/" +
+            video.videoId;
+
+        document.getElementById("youtubeLink").href =
+            "https://www.youtube.com/watch?v=" + video.videoId;
+
+    }
+
+    document.getElementById("videoPlayer").src = playerUrl;
+
+    document.getElementById("playerTitle").textContent =
+        video.title;
+
+    document.getElementById("playerDescription").textContent =
+        video.description;
+
+    document.querySelector(".player-section").scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+    });
+
+}
+
+
+/* DISPLAY VIDEO CARDS */
+
+let filteredVideos = [];
+
+function displayVideos(){
+
+    const searchValue =
+        document.getElementById("search").value.toLowerCase().trim();
+
+    filteredVideos = videos.filter(video => {
+
+        const categoryMatch =
+            selectedCategory === "All" ||
+            video.category === selectedCategory;
+
+        const searchMatch =
+            video.title.toLowerCase().includes(searchValue) ||
+            video.category.toLowerCase().includes(searchValue) ||
+            video.description.toLowerCase().includes(searchValue);
+
+        return categoryMatch && searchMatch;
+
+    });
+
+    const grid = document.getElementById("videoGrid");
+
+    grid.innerHTML = filteredVideos.map((video,index) => {
+
+        let buttonText =
+            video.type === "search"
+            ? "Find Videos ↗"
+            : "Play Video ▶";
+
+        return `
+            <article class="video-card">
+
+                <div class="thumbnail">
+                    ${video.icon}
+                </div>
+
+                <div class="video-details">
+
+                    <h3>${video.title}</h3>
+
+                    <p>📚 ${video.category}</p>
+
+                    <p>${video.description}</p>
+
+                    <button onclick="playVideo(${index})">
+                        ${buttonText}
+                    </button>
+
+                </div>
+
+            </article>
+        `;
+
+    }).join("");
+
+    document.getElementById("empty").style.display =
+        filteredVideos.length ? "none" : "block";
+
+}
+
+
+/* SEARCH */
+
+document.getElementById("search")
+.addEventListener("input",displayVideos);
+
+
+/* INITIALIZE */
+
+displayCategories();
+displayVideos();
+
+</script>
+
+</body>
+</html>

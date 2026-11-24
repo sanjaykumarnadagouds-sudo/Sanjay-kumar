@@ -1,0 +1,975 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cloud Computing | STUDENTVERSE</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+
+body{
+    font-family:Arial,sans-serif;
+    color:#fff;
+    min-height:100vh;
+    background:radial-gradient(circle at top,#172554,#080d20 55%,#020617);
+    overflow-x:hidden;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background-image:
+    radial-gradient(2px 2px at 20% 30%,#fff,transparent),
+    radial-gradient(2px 2px at 70% 60%,#60a5fa,transparent),
+    radial-gradient(2px 2px at 40% 80%,#fff,transparent);
+    background-size:180px 180px;
+    animation:stars 15s linear infinite;
+    opacity:.5;
+}
+
+@keyframes stars{
+    from{transform:translateY(0)}
+    to{transform:translateY(-180px)}
+}
+
+nav{
+    position:sticky;
+    top:0;
+    z-index:10;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:16px 7%;
+    background:#080d20dd;
+    backdrop-filter:blur(15px);
+    border-bottom:1px solid #334155;
+}
+
+nav h2{
+    color:#38bdf8;
+    letter-spacing:2px;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
+    font-weight:bold;
+}
+
+nav a:hover{color:#38bdf8}
+
+header{
+    text-align:center;
+    padding:65px 20px 40px;
+}
+
+header h1{
+    color:#38bdf8;
+    font-size:clamp(28px,5vw,45px);
+    text-shadow:0 0 20px #0284c7;
+    margin-bottom:12px;
+}
+
+header p{
+    color:#cbd5e1;
+    margin:8px;
+}
+
+.actions{
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    flex-wrap:wrap;
+    margin:15px;
+}
+
+button{
+    padding:11px 20px;
+    border:none;
+    border-radius:9px;
+    background:#0284c7;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    background:#0ea5e9;
+    transform:translateY(-3px);
+}
+
+.search-box{
+    display:block;
+    width:min(90%,650px);
+    margin:25px auto;
+    padding:14px 18px;
+    border:1px solid #38bdf8;
+    border-radius:12px;
+    background:#0f172a;
+    color:white;
+    font-size:16px;
+    outline:none;
+}
+
+.search-box:focus{
+    box-shadow:0 0 15px #0284c7;
+}
+
+.container{
+    width:min(1100px,92%);
+    margin:auto;
+    padding-bottom:60px;
+}
+
+.section-nav{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:10px;
+    margin:25px 0 35px;
+}
+
+.section-nav a{
+    text-decoration:none;
+    color:#bae6fd;
+    border:1px solid #0ea5e9;
+    padding:10px 15px;
+    border-radius:20px;
+    background:#0f172a;
+}
+
+.section-nav a:hover{
+    background:#0369a1;
+    color:white;
+}
+
+.section-title{
+    color:#38bdf8;
+    font-size:25px;
+    margin:45px 0 20px;
+    border-left:4px solid #38bdf8;
+    padding-left:12px;
+}
+
+.note-card{
+    background:linear-gradient(145deg,#172554dd,#0f172add);
+    border:1px solid #334e68;
+    border-radius:15px;
+    padding:24px;
+    margin-bottom:20px;
+    box-shadow:0 10px 30px #0005;
+    transition:.3s;
+    animation:appear .6s ease;
+}
+
+.note-card:hover{
+    transform:translateY(-4px);
+    border-color:#38bdf8;
+    box-shadow:0 12px 30px #0284c755;
+}
+
+.note-card h3{
+    color:#7dd3fc;
+    margin-bottom:13px;
+    font-size:20px;
+}
+
+.note-card p{
+    color:#e2e8f0;
+    line-height:1.8;
+    margin:8px 0;
+}
+
+.note-card ul,.note-card ol{
+    padding-left:25px;
+    color:#e2e8f0;
+    line-height:1.9;
+}
+
+.note-card strong{color:#bae6fd}
+
+.example{
+    background:#020617;
+    padding:14px;
+    border-radius:9px;
+    margin-top:12px;
+    color:#a7f3d0;
+    line-height:1.7;
+    border-left:3px solid #22c55e;
+}
+
+#noResults{
+    display:none;
+    text-align:center;
+    color:#fca5a5;
+    padding:30px;
+    font-size:18px;
+}
+
+footer{
+    text-align:center;
+    padding:25px;
+    color:#94a3b8;
+    border-top:1px solid #334155;
+}
+
+#topBtn{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    display:none;
+    border-radius:50%;
+    width:48px;
+    height:48px;
+    font-size:20px;
+    padding:0;
+}
+
+@keyframes appear{
+    from{opacity:0;transform:translateY(15px)}
+    to{opacity:1;transform:translateY(0)}
+}
+
+@media(max-width:600px){
+    nav{
+        padding:14px 4%;
+        flex-wrap:wrap;
+        gap:12px;
+    }
+
+    nav a{
+        margin-left:8px;
+        font-size:13px;
+    }
+
+    .note-card{padding:17px}
+}
+
+@media print{
+    body{
+        background:white!important;
+        color:black!important;
+    }
+
+    body::before,nav,.actions,.search-box,.section-nav,#topBtn,footer{
+        display:none!important;
+    }
+
+    header{padding:15px}
+
+    header h1,.section-title,.note-card h3{
+        color:#111!important;
+        text-shadow:none;
+    }
+
+    header p,.note-card p,.note-card li{
+        color:#111!important;
+    }
+
+    .note-card{
+        background:white!important;
+        color:black!important;
+        border:1px solid #aaa;
+        box-shadow:none;
+        break-inside:avoid;
+    }
+
+    .note-card strong{color:black}
+
+    .example{
+        background:#eee;
+        color:black;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <h2>STUDENTVERSE</h2>
+    <div>
+        <a href="index.html">Home</a>
+        <a href="studyhub.html">StudyHub</a>
+    </div>
+</nav>
+
+<header>
+    <h1>CLOUD COMPUTING</h1>
+    <p>CAE32X | BCA Semester 3</p>
+    <p>Complete Theory Notes and Exam Preparation</p>
+
+    <div class="actions">
+        <button onclick="window.print()">📥 Download / Save as PDF</button>
+        <button onclick="window.location.href='studyhub.html'">← Back to StudyHub</button>
+    </div>
+</header>
+
+<input
+    type="text"
+    id="searchInput"
+    class="search-box"
+    placeholder="🔍 Search Cloud Computing topics..."
+    oninput="searchNotes()"
+>
+
+<div class="container">
+
+<div class="section-nav">
+    <a href="#basics">Cloud Basics</a>
+    <a href="#models">Cloud Models</a>
+    <a href="#virtualization">Virtualization and Storage</a>
+    <a href="#devops">Networking and DevOps</a>
+</div>
+
+<p id="noResults">No matching topics found.</p>
+
+<!-- SECTION 1 -->
+
+<h2 class="section-title" id="basics">1. Introduction to Cloud Computing</h2>
+
+<div class="note-card">
+<h3>1.1 What is Cloud Computing?</h3>
+<p>Cloud Computing is the delivery of computing services such as servers, storage, databases, networking and software over the Internet.</p>
+<p>Instead of buying and maintaining their own physical servers, users can access computing resources from cloud service providers whenever required.</p>
+<p><strong>Examples:</strong> Google Drive, Microsoft OneDrive, Gmail and Amazon Web Services.</p>
+</div>
+
+<div class="note-card">
+<h3>1.2 Definition of Cloud Computing</h3>
+<p>Cloud Computing is a technology that provides on-demand access to shared computing resources over a network, usually the Internet.</p>
+<p>Users can access these resources without managing all the underlying hardware and infrastructure themselves.</p>
+</div>
+
+<div class="note-card">
+<h3>1.3 Characteristics of Cloud Computing</h3>
+<ul>
+<li><strong>On-demand self-service:</strong> Users can obtain computing resources whenever required.</li>
+<li><strong>Broad network access:</strong> Services can be accessed through the Internet using different devices.</li>
+<li><strong>Resource pooling:</strong> Computing resources are shared among multiple users.</li>
+<li><strong>Rapid elasticity:</strong> Resources can be increased or decreased quickly.</li>
+<li><strong>Measured service:</strong> Resource usage can be monitored and measured.</li>
+</ul>
+</div>
+
+<div class="note-card">
+<h3>1.4 History and Evolution of Cloud Computing</h3>
+<p>Cloud Computing developed from earlier computing technologies.</p>
+<ul>
+<li><strong>Mainframe computing:</strong> Multiple users shared a central computer.</li>
+<li><strong>Time-sharing:</strong> Many users shared computing resources at different times.</li>
+<li><strong>Distributed computing:</strong> Multiple computers worked together.</li>
+<li><strong>Virtualization:</strong> One physical machine could run multiple virtual machines.</li>
+<li><strong>Internet development:</strong> Faster networks made remote computing services practical.</li>
+<li><strong>Modern cloud:</strong> Providers began offering storage, servers, platforms and applications over the Internet.</li>
+</ul>
+</div>
+
+<div class="note-card">
+<h3>1.5 Cloud Computing Architecture</h3>
+<p>Cloud architecture describes the components that work together to provide cloud services.</p>
+<ul>
+<li><strong>Front end:</strong> The user's device, browser or application used to access cloud services.</li>
+<li><strong>Back end:</strong> Cloud servers, storage, databases and management systems.</li>
+<li><strong>Network:</strong> Connects users to cloud resources.</li>
+<li><strong>Management:</strong> Controls resource allocation, monitoring and service operation.</li>
+<li><strong>Security:</strong> Protects cloud applications, accounts and data.</li>
+</ul>
+<div class="example">
+User Device → Internet → Cloud Platform → Servers / Storage / Applications
+</div>
+</div>
+
+<div class="note-card">
+<h3>1.6 Benefits of Cloud Computing</h3>
+<ul>
+<li>Reduces the need to purchase expensive hardware.</li>
+<li>Provides access from different locations.</li>
+<li>Allows easy expansion of resources.</li>
+<li>Supports backup and recovery.</li>
+<li>Provides flexible payment options.</li>
+<li>Supports collaboration and file sharing.</li>
+<li>Reduces some infrastructure maintenance work.</li>
+</ul>
+</div>
+
+<div class="note-card">
+<h3>1.7 Challenges of Cloud Computing</h3>
+<ul>
+<li><strong>Internet dependency:</strong> Many cloud services require a reliable network connection.</li>
+<li><strong>Security risks:</strong> Data and accounts must be protected from attacks.</li>
+<li><strong>Privacy:</strong> Sensitive information needs proper protection.</li>
+<li><strong>Downtime:</strong> Provider outages can interrupt services.</li>
+<li><strong>Vendor lock-in:</strong> Moving from one provider to another may be difficult.</li>
+<li><strong>Cost management:</strong> Poor resource management can increase expenses.</li>
+<li><strong>Compliance:</strong> Organizations must follow applicable laws and regulations.</li>
+</ul>
+</div>
+
+<!-- SECTION 2 -->
+
+<h2 class="section-title" id="models">2. Cloud Service and Deployment Models</h2>
+
+<div class="note-card">
+<h3>2.1 Cloud Service Models</h3>
+<p>Cloud service models describe the type of computing resources provided to users.</p>
+<p>The three major service models are IaaS, PaaS and SaaS.</p>
+</div>
+
+<div class="note-card">
+<h3>2.2 Infrastructure as a Service (IaaS)</h3>
+<p>IaaS provides basic computing infrastructure such as virtual machines, storage and networking over the Internet.</p>
+<p>Users can install operating systems and applications and manage many software settings themselves.</p>
+<p><strong>Examples:</strong></p>
+<ul>
+<li>Amazon EC2</li>
+<li>Google Compute Engine</li>
+<li>Microsoft Azure Virtual Machines</li>
+</ul>
+<p><strong>Advantages:</strong> Flexible infrastructure, scalability and reduced need to purchase physical servers.</p>
+</div>
+
+<div class="note-card">
+<h3>2.3 Amazon EC2</h3>
+<p>Amazon Elastic Compute Cloud (EC2) is a service provided by Amazon Web Services (AWS). It allows users to create and run virtual servers called instances.</p>
+<ul>
+<li>Launch virtual machines.</li>
+<li>Select computing capacity.</li>
+<li>Choose operating systems.</li>
+<li>Increase or decrease resources.</li>
+<li>Connect applications to cloud infrastructure.</li>
+</ul>
+</div>
+
+<div class="note-card">
+<h3>2.4 Google Compute Engine</h3>
+<p>Google Compute Engine is a Google Cloud service that provides virtual machines for running applications and workloads.</p>
+<p>Users can select machine types, operating systems, storage and networking configurations.</p>
+</div>
+
+<div class="note-card">
+<h3>2.5 Microsoft Azure Virtual Machines</h3>
+<p>Azure Virtual Machines is a cloud service that provides virtual computers on Microsoft's Azure platform.</p>
+<p>It supports different operating systems and allows users to configure computing resources according to their requirements.</p>
+</div>
+
+<div class="note-card">
+<h3>2.6 Platform as a Service (PaaS)</h3>
+<p>PaaS provides a platform and environment for developers to build, test, deploy and manage applications.</p>
+<p>The cloud provider manages much of the underlying infrastructure and platform environment.</p>
+<p><strong>Examples:</strong></p>
+<ul>
+<li>AWS Elastic Beanstalk</li>
+<li>Google App Engine</li>
+<li>Azure App Services</li>
+</ul>
+<p><strong>Advantages:</strong> Simplifies application development, reduces infrastructure management and supports faster deployment.</p>
+</div>
+
+<div class="note-card">
+<h3>2.7 AWS Elastic Beanstalk</h3>
+<p>AWS Elastic Beanstalk is a service that helps developers deploy and manage applications on AWS.</p>
+<p>It handles several deployment-related tasks, including provisioning and monitoring supported application environments.</p>
+</div>
+
+<div class="note-card">
+<h3>2.8 Google App Engine</h3>
+<p>Google App Engine is a platform for developing and hosting applications on Google Cloud.</p>
+<p>Developers can deploy applications without directly managing all the server infrastructure.</p>
+</div>
+
+<div class="note-card">
+<h3>2.9 Azure App Services</h3>
+<p>Azure App Service is a platform for building, deploying and hosting web applications and APIs using Microsoft Azure.</p>
+<p>It supports application deployment and managed hosting features.</p>
+</div>
+
+<div class="note-card">
+<h3>2.10 Software as a Service (SaaS)</h3>
+<p>SaaS provides ready-to-use software applications over the Internet. Users generally access the software through a web browser or application.</p>
+<p>The service provider manages the application and underlying infrastructure.</p>
+<p><strong>Examples:</strong></p>
+<ul>
+<li>Google Workspace</li>
+<li>Microsoft 365</li>
+<li>Salesforce</li>
+<li>Online email services</li>
+</ul>
+<p><strong>Advantages:</strong> Easy access, automatic updates and reduced software installation and maintenance.</p>
+</div>
+
+<div class="note-card">
+<h3>2.11 Google Workspace</h3>
+<p>Google Workspace is a collection of cloud-based productivity and collaboration applications.</p>
+<p>It includes services such as Gmail, Google Drive, Docs, Sheets and Meet.</p>
+</div>
+
+<div class="note-card">
+<h3>2.12 Microsoft Office 365 / Microsoft 365</h3>
+<p>Microsoft 365 provides productivity and collaboration applications and cloud services.</p>
+<p>Examples include Word, Excel, PowerPoint, Outlook, OneDrive and Teams, depending on the subscription.</p>
+</div>
+
+<div class="note-card">
+<h3>2.13 Difference Between IaaS, PaaS and SaaS</h3>
+<ul>
+<li><strong>IaaS:</strong> Provides virtual infrastructure such as servers, storage and networks.</li>
+<li><strong>PaaS:</strong> Provides a platform for developing and deploying applications.</li>
+<li><strong>SaaS:</strong> Provides ready-to-use software applications.</li>
+</ul>
+<div class="example">
+IaaS Example: Amazon EC2
+<br>
+PaaS Example: Google App Engine
+<br>
+SaaS Example: Google Workspace
+</div>
+</div>
+
+<div class="note-card">
+<h3>2.14 Cloud Deployment Models</h3>
+<p>Deployment models describe how cloud infrastructure is owned, managed and made available to users.</p>
+<p>The major deployment models are Public Cloud, Private Cloud, Hybrid Cloud and Community Cloud.</p>
+</div>
+
+<div class="note-card">
+<h3>2.15 Public Cloud</h3>
+<p>A public cloud is a cloud environment provided by a service provider over the Internet to multiple customers.</p>
+<p><strong>Advantages:</strong></p>
+<ul>
+<li>Easy access.</li>
+<li>Flexible resource usage.</li>
+<li>No need to maintain physical cloud infrastructure.</li>
+<li>Suitable for many different workloads.</li>
+</ul>
+<p><strong>Example:</strong> Public cloud services offered by AWS, Microsoft Azure and Google Cloud.</p>
+</div>
+
+<div class="note-card">
+<h3>2.16 Private Cloud</h3>
+<p>A private cloud is a cloud environment dedicated to a single organization.</p>
+<p>It may be managed by the organization or by a service provider.</p>
+<p><strong>Advantages:</strong> Greater control over configuration, access and organizational requirements.</p>
+<p><strong>Example:</strong> A company operating its own private cloud infrastructure.</p>
+</div>
+
+<div class="note-card">
+<h3>2.17 Hybrid Cloud</h3>
+<p>A hybrid cloud combines private cloud infrastructure with public cloud services, allowing data and applications to work across both environments.</p>
+<p><strong>Example:</strong> A company stores sensitive data in its private environment and uses public cloud resources for additional computing capacity.</p>
+</div>
+
+<div class="note-card">
+<h3>2.18 Community Cloud</h3>
+<p>A community cloud is shared by organizations that have common requirements, such as security, policy or compliance needs.</p>
+<p><strong>Example:</strong> Multiple educational or research institutions sharing cloud infrastructure for common projects.</p>
+</div>
+
+<!-- SECTION 3 -->
+
+<h2 class="section-title" id="virtualization">3. Virtualization and Cloud Storage</h2>
+
+<div class="note-card">
+<h3>3.1 Introduction to Virtualization</h3>
+<p>Virtualization is a technology that creates virtual versions of computing resources such as servers, operating systems, storage and networks.</p>
+<p>It allows multiple virtual environments to run on a single physical machine.</p>
+<p><strong>Example:</strong> Running Windows and Linux virtual machines on one physical computer.</p>
+</div>
+
+<div class="note-card">
+<h3>3.2 Server Virtualization</h3>
+<p>Server virtualization divides one physical server into multiple virtual servers. Each virtual server can run its own operating system and applications.</p>
+<p><strong>Benefits:</strong></p>
+<ul>
+<li>Better hardware utilization.</li>
+<li>Reduced physical server requirements.</li>
+<li>Flexible resource allocation.</li>
+<li>Easy creation and management of virtual machines.</li>
+</ul>
+</div>
+
+<div class="note-card">
+<h3>3.3 Network Virtualization</h3>
+<p>Network virtualization creates logical network resources that operate independently of the underlying physical network hardware.</p>
+<p>It helps administrators create and manage virtual networks, switches and network connections.</p>
+</div>
+
+<div class="note-card">
+<h3>3.4 Storage Virtualization</h3>
+<p>Storage virtualization combines storage resources from multiple physical devices and presents them as a logical storage system.</p>
+<p>It makes storage management easier and can improve resource utilization.</p>
+</div>
+
+<div class="note-card">
+<h3>3.5 What is a Hypervisor?</h3>
+<p>A hypervisor is software or firmware that creates and manages virtual machines. It allows multiple operating systems to share the resources of one physical computer.</p>
+<p><strong>Types of Hypervisors:</strong></p>
+<ul>
+<li><strong>Type 1 – Bare-metal:</strong> Runs directly on physical hardware.</li>
+<li><strong>Type 2 – Hosted:</strong> Runs as an application on an existing operating system.</li>
+</ul>
+</div>
+
+<div class="note-card">
+<h3>3.6 VMware</h3>
+<p>VMware provides virtualization products that help create and manage virtual machines and virtual infrastructure.</p>
+<p>Its tools are used in desktop virtualization and data centre environments.</p>
+</div>
+
+<div class="note-card">
+<h3>3.7 Microsoft Hyper-V</h3>
+<p>Microsoft Hyper-V is a virtualization technology that allows users to create and manage virtual machines on supported Windows systems and Windows Server editions.</p>
+<p>It is commonly used for server and desktop virtualization.</p>
+</div>
+
+<div class="note-card">
+<h3>3.8 KVM Hypervisor</h3>
+<p>KVM stands for Kernel-based Virtual Machine. It is a virtualization technology built into the Linux kernel.</p>
+<p>It allows Linux systems to run virtual machines using hardware virtualization support.</p>
+</div>
+
+<div class="note-card">
+<h3>3.9 Cloud Storage</h3>
+<p>Cloud storage is a service that allows users to store data on remote servers managed by a cloud provider and access it through a network.</p>
+<p><strong>Examples:</strong> Google Drive, OneDrive, Dropbox and Amazon S3.</p>
+<p><strong>Benefits:</strong></p>
+<ul>
+<li>Access files from different devices.</li>
+<li>Share files with other users.</li>
+<li>Support backup and recovery.</li>
+<li>Expand storage capacity as required.</li>
+</ul>
+</div>
+
+<div class="note-card">
+<h3>3.10 Cloud Storage Solutions</h3>
+<p>Cloud providers offer different storage solutions based on the type of data and access requirements.</p>
+<ul>
+<li><strong>Object storage:</strong> Stores data as objects with metadata.</li>
+<li><strong>Block storage:</strong> Stores data in fixed-size blocks, often used with virtual machines.</li>
+<li><strong>File storage:</strong> Stores data in files and folders.</li>
+</ul>
+</div>
+
+<div class="note-card">
+<h3>3.11 Amazon S3</h3>
+<p>Amazon Simple Storage Service (Amazon S3) is an object storage service provided by AWS.</p>
+<ul>
+<li>Stores files as objects.</li>
+<li>Organizes objects in buckets.</li>
+<li>Supports data backup and storage.</li>
+<li>Provides access management features.</li>
+<li>Can store large amounts of data.</li>
+</ul>
+</div>
+
+<div class="note-card">
+<h3>3.12 Azure Blob Storage</h3>
+<p>Azure Blob Storage is Microsoft's object storage service for storing large amounts of unstructured data.</p>
+<p>It can store documents, images, videos, backups and other files.</p>
+</div>
+
+<div class="note-card">
+<h3>3.13 Google Cloud Storage</h3>
+<p>Google Cloud Storage is an object storage service provided by Google Cloud.</p>
+<p>It is used for storing and retrieving files, backups, application data and other digital content.</p>
+</div>
+
+<div class="note-card">
+<h3>3.14 Cloud Database Services</h3>
+<p>Cloud database services provide databases hosted and managed on cloud infrastructure.</p>
+<p>They help organizations store, organize, retrieve and manage data without maintaining all database hardware themselves.</p>
+<p><strong>Benefits:</strong> Scalability, remote access, managed maintenance and backup options.</p>
+</div>
+
+<div class="note-card">
+<h3>3.15 Amazon RDS</h3>
+<p>Amazon Relational Database Service (RDS) is a managed relational database service offered by AWS.</p>
+<p>It supports database engines such as MySQL, PostgreSQL and other supported database systems.</p>
+<p>It helps automate tasks such as backups and database maintenance.</p>
+</div>
+
+<div class="note-card">
+<h3>3.16 Azure SQL Database</h3>
+<p>Azure SQL Database is a managed relational database service on Microsoft Azure.</p>
+<p>It is based on Microsoft SQL Server technology and provides cloud-hosted database capabilities.</p>
+</div>
+
+<div class="note-card">
+<h3>3.17 Google Cloud SQL</h3>
+<p>Google Cloud SQL is a managed relational database service provided by Google Cloud.</p>
+<p>It supports database engines such as MySQL, PostgreSQL and SQL Server.</p>
+</div>
+
+<div class="note-card">
+<h3>3.18 NoSQL Databases in Cloud Computing</h3>
+<p>NoSQL databases are databases designed to store and manage data using models other than the traditional relational table model.</p>
+<p>They are useful for applications that need flexible data structures and scalable data storage.</p>
+<p><strong>Common types:</strong></p>
+<ul>
+<li>Document databases.</li>
+<li>Key-value databases.</li>
+<li>Column-family databases.</li>
+<li>Graph databases.</li>
+</ul>
+</div>
+
+<div class="note-card">
+<h3>3.19 Amazon DynamoDB</h3>
+<p>Amazon DynamoDB is a managed NoSQL database service provided by AWS.</p>
+<p>It supports key-value and document data models and is designed for applications requiring scalable database access.</p>
+</div>
+
+<div class="note-card">
+<h3>3.20 Azure Cosmos DB</h3>
+<p>Azure Cosmos DB is a globally distributed database service from Microsoft Azure.</p>
+<p>It supports multiple data models and APIs for building distributed applications.</p>
+</div>
+
+<div class="note-card">
+<h3>3.21 Google Cloud Firestore</h3>
+<p>Cloud Firestore is a NoSQL document database provided by Google Cloud and Firebase.</p>
+<p>It stores data in documents organized into collections and supports application development.</p>
+</div>
+
+<!-- SECTION 4 -->
+
+<h2 class="section-title" id="devops">4. Cloud Networking and DevOps</h2>
+
+<div class="note-card">
+<h3>4.1 Cloud Networking</h3>
+<p>Cloud networking refers to the network infrastructure and services used to connect cloud resources, applications and users.</p>
+<p>It allows communication between virtual machines, databases, applications and external users.</p>
+</div>
+
+<div class="note-card">
+<h3>4.2 Cloud Networking Basics</h3>
+<ul>
+<li><strong>Virtual networks:</strong> Logical networks created within cloud platforms.</li>
+<li><strong>Subnets:</strong> Smaller divisions of a network.</li>
+<li><strong>Routing:</strong> Directing network traffic between destinations.</li>
+<li><strong>Firewalls:</strong> Controlling network access.</li>
+<li><strong>DNS:</strong> Resolving domain names into IP addresses.</li>
+<li><strong>Connectivity:</strong> Connecting cloud resources to users and other networks.</li>
+</ul>
+</div>
+
+<div class="note-card">
+<h3>4.3 Virtual Private Cloud (VPC)</h3>
+<p>A Virtual Private Cloud is a logically isolated virtual network created within a public cloud provider's infrastructure.</p>
+<p>Users can configure network ranges, subnets, routing and security rules.</p>
+<p><strong>Example:</strong> Amazon Virtual Private Cloud (Amazon VPC).</p>
+</div>
+
+<div class="note-card">
+<h3>4.4 Load Balancing</h3>
+<p>Load balancing distributes incoming network traffic across multiple servers or resources.</p>
+<p>It helps prevent a single server from becoming overloaded.</p>
+<p><strong>Benefits:</strong></p>
+<ul>
+<li>Improves application availability.</li>
+<li>Distributes workload.</li>
+<li>Supports better performance.</li>
+<li>Helps handle increased user traffic.</li>
+</ul>
+</div>
+
+<div class="note-card">
+<h3>4.5 Auto Scaling</h3>
+<p>Auto Scaling automatically increases or decreases computing resources based on workload or defined conditions.</p>
+<p><strong>Example:</strong> An online shopping website may increase server capacity during a major sale and reduce it when traffic decreases.</p>
+</div>
+
+<div class="note-card">
+<h3>4.6 Content Delivery Network (CDN)</h3>
+<p>A Content Delivery Network is a group of distributed servers that deliver web content to users from locations closer to them.</p>
+<p>It can improve loading speed and reduce the distance data must travel.</p>
+<p><strong>Examples:</strong> Amazon CloudFront and other CDN services.</p>
+</div>
+
+<div class="note-card">
+<h3>4.7 Introduction to DevOps in Cloud Computing</h3>
+<p>DevOps is a set of practices that combines software development and IT operations to improve the process of building, testing and delivering applications.</p>
+<p>Cloud platforms provide resources that support DevOps automation and collaboration.</p>
+</div>
+
+<div class="note-card">
+<h3>4.8 DevOps Principles</h3>
+<ul>
+<li><strong>Collaboration:</strong> Development and operations teams work together.</li>
+<li><strong>Automation:</strong> Repetitive tasks are automated.</li>
+<li><strong>Continuous improvement:</strong> Processes are regularly improved.</li>
+<li><strong>Monitoring:</strong> Applications and systems are continuously observed.</li>
+<li><strong>Fast delivery:</strong> Software changes are delivered more frequently and reliably.</li>
+</ul>
+</div>
+
+<div class="note-card">
+<h3>4.9 DevOps Practices</h3>
+<ul>
+<li>Version control.</li>
+<li>Automated testing.</li>
+<li>Continuous integration.</li>
+<li>Continuous delivery.</li>
+<li>Infrastructure automation.</li>
+<li>Application monitoring.</li>
+<li>Team collaboration.</li>
+</ul>
+</div>
+
+<div class="note-card">
+<h3>4.10 Continuous Integration (CI)</h3>
+<p>Continuous Integration is a software development practice in which developers regularly combine their code changes into a shared repository.</p>
+<p>Automated builds and tests help identify errors early.</p>
+<p><strong>Example:</strong> A developer commits code to GitHub and an automated workflow runs tests.</p>
+</div>
+
+<div class="note-card">
+<h3>4.11 Continuous Delivery (CD)</h3>
+<p>Continuous Delivery is a practice in which software changes are automatically built, tested and prepared for release.</p>
+<p>The software can be deployed to production when the required approval or release step is completed.</p>
+</div>
+
+<div class="note-card">
+<h3>4.12 CI/CD Pipeline</h3>
+<p>A CI/CD pipeline is an automated sequence of steps used to build, test and deliver software.</p>
+<div class="example">
+Code → Build → Test → Package → Deploy → Monitor
+</div>
+<p><strong>Benefits:</strong></p>
+<ul>
+<li>Reduces manual work.</li>
+<li>Finds errors earlier.</li>
+<li>Improves software delivery speed.</li>
+<li>Supports repeatable releases.</li>
+</ul>
+</div>
+
+<div class="note-card">
+<h3>4.13 Infrastructure as Code (IaC)</h3>
+<p>Infrastructure as Code is the practice of managing and creating computing infrastructure using configuration files or code instead of manually configuring every resource.</p>
+<p><strong>Examples:</strong> Terraform, AWS CloudFormation and Ansible.</p>
+<p><strong>Advantages:</strong></p>
+<ul>
+<li>Repeatable infrastructure setup.</li>
+<li>Faster deployment.</li>
+<li>Version control for infrastructure configurations.</li>
+<li>Reduced manual configuration errors.</li>
+</ul>
+</div>
+
+<!-- QUICK REVISION -->
+
+<h2 class="section-title">Quick Revision</h2>
+
+<div class="note-card">
+<h3>Important Definitions</h3>
+<ul>
+<li><strong>Cloud Computing:</strong> Delivery of computing services over the Internet.</li>
+<li><strong>IaaS:</strong> Infrastructure as a Service.</li>
+<li><strong>PaaS:</strong> Platform as a Service.</li>
+<li><strong>SaaS:</strong> Software as a Service.</li>
+<li><strong>Virtualization:</strong> Creating virtual versions of computing resources.</li>
+<li><strong>Hypervisor:</strong> Software that creates and manages virtual machines.</li>
+<li><strong>Cloud Storage:</strong> Storing data on remote cloud servers.</li>
+<li><strong>VPC:</strong> Virtual Private Cloud.</li>
+<li><strong>CDN:</strong> Content Delivery Network.</li>
+<li><strong>DevOps:</strong> Practices that connect development and operations.</li>
+<li><strong>CI:</strong> Continuous Integration.</li>
+<li><strong>CD:</strong> Continuous Delivery.</li>
+<li><strong>IaC:</strong> Infrastructure as Code.</li>
+</ul>
+</div>
+
+<div class="note-card">
+<h3>Important Exam Questions</h3>
+
+<p><strong>Long-answer preparation:</strong></p>
+<ol>
+<li>Define Cloud Computing and explain its characteristics.</li>
+<li>Explain the architecture, benefits and challenges of Cloud Computing.</li>
+<li>Explain IaaS, PaaS and SaaS with examples.</li>
+<li>Describe the different cloud deployment models.</li>
+<li>Explain virtualization and its types.</li>
+<li>What is a hypervisor? Explain its types.</li>
+<li>Explain cloud storage and its different types.</li>
+<li>Describe cloud database services with examples.</li>
+<li>Explain cloud networking and Virtual Private Cloud.</li>
+<li>Explain DevOps, CI/CD and Infrastructure as Code.</li>
+</ol>
+
+<p><strong>Short-answer preparation:</strong></p>
+<ol>
+<li>What is Cloud Computing?</li>
+<li>Define resource pooling.</li>
+<li>What is elasticity?</li>
+<li>Expand IaaS, PaaS and SaaS.</li>
+<li>What is a public cloud?</li>
+<li>Define hybrid cloud.</li>
+<li>What is virtualization?</li>
+<li>What is a hypervisor?</li>
+<li>Expand VPC and CDN.</li>
+<li>What is load balancing?</li>
+<li>Define Auto Scaling.</li>
+<li>What is a CI/CD pipeline?</li>
+</ol>
+</div>
+
+</div>
+
+<footer>
+    <p>STUDENTVERSE | BCA Semester 3</p>
+    <p>Learn • Practice • Succeed</p>
+</footer>
+
+<button id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+function searchNotes(){
+    const input=document.getElementById("searchInput");
+    const filter=input.value.toLowerCase().trim();
+    const cards=document.querySelectorAll(".note-card");
+    let visible=0;
+
+    cards.forEach(card=>{
+        const match=card.innerText.toLowerCase().includes(filter);
+        card.style.display=match?"block":"none";
+
+        if(match){
+            visible++;
+        }
+    });
+
+    document.querySelectorAll(".section-title").forEach(title=>{
+        let next=title.nextElementSibling;
+        let hasVisible=false;
+
+        while(next && !next.classList.contains("section-title")){
+            if(next.classList.contains("note-card") && next.style.display!=="none"){
+                hasVisible=true;
+            }
+            next=next.nextElementSibling;
+        }
+
+        title.style.display=hasVisible?"block":"none";
+    });
+
+    document.getElementById("noResults").style.display=
+        visible===0?"block":"none";
+}
+
+window.addEventListener("scroll",()=>{
+    document.getElementById("topBtn").style.display=
+        window.scrollY>300?"block":"none";
+});
+</script>
+
+</body>
+</html>

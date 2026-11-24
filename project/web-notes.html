@@ -1,0 +1,1800 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Web Technologies Theory | STUDENTVERSE</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    color: white;
+    background: radial-gradient(circle at top, #172554, #080b1c 65%);
+    min-height: 100vh;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+        radial-gradient(2px 2px at 20% 30%, white, transparent),
+        radial-gradient(2px 2px at 70% 60%, #60a5fa, transparent),
+        radial-gradient(2px 2px at 40% 80%, white, transparent),
+        radial-gradient(2px 2px at 90% 20%, #a78bfa, transparent);
+    background-size: 180px 180px;
+    opacity: .5;
+    pointer-events: none;
+    z-index: -1;
+    animation: stars 15s linear infinite;
+}
+
+@keyframes stars {
+    from { transform: translateY(0); }
+    to { transform: translateY(-180px); }
+}
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 7%;
+    background: rgba(5, 10, 30, .92);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid #334155;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+    color: #60a5fa;
+    letter-spacing: 2px;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+}
+
+.navbar a:hover {
+    color: #60a5fa;
+}
+
+header {
+    text-align: center;
+    padding: 60px 20px 40px;
+}
+
+header h1 {
+    color: #93c5fd;
+    font-size: clamp(28px, 5vw, 45px);
+    text-shadow: 0 0 20px #2563eb;
+    margin-bottom: 15px;
+}
+
+header p {
+    color: #cbd5e1;
+    line-height: 1.8;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 15px;
+}
+
+button {
+    padding: 11px 20px;
+    border: 1px solid #60a5fa;
+    border-radius: 9px;
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    transition: .3s;
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 18px #3b82f6;
+}
+
+.search-box {
+    max-width: 650px;
+    margin: 25px auto;
+    padding: 0 15px;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid #475569;
+    outline: none;
+    color: white;
+    background: rgba(15, 23, 42, .9);
+    font-size: 16px;
+}
+
+.search-box input:focus {
+    border-color: #60a5fa;
+    box-shadow: 0 0 15px #2563eb;
+}
+
+.topic-nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 15px;
+    margin-bottom: 25px;
+}
+
+.topic-nav a {
+    color: #bfdbfe;
+    text-decoration: none;
+    background: rgba(30, 41, 59, .8);
+    border: 1px solid #334155;
+    padding: 9px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+}
+
+.topic-nav a:hover {
+    background: #2563eb;
+    color: white;
+}
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: auto;
+}
+
+.topic-card {
+    background: rgba(15, 23, 42, .88);
+    border: 1px solid rgba(96, 165, 250, .35);
+    border-radius: 16px;
+    padding: 25px;
+    margin-bottom: 28px;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, .25);
+    transition: .3s;
+    animation: appear .6s ease;
+}
+
+.topic-card:hover {
+    transform: translateY(-3px);
+    border-color: #60a5fa;
+    box-shadow: 0 0 20px rgba(59, 130, 246, .2);
+}
+
+@keyframes appear {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.topic-card h2 {
+    color: #93c5fd;
+    margin-bottom: 18px;
+    font-size: 24px;
+}
+
+.topic-card h3 {
+    color: #c4b5fd;
+    margin: 20px 0 10px;
+}
+
+.topic-card p {
+    color: #dbeafe;
+    line-height: 1.8;
+    margin-bottom: 12px;
+}
+
+.topic-card ul,
+.topic-card ol {
+    padding-left: 25px;
+    color: #dbeafe;
+    line-height: 1.9;
+}
+
+.topic-card li {
+    margin-bottom: 5px;
+}
+
+pre {
+    background: #020617;
+    color: #86efac;
+    border: 1px solid #334155;
+    padding: 17px;
+    border-radius: 10px;
+    overflow-x: auto;
+    margin: 15px 0;
+    line-height: 1.7;
+    white-space: pre-wrap;
+}
+
+.note {
+    background: rgba(37, 99, 235, .15);
+    border-left: 4px solid #60a5fa;
+    padding: 13px;
+    margin: 15px 0;
+    color: #bfdbfe;
+    line-height: 1.7;
+    border-radius: 5px;
+}
+
+#noResults {
+    display: none;
+    text-align: center;
+    padding: 35px;
+    color: #fca5a5;
+}
+
+footer {
+    text-align: center;
+    padding: 30px 15px;
+    color: #94a3b8;
+    border-top: 1px solid #334155;
+    margin-top: 50px;
+}
+
+#backToTop {
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    display: none;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    font-size: 20px;
+}
+
+@media(max-width: 600px) {
+    .navbar {
+        padding: 14px;
+    }
+
+    .navbar a {
+        margin-left: 8px;
+        font-size: 13px;
+    }
+
+    .container {
+        width: 94%;
+    }
+
+    .topic-card {
+        padding: 18px;
+    }
+}
+
+@media print {
+    body {
+        background: white !important;
+        color: black !important;
+    }
+
+    body::before,
+    .navbar,
+    .action-buttons,
+    .search-box,
+    .topic-nav,
+    #backToTop,
+    footer {
+        display: none !important;
+    }
+
+    header {
+        padding: 15px;
+    }
+
+    header h1,
+    header p {
+        color: black !important;
+        text-shadow: none;
+    }
+
+    .container {
+        width: 100%;
+    }
+
+    .topic-card {
+        background: white !important;
+        color: black !important;
+        border: 1px solid #aaa;
+        box-shadow: none;
+        break-inside: auto;
+    }
+
+    .topic-card h2,
+    .topic-card h3,
+    .topic-card p,
+    .topic-card li,
+    .note {
+        color: black !important;
+    }
+
+    pre {
+        color: black !important;
+        background: #f2f2f2 !important;
+        white-space: pre-wrap;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav class="navbar">
+    <div class="logo">STUDENTVERSE</div>
+    <div>
+        <a href="studyhub.html">StudyHub</a>
+        <a href="index.html">Home</a>
+    </div>
+</nav>
+
+<header>
+    <h1>WEB TECHNOLOGIES</h1>
+    <p>CAM33T | BCA Semester 3</p>
+    <p>Complete Theory Notes with HTML, CSS and JavaScript Examples</p>
+</header>
+
+<div class="action-buttons">
+    <button onclick="window.print()">📥 Download / Save as PDF</button>
+    <button onclick="location.href='studyhub.html'">⬅ Back to StudyHub</button>
+</div>
+
+<div class="search-box">
+    <input type="text" id="searchInput"
+    placeholder="🔍 Search Web Technology topics..."
+    onkeyup="searchTopics()">
+</div>
+
+<div class="topic-nav">
+    <a href="#internet">Internet</a>
+    <a href="#http">HTTP and WWW</a>
+    <a href="#html">HTML5</a>
+    <a href="#forms">Forms and IFrames</a>
+    <a href="#css">CSS</a>
+    <a href="#effects">CSS Effects</a>
+    <a href="#javascript">JavaScript</a>
+    <a href="#functions">Functions</a>
+    <a href="#objects">Objects and Arrays</a>
+    <a href="#events">Events</a>
+    <a href="#regex">RegExp</a>
+</div>
+
+<main class="container">
+
+<section class="topic-card" id="internet">
+<h2>1. Introduction to the Internet</h2>
+
+<h3>What is the Internet?</h3>
+<p>The Internet is a worldwide network of interconnected computers and devices. It allows people to communicate, share information and access online services.</p>
+
+<h3>Uses of the Internet</h3>
+<ul>
+<li>Online education and learning.</li>
+<li>Email and instant messaging.</li>
+<li>Online banking and shopping.</li>
+<li>Video conferencing.</li>
+<li>Entertainment and social networking.</li>
+<li>Sharing files and information.</li>
+</ul>
+
+<h3>Internet Protocol Address (IP Address)</h3>
+<p>An IP address is a unique numerical address used to identify a device on a network.</p>
+
+<h3>Types of IP Addresses</h3>
+<ul>
+<li>IPv4 – Uses a 32-bit address.</li>
+<li>IPv6 – Uses a 128-bit address.</li>
+</ul>
+
+<pre>
+IPv4 Example:
+192.168.1.1
+
+IPv6 Example:
+2001:db8::1
+</pre>
+
+<h3>Domain Name</h3>
+<p>A domain name is a human-readable address used to access a website. It is easier to remember than an IP address.</p>
+
+<p><b>Example:</b> google.com, wikipedia.org</p>
+
+<h3>World Wide Web (WWW)</h3>
+<p>The World Wide Web is a collection of interconnected web pages and resources that can be accessed through the Internet using a web browser.</p>
+
+<h3>Web Browser</h3>
+<p>A web browser is software used to access and display websites.</p>
+
+<ul>
+<li>Google Chrome</li>
+<li>Mozilla Firefox</li>
+<li>Microsoft Edge</li>
+<li>Safari</li>
+<li>Opera</li>
+</ul>
+
+<h3>Web Server</h3>
+<p>A web server is a computer or software that stores website files and sends web pages to users when requested.</p>
+
+<h3>General Characteristics of a Web Server</h3>
+<ul>
+<li>Accepts requests from clients.</li>
+<li>Processes HTTP requests.</li>
+<li>Delivers web pages and files.</li>
+<li>Handles multiple users.</li>
+<li>Provides security and access control.</li>
+</ul>
+</section>
+
+<section class="topic-card" id="http">
+<h2>2. URL, MIME, HTTP and WWW Security</h2>
+
+<h3>Uniform Resource Locator (URL)</h3>
+<p>A URL is the complete address used to locate a resource on the Internet.</p>
+
+<pre>
+https://www.example.com/about.html
+</pre>
+
+<h3>Parts of a URL</h3>
+<ul>
+<li>Protocol – https</li>
+<li>Domain name – www.example.com</li>
+<li>Path – /about.html</li>
+</ul>
+
+<h3>MIME</h3>
+<p>MIME stands for Multipurpose Internet Mail Extensions. It identifies the type of content being transferred over the Internet.</p>
+
+<p><b>Examples:</b></p>
+<ul>
+<li>text/html – HTML document</li>
+<li>text/plain – Plain text</li>
+<li>image/jpeg – JPEG image</li>
+<li>application/pdf – PDF document</li>
+<li>application/json – JSON data</li>
+</ul>
+
+<h3>HTTP</h3>
+<p>HTTP stands for Hypertext Transfer Protocol. It is used for communication between web browsers and web servers.</p>
+
+<h3>HTTP Request Phase</h3>
+<p>The browser sends a request to the web server to access a particular resource.</p>
+
+<pre>
+GET /index.html HTTP/1.1
+Host: example.com
+</pre>
+
+<h3>HTTP Response Phase</h3>
+<p>The server processes the request and sends a response containing a status code, headers and sometimes the requested content.</p>
+
+<pre>
+HTTP/1.1 200 OK
+Content-Type: text/html
+
+<html>
+<body>
+<h1>Welcome</h1>
+</body>
+</html>
+</pre>
+
+<h3>Common HTTP Methods</h3>
+<ul>
+<li>GET – Retrieves information.</li>
+<li>POST – Sends information to the server.</li>
+<li>PUT – Creates or replaces a resource.</li>
+<li>PATCH – Partially updates a resource.</li>
+<li>DELETE – Deletes a resource.</li>
+</ul>
+
+<h3>Common HTTP Status Codes</h3>
+<ul>
+<li>200 – OK.</li>
+<li>301 – Moved Permanently.</li>
+<li>400 – Bad Request.</li>
+<li>401 – Unauthorized.</li>
+<li>403 – Forbidden.</li>
+<li>404 – Not Found.</li>
+<li>500 – Internal Server Error.</li>
+</ul>
+
+<h3>Security Issues in WWW</h3>
+<ul>
+<li>Phishing attacks.</li>
+<li>Malware and malicious downloads.</li>
+<li>Cross-Site Scripting (XSS).</li>
+<li>SQL Injection.</li>
+<li>Data theft.</li>
+<li>Unauthorized access.</li>
+</ul>
+
+<div class="note">
+HTTPS uses TLS to protect communication between a browser and a server. It helps protect data from being read or modified during transmission.
+</div>
+</section>
+
+<section class="topic-card" id="html">
+<h2>3. Introduction to HTML5</h2>
+
+<h3>What is HTML?</h3>
+<p>HTML stands for HyperText Markup Language. It is used to create the structure of web pages.</p>
+
+<h3>Features of HTML5</h3>
+<ul>
+<li>Semantic elements.</li>
+<li>Audio and video support.</li>
+<li>Canvas graphics.</li>
+<li>Improved form controls.</li>
+<li>Better support for modern web applications.</li>
+</ul>
+
+<h3>Basic HTML5 Document Structure</h3>
+<pre>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Webpage</title>
+</head>
+<body>
+
+    <h1>Welcome to HTML5</h1>
+    <p>This is my first webpage.</p>
+
+</body>
+</html>
+</pre>
+
+<h3>HTML Elements</h3>
+<p>An HTML element usually consists of an opening tag, content and a closing tag.</p>
+
+<pre>
+<p>This is a paragraph.</p>
+<h1>This is a heading.</h1>
+</pre>
+
+<h3>HTML Attributes</h3>
+<p>Attributes provide additional information about HTML elements.</p>
+
+<pre>
+<a href="https://example.com">
+Visit Website
+</a>
+
+<img src="photo.jpg"
+alt="Sample Photo"
+width="200">
+</pre>
+
+<h3>HTML Headings</h3>
+<p>HTML provides six levels of headings, from h1 to h6.</p>
+
+<pre>
+<h1>Heading 1</h1>
+<h2>Heading 2</h2>
+<h3>Heading 3</h3>
+<h4>Heading 4</h4>
+<h5>Heading 5</h5>
+<h6>Heading 6</h6>
+</pre>
+
+<h3>Paragraphs and Text Formatting</h3>
+<pre>
+<p>This is a paragraph.</p>
+
+<b>Bold Text</b>
+<strong>Important Text</strong>
+<i>Italic Text</i>
+<em>Emphasized Text</em>
+<u>Underlined Text</u>
+<mark>Highlighted Text</mark>
+<small>Small Text</small>
+</pre>
+
+<h3>Hyperlinks</h3>
+<p>A hyperlink connects one web page to another.</p>
+
+<pre>
+<a href="https://www.google.com">
+Open Google
+</a>
+</pre>
+
+<h3>Images</h3>
+<pre>
+<img src="student.jpg"
+alt="Student Image"
+width="300"
+height="200">
+</pre>
+
+<h3>Preserving White Space</h3>
+<p>The pre element preserves spaces and line breaks in the displayed text.</p>
+
+<pre>
+<pre>
+Name: Sanjay
+Course: BCA
+College: Mysuru
+</pre>
+</pre>
+
+<h3>HTML Lists</h3>
+<p>Ordered lists display numbered items. Unordered lists display bullet points.</p>
+
+<pre>
+<h3>Ordered List</h3>
+<ol>
+    <li>HTML</li>
+    <li>CSS</li>
+    <li>JavaScript</li>
+</ol>
+
+<h3>Unordered List</h3>
+<ul>
+    <li>Computer</li>
+    <li>Keyboard</li>
+    <li>Mouse</li>
+</ul>
+</pre>
+
+<h3>HTML Tables</h3>
+<pre>
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Marks</th>
+    </tr>
+    <tr>
+        <td>101</td>
+        <td>Sanjay</td>
+        <td>85</td>
+    </tr>
+</table>
+</pre>
+
+<h3>Block and Inline Elements</h3>
+<p>Block elements normally start on a new line and occupy the available width. Inline elements occupy only the space they need.</p>
+
+<ul>
+<li>Block examples: div, p, h1, section.</li>
+<li>Inline examples: span, a, strong, em.</li>
+</ul>
+
+<h3>DIV Element</h3>
+<p>The div element is a block-level container used to group HTML elements.</p>
+
+<pre>
+<div>
+    <h2>Student Details</h2>
+    <p>Name: Sanjay</p>
+</div>
+</pre>
+
+<h3>Horizontal Rule</h3>
+<p>The hr element creates a thematic break between sections.</p>
+
+<pre>
+<p>First Section</p>
+<hr>
+<p>Second Section</p>
+</pre>
+
+<h3>HTML Character Entities</h3>
+<p>Character entities are used to display reserved characters and special symbols.</p>
+
+<pre>
+&lt;   Less than
+&gt;   Greater than
+&amp;  Ampersand
+&nbsp; Non-breaking space
+&copy; Copyright
+</pre>
+</section>
+
+<section class="topic-card" id="forms">
+<h2>4. HTML Forms and IFrames</h2>
+
+<h3>HTML Forms</h3>
+<p>An HTML form is used to collect information from users.</p>
+
+<h3>Common Form Elements</h3>
+<ul>
+<li>Text box – Accepts text.</li>
+<li>Password – Accepts hidden text.</li>
+<li>Radio button – Selects one option from a group.</li>
+<li>Checkbox – Selects multiple options.</li>
+<li>Submit button – Submits form data.</li>
+<li>Reset button – Resets form fields.</li>
+<li>Select – Creates a dropdown list.</li>
+<li>Textarea – Accepts multi-line text.</li>
+</ul>
+
+<h3>HTML Form Example</h3>
+<pre>
+<form action="#" method="post">
+
+    <label>Name:</label>
+    <input type="text" name="name">
+
+    <br><br>
+
+    <label>Password:</label>
+    <input type="password" name="password">
+
+    <br><br>
+
+    <label>Gender:</label>
+    <input type="radio" name="gender"
+    value="Male"> Male
+
+    <input type="radio" name="gender"
+    value="Female"> Female
+
+    <br><br>
+
+    <label>Course:</label>
+    <select name="course">
+        <option>BCA</option>
+        <option>BBA</option>
+        <option>BA</option>
+    </select>
+
+    <br><br>
+
+    <textarea name="address"
+    placeholder="Enter address"></textarea>
+
+    <br><br>
+
+    <input type="submit" value="Submit">
+    <input type="reset" value="Reset">
+
+</form>
+</pre>
+
+<h3>Important Form Attributes</h3>
+<ul>
+<li>action – Specifies where form data is sent.</li>
+<li>method – Specifies GET or POST.</li>
+<li>name – Identifies a form control.</li>
+<li>required – Makes a field compulsory.</li>
+<li>placeholder – Displays hint text.</li>
+<li>value – Specifies the initial or submitted value.</li>
+</ul>
+
+<h3>HTML IFrame</h3>
+<p>An iframe is used to display another web page inside the current web page.</p>
+
+<pre>
+<iframe
+src="https://example.com"
+width="500"
+height="300"
+title="Example Website">
+</iframe>
+</pre>
+
+<h3>Responsive Webpages</h3>
+<p>A responsive webpage automatically adjusts its layout according to the screen size of a mobile, tablet or computer.</p>
+
+<h3>Viewport Meta Tag</h3>
+<pre>
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+</pre>
+
+<h3>Media Query Example</h3>
+<pre>
+@media (max-width: 600px) {
+    body {
+        font-size: 14px;
+    }
+
+    .container {
+        width: 100%;
+    }
+}
+</pre>
+</section>
+
+<section class="topic-card" id="css">
+<h2>5. Introduction to CSS</h2>
+
+<h3>What is CSS?</h3>
+<p>CSS stands for Cascading Style Sheets. It is used to control the appearance and layout of HTML webpages.</p>
+
+<h3>Advantages of CSS</h3>
+<ul>
+<li>Improves webpage appearance.</li>
+<li>Separates content from design.</li>
+<li>Reduces repeated styling.</li>
+<li>Supports responsive design.</li>
+<li>Makes website maintenance easier.</li>
+</ul>
+
+<h3>CSS Syntax</h3>
+<pre>
+selector {
+    property: value;
+}
+</pre>
+
+<h3>Example</h3>
+<pre>
+h1 {
+    color: blue;
+    font-size: 30px;
+}
+</pre>
+
+<h3>CSS Comments</h3>
+<pre>
+/* This is a CSS comment */
+
+body {
+    background-color: lightblue;
+}
+</pre>
+
+<h3>Types of CSS</h3>
+<ul>
+<li>Inline CSS – Written inside an HTML element using the style attribute.</li>
+<li>Internal CSS – Written inside a style element in the HTML document.</li>
+<li>External CSS – Written in a separate .css file.</li>
+</ul>
+
+<h3>CSS Selectors</h3>
+<pre>
+/* Element selector */
+p {
+    color: white;
+}
+
+/* ID selector */
+#title {
+    color: blue;
+}
+
+/* Class selector */
+.heading {
+    color: red;
+}
+
+/* Universal selector */
+* {
+    margin: 0;
+}
+
+/* Group selector */
+h1, h2, p {
+    font-family: Arial;
+}
+</pre>
+
+<h3>CSS Margins and Padding</h3>
+<p>Margin is the space outside an element's border. Padding is the space between the content and the border.</p>
+
+<pre>
+.box {
+    margin: 20px;
+    padding: 15px;
+    border: 2px solid blue;
+}
+</pre>
+
+<h3>Height and Width</h3>
+<pre>
+.box {
+    width: 300px;
+    height: 150px;
+}
+</pre>
+
+<h3>Text Alignment</h3>
+<pre>
+h1 {
+    text-align: center;
+}
+</pre>
+
+<h3>Text Decoration</h3>
+<pre>
+a {
+    text-decoration: none;
+}
+</pre>
+
+<h3>Text Transformation</h3>
+<pre>
+h2 {
+    text-transform: uppercase;
+}
+</pre>
+
+<h3>Text Spacing and Shadow</h3>
+<pre>
+p {
+    letter-spacing: 2px;
+    word-spacing: 5px;
+    line-height: 1.5;
+    text-shadow: 2px 2px 4px gray;
+}
+</pre>
+
+<h3>Font Properties</h3>
+<pre>
+p {
+    font-family: Arial;
+    font-size: 18px;
+    font-weight: bold;
+    font-style: italic;
+}
+</pre>
+
+<h3>CSS List Properties</h3>
+<pre>
+ul {
+    list-style-type: square;
+}
+
+ol {
+    list-style-type: upper-roman;
+}
+</pre>
+
+<h3>CSS Box Model</h3>
+<p>The CSS box model consists of content, padding, border and margin.</p>
+
+<pre>
+.box {
+    width: 200px;
+    padding: 20px;
+    border: 5px solid blue;
+    margin: 10px;
+    box-sizing: border-box;
+}
+</pre>
+
+<h3>CSS Links and Lists</h3>
+<pre>
+a:link {
+    color: blue;
+}
+
+a:hover {
+    color: red;
+}
+
+a:visited {
+    color: purple;
+}
+</pre>
+</section>
+
+<section class="topic-card" id="effects">
+<h2>6. CSS Positioning, Transforms and Effects</h2>
+
+<h3>CSS Position</h3>
+<ul>
+<li>Static – Default positioning.</li>
+<li>Relative – Positioned relative to its normal position.</li>
+<li>Absolute – Positioned relative to its nearest positioned ancestor.</li>
+<li>Fixed – Positioned relative to the viewport.</li>
+<li>Sticky – Behaves like relative until a scroll threshold is reached.</li>
+</ul>
+
+<pre>
+.box {
+    position: relative;
+    top: 20px;
+    left: 30px;
+}
+</pre>
+
+<h3>Z-Index</h3>
+<p>The z-index property controls the stacking order of positioned elements.</p>
+
+<pre>
+.box1 {
+    position: absolute;
+    z-index: 2;
+}
+</pre>
+
+<h3>Rounded Corners</h3>
+<pre>
+.card {
+    border-radius: 15px;
+}
+</pre>
+
+<h3>Shadow Effects</h3>
+<pre>
+.card {
+    box-shadow: 0 5px 20px gray;
+}
+</pre>
+
+<h3>CSS Text Effects</h3>
+<pre>
+p {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+</pre>
+
+<h3>CSS 2D Transforms</h3>
+<p>2D transforms change an element's position, size or rotation in two dimensions.</p>
+
+<pre>
+.box {
+    transform: rotate(20deg);
+}
+
+/* Other examples */
+transform: translate(20px, 10px);
+transform: scale(1.2);
+transform: skew(10deg);
+</pre>
+
+<h3>CSS 3D Transforms</h3>
+<p>3D transforms allow elements to rotate and move in three-dimensional space.</p>
+
+<pre>
+.card {
+    transform: rotateY(180deg);
+    transform-style: preserve-3d;
+    perspective: 800px;
+}
+</pre>
+
+<h3>CSS Transitions</h3>
+<p>Transitions make changes in CSS properties happen smoothly over a specified time.</p>
+
+<pre>
+button {
+    background: blue;
+    transition: background 0.5s;
+}
+
+button:hover {
+    background: red;
+}
+</pre>
+
+<h3>CSS Animations</h3>
+<p>Animations allow elements to change styles through keyframes.</p>
+
+<pre>
+@keyframes move {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(100px);
+    }
+}
+
+.box {
+    animation: move 2s infinite alternate;
+}
+</pre>
+
+<h3>CSS Masking</h3>
+<p>CSS masking controls which parts of an element are visible using a mask image or gradient.</p>
+
+<pre>
+.box {
+    -webkit-mask-image:
+    linear-gradient(black, transparent);
+    mask-image:
+    linear-gradient(black, transparent);
+}
+</pre>
+</section>
+
+<section class="topic-card" id="javascript">
+<h2>7. Introduction to JavaScript</h2>
+
+<h3>What is JavaScript?</h3>
+<p>JavaScript is a programming language used to make webpages interactive and dynamic.</p>
+
+<h3>Advantages of JavaScript</h3>
+<ul>
+<li>Creates interactive webpages.</li>
+<li>Validates form data.</li>
+<li>Changes HTML and CSS dynamically.</li>
+<li>Handles user events.</li>
+<li>Can run in browsers without additional installation.</li>
+</ul>
+
+<h3>Adding JavaScript to HTML</h3>
+<pre>
+<script>
+    alert("Welcome to JavaScript");
+</script>
+</pre>
+
+<h3>External JavaScript</h3>
+<pre>
+<script src="script.js"></script>
+</pre>
+
+<h3>JavaScript Variables</h3>
+<pre>
+var name = "Sanjay";
+let age = 20;
+const college = "BCA College";
+</pre>
+
+<h3>Difference Between var, let and const</h3>
+<ul>
+<li>var – Function-scoped and can be redeclared.</li>
+<li>let – Block-scoped and can be reassigned.</li>
+<li>const – Block-scoped and cannot be reassigned.</li>
+</ul>
+
+<h3>JavaScript Comments</h3>
+<pre>
+// Single-line comment
+
+/*
+Multi-line
+comment
+*/
+</pre>
+
+<h3>JavaScript Data Types</h3>
+<ul>
+<li>String</li>
+<li>Number</li>
+<li>Boolean</li>
+<li>Undefined</li>
+<li>Null</li>
+<li>BigInt</li>
+<li>Symbol</li>
+<li>Object</li>
+</ul>
+
+<h3>Constants</h3>
+<p>A constant is declared using const and cannot be reassigned after initialization.</p>
+
+<pre>
+const PI = 3.14159;
+</pre>
+
+<h3>Screen Output</h3>
+<pre>
+document.write("Hello World");
+
+console.log("Hello World");
+
+alert("Welcome");
+</pre>
+
+<h3>Keyboard Input</h3>
+<pre>
+let name = prompt("Enter your name");
+
+alert("Welcome " + name);
+</pre>
+
+<h3>JavaScript Operators</h3>
+<ul>
+<li>Arithmetic: +, -, *, /, %, **</li>
+<li>Assignment: =, +=, -=, *=, /=</li>
+<li>Comparison: ==, ===, !=, !==, greater than and less than</li>
+<li>Logical: &&, ||, !</li>
+<li>Increment: ++</li>
+<li>Decrement: --</li>
+</ul>
+
+<h3>Type Conversion</h3>
+<pre>
+let a = "25";
+
+let number = Number(a);
+
+console.log(number + 5);
+
+let value = String(100);
+
+console.log(value);
+</pre>
+
+<h3>Conditional Statements</h3>
+<pre>
+let marks = 75;
+
+if (marks >= 35) {
+    console.log("Pass");
+} else {
+    console.log("Fail");
+}
+</pre>
+
+<h3>Switch Statement</h3>
+<pre>
+let day = 2;
+
+switch(day) {
+    case 1:
+        console.log("Monday");
+        break;
+
+    case 2:
+        console.log("Tuesday");
+        break;
+
+    default:
+        console.log("Invalid Day");
+}
+</pre>
+
+<h3>Looping Statements</h3>
+<pre>
+// For loop
+for(let i = 1; i <= 5; i++) {
+    console.log(i);
+}
+
+// While loop
+let i = 1;
+
+while(i <= 5) {
+    console.log(i);
+    i++;
+}
+
+// Do-while loop
+let j = 1;
+
+do {
+    console.log(j);
+    j++;
+} while(j <= 5);
+</pre>
+
+<h3>Jumping Statements</h3>
+<ul>
+<li>break – Terminates a loop or switch.</li>
+<li>continue – Skips the current loop iteration.</li>
+<li>return – Exits a function and can return a value.</li>
+</ul>
+</section>
+
+<section class="topic-card" id="functions">
+<h2>8. JavaScript Functions</h2>
+
+<h3>What is a Function?</h3>
+<p>A function is a reusable block of code designed to perform a particular task.</p>
+
+<h3>Function Declaration</h3>
+<pre>
+function greet() {
+    console.log("Welcome to STUDENTVERSE");
+}
+
+greet();
+</pre>
+
+<h3>Function with Parameters</h3>
+<pre>
+function add(a, b) {
+    console.log(a + b);
+}
+
+add(10, 20);
+</pre>
+
+<h3>Function with Return Statement</h3>
+<pre>
+function multiply(a, b) {
+    return a * b;
+}
+
+let result = multiply(5, 4);
+
+console.log(result);
+</pre>
+
+<h3>Function Expression</h3>
+<pre>
+const square = function(n) {
+    return n * n;
+};
+
+console.log(square(5));
+</pre>
+
+<h3>Arrow Function</h3>
+<pre>
+const add = (a, b) => a + b;
+
+console.log(add(10, 20));
+</pre>
+
+<h3>Function Invocation</h3>
+<p>Function invocation means calling a function to execute its statements.</p>
+
+<h3>Global Variables</h3>
+<p>A global variable is declared outside functions and can be accessed from its available scope.</p>
+
+<h3>Local Variables</h3>
+<p>A local variable is declared inside a function or block and is available only within its scope.</p>
+
+<pre>
+let globalName = "Sanjay";
+
+function display() {
+    let localAge = 20;
+
+    console.log(globalName);
+    console.log(localAge);
+}
+
+display();
+</pre>
+</section>
+
+<section class="topic-card" id="objects">
+<h2>9. JavaScript Classes, Objects and Arrays</h2>
+
+<h3>JavaScript Objects</h3>
+<p>An object is a collection of related properties and methods.</p>
+
+<pre>
+let student = {
+    name: "Sanjay",
+    age: 20,
+    course: "BCA",
+
+    display: function() {
+        console.log(this.name);
+    }
+};
+
+console.log(student.name);
+student.display();
+</pre>
+
+<h3>JavaScript Classes</h3>
+<p>A class is a blueprint used to create objects.</p>
+
+<pre>
+class Student {
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    display() {
+        console.log(this.name);
+        console.log(this.age);
+    }
+}
+
+let s1 = new Student("Sanjay", 20);
+
+s1.display();
+</pre>
+
+<h3>Constructor</h3>
+<p>A constructor is a special method called automatically when an object is created using a class.</p>
+
+<h3>Class Methods</h3>
+<p>Methods are functions defined inside a class that describe the behaviour of its objects.</p>
+
+<h3>Built-in JavaScript Objects</h3>
+<ul>
+<li>Math – Mathematical calculations.</li>
+<li>Date – Date and time operations.</li>
+<li>String – String manipulation.</li>
+<li>Number – Numeric operations.</li>
+<li>Array – Collection of values.</li>
+<li>JSON – JSON data handling.</li>
+</ul>
+
+<h3>JavaScript Arrays</h3>
+<p>An array is used to store multiple values in a single variable.</p>
+
+<pre>
+let subjects = [
+    "C#",
+    "DBMS",
+    "Web Technology",
+    "Cyber Security"
+];
+
+console.log(subjects[0]);
+console.log(subjects[1]);
+</pre>
+
+<h3>Array Properties and Methods</h3>
+<pre>
+let numbers = [10, 20, 30];
+
+// Length
+console.log(numbers.length);
+
+// Add element at end
+numbers.push(40);
+
+// Remove last element
+numbers.pop();
+
+// Add at beginning
+numbers.unshift(5);
+
+// Remove first element
+numbers.shift();
+
+// Reverse array
+numbers.reverse();
+
+// Join array elements
+console.log(numbers.join(","));
+</pre>
+
+<h3>Accessing Array Elements</h3>
+<pre>
+let colors = ["Red", "Green", "Blue"];
+
+console.log(colors[0]);
+console.log(colors[1]);
+console.log(colors[2]);
+</pre>
+
+<h3>JavaScript Strings</h3>
+<p>A string is a sequence of characters enclosed in single quotes, double quotes or backticks.</p>
+
+<pre>
+let name = "STUDENTVERSE";
+
+console.log(name.length);
+console.log(name.toUpperCase());
+console.log(name.toLowerCase());
+console.log(name.charAt(0));
+console.log(name.indexOf("VERSE"));
+console.log(name.substring(0, 7));
+console.log(name.replace("STUDENT", "SMART"));
+console.log(name.includes("VERSE"));
+</pre>
+</section>
+
+<section class="topic-card" id="events">
+<h2>10. JavaScript Events and Event Handling</h2>
+
+<h3>What is an Event?</h3>
+<p>An event is an action that happens in a browser, such as clicking a button, typing text or loading a webpage.</p>
+
+<h3>Common JavaScript Events</h3>
+<ul>
+<li>onclick – Occurs when an element is clicked.</li>
+<li>ondblclick – Occurs when an element is double-clicked.</li>
+<li>onmouseover – Occurs when the pointer moves over an element.</li>
+<li>onmouseout – Occurs when the pointer leaves an element.</li>
+<li>onkeydown – Occurs when a key is pressed.</li>
+<li>onkeyup – Occurs when a key is released.</li>
+<li>onchange – Occurs when an input value changes.</li>
+<li>onload – Occurs when a page or resource loads.</li>
+</ul>
+
+<h3>Handling Body Events</h3>
+<pre>
+<body onload="welcome()">
+
+<script>
+function welcome() {
+    alert("Page Loaded Successfully");
+}
+</script>
+
+</body>
+</pre>
+
+<h3>Handling Button Events</h3>
+<pre>
+<button onclick="showMessage()">
+Click Me
+</button>
+
+<script>
+function showMessage() {
+    alert("Button Clicked");
+}
+</script>
+</pre>
+
+<h3>Handling Text Box Events</h3>
+<pre>
+<input type="text"
+id="username"
+onkeyup="displayText()">
+
+<p id="result"></p>
+
+<script>
+function displayText() {
+    let value =
+    document.getElementById("username").value;
+
+    document.getElementById("result").innerHTML =
+    value;
+}
+</script>
+</pre>
+
+<h3>Handling Password Elements</h3>
+<pre>
+<input type="password" id="password">
+
+<button onclick="showPassword()">
+Show Password
+</button>
+
+<script>
+function showPassword() {
+    let field =
+    document.getElementById("password");
+
+    field.type =
+    field.type === "password" ? "text" : "password";
+}
+</script>
+</pre>
+
+<h3>Element Visibility</h3>
+<pre>
+<p id="message">Welcome Student</p>
+
+<button onclick="hideMessage()">
+Hide
+</button>
+
+<button onclick="showMessage()">
+Show
+</button>
+
+<script>
+function hideMessage() {
+    document.getElementById("message")
+    .style.display = "none";
+}
+
+function showMessage() {
+    document.getElementById("message")
+    .style.display = "block";
+}
+</script>
+</pre>
+
+<h3>Changing Colours and Fonts</h3>
+<pre>
+function changeStyle() {
+    let element =
+    document.getElementById("heading");
+
+    element.style.color = "red";
+    element.style.fontSize = "30px";
+    element.style.fontFamily = "Arial";
+}
+</pre>
+
+<h3>Dynamic Content</h3>
+<p>JavaScript can change the content of a webpage after it has loaded.</p>
+
+<pre>
+document.getElementById("demo")
+.innerHTML = "Content Updated";
+</pre>
+
+<h3>Slow Movement of Elements</h3>
+<p>JavaScript can move an element gradually by changing its position at regular intervals.</p>
+
+<pre>
+let position = 0;
+
+function moveElement() {
+    const box = document.getElementById("box");
+
+    if (position < 300) {
+        position += 2;
+        box.style.left = position + "px";
+
+        requestAnimationFrame(moveElement);
+    }
+}
+</pre>
+
+<h3>Navigator Object</h3>
+<p>The navigator object provides information about the browser and its environment.</p>
+
+<pre>
+console.log(navigator.userAgent);
+console.log(navigator.language);
+console.log(navigator.onLine);
+console.log(navigator.platform);
+</pre>
+</section>
+
+<section class="topic-card" id="regex">
+<h2>11. Regular Expressions (RegExp)</h2>
+
+<h3>What is a Regular Expression?</h3>
+<p>A regular expression is a sequence of characters used to search, match and validate patterns in strings.</p>
+
+<h3>Creating a Regular Expression</h3>
+<pre>
+// Using literal notation
+let pattern = /hello/i;
+
+// Using RegExp constructor
+let pattern2 = new RegExp("hello", "i");
+</pre>
+
+<h3>Common Regular Expression Symbols</h3>
+<ul>
+<li>^ – Matches the beginning of a string.</li>
+<li>$ – Matches the end of a string.</li>
+<li>. – Matches any character except line terminators by default.</li>
+<li>* – Matches zero or more repetitions.</li>
+<li>+ – Matches one or more repetitions.</li>
+<li>? – Matches zero or one repetition.</li>
+<li>[abc] – Matches a, b or c.</li>
+<li>[0-9] – Matches a digit.</li>
+<li>\d – Matches a digit.</li>
+<li>\w – Matches a word character.</li>
+<li>\s – Matches whitespace.</li>
+</ul>
+
+<h3>Regular Expression Methods</h3>
+<pre>
+let text = "Welcome to JavaScript";
+
+let pattern = /JavaScript/i;
+
+console.log(pattern.test(text));
+
+console.log(text.match(pattern));
+
+console.log(text.search(pattern));
+</pre>
+
+<h3>Example: Validate Mobile Number</h3>
+<pre>
+let mobile = "9876543210";
+
+let pattern = /^[0-9]{10}$/;
+
+if(pattern.test(mobile)) {
+    console.log("Valid Mobile Number");
+} else {
+    console.log("Invalid Mobile Number");
+}
+</pre>
+
+<h3>Example: Validate Email Format</h3>
+<pre>
+let email = "student@example.com";
+
+let pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+if(pattern.test(email)) {
+    console.log("Valid Email Format");
+} else {
+    console.log("Invalid Email Format");
+}
+</pre>
+
+<div class="note">
+Regular expressions can check the format of input data, but they cannot guarantee that a mobile number or email address actually belongs to a particular person.
+</div>
+</section>
+
+<section class="topic-card">
+<h2>Important Web Technologies Viva Questions</h2>
+
+<ol>
+<li>What is the Internet?</li>
+<li>What is the difference between Internet and WWW?</li>
+<li>What is an IP address?</li>
+<li>What is a domain name?</li>
+<li>What is a web browser?</li>
+<li>What is a web server?</li>
+<li>What is URL?</li>
+<li>What is MIME?</li>
+<li>What is HTTP?</li>
+<li>What is HTML5?</li>
+<li>What is the difference between HTML and CSS?</li>
+<li>What is an HTML attribute?</li>
+<li>What is an HTML form?</li>
+<li>What is an iframe?</li>
+<li>What is responsive web design?</li>
+<li>What is CSS Box Model?</li>
+<li>What is the difference between margin and padding?</li>
+<li>What is the difference between ID and class selectors?</li>
+<li>What is JavaScript?</li>
+<li>What is the difference between var, let and const?</li>
+<li>What is a function?</li>
+<li>What is an object?</li>
+<li>What is an array?</li>
+<li>What is an event?</li>
+<li>What is event handling?</li>
+<li>What is the Navigator object?</li>
+<li>What is a regular expression?</li>
+</ol>
+</section>
+
+<div id="noResults">
+    <h2>No Topics Found!</h2>
+    <p>Try searching with another keyword.</p>
+</div>
+
+</main>
+
+<footer>
+    <p>STUDENTVERSE | Learn Today, Build Tomorrow 🚀</p>
+    <p>CAM33T – Web Technologies Theory</p>
+</footer>
+
+<button id="backToTop"
+onclick="window.scrollTo({top:0, behavior:'smooth'})">↑</button>
+
+<script>
+function searchTopics() {
+    const input = document.getElementById("searchInput")
+        .value.toLowerCase().trim();
+
+    const cards = document.querySelectorAll(".topic-card");
+    let visibleCount = 0;
+
+    cards.forEach(card => {
+        const show =
+            card.innerText.toLowerCase().includes(input);
+
+        card.style.display = show ? "block" : "none";
+
+        if (show) visibleCount++;
+    });
+
+    document.getElementById("noResults").style.display =
+        visibleCount === 0 ? "block" : "none";
+}
+
+const backToTop = document.getElementById("backToTop");
+
+window.addEventListener("scroll", function() {
+    backToTop.style.display =
+        window.scrollY > 300 ? "block" : "none";
+});
+</script>
+
+</body>
+</html>

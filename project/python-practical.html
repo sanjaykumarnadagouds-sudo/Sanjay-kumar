@@ -1,0 +1,898 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Python Programming Lab | STUDENTVERSE</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+    font-family:Arial,sans-serif;
+    color:white;
+    background:radial-gradient(circle at top,#20245c,#090b20 55%,#03040d);
+    min-height:100vh;line-height:1.7
+}
+body:before{
+    content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+    background-image:radial-gradient(white 1px,transparent 1px),
+    radial-gradient(#9b8cff 1px,transparent 1px);
+    background-size:70px 70px,110px 110px;
+    opacity:.25
+}
+nav{
+    position:sticky;top:0;z-index:10;
+    display:flex;justify-content:space-between;align-items:center;
+    flex-wrap:wrap;gap:12px;padding:15px 7%;
+    background:rgba(5,7,25,.94);border-bottom:1px solid #5149a5;
+    backdrop-filter:blur(12px)
+}
+.logo{font-size:23px;font-weight:bold;color:#a99aff;letter-spacing:1px}
+nav a{color:white;text-decoration:none;margin-left:16px}
+nav a:hover{color:#a99aff}
+.hero{text-align:center;padding:50px 20px 30px}
+.hero h1{font-size:clamp(30px,5vw,46px);color:#b5a8ff;text-shadow:0 0 20px #7564ff}
+.hero p{color:#d0d0e8;margin-top:8px}
+.tag{display:inline-block;margin-top:14px;padding:6px 16px;border:1px solid #8274ff;border-radius:30px;color:#c8c0ff}
+.toolbar{max-width:1050px;margin:15px auto 25px;padding:0 20px;display:flex;gap:12px;flex-wrap:wrap}
+.toolbar input{flex:1;min-width:220px;padding:13px;border-radius:10px;border:1px solid #6258bb;background:#11152f;color:white;outline:none}
+button{padding:11px 17px;border:0;border-radius:9px;background:linear-gradient(135deg,#6856e8,#a35be9);color:white;font-weight:bold;cursor:pointer}
+.container{max-width:1050px;margin:auto;padding:0 20px 60px}
+section{
+    margin-bottom:25px;padding:23px;
+    background:rgba(19,22,55,.9);border:1px solid rgba(139,125,255,.45);
+    border-radius:17px;box-shadow:0 8px 30px rgba(0,0,0,.25)
+}
+section h2{color:#b5a8ff;margin-bottom:14px}
+h3{color:#8edcff;margin:20px 0 8px}
+p,li{color:#e1e2f3}
+p{margin:8px 0}
+ul{padding-left:23px;margin:8px 0}
+.lab{
+    margin:17px 0;padding:17px;border-radius:12px;
+    background:rgba(5,8,28,.75);border:1px solid #343b73
+}
+.lab h3{margin-top:0;color:#a99aff}
+pre{
+    background:#070a1b;color:#9ef5c5;border:1px solid #343b73;
+    border-radius:9px;padding:15px;margin:10px 0;
+    overflow-x:auto;white-space:pre
+}
+.output{
+    background:#101b25;color:#a8e8ff;border-left:4px solid #51b8df;
+    padding:12px;border-radius:7px;margin-top:10px
+}
+.note{
+    background:rgba(104,86,232,.13);border-left:4px solid #9c8aff;
+    padding:12px 15px;border-radius:7px;margin:13px 0;color:#e8e4ff
+}
+footer{text-align:center;padding:25px;color:#aaa9d0;border-top:1px solid #37345f}
+#topBtn{position:fixed;right:20px;bottom:20px;border-radius:50%;width:45px;height:45px;font-size:20px;padding:0}
+@media(max-width:600px){
+    nav{justify-content:center}
+    nav a{margin:5px}
+    section{padding:16px}
+}
+@media print{
+    body{background:white;color:black}
+    body:before,nav,.toolbar,#topBtn,footer{display:none!important}
+    .hero h1,h2,h3,p,li{color:black!important;text-shadow:none}
+    section,.lab{background:white;color:black;box-shadow:none;border:1px solid #aaa;break-inside:avoid}
+    pre{background:#f3f3f3;color:black;white-space:pre-wrap}
+    .output,.note{background:#f5f5f5;color:black}
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">STUDENTVERSE</div>
+    <div>
+        <a href="index.html">Home</a>
+        <a href="studyhub.html">StudyHub</a>
+        <a href="python-notes.html">Theory Notes</a>
+    </div>
+</nav>
+
+<header class="hero">
+    <h1>Python Programming Lab</h1>
+    <p>Semester 4 | Practical Programs</p>
+    <span class="tag">Course Code: CAM42P</span>
+</header>
+
+<div class="toolbar">
+    <input id="search" type="text" placeholder="Search practical programs...">
+    <button onclick="window.print()">Print / Save PDF</button>
+</div>
+
+<main class="container">
+
+<section>
+<h2>About Python Programming Lab</h2>
+<p>This practical course helps students develop programming skills using Python. It covers basic programming, data structures, functions, object-oriented programming, databases, GUI applications and data visualization.</p>
+<ul>
+<li>Course Code: CAM42P</li>
+<li>Credits: 2</li>
+<li>Hours per Week: 4</li>
+<li>Total Contact Hours: 60</li>
+<li>Exam Marks: 40</li>
+</ul>
+<div class="note">
+<b>Practical examination pattern:</b>
+<ul>
+<li>One program from Part A – 15 marks</li>
+<li>One program from Part B – 15 marks</li>
+<li>Execution of any one written program – 5 marks</li>
+<li>Viva Voce – 5 marks</li>
+</ul>
+</div>
+</section>
+
+<section>
+<h2>PART A – Python Basic Programs</h2>
+<p>These programs cover basic Python logic, strings, calculations and exception handling.</p>
+
+<div class="lab">
+<h3>1. Check Whether a Given Year Is a Leap Year</h3>
+<p><b>Concept:</b> Conditional statements and logical operators.</p>
+<pre>
+year = int(input("Enter a year: "))
+
+if (year % 400 == 0) or (year % 4 == 0 and year % 100 != 0):
+    print(year, "is a Leap Year")
+else:
+    print(year, "is not a Leap Year")
+</pre>
+<div class="output"><b>Sample Output:</b>
+<pre>
+Enter a year: 2024
+2024 is a Leap Year
+</pre></div>
+</div>
+
+<div class="lab">
+<h3>2. Check Whether a Number Belongs to the Fibonacci Sequence</h3>
+<p><b>Concept:</b> Loops and Fibonacci sequence.</p>
+<pre>
+n = int(input("Enter a number: "))
+
+a, b = 0, 1
+
+while a < n:
+    a, b = b, a + b
+
+if a == n:
+    print(n, "belongs to Fibonacci sequence")
+else:
+    print(n, "does not belong to Fibonacci sequence")
+</pre>
+<div class="output"><b>Sample Output:</b>
+<pre>
+Enter a number: 13
+13 belongs to Fibonacci sequence
+</pre></div>
+</div>
+
+<div class="lab">
+<h3>3. Solve Quadratic Equations</h3>
+<p><b>Concept:</b> Mathematical operations and conditional statements.</p>
+<p>Quadratic equation: ax² + bx + c = 0</p>
+<pre>
+import cmath
+
+a = float(input("Enter a: "))
+b = float(input("Enter b: "))
+c = float(input("Enter c: "))
+
+if a == 0:
+    print("This is not a quadratic equation")
+else:
+    d = b*b - 4*a*c
+
+    root1 = (-b + cmath.sqrt(d)) / (2*a)
+    root2 = (-b - cmath.sqrt(d)) / (2*a)
+
+    print("First root:", root1)
+    print("Second root:", root2)
+</pre>
+<div class="output"><b>Sample Output:</b>
+<pre>
+Enter a: 1
+Enter b: -5
+Enter c: 6
+First root: (3+0j)
+Second root: (2+0j)
+</pre></div>
+</div>
+
+<div class="lab">
+<h3>4. Display Numbers Divisible by 7 but Not Multiples of 5</h3>
+<p><b>Concept:</b> Range and conditional statements.</p>
+<pre>
+x = int(input("Enter starting number: "))
+y = int(input("Enter ending number: "))
+
+print("Required numbers:")
+
+for i in range(x, y + 1):
+    if i % 7 == 0 and i % 5 != 0:
+        print(i, end=" ")
+</pre>
+<div class="output"><b>Sample Output:</b>
+<pre>
+Enter starting number: 1
+Enter ending number: 50
+Required numbers:
+7 14 21 28 42 49
+</pre></div>
+</div>
+
+<div class="lab">
+<h3>5. Display Multiplication Tables</h3>
+<p><b>Concept:</b> for loop.</p>
+<pre>
+n = int(input("Enter a number: "))
+
+for i in range(1, 11):
+    print(n, "x", i, "=", n * i)
+</pre>
+<div class="output"><b>Sample Output:</b>
+<pre>
+Enter a number: 5
+5 x 1 = 5
+5 x 2 = 10
+5 x 3 = 15
+5 x 4 = 20
+5 x 5 = 25
+5 x 6 = 30
+5 x 7 = 35
+5 x 8 = 40
+5 x 9 = 45
+5 x 10 = 50
+</pre></div>
+</div>
+
+<div class="lab">
+<h3>6. Create a Calculator Program</h3>
+<p><b>Concept:</b> Functions and conditional statements.</p>
+<pre>
+a = float(input("Enter first number: "))
+b = float(input("Enter second number: "))
+
+print("1. Addition")
+print("2. Subtraction")
+print("3. Multiplication")
+print("4. Division")
+
+choice = int(input("Enter your choice: "))
+
+if choice == 1:
+    print("Result:", a + b)
+elif choice == 2:
+    print("Result:", a - b)
+elif choice == 3:
+    print("Result:", a * b)
+elif choice == 4:
+    if b != 0:
+        print("Result:", a / b)
+    else:
+        print("Cannot divide by zero")
+else:
+    print("Invalid choice")
+</pre>
+<div class="output"><b>Sample Output:</b>
+<pre>
+Enter first number: 20
+Enter second number: 10
+1. Addition
+2. Subtraction
+3. Multiplication
+4. Division
+Enter your choice: 1
+Result: 30.0
+</pre></div>
+</div>
+
+<div class="lab">
+<h3>7. Explore String Functions</h3>
+<p><b>Concept:</b> Built-in string methods.</p>
+<pre>
+text = "python programming"
+
+print("Original:", text)
+print("Uppercase:", text.upper())
+print("Lowercase:", text.lower())
+print("Title:", text.title())
+print("Capitalize:", text.capitalize())
+print("Length:", len(text))
+print("Replace:", text.replace("python", "Java"))
+print("Count:", text.count("m"))
+print("Find:", text.find("programming"))
+print("Split:", text.split())
+</pre>
+<div class="output"><b>Sample Output:</b>
+<pre>
+Original: python programming
+Uppercase: PYTHON PROGRAMMING
+Lowercase: python programming
+Title: Python Programming
+Capitalize: Python programming
+Length: 18
+Replace: Java programming
+Count: 2
+Find: 7
+Split: ['python', 'programming']
+</pre></div>
+</div>
+
+<div class="lab">
+<h3>8. Find the Length of the Longest Word in a List</h3>
+<p><b>Concept:</b> Lists, loops and len() function.</p>
+<pre>
+words = ["Python", "Programming", "Computer", "Technology"]
+
+longest = max(words, key=len)
+
+print("Words:", words)
+print("Longest word:", longest)
+print("Length:", len(longest))
+</pre>
+<div class="output"><b>Sample Output:</b>
+<pre>
+Words: ['Python', 'Programming', 'Computer', 'Technology']
+Longest word: Programming
+Length: 11
+</pre></div>
+</div>
+
+<div class="lab">
+<h3>9. Handle Multiple Errors with One Except Statement</h3>
+<p><b>Concept:</b> Exception handling.</p>
+<pre>
+try:
+    a = int(input("Enter first number: "))
+    b = int(input("Enter second number: "))
+
+    result = a / b
+    print("Result:", result)
+
+except (ValueError, ZeroDivisionError) as error:
+    print("Error occurred:", error)
+</pre>
+<div class="output"><b>Sample Output:</b>
+<pre>
+Enter first number: 10
+Enter second number: 0
+Error occurred: division by zero
+</pre>
+<p>Try entering text instead of a number to test ValueError.</p></div>
+</div>
+
+<div class="lab">
+<h3>10. Check Whether a Password Is Valid</h3>
+<p><b>Conditions:</b> Length between 6 and 20 characters, at least one digit, one uppercase letter, one lowercase letter and one special symbol.</p>
+<pre>
+import string
+
+password = input("Enter password: ")
+
+has_digit = any(ch.isdigit() for ch in password)
+has_upper = any(ch.isupper() for ch in password)
+has_lower = any(ch.islower() for ch in password)
+has_special = any(ch in string.punctuation for ch in password)
+
+if (6 <= len(password) <= 20
+    and has_digit
+    and has_upper
+    and has_lower
+    and has_special):
+
+    print("Valid Password")
+else:
+    print("Invalid Password")
+</pre>
+<div class="output"><b>Sample Output:</b>
+<pre>
+Enter password: Sanju@123
+Valid Password
+</pre></div>
+</div>
+</section>
+
+<section>
+<h2>PART B – Advanced Python Programs</h2>
+<p>These programs cover collections, OOP, databases, GUI and data visualization.</p>
+
+<div class="lab">
+<h3>1. Remove Duplicates from a List</h3>
+<p><b>Concept:</b> Lists and sets.</p>
+<pre>
+numbers = [10, 20, 30, 20, 40, 10, 50]
+
+unique = list(dict.fromkeys(numbers))
+
+print("Original list:", numbers)
+print("List without duplicates:", unique)
+</pre>
+<div class="output"><b>Sample Output:</b>
+<pre>
+Original list: [10, 20, 30, 20, 40, 10, 50]
+List without duplicates: [10, 20, 30, 40, 50]
+</pre></div>
+</div>
+
+<div class="lab">
+<h3>2. Find Repeated Items in a Tuple</h3>
+<p><b>Concept:</b> Tuple and count() method.</p>
+<pre>
+numbers = (10, 20, 30, 20, 40, 10, 50, 20)
+
+repeated = []
+
+for item in numbers:
+    if numbers.count(item) > 1 and item not in repeated:
+        repeated.append(item)
+
+print("Tuple:", numbers)
+print("Repeated items:", repeated)
+</pre>
+<div class="output"><b>Sample Output:</b>
+<pre>
+Tuple: (10, 20, 30, 20, 40, 10, 50, 20)
+Repeated items: [10, 20]
+</pre></div>
+</div>
+
+<div class="lab">
+<h3>3. Check Whether a Key Exists in a Dictionary</h3>
+<p><b>Concept:</b> Dictionary and membership operator.</p>
+<pre>
+student = {
+    "name": "Sanju",
+    "age": 20,
+    "course": "BCA"
+}
+
+key = input("Enter key to search: ")
+
+if key in student:
+    print("Key exists")
+    print("Value:", student[key])
+else:
+    print("Key does not exist")
+</pre>
+<div class="output"><b>Sample Output:</b>
+<pre>
+Enter key to search: name
+Key exists
+Value: Sanju
+</pre></div>
+</div>
+
+<div class="lab">
+<h3>4. Implement Method Overloading</h3>
+<p><b>Concept:</b> Python does not support traditional method overloading by defining multiple methods with the same name. Default arguments can be used to achieve similar behavior.</p>
+<pre>
+class Calculator:
+
+    def add(self, a, b, c=0):
+        return a + b + c
+
+obj = Calculator()
+
+print("Two numbers:", obj.add(10, 20))
+print("Three numbers:", obj.add(10, 20, 30))
+</pre>
+<div class="output"><b>Sample Output:</b>
+<pre>
+Two numbers: 30
+Three numbers: 60
+</pre></div>
+</div>
+
+<div class="lab">
+<h3>5. Create SQLite Database and Perform Operations on Tables</h3>
+<p><b>Concept:</b> Database connectivity, create, insert, display, update and delete operations.</p>
+<p><b>Requirement:</b> Python with its built-in sqlite3 module.</p>
+<pre>
+import sqlite3
+
+con = sqlite3.connect("college.db")
+cur = con.cursor()
+
+cur.execute("""
+CREATE TABLE IF NOT EXISTS student(
+    id INTEGER PRIMARY KEY,
+    name TEXT,
+    marks INTEGER
+)
+""")
+
+cur.execute(
+    "INSERT INTO student(name, marks) VALUES (?, ?)",
+    ("Sanju", 85)
+)
+
+con.commit()
+
+print("Student Records:")
+cur.execute("SELECT * FROM student")
+
+for row in cur.fetchall():
+    print(row)
+
+cur.execute(
+    "UPDATE student SET marks=? WHERE name=?",
+    (90, "Sanju")
+)
+
+con.commit()
+
+print("After Update:")
+cur.execute("SELECT * FROM student")
+
+for row in cur.fetchall():
+    print(row)
+
+cur.execute(
+    "DELETE FROM student WHERE name=?",
+    ("Sanju",)
+)
+
+con.commit()
+print("Record deleted")
+
+con.close()
+</pre>
+<div class="output"><b>Sample Output:</b>
+<pre>
+Student Records:
+(1, 'Sanju', 85)
+
+After Update:
+(1, 'Sanju', 90)
+
+Record deleted
+</pre>
+<p>Note: Run this program again with a fresh database or clear the previous records to avoid duplicate insertions.</p></div>
+</div>
+
+<div class="lab">
+<h3>6. Create a GUI Using Tkinter Module</h3>
+<p><b>Concept:</b> GUI, labels, entry fields and buttons.</p>
+<p><b>Requirement:</b> Python installation with Tkinter available.</p>
+<pre>
+import tkinter as tk
+
+def display():
+    name = entry.get()
+    result.config(text="Welcome " + name)
+
+root = tk.Tk()
+root.title("Student Application")
+root.geometry("350x250")
+
+heading = tk.Label(
+    root,
+    text="STUDENTVERSE",
+    font=("Arial", 18, "bold")
+)
+heading.pack(pady=10)
+
+label = tk.Label(root, text="Enter your name:")
+label.pack()
+
+entry = tk.Entry(root)
+entry.pack(pady=8)
+
+button = tk.Button(
+    root,
+    text="Submit",
+    command=display
+)
+button.pack()
+
+result = tk.Label(root, text="")
+result.pack(pady=10)
+
+root.mainloop()
+</pre>
+<div class="output"><b>Expected Result:</b>
+<p>A window opens with a heading, text field and Submit button. Entering Sanju and clicking Submit displays:</p>
+<pre>
+Welcome Sanju
+</pre></div>
+</div>
+
+<div class="lab">
+<h3>7. Draw Line Chart and Bar Chart Using Matplotlib</h3>
+<p><b>Concept:</b> Data visualization.</p>
+<p><b>Installation:</b> <code>pip install matplotlib</code></p>
+<pre>
+import matplotlib.pyplot as plt
+
+subjects = ["C++", "Java", "Python", "DBMS"]
+marks = [75, 80, 90, 85]
+
+# Line chart
+plt.plot(subjects, marks, marker="o")
+plt.title("Student Marks - Line Chart")
+plt.xlabel("Subjects")
+plt.ylabel("Marks")
+plt.show()
+
+# Bar chart
+plt.bar(subjects, marks)
+plt.title("Student Marks - Bar Chart")
+plt.xlabel("Subjects")
+plt.ylabel("Marks")
+plt.show()
+</pre>
+<div class="output"><b>Expected Result:</b>
+<p>Two graph windows are displayed: one line chart and one bar chart showing the marks of four subjects.</p></div>
+</div>
+
+<div class="lab">
+<h3>8. Draw Histogram and Pie Chart Using Matplotlib</h3>
+<p><b>Concept:</b> Statistical data visualization.</p>
+<pre>
+import matplotlib.pyplot as plt
+
+marks = [45, 50, 55, 60, 65, 70, 75, 80, 85, 90]
+
+# Histogram
+plt.hist(marks, bins=5)
+plt.title("Marks Distribution")
+plt.xlabel("Marks")
+plt.ylabel("Frequency")
+plt.show()
+
+# Pie chart
+subjects = ["C++", "Java", "Python", "DBMS"]
+values = [75, 80, 90, 85]
+
+plt.pie(
+    values,
+    labels=subjects,
+    autopct="%1.1f%%"
+)
+plt.title("Subject Marks")
+plt.show()
+</pre>
+<div class="output"><b>Expected Result:</b>
+<p>The first window displays a histogram of marks. The second window displays a pie chart with the subject-wise values.</p></div>
+</div>
+
+<div class="lab">
+<h3>9. Create NumPy Array and Perform Operations</h3>
+<p><b>Concept:</b> Array creation and mathematical operations.</p>
+<p><b>Installation:</b> <code>pip install numpy</code></p>
+<pre>
+import numpy as np
+
+a = np.array([10, 20, 30, 40])
+b = np.array([1, 2, 3, 4])
+
+print("Array A:", a)
+print("Array B:", b)
+
+print("Addition:", a + b)
+print("Subtraction:", a - b)
+print("Multiplication:", a * b)
+print("Division:", a / b)
+
+print("Sum:", np.sum(a))
+print("Mean:", np.mean(a))
+print("Maximum:", np.max(a))
+print("Minimum:", np.min(a))
+</pre>
+<div class="output"><b>Sample Output:</b>
+<pre>
+Array A: [10 20 30 40]
+Array B: [1 2 3 4]
+Addition: [11 22 33 44]
+Subtraction: [ 9 18 27 36]
+Multiplication: [ 10  40  90 160]
+Division: [10. 10. 10. 10.]
+Sum: 100
+Mean: 25.0
+Maximum: 40
+Minimum: 10
+</pre></div>
+</div>
+
+<div class="lab">
+<h3>10. Create DataFrame from Excel Sheet Using Pandas</h3>
+<p><b>Concept:</b> Reading Excel data and performing DataFrame operations.</p>
+<p><b>Install required libraries:</b></p>
+<pre>
+pip install pandas openpyxl
+</pre>
+<p>Create an Excel file named <b>students.xlsx</b> with columns Name and Marks.</p>
+<pre>
+import pandas as pd
+
+# Read Excel file
+df = pd.read_excel("students.xlsx")
+
+print("Student Data:")
+print(df)
+
+print("First five rows:")
+print(df.head())
+
+print("Data information:")
+print(df.info())
+
+print("Average Marks:")
+print(df["Marks"].mean())
+
+print("Students scoring above 75:")
+print(df[df["Marks"] > 75])
+
+# Sort by marks
+print("Sorted Data:")
+print(df.sort_values(by="Marks", ascending=False))
+</pre>
+<p><b>Example Excel data:</b></p>
+<pre>
+Name       Marks
+Ravi       80
+Asha       90
+Sanju      85
+Kiran      70
+</pre>
+<div class="output"><b>Sample Output:</b>
+<pre>
+Student Data:
+    Name  Marks
+0   Ravi     80
+1   Asha     90
+2  Sanju     85
+3  Kiran     70
+
+Average Marks:
+81.25
+
+Students scoring above 75:
+    Name  Marks
+0   Ravi     80
+1   Asha     90
+2  Sanju     85
+</pre>
+<p>The exact formatting of Pandas output may vary by version.</p></div>
+</div>
+</section>
+
+<section>
+<h2>Important Viva Questions</h2>
+
+<div class="lab">
+<h3>1. What is Python?</h3>
+<p>Python is a high-level, interpreted and general-purpose programming language.</p>
+</div>
+
+<div class="lab">
+<h3>2. What is a list?</h3>
+<p>A list is an ordered and changeable collection that allows duplicate values.</p>
+</div>
+
+<div class="lab">
+<h3>3. What is a tuple?</h3>
+<p>A tuple is an ordered and unchangeable collection.</p>
+</div>
+
+<div class="lab">
+<h3>4. What is a dictionary?</h3>
+<p>A dictionary stores data in key-value pairs.</p>
+</div>
+
+<div class="lab">
+<h3>5. What is exception handling?</h3>
+<p>Exception handling is a method of handling runtime errors using try, except and related statements.</p>
+</div>
+
+<div class="lab">
+<h3>6. What is SQLite?</h3>
+<p>SQLite is a lightweight relational database engine that stores data in a local file.</p>
+</div>
+
+<div class="lab">
+<h3>7. What is Tkinter?</h3>
+<p>Tkinter is Python's standard library interface for creating GUI applications.</p>
+</div>
+
+<div class="lab">
+<h3>8. What is NumPy?</h3>
+<p>NumPy is a Python library used for numerical calculations and array operations.</p>
+</div>
+
+<div class="lab">
+<h3>9. What is Matplotlib?</h3>
+<p>Matplotlib is a Python library used to create charts and graphs.</p>
+</div>
+
+<div class="lab">
+<h3>10. What is Pandas?</h3>
+<p>Pandas is a Python library used for data manipulation and analysis.</p>
+</div>
+
+<div class="lab">
+<h3>11. What is a DataFrame?</h3>
+<p>A DataFrame is a two-dimensional data structure containing rows and columns.</p>
+</div>
+
+<div class="lab">
+<h3>12. What is method overloading?</h3>
+<p>Method overloading means using the same method name with different parameter patterns. Python commonly achieves similar behavior using default or variable-length arguments.</p>
+</div>
+</section>
+
+<section>
+<h2>Required Python Libraries</h2>
+<p>Install these libraries using the terminal when you reach the corresponding practical:</p>
+<pre>
+pip install numpy
+pip install matplotlib
+pip install pandas
+pip install openpyxl
+</pre>
+<div class="note">
+SQLite and Tkinter are included with many standard Python installations. If Tkinter is unavailable, install or repair a Python distribution that includes Tcl/Tk.
+</div>
+</section>
+
+<div class="note">
+<b>Practical preparation tip:</b> Practise writing the code without copying it. Understand the logic, run each program, and remember its output. For the lab examination, prepare at least one program from each part and practise viva questions.
+</div>
+
+</main>
+
+<footer>
+    <p>STUDENTVERSE | Learn • Practise • Succeed</p>
+    <p>CAM42P – Python Programming Lab</p>
+</footer>
+
+<button id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const searchBox = document.getElementById("search");
+    const labs = document.querySelectorAll(".lab");
+    const sections = document.querySelectorAll(".container > section");
+
+    searchBox.addEventListener("input", function () {
+        const query = searchBox.value.trim().toLowerCase();
+
+        if (!query) {
+            labs.forEach(lab => lab.hidden = false);
+            sections.forEach(section => section.hidden = false);
+            return;
+        }
+
+        sections.forEach(section => {
+            const sectionLabs = section.querySelectorAll(".lab");
+
+            if (sectionLabs.length === 0) {
+                section.hidden = !section.textContent.toLowerCase().includes(query);
+                return;
+            }
+
+            let visibleCount = 0;
+
+            sectionLabs.forEach(lab => {
+                const match = lab.textContent.toLowerCase().includes(query);
+                lab.hidden = !match;
+                if (match) visibleCount++;
+            });
+
+            section.hidden = visibleCount === 0;
+        });
+    });
+});
+</script>
+
+</body>
+</html>

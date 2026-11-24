@@ -1,0 +1,1689 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PHP and MySQL Notes | STUDENTVERSE</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial,sans-serif;color:white;background:radial-gradient(circle at top,#20245c,#090b20 55%,#03040d);line-height:1.7;min-height:100vh}
+body:before{content:"";position:fixed;inset:0;background-image:radial-gradient(white 1px,transparent 1px),radial-gradient(#9b8cff 1px,transparent 1px);background-size:70px 70px,110px 110px;background-position:0 0,35px 45px;opacity:.23;pointer-events:none;z-index:-1}
+nav{position:sticky;top:0;z-index:10;background:rgba(5,7,25,.94);backdrop-filter:blur(12px);border-bottom:1px solid #5149a5;padding:15px 7%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.logo{font-size:23px;font-weight:bold;color:#a99aff;letter-spacing:1px}
+nav a{color:white;text-decoration:none;margin-left:16px}
+nav a:hover{color:#a99aff}
+.hero{text-align:center;padding:50px 20px 30px}
+.hero h1{font-size:clamp(30px,5vw,46px);color:#b5a8ff;text-shadow:0 0 20px #7564ff}
+.hero p{color:#d0d0e8;margin-top:8px}
+.tag{display:inline-block;margin-top:12px;padding:6px 16px;border:1px solid #8274ff;border-radius:30px;color:#c8c0ff}
+.toolbar{max-width:1050px;margin:15px auto 25px;padding:0 20px;display:flex;gap:10px;flex-wrap:wrap}
+.toolbar input{flex:1;min-width:220px;padding:13px;border-radius:9px;border:1px solid #6258bb;background:#11152f;color:white;outline:none}
+button{padding:11px 16px;border:0;border-radius:9px;background:linear-gradient(135deg,#6856e8,#a35be9);color:white;font-weight:bold;cursor:pointer}
+.container{max-width:1050px;margin:auto;padding:0 20px 60px}
+section{background:rgba(19,22,55,.9);border:1px solid rgba(139,125,255,.4);border-radius:15px;padding:23px;margin-bottom:22px;box-shadow:0 8px 25px #0004}
+h2{color:#b5a8ff;margin-bottom:12px;font-size:22px}
+h3{color:#8edcff;margin:18px 0 7px}
+p{color:#e1e2f3;margin:7px 0}
+ul,ol{padding-left:25px;color:#e1e2f3;margin:8px 0}
+li{margin:5px 0}
+pre{background:#080b1d;color:#9ef5c5;border:1px solid #343b73;border-radius:9px;padding:15px;margin:10px 0;overflow-x:auto;white-space:pre}
+.output{background:#101a25;color:#ffe5a6;border-left:4px solid #55c99a;padding:12px 15px;border-radius:7px;margin:10px 0;white-space:pre-wrap}
+.info{background:#29224c;border-left:4px solid #9c8aff;padding:12px 15px;border-radius:7px;margin:12px 0;color:#e8e4ff}
+.question{padding:11px;margin:8px 0;border-radius:8px;background:#ffffff0b;border:1px solid #ffffff18}
+footer{text-align:center;padding:25px;color:#aaa9d0;border-top:1px solid #37345f}
+#topBtn{position:fixed;right:20px;bottom:20px;width:45px;height:45px;border-radius:50%;font-size:20px}
+[hidden]{display:none!important}
+@media(max-width:600px){nav{justify-content:center}nav a{margin:5px}section{padding:17px}}
+@media print{
+body{background:white;color:black}
+body:before,nav,.toolbar,#topBtn,footer{display:none!important}
+section{background:white;color:black;border:1px solid #aaa;box-shadow:none;break-inside:avoid}
+h2,h3,p,li{color:black}
+pre{background:#f1f1f1;color:black;white-space:pre-wrap}
+.output,.info,.question{background:#f5f5f5;color:black}
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+<div class="logo">STUDENTVERSE</div>
+<div>
+<a href="index.html">Home</a>
+<a href="studyhub.html">StudyHub</a>
+<a href="python-practical.html">Previous</a>
+</div>
+</nav>
+
+<header class="hero">
+<h1>PHP & MySQL</h1>
+<p>Semester 4 | Theory Notes</p>
+<span class="tag">Course Code: CAM43T</span>
+</header>
+
+<div class="toolbar">
+<input type="text" id="search" placeholder="Search PHP topics...">
+<button onclick="window.print()">Download / Print PDF</button>
+</div>
+
+<main class="container">
+
+<section>
+<h2>1. Introduction to PHP</h2>
+
+<h3>What is PHP?</h3>
+<p>PHP stands for PHP: Hypertext Preprocessor. It is a server-side scripting language mainly used for developing dynamic and interactive websites.</p>
+<p>PHP code is executed on the web server. The generated output is sent to the user's browser, usually as HTML.</p>
+
+<h3>History of PHP</h3>
+<p>PHP was originally created by Rasmus Lerdorf in 1994. It developed into a popular server-side programming language used for web applications.</p>
+
+<h3>Features of PHP</h3>
+<ul>
+<li>Open-source and free to use.</li>
+<li>Easy to learn and understand.</li>
+<li>Server-side scripting language.</li>
+<li>Can be embedded inside HTML.</li>
+<li>Supports many databases, including MySQL.</li>
+<li>Platform independent.</li>
+<li>Supports object-oriented programming.</li>
+<li>Can handle forms, sessions and cookies.</li>
+</ul>
+
+<h3>Applications of PHP</h3>
+<ul>
+<li>Dynamic website development.</li>
+<li>Online shopping websites.</li>
+<li>Content management systems.</li>
+<li>Login and registration systems.</li>
+<li>Database-driven web applications.</li>
+<li>Web portals and dashboards.</li>
+</ul>
+
+<h3>Client-Side vs Server-Side Scripting</h3>
+<ul>
+<li><b>Client-side scripting:</b> Code runs in the user's browser. Example: JavaScript.</li>
+<li><b>Server-side scripting:</b> Code runs on the web server. Example: PHP.</li>
+</ul>
+
+<h3>Requirements for Running PHP</h3>
+<ul>
+<li>Web server such as Apache.</li>
+<li>PHP interpreter.</li>
+<li>Web browser.</li>
+<li>Database server such as MySQL, when database connectivity is required.</li>
+<li>Local development package such as XAMPP or WAMP.</li>
+</ul>
+
+<h3>What is XAMPP?</h3>
+<p>XAMPP is a local web development package containing Apache, MariaDB, PHP and Perl. It helps developers run PHP applications on their computers.</p>
+
+<h3>Installing and Configuring PHP</h3>
+<ol>
+<li>Download XAMPP from its official website.</li>
+<li>Install XAMPP on the computer.</li>
+<li>Open the XAMPP Control Panel.</li>
+<li>Start the Apache server.</li>
+<li>Place PHP files inside the htdocs folder.</li>
+<li>Open a browser and visit localhost followed by the PHP filename.</li>
+</ol>
+
+<h3>First PHP Program</h3>
+<pre>
+&lt;?php
+echo "Hello World";
+?&gt;
+</pre>
+<p><b>Output:</b></p>
+<div class="output">Hello World</div>
+</section>
+
+<section>
+<h2>2. PHP Syntax and Embedding PHP in HTML</h2>
+
+<h3>PHP Tags</h3>
+<p>PHP code is written between PHP opening and closing tags.</p>
+<pre>
+&lt;?php
+    // PHP code
+?&gt;
+</pre>
+
+<h3>Embedding PHP in HTML</h3>
+<p>PHP code can be written inside an HTML document to create dynamic web pages.</p>
+<pre>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h1&gt;My Website&lt;/h1&gt;
+
+&lt;?php
+echo "Welcome to PHP";
+?&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+
+<h3>PHP Comments</h3>
+<p>Comments are statements written for explanation. They are not executed by PHP.</p>
+<pre>
+// Single-line comment
+
+# Another single-line comment
+
+/*
+Multi-line
+comment
+*/
+</pre>
+
+<h3>PHP Statements</h3>
+<p>A statement is an instruction executed by PHP. Most PHP statements end with a semicolon.</p>
+<pre>
+&lt;?php
+$name = "Sanju";
+echo $name;
+?&gt;
+</pre>
+
+<h3>PHP and Whitespace</h3>
+<p>Whitespace includes spaces, tabs and new lines. PHP generally ignores unnecessary whitespace outside strings, which makes code easier to format and read.</p>
+
+<h3>Sending Data to the Browser</h3>
+<p>PHP uses echo and print to display information in the browser.</p>
+<pre>
+&lt;?php
+echo "Welcome";
+print " to STUDENTVERSE";
+?&gt;
+</pre>
+<div class="output">Welcome to STUDENTVERSE</div>
+
+<h3>Difference Between echo and print</h3>
+<ul>
+<li>echo can display one or more strings.</li>
+<li>print displays one string.</li>
+<li>echo does not return a value.</li>
+<li>print returns the value 1.</li>
+</ul>
+</section>
+
+<section>
+<h2>3. Variables and Data Types in PHP</h2>
+
+<h3>Variables</h3>
+<p>A variable is a named storage location used to hold data. In PHP, a variable begins with the dollar ($) symbol.</p>
+<pre>
+&lt;?php
+$name = "Sanju";
+$age = 20;
+
+echo $name;
+echo $age;
+?&gt;
+</pre>
+
+<h3>Rules for Naming Variables</h3>
+<ul>
+<li>A variable must start with the $ symbol.</li>
+<li>The name must begin with a letter or underscore after $.</li>
+<li>A variable name cannot begin with a number.</li>
+<li>Variable names are case-sensitive.</li>
+<li>Spaces are not allowed in variable names.</li>
+</ul>
+
+<h3>Data Types</h3>
+<p>PHP supports different types of data.</p>
+<ul>
+<li><b>Integer:</b> Whole numbers such as 10 and 100.</li>
+<li><b>Float:</b> Decimal numbers such as 10.5.</li>
+<li><b>String:</b> Collection of characters such as "Hello".</li>
+<li><b>Boolean:</b> True or false values.</li>
+<li><b>Array:</b> Stores multiple values in one variable.</li>
+<li><b>Object:</b> Instance of a class.</li>
+<li><b>NULL:</b> Represents a variable with no value.</li>
+<li><b>Resource:</b> Holds a reference to an external resource.</li>
+</ul>
+
+<h3>Example of Data Types</h3>
+<pre>
+&lt;?php
+$name = "Sanju";
+$age = 20;
+$price = 99.50;
+$isStudent = true;
+$marks = array(80, 85, 90);
+$value = NULL;
+
+var_dump($name);
+var_dump($age);
+var_dump($price);
+var_dump($isStudent);
+var_dump($marks);
+var_dump($value);
+?&gt;
+</pre>
+
+<h3>Constants</h3>
+<p>A constant is a name that stores a value that cannot be changed during normal execution.</p>
+<pre>
+&lt;?php
+define("COLLEGE", "University of Mysore");
+
+echo COLLEGE;
+?&gt;
+</pre>
+
+<h3>Scope of Variables</h3>
+<ul>
+<li><b>Local variable:</b> Declared inside a function and normally accessible only there.</li>
+<li><b>Global variable:</b> Declared outside a function. It can be accessed inside a function using the global keyword or the $GLOBALS array.</li>
+<li><b>Static variable:</b> Retains its value between function calls.</li>
+</ul>
+
+<h3>Example of Global Variable</h3>
+<pre>
+&lt;?php
+$x = 100;
+
+function display() {
+    global $x;
+    echo $x;
+}
+
+display();
+?&gt;
+</pre>
+</section>
+
+<section>
+<h2>4. Operators in PHP</h2>
+
+<h3>What are Operators?</h3>
+<p>Operators are symbols used to perform operations on variables and values.</p>
+
+<h3>Arithmetic Operators</h3>
+<ul>
+<li>+ Addition</li>
+<li>- Subtraction</li>
+<li>* Multiplication</li>
+<li>/ Division</li>
+<li>% Modulus</li>
+<li>** Exponentiation</li>
+</ul>
+<pre>
+&lt;?php
+$a = 10;
+$b = 5;
+
+echo $a + $b;
+echo $a - $b;
+echo $a * $b;
+echo $a / $b;
+echo $a % $b;
+?&gt;
+</pre>
+
+<h3>Assignment Operators</h3>
+<ul>
+<li>= Assign value.</li>
+<li>+= Add and assign.</li>
+<li>-= Subtract and assign.</li>
+<li>*= Multiply and assign.</li>
+<li>/= Divide and assign.</li>
+</ul>
+
+<h3>Comparison Operators</h3>
+<ul>
+<li>== Equal value.</li>
+<li>=== Equal value and equal data type.</li>
+<li>!= Not equal.</li>
+<li>!== Not identical.</li>
+<li>&gt; Greater than.</li>
+<li>&lt; Less than.</li>
+<li>&gt;= Greater than or equal to.</li>
+<li>&lt;= Less than or equal to.</li>
+</ul>
+
+<h3>Logical Operators</h3>
+<ul>
+<li>&amp;&amp; Logical AND.</li>
+<li>|| Logical OR.</li>
+<li>! Logical NOT.</li>
+</ul>
+
+<h3>Increment and Decrement Operators</h3>
+<ul>
+<li>++$a – Pre-increment.</li>
+<li>$a++ – Post-increment.</li>
+<li>--$a – Pre-decrement.</li>
+<li>$a-- – Post-decrement.</li>
+</ul>
+
+<h3>String Operators</h3>
+<ul>
+<li>. – Concatenation.</li>
+<li>.= – Concatenation assignment.</li>
+</ul>
+<pre>
+&lt;?php
+$a = "Hello";
+$b = " PHP";
+
+echo $a . $b;
+?&gt;
+</pre>
+<div class="output">Hello PHP</div>
+
+<h3>Conditional Operator</h3>
+<p>The ternary operator is a short form of an if-else expression.</p>
+<pre>
+&lt;?php
+$age = 20;
+
+$result = ($age >= 18) ? "Adult" : "Minor";
+
+echo $result;
+?&gt;
+</pre>
+</section>
+
+<section>
+<h2>5. Conditional Statements in PHP</h2>
+
+<h3>if Statement</h3>
+<p>Executes a block of code when the condition is true.</p>
+<pre>
+&lt;?php
+$age = 20;
+
+if ($age >= 18) {
+    echo "Eligible to vote";
+}
+?&gt;
+</pre>
+
+<h3>if-else Statement</h3>
+<pre>
+&lt;?php
+$number = 7;
+
+if ($number % 2 == 0) {
+    echo "Even Number";
+} else {
+    echo "Odd Number";
+}
+?&gt;
+</pre>
+
+<h3>if-elseif-else Statement</h3>
+<pre>
+&lt;?php
+$marks = 75;
+
+if ($marks >= 90) {
+    echo "A Grade";
+} elseif ($marks >= 60) {
+    echo "B Grade";
+} elseif ($marks >= 35) {
+    echo "C Grade";
+} else {
+    echo "Fail";
+}
+?&gt;
+</pre>
+
+<h3>Nested if Statement</h3>
+<p>An if statement placed inside another if statement is called a nested if statement.</p>
+<pre>
+&lt;?php
+$age = 20;
+$citizen = true;
+
+if ($age >= 18) {
+    if ($citizen) {
+        echo "Eligible to vote";
+    }
+}
+?&gt;
+</pre>
+
+<h3>switch Statement</h3>
+<p>The switch statement selects one block of code from several alternatives.</p>
+<pre>
+&lt;?php
+$day = 2;
+
+switch ($day) {
+    case 1:
+        echo "Monday";
+        break;
+
+    case 2:
+        echo "Tuesday";
+        break;
+
+    case 3:
+        echo "Wednesday";
+        break;
+
+    default:
+        echo "Invalid day";
+}
+?&gt;
+</pre>
+<div class="output">Tuesday</div>
+</section>
+
+<section>
+<h2>6. Looping Statements in PHP</h2>
+
+<h3>What is a Loop?</h3>
+<p>A loop is used to execute a block of code repeatedly until a condition is satisfied or becomes false.</p>
+
+<h3>for Loop</h3>
+<p>The for loop is used when the number of iterations is known or controlled by an expression.</p>
+<pre>
+&lt;?php
+for ($i = 1; $i <= 5; $i++) {
+    echo $i . "&lt;br&gt;";
+}
+?&gt;
+</pre>
+
+<h3>while Loop</h3>
+<p>The while loop executes as long as the condition is true.</p>
+<pre>
+&lt;?php
+$i = 1;
+
+while ($i <= 5) {
+    echo $i . "&lt;br&gt;";
+    $i++;
+}
+?&gt;
+</pre>
+
+<h3>do-while Loop</h3>
+<p>The do-while loop executes the code at least once before checking the condition.</p>
+<pre>
+&lt;?php
+$i = 1;
+
+do {
+    echo $i . "&lt;br&gt;";
+    $i++;
+} while ($i <= 5);
+?&gt;
+</pre>
+
+<h3>foreach Loop</h3>
+<p>The foreach loop is used to access elements of an array.</p>
+<pre>
+&lt;?php
+$colors = array("Red", "Green", "Blue");
+
+foreach ($colors as $color) {
+    echo $color . "&lt;br&gt;";
+}
+?&gt;
+</pre>
+
+<h3>break Statement</h3>
+<p>The break statement terminates the current loop or switch statement.</p>
+<pre>
+&lt;?php
+for ($i = 1; $i <= 10; $i++) {
+    if ($i == 5) {
+        break;
+    }
+    echo $i . " ";
+}
+?&gt;
+</pre>
+
+<h3>continue Statement</h3>
+<p>The continue statement skips the current iteration and moves to the next iteration.</p>
+<pre>
+&lt;?php
+for ($i = 1; $i <= 5; $i++) {
+    if ($i == 3) {
+        continue;
+    }
+    echo $i . " ";
+}
+?&gt;
+</pre>
+</section>
+
+<section>
+<h2>7. Arrays in PHP</h2>
+
+<h3>What is an Array?</h3>
+<p>An array is a variable that can store multiple values under a single name.</p>
+
+<h3>Types of Arrays</h3>
+<ul>
+<li>Indexed array.</li>
+<li>Associative array.</li>
+<li>Multidimensional array.</li>
+</ul>
+
+<h3>Indexed Array</h3>
+<p>An indexed array uses numeric indexes to access its elements.</p>
+<pre>
+&lt;?php
+$colors = array("Red", "Green", "Blue");
+
+echo $colors[0];
+echo $colors[1];
+echo $colors[2];
+?&gt;
+</pre>
+<div class="output">Red
+Green
+Blue</div>
+
+<h3>Associative Array</h3>
+<p>An associative array uses named keys instead of numeric indexes.</p>
+<pre>
+&lt;?php
+$student = array(
+    "name" => "Sanju",
+    "age" => 20,
+    "course" => "BCA"
+);
+
+echo $student["name"];
+echo $student["course"];
+?&gt;
+</pre>
+
+<h3>Multidimensional Array</h3>
+<p>A multidimensional array contains one or more arrays inside another array.</p>
+<pre>
+&lt;?php
+$students = array(
+    array("Ravi", 80),
+    array("Asha", 90),
+    array("Sanju", 85)
+);
+
+echo $students[0][0];
+echo $students[1][1];
+?&gt;
+</pre>
+
+<h3>Important Array Functions</h3>
+<ul>
+<li>count() – Counts array elements.</li>
+<li>array_push() – Adds elements at the end.</li>
+<li>array_pop() – Removes the last element.</li>
+<li>array_merge() – Combines arrays.</li>
+<li>sort() – Sorts an array in ascending order.</li>
+<li>rsort() – Sorts an array in descending order.</li>
+<li>array_reverse() – Reverses an array.</li>
+<li>in_array() – Checks whether a value exists.</li>
+<li>array_keys() – Returns all keys.</li>
+<li>array_values() – Returns all values.</li>
+</ul>
+
+<h3>Example of Array Functions</h3>
+<pre>
+&lt;?php
+$numbers = array(30, 10, 20);
+
+array_push($numbers, 40);
+
+sort($numbers);
+
+print_r($numbers);
+
+echo "Total: " . count($numbers);
+?&gt;
+</pre>
+</section>
+
+<section>
+<h2>8. Functions in PHP</h2>
+
+<h3>What is a Function?</h3>
+<p>A function is a reusable block of code that performs a specific task. Functions reduce repetition and improve program organization.</p>
+
+<h3>Creating a Function</h3>
+<pre>
+&lt;?php
+function greet() {
+    echo "Welcome to PHP";
+}
+
+greet();
+?&gt;
+</pre>
+
+<h3>Function with Parameters</h3>
+<pre>
+&lt;?php
+function add($a, $b) {
+    echo "Sum: " . ($a + $b);
+}
+
+add(10, 20);
+?&gt;
+</pre>
+
+<h3>Function with Return Value</h3>
+<pre>
+&lt;?php
+function square($number) {
+    return $number * $number;
+}
+
+$result = square(5);
+
+echo $result;
+?&gt;
+</pre>
+
+<h3>Default Arguments</h3>
+<pre>
+&lt;?php
+function welcome($name = "Student") {
+    echo "Welcome " . $name;
+}
+
+welcome();
+welcome("Sanju");
+?&gt;
+</pre>
+
+<h3>Pass by Value</h3>
+<p>In pass by value, a copy of the argument is passed to the function. Changes to the parameter do not normally change the original variable.</p>
+<pre>
+&lt;?php
+function changeValue($x) {
+    $x = 100;
+}
+
+$a = 10;
+changeValue($a);
+
+echo $a;
+?&gt;
+</pre>
+
+<h3>Pass by Reference</h3>
+<p>In pass by reference, the function receives a reference to the original variable. Changes can affect the original variable.</p>
+<pre>
+&lt;?php
+function changeValue(&$x) {
+    $x = 100;
+}
+
+$a = 10;
+changeValue($a);
+
+echo $a;
+?&gt;
+</pre>
+
+<h3>Built-in Functions</h3>
+<p>PHP provides many predefined functions for working with strings, arrays, numbers, dates and files.</p>
+</section>
+
+<section>
+<h2>9. String Handling in PHP</h2>
+
+<h3>What is a String?</h3>
+<p>A string is a sequence of characters used to represent text.</p>
+<pre>
+&lt;?php
+$name = "PHP Programming";
+echo $name;
+?&gt;
+</pre>
+
+<h3>Important String Functions</h3>
+<ul>
+<li>strlen() – Returns the length of a string.</li>
+<li>str_word_count() – Counts words.</li>
+<li>strrev() – Reverses a string.</li>
+<li>strpos() – Finds the position of a substring.</li>
+<li>str_replace() – Replaces text.</li>
+<li>strtoupper() – Converts to uppercase.</li>
+<li>strtolower() – Converts to lowercase.</li>
+<li>ucfirst() – Converts the first character to uppercase.</li>
+<li>ucwords() – Converts the first character of each word to uppercase.</li>
+<li>trim() – Removes whitespace from the beginning and end.</li>
+<li>substr() – Extracts part of a string.</li>
+<li>strcmp() – Compares two strings.</li>
+</ul>
+
+<h3>Example</h3>
+<pre>
+&lt;?php
+$text = "hello php programming";
+
+echo strlen($text);
+echo "&lt;br&gt;";
+
+echo strtoupper($text);
+echo "&lt;br&gt;";
+
+echo strrev($text);
+echo "&lt;br&gt;";
+
+echo str_replace("php", "web", $text);
+?&gt;
+</pre>
+</section>
+
+<section>
+<h2>10. Object-Oriented Programming in PHP</h2>
+
+<h3>What is OOP?</h3>
+<p>Object-Oriented Programming is a programming approach based on classes and objects. It helps organize code and supports reusability.</p>
+
+<h3>Class</h3>
+<p>A class is a blueprint used to create objects. It contains properties and methods.</p>
+
+<h3>Object</h3>
+<p>An object is an instance of a class. It can access the properties and methods defined in that class.</p>
+
+<h3>Class and Object Example</h3>
+<pre>
+&lt;?php
+class Student {
+
+    public $name = "Sanju";
+
+    public function display() {
+        echo "Student Name: " . $this->name;
+    }
+}
+
+$obj = new Student();
+$obj->display();
+?&gt;
+</pre>
+
+<h3>Constructor</h3>
+<p>A constructor is a special method that is automatically called when an object is created. PHP uses the __construct() method.</p>
+<pre>
+&lt;?php
+class Student {
+
+    public $name;
+
+    function __construct($name) {
+        $this->name = $name;
+    }
+
+    function display() {
+        echo $this->name;
+    }
+}
+
+$obj = new Student("Sanju");
+$obj->display();
+?&gt;
+</pre>
+
+<h3>Destructor</h3>
+<p>A destructor is a special method called when an object is destroyed or when the script ends. PHP uses __destruct().</p>
+<pre>
+&lt;?php
+class Demo {
+
+    function __construct() {
+        echo "Object created&lt;br&gt;";
+    }
+
+    function __destruct() {
+        echo "Object destroyed";
+    }
+}
+
+$obj = new Demo();
+?&gt;
+</pre>
+
+<h3>Access Modifiers</h3>
+<ul>
+<li><b>public:</b> Accessible from anywhere.</li>
+<li><b>protected:</b> Accessible inside the class and its child classes.</li>
+<li><b>private:</b> Accessible only inside the class where it is declared.</li>
+</ul>
+
+<h3>Inheritance</h3>
+<p>Inheritance allows a child class to acquire properties and methods of a parent class. PHP uses the extends keyword.</p>
+<pre>
+&lt;?php
+class Animal {
+    public function eat() {
+        echo "Animal eats";
+    }
+}
+
+class Dog extends Animal {
+    public function bark() {
+        echo "Dog barks";
+    }
+}
+
+$obj = new Dog();
+$obj->eat();
+echo "&lt;br&gt;";
+$obj->bark();
+?&gt;
+</pre>
+
+<h3>Method Overriding</h3>
+<p>Method overriding occurs when a child class provides its own implementation of a method defined in its parent class.</p>
+<pre>
+&lt;?php
+class ParentClass {
+    public function display() {
+        echo "Parent class";
+    }
+}
+
+class ChildClass extends ParentClass {
+    public function display() {
+        echo "Child class";
+    }
+}
+
+$obj = new ChildClass();
+$obj->display();
+?&gt;
+</pre>
+
+<h3>Polymorphism</h3>
+<p>Polymorphism means one interface can represent different forms of behavior. In PHP, it can be achieved through inheritance, method overriding and interfaces.</p>
+
+<h3>Abstraction</h3>
+<p>Abstraction hides implementation details and exposes only essential features. PHP supports abstraction using abstract classes and methods.</p>
+<pre>
+&lt;?php
+abstract class Shape {
+    abstract public function area();
+}
+
+class Square extends Shape {
+    public function area() {
+        return 5 * 5;
+    }
+}
+
+$obj = new Square();
+echo $obj->area();
+?&gt;
+</pre>
+
+<h3>Encapsulation</h3>
+<p>Encapsulation means combining data and methods inside a class and controlling access to data using access modifiers.</p>
+</section>
+
+<section>
+<h2>11. Exception Handling in PHP</h2>
+
+<h3>What is an Exception?</h3>
+<p>An exception is an event that interrupts the normal flow of a program. PHP provides exception handling to manage such situations.</p>
+
+<h3>try and catch</h3>
+<p>The try block contains code that may generate an exception. The catch block handles the exception.</p>
+<pre>
+&lt;?php
+try {
+    throw new Exception("Something went wrong");
+}
+catch (Exception $e) {
+    echo "Error: " . $e->getMessage();
+}
+?&gt;
+</pre>
+
+<h3>finally Block</h3>
+<p>The finally block executes after try and catch processing, whether an exception occurs or not.</p>
+<pre>
+&lt;?php
+try {
+    echo "Try block&lt;br&gt;";
+}
+catch (Exception $e) {
+    echo $e->getMessage();
+}
+finally {
+    echo "Finally block";
+}
+?&gt;
+</pre>
+
+<h3>throw Keyword</h3>
+<p>The throw keyword is used to generate an exception manually.</p>
+<pre>
+&lt;?php
+$age = 15;
+
+try {
+    if ($age < 18) {
+        throw new Exception("Age must be 18 or above");
+    }
+
+    echo "Eligible";
+}
+catch (Exception $e) {
+    echo $e->getMessage();
+}
+?&gt;
+</pre>
+
+<h3>Benefits of Exception Handling</h3>
+<ul>
+<li>Prevents unexpected program termination.</li>
+<li>Separates error-handling code from normal code.</li>
+<li>Improves program reliability.</li>
+<li>Provides meaningful error messages.</li>
+</ul>
+</section>
+
+<section>
+<h2>12. HTML Forms and PHP Form Handling</h2>
+
+<h3>What is an HTML Form?</h3>
+<p>An HTML form is used to collect information from users. The form data can be sent to a PHP script for processing.</p>
+
+<h3>Important Form Attributes</h3>
+<ul>
+<li>action – Specifies the PHP file that processes the form.</li>
+<li>method – Specifies how form data is sent.</li>
+<li>name – Identifies a form field.</li>
+<li>type – Defines the type of input.</li>
+</ul>
+
+<h3>GET Method</h3>
+<p>The GET method sends form data through the URL as query parameters. It is suitable for non-sensitive data and requests such as searching.</p>
+<pre>
+&lt;form action="welcome.php" method="GET"&gt;
+    Name:
+    &lt;input type="text" name="username"&gt;
+    &lt;input type="submit" value="Submit"&gt;
+&lt;/form&gt;
+</pre>
+
+<h3>Processing GET Data</h3>
+<pre>
+&lt;?php
+if (isset($_GET["username"])) {
+    $name = htmlspecialchars($_GET["username"]);
+    echo "Welcome " . $name;
+}
+?&gt;
+</pre>
+
+<h3>POST Method</h3>
+<p>The POST method sends form data in the HTTP request body rather than placing it in the URL. It is commonly used for registration and login forms. HTTPS should be used to protect sensitive information.</p>
+<pre>
+&lt;form action="welcome.php" method="POST"&gt;
+    Name:
+    &lt;input type="text" name="username"&gt;
+    &lt;input type="submit" value="Submit"&gt;
+&lt;/form&gt;
+</pre>
+
+<h3>Processing POST Data</h3>
+<pre>
+&lt;?php
+if (isset($_POST["username"])) {
+    $name = htmlspecialchars($_POST["username"]);
+    echo "Welcome " . $name;
+}
+?&gt;
+</pre>
+
+<h3>Difference Between GET and POST</h3>
+<ul>
+<li>GET sends data through URL parameters.</li>
+<li>POST sends data in the request body.</li>
+<li>GET is useful for search and retrieval operations.</li>
+<li>POST is commonly used for submitting form data.</li>
+<li>Neither method alone provides encryption. HTTPS is required for secure transmission.</li>
+</ul>
+
+<h3>Form Validation</h3>
+<p>Form validation checks whether the information entered by a user is valid before processing it.</p>
+<pre>
+&lt;?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    $name = trim($_POST["name"] ?? "");
+
+    if ($name == "") {
+        echo "Name is required";
+    } else {
+        echo "Welcome " . htmlspecialchars($name);
+    }
+}
+?&gt;
+</pre>
+
+<h3>Include Statement</h3>
+<p>The include statement inserts the content of another PHP file into the current file. If the file is missing, PHP normally produces a warning and continues execution.</p>
+<pre>
+&lt;?php
+include "header.php";
+echo "Welcome to my website";
+?&gt;
+</pre>
+
+<h3>Require Statement</h3>
+<p>The require statement also inserts another PHP file. If the required file is missing, PHP produces an error that stops normal execution.</p>
+<pre>
+&lt;?php
+require "config.php";
+echo "Website loaded";
+?&gt;
+</pre>
+
+<h3>Difference Between include and require</h3>
+<ul>
+<li>include produces a warning when the file cannot be included and generally continues execution.</li>
+<li>require produces an error and stops execution when the required file cannot be loaded.</li>
+<li>include_once and require_once prevent the same file from being included more than once.</li>
+</ul>
+</section>
+
+<section>
+<h2>13. Session Handling in PHP</h2>
+
+<h3>What is a Session?</h3>
+<p>A session is used to store user information across multiple pages during a visit to a website. Session data is stored on the server.</p>
+
+<h3>Starting a Session</h3>
+<p>The session_start() function starts a new session or resumes an existing session. It should normally be called before sending output to the browser.</p>
+<pre>
+&lt;?php
+session_start();
+
+$_SESSION["username"] = "Sanju";
+
+echo "Session started";
+?&gt;
+</pre>
+
+<h3>Accessing Session Variables</h3>
+<pre>
+&lt;?php
+session_start();
+
+echo $_SESSION["username"] ?? "No username";
+?&gt;
+</pre>
+
+<h3>session_id()</h3>
+<p>The session_id() function returns the current session identifier.</p>
+<pre>
+&lt;?php
+session_start();
+
+echo session_id();
+?&gt;
+</pre>
+
+<h3>session_destroy()</h3>
+<p>The session_destroy() function destroys the current session data on the server.</p>
+<pre>
+&lt;?php
+session_start();
+
+session_unset();
+session_destroy();
+
+echo "Session destroyed";
+?&gt;
+</pre>
+
+<h3>Removing a Session Variable</h3>
+<pre>
+&lt;?php
+session_start();
+
+unset($_SESSION["username"]);
+?&gt;
+</pre>
+
+<h3>Applications of Sessions</h3>
+<ul>
+<li>User login systems.</li>
+<li>Shopping carts.</li>
+<li>User dashboards.</li>
+<li>Maintaining user information across pages.</li>
+<li>Access control in web applications.</li>
+</ul>
+</section>
+
+<section>
+<h2>14. Introduction to MySQL</h2>
+
+<h3>What is MySQL?</h3>
+<p>MySQL is a relational database management system used to store and manage data in tables. It uses SQL (Structured Query Language) to create, retrieve and modify data.</p>
+
+<h3>Features of MySQL</h3>
+<ul>
+<li>Open-source community edition.</li>
+<li>Uses relational tables.</li>
+<li>Supports SQL queries.</li>
+<li>Supports multiple users.</li>
+<li>Provides security and access control.</li>
+<li>Can be connected with PHP applications.</li>
+</ul>
+
+<h3>Database</h3>
+<p>A database is an organized collection of related data.</p>
+
+<h3>Table</h3>
+<p>A table stores data in rows and columns.</p>
+
+<h3>Row</h3>
+<p>A row represents one record in a table.</p>
+
+<h3>Column</h3>
+<p>A column represents a particular field or attribute in a table.</p>
+
+<h3>Primary Key</h3>
+<p>A primary key uniquely identifies each record in a table. It cannot contain NULL values.</p>
+
+<h3>Foreign Key</h3>
+<p>A foreign key is a field that refers to a key in another table and helps establish a relationship between tables.</p>
+
+<h3>MySQL Data Types</h3>
+<ul>
+<li>INT – Integer values.</li>
+<li>VARCHAR – Variable-length text.</li>
+<li>CHAR – Fixed-length text.</li>
+<li>TEXT – Large text data.</li>
+<li>DATE – Date values.</li>
+<li>DATETIME – Date and time values.</li>
+<li>DECIMAL – Exact decimal numbers.</li>
+<li>FLOAT – Approximate floating-point values.</li>
+<li>BOOLEAN – Boolean-like values, represented using a numeric type in MySQL.</li>
+</ul>
+</section>
+
+<section>
+<h2>15. MySQL Commands</h2>
+
+<h3>What is SQL?</h3>
+<p>SQL stands for Structured Query Language. It is used to communicate with relational databases.</p>
+
+<h3>Creating a Database</h3>
+<pre>
+CREATE DATABASE college;
+</pre>
+
+<h3>Selecting a Database</h3>
+<pre>
+USE college;
+</pre>
+
+<h3>Creating a Table</h3>
+<pre>
+CREATE TABLE student (
+    id INT PRIMARY KEY,
+    name VARCHAR(50),
+    marks INT
+);
+</pre>
+
+<h3>Inserting Records</h3>
+<pre>
+INSERT INTO student
+VALUES (1, 'Sanju', 85);
+</pre>
+
+<h3>Displaying Records</h3>
+<pre>
+SELECT * FROM student;
+</pre>
+
+<h3>Updating Records</h3>
+<pre>
+UPDATE student
+SET marks = 90
+WHERE id = 1;
+</pre>
+
+<h3>Deleting Records</h3>
+<pre>
+DELETE FROM student
+WHERE id = 1;
+</pre>
+
+<h3>Adding a Column</h3>
+<pre>
+ALTER TABLE student
+ADD email VARCHAR(100);
+</pre>
+
+<h3>Deleting a Table</h3>
+<pre>
+DROP TABLE student;
+</pre>
+
+<h3>Deleting a Database</h3>
+<pre>
+DROP DATABASE college;
+</pre>
+
+<h3>Types of SQL Commands</h3>
+<ul>
+<li><b>DDL:</b> Data Definition Language – CREATE, ALTER, DROP.</li>
+<li><b>DML:</b> Data Manipulation Language – INSERT, UPDATE, DELETE.</li>
+<li><b>DQL:</b> Data Query Language – SELECT.</li>
+<li><b>DCL:</b> Data Control Language – GRANT, REVOKE.</li>
+<li><b>TCL:</b> Transaction Control Language – COMMIT, ROLLBACK, SAVEPOINT.</li>
+</ul>
+</section>
+
+<section>
+<h2>16. Accessing MySQL Using phpMyAdmin</h2>
+
+<h3>What is phpMyAdmin?</h3>
+<p>phpMyAdmin is a web-based tool used to manage MySQL-compatible databases through a graphical interface.</p>
+
+<h3>Features of phpMyAdmin</h3>
+<ul>
+<li>Create and delete databases.</li>
+<li>Create and modify tables.</li>
+<li>Insert, update and delete records.</li>
+<li>Execute SQL queries.</li>
+<li>Import and export database files.</li>
+<li>Manage table structures and indexes.</li>
+</ul>
+
+<h3>Steps to Open phpMyAdmin</h3>
+<ol>
+<li>Install and open XAMPP.</li>
+<li>Start Apache and MySQL services.</li>
+<li>Open a web browser.</li>
+<li>Enter localhost/phpmyadmin.</li>
+<li>Create or select a database.</li>
+<li>Use the interface to manage tables and records.</li>
+</ol>
+
+<h3>MySQL Client</h3>
+<p>A MySQL client is a program used to connect to a MySQL server and execute SQL statements. Examples include the MySQL command-line client and MySQL Workbench.</p>
+</section>
+
+<section>
+<h2>17. Connecting PHP with MySQL</h2>
+
+<h3>Why Connect PHP with MySQL?</h3>
+<p>PHP is used to process application logic, while MySQL stores application data. Connecting them allows a website to save and retrieve information.</p>
+
+<h3>PHP MySQLi Extension</h3>
+<p>MySQLi stands for MySQL Improved. It provides procedural and object-oriented methods for connecting PHP applications to MySQL databases.</p>
+
+<h3>Connecting to MySQL Using MySQLi</h3>
+<pre>
+&lt;?php
+$connection = new mysqli(
+    "localhost",
+    "root",
+    "",
+    "college"
+);
+
+if ($connection->connect_error) {
+    die("Connection failed");
+}
+
+echo "Database connected successfully";
+
+$connection->close();
+?&gt;
+</pre>
+
+<h3>Creating a Database Connection</h3>
+<p>The mysqli() constructor accepts the server name, username, password and database name.</p>
+
+<h3>Executing a Query</h3>
+<pre>
+&lt;?php
+$conn = new mysqli(
+    "localhost",
+    "root",
+    "",
+    "college"
+);
+
+if ($conn->connect_error) {
+    die("Connection failed");
+}
+
+$sql = "SELECT * FROM student";
+
+$result = $conn->query($sql);
+
+if ($result) {
+    while ($row = $result->fetch_assoc()) {
+        echo $row["name"] . "&lt;br&gt;";
+    }
+}
+
+$conn->close();
+?&gt;
+</pre>
+
+<h3>Inserting Data Using PHP</h3>
+<pre>
+&lt;?php
+$conn = new mysqli(
+    "localhost",
+    "root",
+    "",
+    "college"
+);
+
+if ($conn->connect_error) {
+    die("Connection failed");
+}
+
+$stmt = $conn->prepare(
+    "INSERT INTO student(id, name, marks) VALUES (?, ?, ?)"
+);
+
+$id = 1;
+$name = "Sanju";
+$marks = 85;
+
+$stmt->bind_param("isi", $id, $name, $marks);
+
+if ($stmt->execute()) {
+    echo "Record inserted successfully";
+}
+
+$stmt->close();
+$conn->close();
+?&gt;
+</pre>
+
+<h3>Retrieving Records</h3>
+<pre>
+&lt;?php
+$conn = new mysqli(
+    "localhost",
+    "root",
+    "",
+    "college"
+);
+
+$result = $conn->query("SELECT * FROM student");
+
+if ($result) {
+    while ($row = $result->fetch_assoc()) {
+        echo "ID: " . $row["id"] . "&lt;br&gt;";
+        echo "Name: " . htmlspecialchars($row["name"]) . "&lt;br&gt;";
+        echo "Marks: " . $row["marks"] . "&lt;br&gt;";
+    }
+}
+
+$conn->close();
+?&gt;
+</pre>
+
+<h3>Updating Records Using PHP</h3>
+<pre>
+&lt;?php
+$conn = new mysqli(
+    "localhost",
+    "root",
+    "",
+    "college"
+);
+
+$stmt = $conn->prepare(
+    "UPDATE student SET marks=? WHERE id=?"
+);
+
+$marks = 95;
+$id = 1;
+
+$stmt->bind_param("ii", $marks, $id);
+$stmt->execute();
+
+echo "Record updated";
+
+$stmt->close();
+$conn->close();
+?&gt;
+</pre>
+
+<h3>Deleting Records Using PHP</h3>
+<pre>
+&lt;?php
+$conn = new mysqli(
+    "localhost",
+    "root",
+    "",
+    "college"
+);
+
+$stmt = $conn->prepare(
+    "DELETE FROM student WHERE id=?"
+);
+
+$id = 1;
+
+$stmt->bind_param("i", $id);
+$stmt->execute();
+
+echo "Record deleted";
+
+$stmt->close();
+$conn->close();
+?&gt;
+</pre>
+
+<h3>Counting Records</h3>
+<pre>
+&lt;?php
+$conn = new mysqli(
+    "localhost",
+    "root",
+    "",
+    "college"
+);
+
+$result = $conn->query(
+    "SELECT COUNT(*) AS total FROM student"
+);
+
+$row = $result->fetch_assoc();
+
+echo "Total records: " . $row["total"];
+
+$conn->close();
+?&gt;
+</pre>
+</section>
+
+<section>
+<h2>18. Important PHP and MySQL Differences</h2>
+
+<h3>PHP vs HTML</h3>
+<ul>
+<li>HTML is a markup language used to structure web pages.</li>
+<li>PHP is a server-side scripting language used to create dynamic web pages.</li>
+<li>HTML is interpreted by the browser.</li>
+<li>PHP is executed on the server.</li>
+</ul>
+
+<h3>PHP vs JavaScript</h3>
+<ul>
+<li>PHP commonly executes on the server.</li>
+<li>JavaScript commonly executes in the browser, but can also run on servers.</li>
+<li>PHP can directly interact with server-side databases.</li>
+<li>JavaScript is widely used for browser interactivity.</li>
+</ul>
+
+<h3>MySQL vs phpMyAdmin</h3>
+<ul>
+<li>MySQL is a relational database management system.</li>
+<li>phpMyAdmin is a web-based administration tool for managing MySQL-compatible databases.</li>
+</ul>
+
+<h3>Session vs Cookie</h3>
+<ul>
+<li>Session data is stored on the server.</li>
+<li>Cookies are stored in the user's browser.</li>
+<li>Sessions are commonly used to maintain login information.</li>
+<li>Cookies can store preferences and other small pieces of information.</li>
+</ul>
+</section>
+
+<section>
+<h2>19. Important Examination Questions</h2>
+
+<h3>Short Answer Questions</h3>
+<div class="question">1. What is PHP?</div>
+<div class="question">2. List any five features of PHP.</div>
+<div class="question">3. What is XAMPP?</div>
+<div class="question">4. What are PHP variables?</div>
+<div class="question">5. List the data types in PHP.</div>
+<div class="question">6. What is a constant?</div>
+<div class="question">7. What is an array?</div>
+<div class="question">8. Define a function in PHP.</div>
+<div class="question">9. What is a constructor?</div>
+<div class="question">10. What is inheritance?</div>
+<div class="question">11. What is exception handling?</div>
+<div class="question">12. What is an HTML form?</div>
+<div class="question">13. What is the difference between GET and POST?</div>
+<div class="question">14. What is a session?</div>
+<div class="question">15. What is MySQL?</div>
+<div class="question">16. What is phpMyAdmin?</div>
+<div class="question">17. What is a primary key?</div>
+<div class="question">18. What is the purpose of mysqli_connect() or mysqli()?</div>
+<div class="question">19. What is the use of session_destroy()?</div>
+<div class="question">20. What is the purpose of include and require?</div>
+
+<h3>Long Answer Questions</h3>
+<div class="question">1. Explain the features and applications of PHP.</div>
+<div class="question">2. Explain PHP syntax, variables and data types with examples.</div>
+<div class="question">3. Explain different operators in PHP.</div>
+<div class="question">4. Explain conditional and looping statements with examples.</div>
+<div class="question">5. Explain the types of arrays in PHP with examples.</div>
+<div class="question">6. Explain PHP functions and argument passing.</div>
+<div class="question">7. Explain important string functions in PHP.</div>
+<div class="question">8. Explain classes, objects and constructors in PHP.</div>
+<div class="question">9. Explain inheritance and method overriding in PHP.</div>
+<div class="question">10. Explain exception handling using try, catch and finally.</div>
+<div class="question">11. Explain HTML form handling using GET and POST.</div>
+<div class="question">12. Explain include and require statements.</div>
+<div class="question">13. Explain session handling in PHP with examples.</div>
+<div class="question">14. Explain MySQL data types and SQL commands.</div>
+<div class="question">15. Explain how PHP connects with MySQL.</div>
+<div class="question">16. Explain inserting, retrieving, updating and deleting records using PHP.</div>
+</section>
+
+<section>
+<h2>20. Important PHP Programs for Revision</h2>
+
+<h3>1. Display Current Date</h3>
+<pre>
+&lt;?php
+echo date("d-m-Y");
+?&gt;
+</pre>
+
+<h3>2. Find Largest of Two Numbers</h3>
+<pre>
+&lt;?php
+$a = 20;
+$b = 30;
+
+if ($a > $b) {
+    echo "Largest: " . $a;
+} else {
+    echo "Largest: " . $b;
+}
+?&gt;
+</pre>
+
+<h3>3. Find Factorial</h3>
+<pre>
+&lt;?php
+$n = 5;
+$fact = 1;
+
+for ($i = 1; $i <= $n; $i++) {
+    $fact *= $i;
+}
+
+echo "Factorial: " . $fact;
+?&gt;
+</pre>
+
+<h3>4. Check Palindrome String</h3>
+<pre>
+&lt;?php
+$text = "madam";
+
+if ($text == strrev($text)) {
+    echo "Palindrome";
+} else {
+    echo "Not Palindrome";
+}
+?&gt;
+</pre>
+
+<h3>5. Display Array Elements</h3>
+<pre>
+&lt;?php
+$numbers = array(10, 20, 30, 40);
+
+foreach ($numbers as $number) {
+    echo $number . "&lt;br&gt;";
+}
+?&gt;
+</pre>
+</section>
+
+<div class="info">
+<b>Study tip:</b> For examinations, practise PHP syntax, arrays, functions, OOP concepts, form handling, sessions and PHP-MySQL connectivity. Write and execute the examples using XAMPP or another PHP development environment.
+</div>
+
+</main>
+
+<footer>
+<p>STUDENTVERSE | Learn • Practise • Succeed</p>
+<p>CAM43T – PHP & MySQL</p>
+</footer>
+
+<button id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const searchBox = document.getElementById("search");
+    const sections = document.querySelectorAll(".container section");
+
+    searchBox.addEventListener("input", function () {
+        const query = searchBox.value.trim().toLowerCase();
+
+        sections.forEach(function (section) {
+            section.hidden =
+                query !== "" &&
+                !section.textContent.toLowerCase().includes(query);
+        });
+    });
+});
+</script>
+
+</body>
+</html>

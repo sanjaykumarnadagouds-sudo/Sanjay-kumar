@@ -1,0 +1,983 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DBMS Theory | STUDENTVERSE</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    color: #fff;
+    background: radial-gradient(circle at top, #172554, #080b1c 65%);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+        radial-gradient(2px 2px at 20% 30%, white, transparent),
+        radial-gradient(2px 2px at 70% 60%, #60a5fa, transparent),
+        radial-gradient(2px 2px at 40% 80%, white, transparent),
+        radial-gradient(2px 2px at 90% 20%, #a78bfa, transparent);
+    background-size: 180px 180px;
+    opacity: .5;
+    pointer-events: none;
+    z-index: -1;
+    animation: stars 15s linear infinite;
+}
+
+@keyframes stars {
+    from { transform: translateY(0); }
+    to { transform: translateY(-180px); }
+}
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 7%;
+    background: rgba(5, 10, 30, .9);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid #334155;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+    color: #60a5fa;
+    letter-spacing: 2px;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+}
+
+.navbar a:hover {
+    color: #60a5fa;
+}
+
+header {
+    text-align: center;
+    padding: 65px 20px 45px;
+}
+
+header h1 {
+    font-size: clamp(30px, 5vw, 48px);
+    color: #93c5fd;
+    text-shadow: 0 0 20px #2563eb;
+    margin-bottom: 15px;
+}
+
+header p {
+    color: #cbd5e1;
+    line-height: 1.8;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 10px 15px 30px;
+}
+
+button {
+    padding: 11px 20px;
+    border: 1px solid #60a5fa;
+    border-radius: 9px;
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    transition: .3s;
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 18px #3b82f6;
+}
+
+.search-box {
+    max-width: 650px;
+    margin: 0 auto 25px;
+    padding: 0 15px;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid #475569;
+    outline: none;
+    color: white;
+    background: rgba(15, 23, 42, .9);
+    font-size: 16px;
+}
+
+.search-box input:focus {
+    border-color: #60a5fa;
+    box-shadow: 0 0 15px #2563eb;
+}
+
+.topic-nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 15px;
+    margin-bottom: 25px;
+}
+
+.topic-nav a {
+    color: #bfdbfe;
+    text-decoration: none;
+    background: rgba(30, 41, 59, .8);
+    border: 1px solid #334155;
+    padding: 9px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+}
+
+.topic-nav a:hover {
+    background: #2563eb;
+    color: white;
+}
+
+.container {
+    width: 88%;
+    max-width: 1100px;
+    margin: auto;
+}
+
+.topic-card {
+    background: rgba(15, 23, 42, .85);
+    border: 1px solid rgba(96, 165, 250, .35);
+    border-radius: 16px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, .25);
+    transition: .3s;
+    animation: appear .6s ease;
+}
+
+.topic-card:hover {
+    transform: translateY(-4px);
+    border-color: #60a5fa;
+    box-shadow: 0 0 20px rgba(59, 130, 246, .2);
+}
+
+@keyframes appear {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.topic-card h2 {
+    color: #93c5fd;
+    margin-bottom: 16px;
+    font-size: 23px;
+}
+
+.topic-card h3 {
+    color: #c4b5fd;
+    margin: 18px 0 10px;
+}
+
+.topic-card p {
+    color: #dbeafe;
+    line-height: 1.8;
+    margin-bottom: 12px;
+}
+
+.topic-card ul,
+.topic-card ol {
+    padding-left: 25px;
+    color: #dbeafe;
+    line-height: 1.9;
+}
+
+.topic-card li {
+    margin-bottom: 5px;
+}
+
+pre {
+    background: #020617;
+    color: #86efac;
+    border: 1px solid #334155;
+    padding: 17px;
+    border-radius: 10px;
+    overflow-x: auto;
+    margin: 15px 0;
+    line-height: 1.7;
+    white-space: pre-wrap;
+}
+
+.note {
+    background: rgba(37, 99, 235, .15);
+    border-left: 4px solid #60a5fa;
+    padding: 13px;
+    margin: 15px 0;
+    color: #bfdbfe;
+    line-height: 1.7;
+    border-radius: 5px;
+}
+
+#noResults {
+    display: none;
+    text-align: center;
+    padding: 35px;
+    color: #fca5a5;
+}
+
+#backToTop {
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    display: none;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    font-size: 20px;
+}
+
+footer {
+    text-align: center;
+    padding: 30px 15px;
+    color: #94a3b8;
+    border-top: 1px solid #334155;
+    margin-top: 50px;
+}
+
+@media(max-width: 600px) {
+    .navbar {
+        padding: 14px;
+    }
+
+    .navbar a {
+        margin-left: 8px;
+        font-size: 13px;
+    }
+
+    .container {
+        width: 94%;
+    }
+
+    .topic-card {
+        padding: 18px;
+    }
+}
+
+@media print {
+    body {
+        background: white !important;
+        color: black !important;
+    }
+
+    body::before,
+    .navbar,
+    .action-buttons,
+    .search-box,
+    .topic-nav,
+    #backToTop,
+    footer {
+        display: none !important;
+    }
+
+    header {
+        padding: 15px;
+    }
+
+    header h1,
+    header p {
+        color: black !important;
+        text-shadow: none;
+    }
+
+    .container {
+        width: 100%;
+    }
+
+    .topic-card {
+        background: white !important;
+        color: black !important;
+        border: 1px solid #aaa;
+        box-shadow: none;
+        break-inside: avoid;
+    }
+
+    .topic-card h2,
+    .topic-card h3,
+    .topic-card p,
+    .topic-card li,
+    .note {
+        color: black !important;
+    }
+
+    pre {
+        color: black !important;
+        background: #f2f2f2 !important;
+        white-space: pre-wrap;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav class="navbar">
+    <div class="logo">STUDENTVERSE</div>
+    <div>
+        <a href="studyhub.html">StudyHub</a>
+        <a href="index.html">Home</a>
+    </div>
+</nav>
+
+<header>
+    <h1>DATABASE MANAGEMENT SYSTEM</h1>
+    <p>CAM32T | BCA Semester 3</p>
+    <p>Complete Theory Notes and SQL Examples</p>
+</header>
+
+<div class="action-buttons">
+    <button onclick="window.print()">📥 Download / Save as PDF</button>
+    <button onclick="location.href='studyhub.html'">⬅ Back to StudyHub</button>
+</div>
+
+<div class="search-box">
+    <input type="text" id="searchInput"
+    placeholder="🔍 Search DBMS topics..."
+    onkeyup="searchTopics()">
+</div>
+
+<div class="topic-nav">
+    <a href="#intro">DBMS Basics</a>
+    <a href="#models">Data Models</a>
+    <a href="#keys">Keys</a>
+    <a href="#er">ER Model</a>
+    <a href="#relational">Relational Model</a>
+    <a href="#sql">SQL</a>
+    <a href="#joins">Joins</a>
+    <a href="#views">Views</a>
+    <a href="#normalization">Normalization</a>
+    <a href="#transactions">Transactions</a>
+</div>
+
+<main class="container">
+
+<section class="topic-card" id="intro">
+<h2>1. Introduction to DBMS</h2>
+
+<h3>What is Data?</h3>
+<p>Data means raw facts and figures that can be processed to obtain useful information. Examples include student names, marks, addresses and phone numbers.</p>
+
+<h3>What is a Database?</h3>
+<p>A database is an organized collection of related data that can be stored, accessed, managed and updated easily.</p>
+
+<h3>What is DBMS?</h3>
+<p>DBMS stands for Database Management System. It is software used to create, store, organize, retrieve and manage data in a database.</p>
+
+<h3>Examples of DBMS</h3>
+<ul>
+<li>MySQL</li>
+<li>Oracle Database</li>
+<li>Microsoft SQL Server</li>
+<li>PostgreSQL</li>
+<li>Microsoft Access</li>
+</ul>
+
+<h3>Advantages of DBMS</h3>
+<ul>
+<li>Reduces data duplication.</li>
+<li>Improves data security.</li>
+<li>Provides data sharing.</li>
+<li>Maintains data consistency.</li>
+<li>Supports backup and recovery.</li>
+<li>Provides easy data access.</li>
+</ul>
+
+<h3>Disadvantages of DBMS</h3>
+<ul>
+<li>High installation and maintenance cost.</li>
+<li>Requires trained database administrators.</li>
+<li>May require more memory and storage.</li>
+<li>System failure can affect many users.</li>
+</ul>
+
+<h3>Database Users</h3>
+<ul>
+<li>Database Administrator (DBA): Manages and controls the database.</li>
+<li>Database Designers: Design the database structure.</li>
+<li>Application Programmers: Develop database applications.</li>
+<li>End Users: Use database applications to access information.</li>
+</ul>
+
+<h3>Responsibilities of DBA</h3>
+<ul>
+<li>Creating and maintaining databases.</li>
+<li>Managing user permissions.</li>
+<li>Providing database security.</li>
+<li>Taking backups and recovering data.</li>
+<li>Monitoring database performance.</li>
+</ul>
+</section>
+
+<section class="topic-card" id="models">
+<h2>2. Data Models</h2>
+<p>A data model describes how data is organized, stored and related in a database.</p>
+
+<h3>Hierarchical Data Model</h3>
+<p>In this model, data is arranged in a tree-like structure. Each child record has only one parent.</p>
+<p><b>Example:</b> A college contains departments, and each department contains students.</p>
+
+<h3>Network Data Model</h3>
+<p>Data is represented using records and links. A child record can have multiple parent records.</p>
+
+<h3>Relational Data Model</h3>
+<p>Data is stored in tables consisting of rows and columns. Tables can be connected using keys.</p>
+
+<h3>Object-Oriented Data Model</h3>
+<p>Data is represented as objects containing attributes and methods. It supports object-oriented concepts.</p>
+
+<div class="note">
+The relational model is widely used because data can be organized into tables and accessed using SQL.
+</div>
+</section>
+
+<section class="topic-card" id="keys">
+<h2>3. Keys in DBMS</h2>
+<p>A key is an attribute or a group of attributes used to identify records uniquely or establish relationships between tables.</p>
+
+<h3>Primary Key</h3>
+<p>A primary key uniquely identifies each row in a table. It cannot contain duplicate or NULL values.</p>
+
+<h3>Candidate Key</h3>
+<p>A candidate key is an attribute or combination of attributes that can uniquely identify a record.</p>
+
+<h3>Super Key</h3>
+<p>A super key is any set of one or more attributes that uniquely identifies a row.</p>
+
+<h3>Foreign Key</h3>
+<p>A foreign key is an attribute in one table that refers to a primary key in another table.</p>
+
+<h3>Composite Key</h3>
+<p>A composite key consists of two or more attributes used together to identify a record uniquely.</p>
+
+<h3>Alternate Key</h3>
+<p>A candidate key that is not selected as the primary key is called an alternate key.</p>
+
+<h3>Unique Key</h3>
+<p>A unique key constraint ensures that values in a column or group of columns are unique.</p>
+
+<h3>Surrogate Key</h3>
+<p>A surrogate key is an artificially created identifier, such as an automatically generated ID.</p>
+
+<h3>Database Constraints</h3>
+<ul>
+<li>PRIMARY KEY – Uniquely identifies each record.</li>
+<li>FOREIGN KEY – Maintains relationships between tables.</li>
+<li>UNIQUE – Prevents duplicate values.</li>
+<li>NOT NULL – Does not allow empty NULL values.</li>
+<li>CHECK – Ensures values satisfy a condition.</li>
+</ul>
+</section>
+
+<section class="topic-card" id="er">
+<h2>4. Entity Relationship Model</h2>
+<p>The Entity Relationship (ER) model is used to represent the structure of a database through entities, attributes and relationships.</p>
+
+<h3>Entity</h3>
+<p>An entity is a real-world object that can be identified separately.</p>
+<p><b>Example:</b> Student, Teacher, Employee.</p>
+
+<h3>Entity Set</h3>
+<p>A collection of similar entities is called an entity set.</p>
+
+<h3>Attributes</h3>
+<p>Attributes describe the properties of an entity.</p>
+<p><b>Example:</b> Student_ID, Name, Age and Address.</p>
+
+<h3>Types of Attributes</h3>
+<ul>
+<li>Simple Attribute – Cannot be divided further.</li>
+<li>Composite Attribute – Can be divided into smaller parts.</li>
+<li>Single-valued Attribute – Has one value.</li>
+<li>Multi-valued Attribute – Can have multiple values.</li>
+<li>Derived Attribute – Calculated from another attribute.</li>
+<li>Key Attribute – Uniquely identifies an entity.</li>
+</ul>
+
+<h3>Relationship</h3>
+<p>A relationship represents an association between entities.</p>
+
+<h3>Types of Relationships</h3>
+<ul>
+<li>One-to-One (1:1)</li>
+<li>One-to-Many (1:M)</li>
+<li>Many-to-One (M:1)</li>
+<li>Many-to-Many (M:N)</li>
+</ul>
+
+<h3>ER Diagram Symbols</h3>
+<ul>
+<li>Rectangle – Entity.</li>
+<li>Oval – Attribute.</li>
+<li>Diamond – Relationship.</li>
+<li>Double Rectangle – Weak Entity.</li>
+<li>Underlined Attribute – Key Attribute.</li>
+</ul>
+
+<h3>Weak Entity</h3>
+<p>A weak entity cannot be uniquely identified by its own attributes alone. It depends on another entity for identification.</p>
+
+<h3>Extended ER Features</h3>
+<ul>
+<li>Specialization – Dividing a higher-level entity into lower-level entities.</li>
+<li>Generalization – Combining similar lower-level entities into a higher-level entity.</li>
+<li>Aggregation – Treating a relationship as a higher-level entity.</li>
+<li>Inheritance – Lower-level entities inherit properties from higher-level entities.</li>
+</ul>
+</section>
+
+<section class="topic-card" id="relational">
+<h2>5. Relational Model</h2>
+<p>The relational model stores data in the form of tables called relations.</p>
+
+<h3>Important Terms</h3>
+<ul>
+<li>Relation – A table.</li>
+<li>Tuple – A row in a table.</li>
+<li>Attribute – A column in a table.</li>
+<li>Domain – The set of valid values for an attribute.</li>
+<li>Degree – Number of columns in a relation.</li>
+<li>Cardinality – Number of rows in a relation.</li>
+<li>Relational Schema – Structure of a relation.</li>
+</ul>
+
+<h3>Example: Student Table</h3>
+<pre>
+Student_ID   Name       Marks
+101          Sanjay     85
+102          Ravi       90
+103          Kumar      78
+</pre>
+
+<h3>Relational Algebra</h3>
+<p>Relational algebra is a procedural query language used to perform operations on relations.</p>
+
+<h3>Selection (σ)</h3>
+<p>Selects rows that satisfy a given condition.</p>
+<pre>
+σ Marks > 80 (Student)
+</pre>
+
+<h3>Projection (π)</h3>
+<p>Selects specific columns from a relation.</p>
+<pre>
+π Name, Marks (Student)
+</pre>
+
+<h3>Union (∪)</h3>
+<p>Combines the rows of two compatible relations and removes duplicate rows.</p>
+
+<h3>Intersection (∩)</h3>
+<p>Returns rows that are common to both relations.</p>
+
+<h3>Set Difference (−)</h3>
+<p>Returns rows present in the first relation but not in the second.</p>
+
+<h3>Cartesian Product (×)</h3>
+<p>Combines every row of one relation with every row of another relation.</p>
+
+<h3>Join (⋈)</h3>
+<p>Combines related rows from two or more tables based on a condition.</p>
+
+<h3>Division (÷)</h3>
+<p>Used to find records associated with all records in another relation.</p>
+</section>
+
+<section class="topic-card" id="sql">
+<h2>6. Introduction to SQL</h2>
+<p>SQL stands for Structured Query Language. It is used to create, retrieve, modify and manage data in relational databases.</p>
+
+<h3>Types of SQL Commands</h3>
+<ul>
+<li>DDL – Data Definition Language.</li>
+<li>DML – Data Manipulation Language.</li>
+<li>DQL – Data Query Language.</li>
+<li>DCL – Data Control Language.</li>
+<li>TCL – Transaction Control Language.</li>
+</ul>
+
+<h3>DDL Commands</h3>
+<p>DDL commands are used to define or modify database structures.</p>
+<pre>
+CREATE TABLE Student (
+    ID INT PRIMARY KEY,
+    Name VARCHAR(50),
+    Marks INT
+);
+
+ALTER TABLE Student
+ADD City VARCHAR(30);
+
+TRUNCATE TABLE Student;
+
+DROP TABLE Student;
+</pre>
+
+<h3>DML Commands</h3>
+<p>DML commands are used to insert, update and delete records.</p>
+<pre>
+INSERT INTO Student
+VALUES (101, 'Sanjay', 85);
+
+UPDATE Student
+SET Marks = 90
+WHERE ID = 101;
+
+DELETE FROM Student
+WHERE ID = 101;
+</pre>
+
+<h3>SELECT Command</h3>
+<p>The SELECT command retrieves data from a table.</p>
+<pre>
+SELECT * FROM Student;
+
+SELECT Name, Marks
+FROM Student;
+
+SELECT *
+FROM Student
+WHERE Marks > 80;
+</pre>
+
+<h3>Aggregate Functions</h3>
+<ul>
+<li>COUNT() – Counts records.</li>
+<li>SUM() – Calculates the total.</li>
+<li>AVG() – Calculates the average.</li>
+<li>MAX() – Finds the highest value.</li>
+<li>MIN() – Finds the lowest value.</li>
+</ul>
+
+<pre>
+SELECT COUNT(*) FROM Student;
+SELECT SUM(Marks) FROM Student;
+SELECT AVG(Marks) FROM Student;
+SELECT MAX(Marks) FROM Student;
+SELECT MIN(Marks) FROM Student;
+</pre>
+
+<h3>Logical Operators</h3>
+<ul>
+<li>AND – All conditions must be true.</li>
+<li>OR – At least one condition must be true.</li>
+<li>NOT – Reverses a condition.</li>
+</ul>
+
+<pre>
+SELECT * FROM Student
+WHERE Marks > 70 AND City = 'Mysuru';
+</pre>
+
+<h3>SQL Predicates</h3>
+<pre>
+-- LIKE
+SELECT * FROM Student
+WHERE Name LIKE 'S%';
+
+-- BETWEEN
+SELECT * FROM Student
+WHERE Marks BETWEEN 60 AND 90;
+
+-- IN
+SELECT * FROM Student
+WHERE City IN ('Mysuru', 'Bengaluru');
+
+-- DISTINCT
+SELECT DISTINCT City FROM Student;
+</pre>
+
+<h3>GROUP BY</h3>
+<p>GROUP BY groups rows having the same values in specified columns.</p>
+<pre>
+SELECT City, COUNT(*)
+FROM Student
+GROUP BY City;
+</pre>
+
+<h3>HAVING</h3>
+<p>HAVING is used to apply conditions to groups.</p>
+<pre>
+SELECT City, COUNT(*)
+FROM Student
+GROUP BY City
+HAVING COUNT(*) > 2;
+</pre>
+
+<h3>ORDER BY</h3>
+<p>ORDER BY sorts records in ascending or descending order.</p>
+<pre>
+SELECT * FROM Student
+ORDER BY Marks DESC;
+</pre>
+
+<div class="note">
+SQL syntax can vary slightly between database systems. For example, LIMIT is commonly used in MySQL and PostgreSQL, while TOP is used in SQL Server.
+</div>
+</section>
+
+<section class="topic-card" id="joins">
+<h2>7. SQL Joins</h2>
+<p>A join is used to combine records from two or more tables based on a related column.</p>
+
+<h3>INNER JOIN</h3>
+<p>Returns only matching records from both tables.</p>
+<pre>
+SELECT Student.Name, Department.DeptName
+FROM Student
+INNER JOIN Department
+ON Student.DeptID = Department.DeptID;
+</pre>
+
+<h3>LEFT OUTER JOIN</h3>
+<p>Returns all records from the left table and matching records from the right table. Unmatched right-side values appear as NULL.</p>
+
+<h3>RIGHT OUTER JOIN</h3>
+<p>Returns all records from the right table and matching records from the left table.</p>
+
+<h3>FULL OUTER JOIN</h3>
+<p>Returns matching and non-matching records from both tables. Support depends on the database system.</p>
+
+<h3>NATURAL JOIN</h3>
+<p>Automatically joins tables using columns with the same names and compatible data types.</p>
+
+<h3>EQUI JOIN</h3>
+<p>A join that uses the equality operator (=) to match rows from tables.</p>
+</section>
+
+<section class="topic-card" id="views">
+<h2>8. Views in DBMS</h2>
+<p>A view is a virtual table created from the result of an SQL query. It usually stores the query definition rather than a separate copy of the data.</p>
+
+<h3>Advantages of Views</h3>
+<ul>
+<li>Improves data security.</li>
+<li>Simplifies complex queries.</li>
+<li>Provides customized data presentation.</li>
+<li>Can hide unnecessary columns.</li>
+</ul>
+
+<h3>Creating a View</h3>
+<pre>
+CREATE VIEW StudentView AS
+SELECT ID, Name
+FROM Student;
+</pre>
+
+<h3>Displaying a View</h3>
+<pre>
+SELECT * FROM StudentView;
+</pre>
+
+<h3>Updating a View</h3>
+<pre>
+CREATE OR REPLACE VIEW StudentView AS
+SELECT ID, Name, Marks
+FROM Student;
+</pre>
+
+<h3>Deleting a View</h3>
+<pre>
+DROP VIEW StudentView;
+</pre>
+
+<div class="note">
+Whether a view can be updated depends on its definition and the database system.
+</div>
+</section>
+
+<section class="topic-card" id="normalization">
+<h2>9. Database Normalization</h2>
+<p>Normalization is the process of organizing data in a database to reduce data redundancy and avoid insertion, deletion and update anomalies.</p>
+
+<h3>Database Anomalies</h3>
+<ul>
+<li>Insertion Anomaly – Difficulty inserting data without other unnecessary data.</li>
+<li>Update Anomaly – The same information must be updated in multiple places.</li>
+<li>Deletion Anomaly – Deleting one record may accidentally remove useful information.</li>
+</ul>
+
+<h3>Functional Dependency</h3>
+<p>A functional dependency exists when one attribute determines the value of another attribute.</p>
+<pre>
+Student_ID → Student_Name
+</pre>
+<p>This means Student_ID determines Student_Name.</p>
+
+<h3>First Normal Form (1NF)</h3>
+<ul>
+<li>Each cell must contain a single value.</li>
+<li>No repeating groups are allowed.</li>
+<li>Each record should be identifiable.</li>
+</ul>
+
+<h3>Second Normal Form (2NF)</h3>
+<ul>
+<li>The table must already be in 1NF.</li>
+<li>Every non-key attribute must depend on the whole candidate key.</li>
+<li>Partial dependency must be removed.</li>
+</ul>
+
+<h3>Third Normal Form (3NF)</h3>
+<ul>
+<li>The table must already be in 2NF.</li>
+<li>Transitive dependencies of non-key attributes must be removed.</li>
+</ul>
+
+<h3>Boyce-Codd Normal Form (BCNF)</h3>
+<p>A relation is in BCNF when every determinant is a super key.</p>
+
+<h3>Database Decomposition</h3>
+<p>Decomposition means dividing a large relation into smaller relations to reduce redundancy and improve database design.</p>
+
+<h3>Transitive Dependency</h3>
+<p>A transitive dependency occurs when a non-key attribute depends on another non-key attribute instead of directly depending on the key.</p>
+
+<div class="note">
+Normalization helps maintain consistency and reduces unnecessary duplication of data.
+</div>
+</section>
+
+<section class="topic-card" id="transactions">
+<h2>10. Transaction Processing</h2>
+<p>A transaction is a logical unit of database work that contains one or more operations.</p>
+
+<h3>Example</h3>
+<p>Transferring money from one bank account to another involves deducting money from one account and adding it to another.</p>
+
+<h3>ACID Properties</h3>
+<ul>
+<li>Atomicity – A transaction is completed fully or not at all.</li>
+<li>Consistency – A transaction keeps the database in a valid state.</li>
+<li>Isolation – Concurrent transactions should not interfere incorrectly with each other.</li>
+<li>Durability – Committed changes remain saved even after a failure.</li>
+</ul>
+
+<h3>Transaction States</h3>
+<ul>
+<li>Active – Transaction is executing.</li>
+<li>Partially Committed – Final operation has been executed.</li>
+<li>Committed – Transaction completed successfully.</li>
+<li>Failed – Transaction cannot continue.</li>
+<li>Aborted – Transaction has been rolled back.</li>
+</ul>
+
+<h3>Single-User Database System</h3>
+<p>A single-user database system allows only one user to access the database at a time.</p>
+
+<h3>Multi-User Database System</h3>
+<p>A multi-user database system allows multiple users to access the database simultaneously.</p>
+
+<h3>Concurrency Control</h3>
+<p>Concurrency control manages simultaneous transactions to maintain database consistency.</p>
+
+<h3>Lost Update Problem</h3>
+<p>Occurs when two transactions update the same data and one update overwrites the other.</p>
+
+<h3>Dirty Read Problem</h3>
+<p>Occurs when a transaction reads data modified by another transaction that has not yet committed.</p>
+
+<h3>Database Failures</h3>
+<ul>
+<li>Transaction Failure – A transaction cannot complete.</li>
+<li>System Crash – Hardware or software failure stops the system.</li>
+<li>Media Failure – Storage device failure causes data loss.</li>
+<li>Communication Failure – Network problems interrupt database operations.</li>
+</ul>
+
+<h3>Database Storage</h3>
+<p>Database storage involves saving database files, records, indexes and other information on storage devices.</p>
+
+<h3>Database File Operations</h3>
+<ul>
+<li>Creating database files.</li>
+<li>Reading and writing records.</li>
+<li>Updating stored information.</li>
+<li>Deleting records.</li>
+<li>Backing up and restoring files.</li>
+</ul>
+
+<h3>Database Security</h3>
+<ul>
+<li>Authentication – Verifying user identity.</li>
+<li>Authorization – Controlling user permissions.</li>
+<li>Encryption – Protecting data using encryption.</li>
+<li>Backup – Keeping copies of important data.</li>
+<li>Auditing – Monitoring database activities.</li>
+</ul>
+</section>
+
+<div id="noResults">
+    <h2>No Topics Found!</h2>
+    <p>Try searching with another keyword.</p>
+</div>
+
+</main>
+
+<footer>
+    <p>STUDENTVERSE | Learn Today, Build Tomorrow 🚀</p>
+    <p>CAM32T – Database Management System</p>
+</footer>
+
+<button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+function searchTopics() {
+    const input = document.getElementById("searchInput")
+        .value.toLowerCase().trim();
+
+    const cards = document.querySelectorAll(".topic-card");
+    let visibleCount = 0;
+
+    cards.forEach(card => {
+        const text = card.innerText.toLowerCase();
+        const show = text.includes(input);
+
+        card.style.display = show ? "block" : "none";
+
+        if (show) visibleCount++;
+    });
+
+    document.getElementById("noResults").style.display =
+        visibleCount === 0 ? "block" : "none";
+}
+
+const backToTop = document.getElementById("backToTop");
+
+window.addEventListener("scroll", function() {
+    backToTop.style.display =
+        window.scrollY > 300 ? "block" : "none";
+});
+</script>
+
+</body>
+</html>

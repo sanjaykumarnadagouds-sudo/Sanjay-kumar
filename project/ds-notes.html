@@ -1,0 +1,603 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Structures - STUDENTVERSE</title>
+
+    <style>
+        
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #08001c, #190038, #31005c);
+    color: white;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    width: 500px;
+    height: 500px;
+    background: #8b5cf6;
+    filter: blur(160px);
+    opacity: 0.25;
+    top: -150px;
+    left: -150px;
+    animation: glow 7s infinite alternate;
+    z-index: -1;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    width: 450px;
+    height: 450px;
+    background: #ec4899;
+    filter: blur(160px);
+    opacity: 0.2;
+    bottom: -150px;
+    right: -100px;
+    animation: glow 8s infinite alternate-reverse;
+    z-index: -1;
+}
+
+@keyframes glow {
+    from { transform: translate(0, 0) scale(1); }
+    to { transform: translate(100px, 80px) scale(1.3); }
+}
+
+/* Navbar */
+.main-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 6%;
+    background: rgba(15, 0, 35, 0.85);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+
+.nav-logo {
+    font-size: 22px;
+    font-weight: bold;
+    color: #d8b4fe;
+}
+
+.nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 22px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: #e879f9;
+    text-shadow: 0 0 12px #e879f9;
+}
+
+/* Header */
+header {
+    text-align: center;
+    padding: 140px 15px 45px;
+    animation: appear 1.2s ease;
+}
+
+header h1 {
+    font-size: clamp(28px, 5vw, 48px);
+    color: #e9d5ff;
+    text-shadow: 0 0 20px #a855f7;
+    animation: float 3s infinite ease-in-out;
+}
+
+header p {
+    margin-top: 12px;
+    color: #ddd6fe;
+}
+
+@keyframes float {
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes appear {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Buttons */
+.action-buttons {
+    text-align: center;
+    margin: 20px;
+}
+
+.action-buttons button {
+    padding: 12px 24px;
+    margin: 8px;
+    border: none;
+    border-radius: 25px;
+    background: linear-gradient(90deg, #9333ea, #db2777);
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.action-buttons button:hover {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 0 20px #a855f7;
+}
+
+/* Unit Navigation */
+.unit-nav {
+    text-align: center;
+    padding: 20px;
+}
+
+.unit-nav a {
+    display: inline-block;
+    color: white;
+    background: rgba(139, 92, 246, 0.3);
+    border: 1px solid #a855f7;
+    padding: 11px 20px;
+    margin: 7px;
+    border-radius: 25px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.unit-nav a:hover {
+    background: #9333ea;
+    transform: translateY(-4px);
+}
+
+/* Notes Cards */
+.unit {
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255,255,255,0.15);
+    margin: 25px auto;
+    padding: 30px;
+    border-radius: 20px;
+    max-width: 950px;
+    line-height: 1.8;
+    box-shadow: 0 10px 35px rgba(0,0,0,0.2);
+    transition: 0.4s;
+    scroll-margin-top: 100px;
+}
+
+.unit:hover {
+    transform: translateY(-5px);
+    border-color: #c084fc;
+    box-shadow: 0 0 25px rgba(168,85,247,0.25);
+}
+
+.unit h2 {
+    color: #d8b4fe;
+    margin-bottom: 15px;
+}
+
+.unit h3 {
+    color: #f0abfc;
+    margin-top: 22px;
+    margin-bottom: 8px;
+}
+
+.unit p, .unit li {
+    margin-bottom: 8px;
+}
+
+.unit ul {
+    padding-left: 25px;
+}
+
+pre {
+    background: #100020;
+    padding: 18px;
+    border-radius: 12px;
+    overflow-x: auto;
+    color: #a7f3d0;
+    margin: 15px 0;
+}
+
+/* Mobile */
+@media(max-width: 650px) {
+    .main-navbar {
+        position: relative;
+        flex-direction: column;
+    }
+
+    header {
+        padding-top: 55px;
+    }
+
+    .nav-links {
+        justify-content: center;
+        gap: 14px;
+    }
+
+    .unit {
+        margin: 15px;
+        padding: 20px;
+    }
+}
+
+/* PDF */
+@media print {
+    body {
+        background: white;
+        color: black;
+    }
+
+    .main-navbar,
+    .action-buttons,
+    .unit-nav {
+        display: none;
+    }
+
+    header h1, .unit h2, .unit h3 {
+        color: black;
+        text-shadow: none;
+    }
+
+    .unit {
+        background: white;
+        color: black;
+        border: 1px solid #ccc;
+        box-shadow: none;
+        break-inside: avoid;
+    }
+
+    pre {
+        color: black;
+        background: #f2f2f2;
+        white-space: pre-wrap;
+    }
+}
+
+    </style>
+</head>
+
+<body>
+
+<nav class="main-navbar">
+    <div class="nav-logo">🌌 STUDENTVERSE</div>
+    <div class="nav-links">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="studyhub.html">StudyHub</a>
+        <a href="skillup.html">SkillUp</a>
+        <a href="index.html">Home</a>
+    </div>
+</nav>
+
+<header>
+    <h1>DATA STRUCTURES</h1>
+    <p>CAM21T | BCA Semester 2</p>
+    <p>Learn Data Structures step by step</p>
+</header>
+
+<div class="action-buttons">
+    <button onclick="window.print()">📥 Download / Save as PDF</button>
+
+    
+</div>
+
+<div class="unit-nav">
+    <a href="#unit1">Unit 1</a>
+    <a href="#unit2">Unit 2</a>
+    <a href="#unit3">Unit 3</a>
+    <a href="#unit4">Unit 4</a>
+</div>
+
+
+<section class="unit" id="unit1">
+    <h2>UNIT 1 – Introduction to Data Structures</h2>
+
+    <h3>1. What is Data?</h3>
+    <p>Data means raw facts and figures that can be processed to get useful information.</p>
+    <p>Example: Student name, age, marks and roll number.</p>
+
+    <h3>2. What is a Data Structure?</h3>
+    <p>A data structure is a way of organizing and storing data in a computer so that it can be accessed and modified efficiently.</p>
+    <p>Example: Arrays, Stacks, Queues and Linked Lists.</p>
+
+    <h3>3. Need for Data Structures</h3>
+    <ul>
+        <li>To organize data properly.</li>
+        <li>To store large amounts of data.</li>
+        <li>To search data easily.</li>
+        <li>To save time and memory.</li>
+        <li>To perform operations efficiently.</li>
+    </ul>
+
+    <h3>4. Types of Data Structures</h3>
+    <p>Data structures are mainly classified into two types:</p>
+    <ul>
+        <li><b>Linear Data Structures:</b> Data elements are arranged in sequence. Example: Array, Stack, Queue and Linked List.</li>
+        <li><b>Non-Linear Data Structures:</b> Data elements are arranged in hierarchical or connected form. Example: Trees and Graphs.</li>
+    </ul>
+
+    <h3>5. Basic Operations</h3>
+    <ul>
+        <li><b>Traversal:</b> Visiting each element.</li>
+        <li><b>Insertion:</b> Adding a new element.</li>
+        <li><b>Deletion:</b> Removing an element.</li>
+        <li><b>Searching:</b> Finding an element.</li>
+        <li><b>Sorting:</b> Arranging elements in order.</li>
+        <li><b>Merging:</b> Combining two data structures.</li>
+    </ul>
+
+    <h3>6. Advantages of Data Structures</h3>
+    <ul>
+        <li>Efficient data management.</li>
+        <li>Easy data access.</li>
+        <li>Better memory utilization.</li>
+        <li>Improved program performance.</li>
+    </ul>
+</section>
+
+
+<section class="unit" id="unit2">
+    <h2>UNIT 2 – Linear Data Structures</h2>
+
+    <h3>1. What is a Linear Data Structure?</h3>
+    <p>A linear data structure is a structure in which data elements are arranged one after another in a sequence.</p>
+    <p>Example: Array, Stack, Queue and Linked List.</p>
+
+    <h3>2. Array</h3>
+    <p>An array is a collection of elements of the same data type stored in continuous memory locations.</p>
+
+    <p><b>Example in C++:</b></p>
+    <pre>
+int marks[5] = {10, 20, 30, 40, 50};
+    </pre>
+
+    <p><b>Advantages:</b></p>
+    <ul>
+        <li>Easy to access elements using index.</li>
+        <li>Stores multiple values using one variable name.</li>
+    </ul>
+
+    <p><b>Disadvantages:</b></p>
+    <ul>
+        <li>Fixed size.</li>
+        <li>Insertion and deletion can be difficult.</li>
+    </ul>
+
+    <h3>3. Stack</h3>
+    <p>A stack is a linear data structure that follows the LIFO principle.</p>
+    <p><b>LIFO:</b> Last In, First Out.</p>
+    <p>Example: A stack of plates.</p>
+
+    <p><b>Stack Operations:</b></p>
+    <ul>
+        <li><b>Push:</b> Adds an element.</li>
+        <li><b>Pop:</b> Removes the top element.</li>
+        <li><b>Peek:</b> Displays the top element.</li>
+        <li><b>isEmpty:</b> Checks whether the stack is empty.</li>
+    </ul>
+
+    <h3>4. Queue</h3>
+    <p>A queue is a linear data structure that follows the FIFO principle.</p>
+    <p><b>FIFO:</b> First In, First Out.</p>
+    <p>Example: People standing in a ticket queue.</p>
+
+    <p><b>Queue Operations:</b></p>
+    <ul>
+        <li><b>Enqueue:</b> Adds an element at the rear.</li>
+        <li><b>Dequeue:</b> Removes an element from the front.</li>
+        <li><b>Front:</b> Shows the first element.</li>
+        <li><b>Rear:</b> Shows the last element.</li>
+    </ul>
+
+    <h3>5. Linked List</h3>
+    <p>A linked list is a collection of nodes where each node contains data and a link to the next node.</p>
+
+    <p><b>Types of Linked Lists:</b></p>
+    <ul>
+        <li>Singly Linked List</li>
+        <li>Doubly Linked List</li>
+        <li>Circular Linked List</li>
+    </ul>
+
+    <h3>6. Applications of Linear Data Structures</h3>
+    <ul>
+        <li>Arrays are used to store lists of values.</li>
+        <li>Stacks are used in undo operations.</li>
+        <li>Queues are used in printer scheduling.</li>
+        <li>Linked lists are used in dynamic memory management.</li>
+    </ul>
+</section>
+
+<section class="unit" id="unit3">
+    <h2>UNIT 3 – Non-Linear Data Structures</h2>
+
+    <h3>1. What is a Non-Linear Data Structure?</h3>
+    <p>A non-linear data structure is a structure in which data elements are not arranged in a sequential order.</p>
+    <p>Example: Trees and Graphs.</p>
+
+    <h3>2. Tree</h3>
+    <p>A tree is a non-linear data structure that stores data in a hierarchical form.</p>
+
+    <p><b>Important Terms:</b></p>
+    <ul>
+        <li><b>Root:</b> The first or topmost node.</li>
+        <li><b>Parent:</b> A node that has child nodes.</li>
+        <li><b>Child:</b> A node connected below another node.</li>
+        <li><b>Leaf:</b> A node that has no children.</li>
+        <li><b>Edge:</b> A connection between two nodes.</li>
+        <li><b>Height:</b> The longest path from the root to a leaf, measured in edges.</li>
+    </ul>
+
+    <h3>3. Binary Tree</h3>
+    <p>A binary tree is a tree in which each node can have a maximum of two children.</p>
+    <p>They are called the left child and right child.</p>
+
+    <h3>4. Binary Search Tree (BST)</h3>
+    <p>A Binary Search Tree is a binary tree in which:</p>
+    <ul>
+        <li>Values smaller than the root are placed on the left side.</li>
+        <li>Values greater than the root are placed on the right side.</li>
+    </ul>
+
+    <h3>5. Tree Traversal</h3>
+    <p>Tree traversal means visiting every node in a tree.</p>
+    <ul>
+        <li><b>Preorder:</b> Root, Left, Right.</li>
+        <li><b>Inorder:</b> Left, Root, Right.</li>
+        <li><b>Postorder:</b> Left, Right, Root.</li>
+    </ul>
+
+    <h3>6. Graph</h3>
+    <p>A graph is a non-linear data structure consisting of vertices (nodes) and edges (connections).</p>
+
+    <h3>7. Types of Graphs</h3>
+    <ul>
+        <li><b>Directed Graph:</b> Edges have a direction.</li>
+        <li><b>Undirected Graph:</b> Edges have no direction.</li>
+        <li><b>Weighted Graph:</b> Edges contain weights or values.</li>
+        <li><b>Unweighted Graph:</b> Edges do not have weights.</li>
+    </ul>
+
+    <h3>8. Applications</h3>
+    <ul>
+        <li>Trees are used in file systems.</li>
+        <li>Graphs are used in social networks.</li>
+        <li>Graphs are used in road maps and navigation.</li>
+        <li>Binary search trees help organize searchable data.</li>
+    </ul>
+</section>
+
+
+<section class="unit" id="unit4">
+    <h2>UNIT 4 – Searching and Sorting</h2>
+
+    <h3>1. What is Searching?</h3>
+    <p>Searching is the process of finding a particular element from a collection of data.</p>
+
+    <h3>2. Linear Search</h3>
+    <p>Linear Search checks each element one by one until the required element is found.</p>
+
+    <p><b>Example:</b></p>
+    <pre>
+int a[] = {10, 20, 30, 40, 50};
+int key = 30;
+
+for(int i = 0; i < 5; i++) {
+    if(a[i] == key) {
+        cout << "Element found";
+        break;
+    }
+}
+    </pre>
+
+    <p><b>Advantages:</b></p>
+    <ul>
+        <li>Simple to understand.</li>
+        <li>Works with sorted and unsorted data.</li>
+    </ul>
+
+    <p><b>Time Complexity:</b> O(n)</p>
+
+    <h3>3. Binary Search</h3>
+    <p>Binary Search finds an element by repeatedly dividing a sorted collection into two halves.</p>
+
+    <p><b>Important:</b> Binary Search requires sorted data.</p>
+
+    <p><b>Advantages:</b></p>
+    <ul>
+        <li>Faster than Linear Search for large sorted collections.</li>
+        <li>Reduces the search area by half each time.</li>
+    </ul>
+
+    <p><b>Time Complexity:</b> O(log n)</p>
+
+    <h3>4. What is Sorting?</h3>
+    <p>Sorting is the process of arranging data in a particular order.</p>
+    <ul>
+        <li><b>Ascending Order:</b> Smallest to largest.</li>
+        <li><b>Descending Order:</b> Largest to smallest.</li>
+    </ul>
+
+    <h3>5. Bubble Sort</h3>
+    <p>Bubble Sort compares adjacent elements and swaps them if they are in the wrong order.</p>
+
+    <p><b>Example:</b></p>
+    <p>Unsorted: 5, 3, 8, 2</p>
+    <p>Sorted: 2, 3, 5, 8</p>
+    <p><b>Time Complexity:</b> O(n²) in the average and worst cases.</p>
+
+    <h3>6. Selection Sort</h3>
+    <p>Selection Sort repeatedly selects the smallest element and places it in the correct position.</p>
+    <p><b>Time Complexity:</b> O(n²)</p>
+
+    <h3>7. Insertion Sort</h3>
+    <p>Insertion Sort takes one element at a time and inserts it into its correct position in the sorted portion.</p>
+    <p><b>Time Complexity:</b> O(n²) in the average and worst cases.</p>
+
+    <h3>8. Applications of Searching and Sorting</h3>
+    <ul>
+        <li>Finding student records.</li>
+        <li>Searching contact numbers.</li>
+        <li>Arranging marks in ascending order.</li>
+        <li>Organizing large amounts of data.</li>
+    </ul>
+</section>
+
+
+<script>
+    const units = document.querySelectorAll(".unit");
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("show-unit");
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    units.forEach(unit => {
+        unit.style.opacity = "0";
+        unit.style.transform = "translateY(30px)";
+        unit.style.transition = "0.7s ease";
+        observer.observe(unit);
+    });
+</script>
+
+<style>
+    .unit.show-unit {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+    }
+</style>
+<div>
+<button onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        ⬆ Back to Top
+    </button>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
