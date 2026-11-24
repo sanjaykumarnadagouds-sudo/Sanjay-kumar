@@ -1,0 +1,1186 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Structures using C++ Practical | STUDENTVERSE</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+    font-family:Arial,sans-serif;color:white;min-height:100vh;
+    background:radial-gradient(circle at top,#172554,#080d20 55%,#020617);
+    overflow-x:hidden;
+}
+body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;
+    background-image:
+    radial-gradient(2px 2px at 20% 30%,#fff,transparent),
+    radial-gradient(2px 2px at 70% 60%,#60a5fa,transparent),
+    radial-gradient(2px 2px at 40% 80%,#fff,transparent);
+    background-size:180px 180px;animation:stars 15s linear infinite;opacity:.5;
+}
+@keyframes stars{to{transform:translateY(-180px)}}
+
+nav{
+    position:sticky;top:0;z-index:10;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:16px 7%;background:#080d20dd;
+    backdrop-filter:blur(15px);border-bottom:1px solid #334155;
+}
+nav h2{color:#38bdf8;letter-spacing:2px}
+nav a{color:white;text-decoration:none;margin-left:20px;font-weight:bold}
+nav a:hover{color:#38bdf8}
+
+header{text-align:center;padding:55px 20px 30px}
+header h1{
+    color:#38bdf8;font-size:clamp(26px,5vw,42px);
+    text-shadow:0 0 20px #0284c7;margin-bottom:12px;
+}
+header p{color:#cbd5e1;margin:8px}
+
+.actions{
+    display:flex;justify-content:center;gap:12px;
+    flex-wrap:wrap;margin:18px;
+}
+button{
+    padding:11px 20px;border:none;border-radius:9px;
+    background:#0284c7;color:white;font-weight:bold;
+    cursor:pointer;transition:.3s;
+}
+button:hover{background:#0ea5e9;transform:translateY(-3px)}
+
+.search-box{
+    display:block;width:min(90%,650px);margin:25px auto;
+    padding:14px 18px;border:1px solid #38bdf8;
+    border-radius:12px;background:#0f172a;color:white;font-size:16px;
+}
+.container{width:min(1100px,92%);margin:auto;padding-bottom:60px}
+
+.unit-nav{
+    display:flex;flex-wrap:wrap;justify-content:center;
+    gap:10px;margin:25px 0 35px;
+}
+.unit-nav a{
+    text-decoration:none;color:#bae6fd;
+    border:1px solid #0ea5e9;padding:10px 16px;
+    border-radius:20px;background:#0f172a;
+}
+.unit-nav a:hover{background:#0369a1;color:white}
+
+.section-title{
+    color:#38bdf8;font-size:26px;margin:45px 0 20px;
+    border-left:4px solid #38bdf8;padding-left:12px;
+}
+.program{
+    background:linear-gradient(145deg,#172554dd,#0f172add);
+    border:1px solid #334e68;border-radius:15px;
+    padding:24px;margin-bottom:24px;
+    box-shadow:0 10px 30px #0005;transition:.3s;
+}
+.program:hover{border-color:#38bdf8;box-shadow:0 12px 30px #0284c755}
+.program h3{color:#7dd3fc;font-size:20px;margin-bottom:16px}
+.program h4{color:#38bdf8;margin:18px 0 9px}
+.program p{color:#e2e8f0;line-height:1.8;margin:8px 0}
+.program strong{color:#bae6fd}
+
+pre{
+    background:#020617;color:#a7f3d0;padding:18px;
+    border-radius:10px;overflow-x:auto;white-space:pre;
+    line-height:1.6;font-size:13px;
+    border:1px solid #334155;margin-top:10px;
+}
+.output{
+    background:#020617;color:#facc15;padding:15px;
+    border-radius:9px;white-space:pre-wrap;
+    line-height:1.7;margin-top:10px;
+    border-left:3px solid #22c55e;
+}
+#noResults{display:none;text-align:center;color:#fca5a5;padding:30px}
+footer{text-align:center;padding:25px;color:#94a3b8;border-top:1px solid #334155}
+#topBtn{
+    position:fixed;bottom:20px;right:20px;display:none;
+    border-radius:50%;width:48px;height:48px;font-size:20px;padding:0;
+}
+@media(max-width:600px){
+    nav{padding:14px 4%;flex-wrap:wrap;gap:12px}
+    nav a{margin-left:8px;font-size:13px}
+    .program{padding:16px}
+    pre{font-size:12px}
+}
+@media print{
+    body{background:white!important;color:black!important}
+    body::before,nav,.actions,.search-box,.unit-nav,#topBtn,footer{display:none!important}
+    header{padding:10px}
+    header h1,.section-title,.program h3,.program h4{color:black!important;text-shadow:none}
+    header p,.program p{color:black!important}
+    .program{background:white!important;border:1px solid #aaa;box-shadow:none;break-inside:avoid}
+    pre,.output{background:#eee!important;color:black!important;white-space:pre-wrap}
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <h2>STUDENTVERSE</h2>
+    <div>
+        <a href="index.html">Home</a>
+        <a href="studyhub.html">StudyHub</a>
+    </div>
+</nav>
+
+<header>
+    <h1>DATA STRUCTURES USING C++</h1>
+    <p>CAM21P | BCA Semester 2</p>
+    <p>University of Mysore | Practical Programs</p>
+    <div class="actions">
+        <button onclick="window.print()">📥 Download / Save as PDF</button>
+        <button onclick="location.href='studyhub.html'">← Back to StudyHub</button>
+    </div>
+</header>
+
+<input type="text" id="searchInput" class="search-box"
+placeholder="🔍 Search programs..." oninput="searchPrograms()">
+
+<div class="container">
+
+<div class="unit-nav">
+    <a href="#partA">Part A – Programs 1 to 8</a>
+    <a href="#partB">Part B – Programs 1 to 8</a>
+</div>
+
+<p id="noResults">No matching programs found.</p>
+
+<h2 class="section-title" id="partA">PART A – BASIC PROGRAMS</h2>
+
+<!-- A1 -->
+<div class="program">
+<h3>1. Program to Find GCD of Two Numbers</h3>
+<p><strong>Aim:</strong> To write a C++ program to find the Greatest Common Divisor (GCD) of two numbers.</p>
+<h4>Source Code</h4>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int a, b, temp;
+    cout &lt;&lt; "Enter two numbers: ";
+    cin &gt;&gt; a &gt;&gt; b;
+
+    int x = a, y = b;
+
+    while (y != 0) {
+        temp = y;
+        y = x % y;
+        x = temp;
+    }
+
+    cout &lt;&lt; "GCD = " &lt;&lt; x;
+    return 0;
+}</code></pre>
+<h4>Sample Output</h4>
+<div class="output">Enter two numbers: 24 36
+GCD = 12</div>
+<p><strong>Result:</strong> The GCD of two numbers is calculated successfully.</p>
+</div>
+
+<!-- A2 -->
+<div class="program">
+<h3>2. Program to Implement Tower of Hanoi</h3>
+<p><strong>Aim:</strong> To solve the Tower of Hanoi problem using recursion.</p>
+<h4>Source Code</h4>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+void tower(int n, char source, char auxiliary, char destination) {
+    if (n == 1) {
+        cout &lt;&lt; "Move disk 1 from "
+             &lt;&lt; source &lt;&lt; " to " &lt;&lt; destination &lt;&lt; endl;
+        return;
+    }
+
+    tower(n - 1, source, destination, auxiliary);
+
+    cout &lt;&lt; "Move disk " &lt;&lt; n &lt;&lt; " from "
+         &lt;&lt; source &lt;&lt; " to " &lt;&lt; destination &lt;&lt; endl;
+
+    tower(n - 1, auxiliary, source, destination);
+}
+
+int main() {
+    int n;
+    cout &lt;&lt; "Enter number of disks: ";
+    cin &gt;&gt; n;
+
+    tower(n, 'A', 'B', 'C');
+    return 0;
+}</code></pre>
+<h4>Sample Output</h4>
+<div class="output">Enter number of disks: 3
+Move disk 1 from A to C
+Move disk 2 from A to B
+Move disk 1 from C to B
+Move disk 3 from A to C
+Move disk 1 from B to A
+Move disk 2 from B to C
+Move disk 1 from A to C</div>
+<p><strong>Result:</strong> Tower of Hanoi is implemented successfully using recursion.</p>
+</div>
+
+<!-- A3 -->
+<div class="program">
+<h3>3. Program to Print Fibonacci Series</h3>
+<p><strong>Aim:</strong> To generate the Fibonacci series using C++.</p>
+<h4>Source Code</h4>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int n, a = 0, b = 1, c;
+
+    cout &lt;&lt; "Enter number of terms: ";
+    cin &gt;&gt; n;
+
+    for (int i = 1; i &lt;= n; i++) {
+        cout &lt;&lt; a &lt;&lt; " ";
+        c = a + b;
+        a = b;
+        b = c;
+    }
+
+    return 0;
+}</code></pre>
+<h4>Sample Output</h4>
+<div class="output">Enter number of terms: 7
+0 1 1 2 3 5 8</div>
+<p><strong>Result:</strong> Fibonacci series is generated successfully.</p>
+</div>
+
+<!-- A4 -->
+<div class="program">
+<h3>4. Program to Find Largest and Smallest Element in an Array</h3>
+<p><strong>Aim:</strong> To find the largest and smallest elements in an array.</p>
+<h4>Source Code</h4>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int a[100], n;
+
+    cout &lt;&lt; "Enter number of elements: ";
+    cin &gt;&gt; n;
+
+    cout &lt;&lt; "Enter array elements: ";
+    for (int i = 0; i &lt; n; i++)
+        cin &gt;&gt; a[i];
+
+    int largest = a[0];
+    int smallest = a[0];
+
+    for (int i = 1; i &lt; n; i++) {
+        if (a[i] &gt; largest)
+            largest = a[i];
+
+        if (a[i] &lt; smallest)
+            smallest = a[i];
+    }
+
+    cout &lt;&lt; "Largest = " &lt;&lt; largest &lt;&lt; endl;
+    cout &lt;&lt; "Smallest = " &lt;&lt; smallest;
+
+    return 0;
+}</code></pre>
+<h4>Sample Output</h4>
+<div class="output">Enter number of elements: 5
+Enter array elements: 10 5 30 2 20
+Largest = 30
+Smallest = 2</div>
+<p><strong>Result:</strong> Largest and smallest elements are found successfully.</p>
+</div>
+
+<!-- A5 -->
+<div class="program">
+<h3>5. Program to Perform Stack Operations</h3>
+<p><strong>Aim:</strong> To implement stack operations using an array.</p>
+<h4>Source Code</h4>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+#define MAX 5
+
+int stack[MAX];
+int top = -1;
+
+void push(int value) {
+    if (top == MAX - 1)
+        cout &lt;&lt; "Stack Overflow\n";
+    else {
+        stack[++top] = value;
+        cout &lt;&lt; "Inserted: " &lt;&lt; value &lt;&lt; endl;
+    }
+}
+
+void pop() {
+    if (top == -1)
+        cout &lt;&lt; "Stack Underflow\n";
+    else
+        cout &lt;&lt; "Deleted: " &lt;&lt; stack[top--] &lt;&lt; endl;
+}
+
+void display() {
+    if (top == -1) {
+        cout &lt;&lt; "Stack is empty\n";
+        return;
+    }
+
+    cout &lt;&lt; "Stack elements: ";
+    for (int i = top; i &gt;= 0; i--)
+        cout &lt;&lt; stack[i] &lt;&lt; " ";
+    cout &lt;&lt; endl;
+}
+
+int main() {
+    int choice, value;
+
+    do {
+        cout &lt;&lt; "\n1.Push 2.Pop 3.Display 4.Exit\n";
+        cout &lt;&lt; "Enter choice: ";
+        cin &gt;&gt; choice;
+
+        switch (choice) {
+            case 1:
+                cout &lt;&lt; "Enter value: ";
+                cin &gt;&gt; value;
+                push(value);
+                break;
+            case 2:
+                pop();
+                break;
+            case 3:
+                display();
+                break;
+            case 4:
+                cout &lt;&lt; "Exiting...";
+                break;
+            default:
+                cout &lt;&lt; "Invalid choice\n";
+        }
+    } while (choice != 4);
+
+    return 0;
+}</code></pre>
+<h4>Sample Output</h4>
+<div class="output">1.Push 2.Pop 3.Display 4.Exit
+Enter choice: 1
+Enter value: 10
+Inserted: 10
+
+Enter choice: 1
+Enter value: 20
+Inserted: 20
+
+Enter choice: 3
+Stack elements: 20 10
+
+Enter choice: 2
+Deleted: 20
+
+Enter choice: 4
+Exiting...</div>
+<p><strong>Result:</strong> Stack push, pop and display operations are implemented successfully.</p>
+</div>
+
+<!-- A6 -->
+<div class="program">
+<h3>6. Program to Perform Linear Queue Operations</h3>
+<p><strong>Aim:</strong> To implement insertion, deletion and display operations in a linear queue using an array.</p>
+<h4>Source Code</h4>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+#define MAX 5
+
+int queueArray[MAX];
+int front = -1, rear = -1;
+
+void enqueue(int value) {
+    if (rear == MAX - 1) {
+        cout &lt;&lt; "Queue Overflow\n";
+    } else {
+        if (front == -1)
+            front = 0;
+
+        queueArray[++rear] = value;
+        cout &lt;&lt; "Inserted: " &lt;&lt; value &lt;&lt; endl;
+    }
+}
+
+void dequeue() {
+    if (front == -1 || front &gt; rear) {
+        cout &lt;&lt; "Queue Underflow\n";
+    } else {
+        cout &lt;&lt; "Deleted: " &lt;&lt; queueArray[front++] &lt;&lt; endl;
+
+        if (front &gt; rear)
+            front = rear = -1;
+    }
+}
+
+void display() {
+    if (front == -1) {
+        cout &lt;&lt; "Queue is empty\n";
+        return;
+    }
+
+    cout &lt;&lt; "Queue elements: ";
+    for (int i = front; i &lt;= rear; i++)
+        cout &lt;&lt; queueArray[i] &lt;&lt; " ";
+    cout &lt;&lt; endl;
+}
+
+int main() {
+    int choice, value;
+
+    do {
+        cout &lt;&lt; "\n1.Enqueue 2.Dequeue 3.Display 4.Exit\n";
+        cout &lt;&lt; "Enter choice: ";
+        cin &gt;&gt; choice;
+
+        switch (choice) {
+            case 1:
+                cout &lt;&lt; "Enter value: ";
+                cin &gt;&gt; value;
+                enqueue(value);
+                break;
+            case 2:
+                dequeue();
+                break;
+            case 3:
+                display();
+                break;
+            case 4:
+                cout &lt;&lt; "Exiting...";
+                break;
+            default:
+                cout &lt;&lt; "Invalid choice\n";
+        }
+    } while (choice != 4);
+
+    return 0;
+}</code></pre>
+<h4>Sample Output</h4>
+<div class="output">1.Enqueue 2.Dequeue 3.Display 4.Exit
+Enter choice: 1
+Enter value: 10
+Inserted: 10
+
+Enter choice: 1
+Enter value: 20
+Inserted: 20
+
+Enter choice: 3
+Queue elements: 10 20
+
+Enter choice: 2
+Deleted: 10
+
+Enter choice: 4
+Exiting...</div>
+<p><strong>Result:</strong> Linear queue operations are implemented successfully.</p>
+</div>
+
+<!-- A7 -->
+<div class="program">
+<h3>7. Program to Insert a Node at the Beginning of a Singly Linked List</h3>
+<p><strong>Aim:</strong> To insert a new node at the beginning of a singly linked list.</p>
+<h4>Source Code</h4>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+struct Node {
+    int data;
+    Node* next;
+};
+
+Node* head = NULL;
+
+void insertBeginning(int value) {
+    Node* newNode = new Node;
+
+    newNode-&gt;data = value;
+    newNode-&gt;next = head;
+    head = newNode;
+}
+
+void display() {
+    Node* temp = head;
+
+    cout &lt;&lt; "Linked List: ";
+    while (temp != NULL) {
+        cout &lt;&lt; temp-&gt;data &lt;&lt; " -&gt; ";
+        temp = temp-&gt;next;
+    }
+    cout &lt;&lt; "NULL\n";
+}
+
+int main() {
+    int n, value;
+
+    cout &lt;&lt; "Enter number of nodes: ";
+    cin &gt;&gt; n;
+
+    for (int i = 0; i &lt; n; i++) {
+        cout &lt;&lt; "Enter value: ";
+        cin &gt;&gt; value;
+        insertBeginning(value);
+    }
+
+    display();
+    return 0;
+}</code></pre>
+<h4>Sample Output</h4>
+<div class="output">Enter number of nodes: 3
+Enter value: 10
+Enter value: 20
+Enter value: 30
+Linked List: 30 -> 20 -> 10 -> NULL</div>
+<p><strong>Result:</strong> A node is inserted at the beginning of a singly linked list successfully.</p>
+</div>
+
+<!-- A8 -->
+<div class="program">
+<h3>8. Program to Delete a Node at the End of a Singly Linked List</h3>
+<p><strong>Aim:</strong> To delete the last node from a singly linked list.</p>
+<h4>Source Code</h4>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+struct Node {
+    int data;
+    Node* next;
+};
+
+Node* head = NULL;
+
+void insert(int value) {
+    Node* newNode = new Node;
+    newNode-&gt;data = value;
+    newNode-&gt;next = NULL;
+
+    if (head == NULL) {
+        head = newNode;
+        return;
+    }
+
+    Node* temp = head;
+    while (temp-&gt;next != NULL)
+        temp = temp-&gt;next;
+
+    temp-&gt;next = newNode;
+}
+
+void deleteEnd() {
+    if (head == NULL) {
+        cout &lt;&lt; "List is empty\n";
+        return;
+    }
+
+    if (head-&gt;next == NULL) {
+        delete head;
+        head = NULL;
+        return;
+    }
+
+    Node* temp = head;
+
+    while (temp-&gt;next-&gt;next != NULL)
+        temp = temp-&gt;next;
+
+    Node* last = temp-&gt;next;
+    cout &lt;&lt; "Deleted: " &lt;&lt; last-&gt;data &lt;&lt; endl;
+
+    delete last;
+    temp-&gt;next = NULL;
+}
+
+void display() {
+    Node* temp = head;
+    cout &lt;&lt; "Linked List: ";
+
+    while (temp != NULL) {
+        cout &lt;&lt; temp-&gt;data &lt;&lt; " -&gt; ";
+        temp = temp-&gt;next;
+    }
+
+    cout &lt;&lt; "NULL\n";
+}
+
+int main() {
+    int n, value;
+
+    cout &lt;&lt; "Enter number of nodes: ";
+    cin &gt;&gt; n;
+
+    for (int i = 0; i &lt; n; i++) {
+        cout &lt;&lt; "Enter value: ";
+        cin &gt;&gt; value;
+        insert(value);
+    }
+
+    display();
+    deleteEnd();
+    display();
+
+    return 0;
+}</code></pre>
+<h4>Sample Output</h4>
+<div class="output">Enter number of nodes: 3
+Enter value: 10
+Enter value: 20
+Enter value: 30
+Linked List: 10 -> 20 -> 30 -> NULL
+Deleted: 30
+Linked List: 10 -> 20 -> NULL</div>
+<p><strong>Result:</strong> The last node is deleted from the singly linked list successfully.</p>
+</div>
+
+<h2 class="section-title" id="partB">PART B – ADVANCED PROGRAMS</h2>
+
+<!-- B1 -->
+<div class="program">
+<h3>1. Program to Construct a Binary Search Tree</h3>
+<p><strong>Aim:</strong> To construct a Binary Search Tree (BST) by inserting elements.</p>
+<h4>Source Code</h4>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+struct Node {
+    int data;
+    Node* left;
+    Node* right;
+};
+
+Node* createNode(int value) {
+    Node* newNode = new Node;
+    newNode-&gt;data = value;
+    newNode-&gt;left = newNode-&gt;right = NULL;
+    return newNode;
+}
+
+Node* insert(Node* root, int value) {
+    if (root == NULL)
+        return createNode(value);
+
+    if (value &lt; root-&gt;data)
+        root-&gt;left = insert(root-&gt;left, value);
+    else if (value &gt; root-&gt;data)
+        root-&gt;right = insert(root-&gt;right, value);
+
+    return root;
+}
+
+void inorder(Node* root) {
+    if (root != NULL) {
+        inorder(root-&gt;left);
+        cout &lt;&lt; root-&gt;data &lt;&lt; " ";
+        inorder(root-&gt;right);
+    }
+}
+
+int main() {
+    Node* root = NULL;
+    int n, value;
+
+    cout &lt;&lt; "Enter number of nodes: ";
+    cin &gt;&gt; n;
+
+    for (int i = 0; i &lt; n; i++) {
+        cout &lt;&lt; "Enter value: ";
+        cin &gt;&gt; value;
+        root = insert(root, value);
+    }
+
+    cout &lt;&lt; "BST Inorder: ";
+    inorder(root);
+
+    return 0;
+}</code></pre>
+<h4>Sample Output</h4>
+<div class="output">Enter number of nodes: 5
+Enter value: 40
+Enter value: 20
+Enter value: 60
+Enter value: 10
+Enter value: 30
+BST Inorder: 10 20 30 40 60</div>
+<p><strong>Result:</strong> A Binary Search Tree is constructed successfully.</p>
+</div>
+
+<!-- B2 -->
+<div class="program">
+<h3>2. Program for Binary Tree Traversal</h3>
+<p><strong>Aim:</strong> To perform inorder, preorder and postorder traversal of a binary tree.</p>
+<h4>Source Code</h4>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+struct Node {
+    int data;
+    Node* left;
+    Node* right;
+};
+
+Node* createNode(int value) {
+    Node* node = new Node;
+    node-&gt;data = value;
+    node-&gt;left = node-&gt;right = NULL;
+    return node;
+}
+
+void inorder(Node* root) {
+    if (root != NULL) {
+        inorder(root-&gt;left);
+        cout &lt;&lt; root-&gt;data &lt;&lt; " ";
+        inorder(root-&gt;right);
+    }
+}
+
+void preorder(Node* root) {
+    if (root != NULL) {
+        cout &lt;&lt; root-&gt;data &lt;&lt; " ";
+        preorder(root-&gt;left);
+        preorder(root-&gt;right);
+    }
+}
+
+void postorder(Node* root) {
+    if (root != NULL) {
+        postorder(root-&gt;left);
+        postorder(root-&gt;right);
+        cout &lt;&lt; root-&gt;data &lt;&lt; " ";
+    }
+}
+
+int main() {
+    Node* root = createNode(1);
+    root-&gt;left = createNode(2);
+    root-&gt;right = createNode(3);
+    root-&gt;left-&gt;left = createNode(4);
+    root-&gt;left-&gt;right = createNode(5);
+
+    cout &lt;&lt; "Inorder: ";
+    inorder(root);
+
+    cout &lt;&lt; "\nPreorder: ";
+    preorder(root);
+
+    cout &lt;&lt; "\nPostorder: ";
+    postorder(root);
+
+    return 0;
+}</code></pre>
+<h4>Sample Output</h4>
+<div class="output">Inorder: 4 2 5 1 3
+Preorder: 1 2 4 5 3
+Postorder: 4 5 2 3 1</div>
+<p><strong>Result:</strong> All three binary tree traversal methods are performed successfully.</p>
+</div>
+
+<!-- B3 -->
+<div class="program">
+<h3>3. Program to Implement Depth First Search (DFS)</h3>
+<p><strong>Aim:</strong> To traverse a graph using Depth First Search.</p>
+<h4>Source Code</h4>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+int graph[10][10], visited[10], n;
+
+void DFS(int vertex) {
+    cout &lt;&lt; vertex &lt;&lt; " ";
+    visited[vertex] = 1;
+
+    for (int i = 0; i &lt; n; i++) {
+        if (graph[vertex][i] == 1 && !visited[i]) {
+            DFS(i);
+        }
+    }
+}
+
+int main() {
+    int edges, u, v, start;
+
+    cout &lt;&lt; "Enter number of vertices: ";
+    cin &gt;&gt; n;
+
+    cout &lt;&lt; "Enter number of edges: ";
+    cin &gt;&gt; edges;
+
+    for (int i = 0; i &lt; edges; i++) {
+        cout &lt;&lt; "Enter edge (u v): ";
+        cin &gt;&gt; u &gt;&gt; v;
+        graph[u][v] = graph[v][u] = 1;
+    }
+
+    cout &lt;&lt; "Enter starting vertex: ";
+    cin &gt;&gt; start;
+
+    cout &lt;&lt; "DFS Traversal: ";
+    DFS(start);
+
+    return 0;
+}</code></pre>
+<h4>Sample Output</h4>
+<div class="output">Enter number of vertices: 4
+Enter number of edges: 3
+Enter edge (u v): 0 1
+Enter edge (u v): 0 2
+Enter edge (u v): 1 3
+Enter starting vertex: 0
+DFS Traversal: 0 1 3 2</div>
+<p><strong>Result:</strong> Graph traversal using DFS is performed successfully. Vertices are numbered from 0.</p>
+</div>
+
+<!-- B4 -->
+<div class="program">
+<h3>4. Program to Implement Breadth First Search (BFS)</h3>
+<p><strong>Aim:</strong> To traverse a graph using Breadth First Search.</p>
+<h4>Source Code</h4>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;queue&gt;
+using namespace std;
+
+int graph[10][10], visited[10], n;
+
+void BFS(int start) {
+    queue&lt;int&gt; q;
+
+    visited[start] = 1;
+    q.push(start);
+
+    while (!q.empty()) {
+        int vertex = q.front();
+        q.pop();
+
+        cout &lt;&lt; vertex &lt;&lt; " ";
+
+        for (int i = 0; i &lt; n; i++) {
+            if (graph[vertex][i] == 1 && !visited[i]) {
+                visited[i] = 1;
+                q.push(i);
+            }
+        }
+    }
+}
+
+int main() {
+    int edges, u, v, start;
+
+    cout &lt;&lt; "Enter number of vertices: ";
+    cin &gt;&gt; n;
+
+    cout &lt;&lt; "Enter number of edges: ";
+    cin &gt;&gt; edges;
+
+    for (int i = 0; i &lt; edges; i++) {
+        cout &lt;&lt; "Enter edge (u v): ";
+        cin &gt;&gt; u &gt;&gt; v;
+        graph[u][v] = graph[v][u] = 1;
+    }
+
+    cout &lt;&lt; "Enter starting vertex: ";
+    cin &gt;&gt; start;
+
+    cout &lt;&lt; "BFS Traversal: ";
+    BFS(start);
+
+    return 0;
+}</code></pre>
+<h4>Sample Output</h4>
+<div class="output">Enter number of vertices: 4
+Enter number of edges: 3
+Enter edge (u v): 0 1
+Enter edge (u v): 0 2
+Enter edge (u v): 1 3
+Enter starting vertex: 0
+BFS Traversal: 0 1 2 3</div>
+<p><strong>Result:</strong> Graph traversal using BFS is performed successfully. Vertices are numbered from 0.</p>
+</div>
+
+<!-- B5 -->
+<div class="program">
+<h3>5. Program to Sort an Array Using Selection Sort</h3>
+<p><strong>Aim:</strong> To sort array elements in ascending order using Selection Sort.</p>
+<h4>Source Code</h4>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int a[100], n, temp, minIndex;
+
+    cout &lt;&lt; "Enter number of elements: ";
+    cin &gt;&gt; n;
+
+    cout &lt;&lt; "Enter elements: ";
+    for (int i = 0; i &lt; n; i++)
+        cin &gt;&gt; a[i];
+
+    for (int i = 0; i &lt; n - 1; i++) {
+        minIndex = i;
+
+        for (int j = i + 1; j &lt; n; j++) {
+            if (a[j] &lt; a[minIndex])
+                minIndex = j;
+        }
+
+        temp = a[i];
+        a[i] = a[minIndex];
+        a[minIndex] = temp;
+    }
+
+    cout &lt;&lt; "Sorted array: ";
+    for (int i = 0; i &lt; n; i++)
+        cout &lt;&lt; a[i] &lt;&lt; " ";
+
+    return 0;
+}</code></pre>
+<h4>Sample Output</h4>
+<div class="output">Enter number of elements: 5
+Enter elements: 64 25 12 22 11
+Sorted array: 11 12 22 25 64</div>
+<p><strong>Result:</strong> Array elements are sorted using Selection Sort successfully.</p>
+</div>
+
+<!-- B6 -->
+<div class="program">
+<h3>6. Program to Sort an Array Using Bubble Sort</h3>
+<p><strong>Aim:</strong> To sort array elements in ascending order using Bubble Sort.</p>
+<h4>Source Code</h4>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int a[100], n, temp;
+
+    cout &lt;&lt; "Enter number of elements: ";
+    cin &gt;&gt; n;
+
+    cout &lt;&lt; "Enter elements: ";
+    for (int i = 0; i &lt; n; i++)
+        cin &gt;&gt; a[i];
+
+    for (int i = 0; i &lt; n - 1; i++) {
+        for (int j = 0; j &lt; n - i - 1; j++) {
+            if (a[j] &gt; a[j + 1]) {
+                temp = a[j];
+                a[j] = a[j + 1];
+                a[j + 1] = temp;
+            }
+        }
+    }
+
+    cout &lt;&lt; "Sorted array: ";
+    for (int i = 0; i &lt; n; i++)
+        cout &lt;&lt; a[i] &lt;&lt; " ";
+
+    return 0;
+}</code></pre>
+<h4>Sample Output</h4>
+<div class="output">Enter number of elements: 5
+Enter elements: 5 1 4 2 8
+Sorted array: 1 2 4 5 8</div>
+<p><strong>Result:</strong> Array elements are sorted using Bubble Sort successfully.</p>
+</div>
+
+<!-- B7 -->
+<div class="program">
+<h3>7. Program to Perform Linear Search</h3>
+<p><strong>Aim:</strong> To search for an element in an array using Linear Search.</p>
+<h4>Source Code</h4>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int a[100], n, key, found = 0;
+
+    cout &lt;&lt; "Enter number of elements: ";
+    cin &gt;&gt; n;
+
+    cout &lt;&lt; "Enter array elements: ";
+    for (int i = 0; i &lt; n; i++)
+        cin &gt;&gt; a[i];
+
+    cout &lt;&lt; "Enter element to search: ";
+    cin &gt;&gt; key;
+
+    for (int i = 0; i &lt; n; i++) {
+        if (a[i] == key) {
+            cout &lt;&lt; "Element found at position " &lt;&lt; i + 1;
+            found = 1;
+            break;
+        }
+    }
+
+    if (!found)
+        cout &lt;&lt; "Element not found";
+
+    return 0;
+}</code></pre>
+<h4>Sample Output</h4>
+<div class="output">Enter number of elements: 5
+Enter array elements: 10 20 30 40 50
+Enter element to search: 30
+Element found at position 3</div>
+<p><strong>Result:</strong> An element is searched successfully using Linear Search.</p>
+</div>
+
+<!-- B8 -->
+<div class="program">
+<h3>8. Program to Perform Binary Search</h3>
+<p><strong>Aim:</strong> To search for an element in a sorted array using Binary Search.</p>
+<h4>Source Code</h4>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int a[100], n, key;
+    int low, high, mid, found = 0;
+
+    cout &lt;&lt; "Enter number of elements: ";
+    cin &gt;&gt; n;
+
+    cout &lt;&lt; "Enter sorted array elements: ";
+    for (int i = 0; i &lt; n; i++)
+        cin &gt;&gt; a[i];
+
+    cout &lt;&lt; "Enter element to search: ";
+    cin &gt;&gt; key;
+
+    low = 0;
+    high = n - 1;
+
+    while (low &lt;= high) {
+        mid = low + (high - low) / 2;
+
+        if (a[mid] == key) {
+            cout &lt;&lt; "Element found at position " &lt;&lt; mid + 1;
+            found = 1;
+            break;
+        }
+        else if (a[mid] &lt; key)
+            low = mid + 1;
+        else
+            high = mid - 1;
+    }
+
+    if (!found)
+        cout &lt;&lt; "Element not found";
+
+    return 0;
+}</code></pre>
+<h4>Sample Output</h4>
+<div class="output">Enter number of elements: 5
+Enter sorted array elements: 10 20 30 40 50
+Enter element to search: 40
+Element found at position 4</div>
+<p><strong>Result:</strong> An element is searched successfully using Binary Search.</p>
+</div>
+
+<h2 class="section-title">Practical Examination Preparation</h2>
+
+<div class="program">
+<h3>University Practical Exam Pattern</h3>
+<p><strong>Writing:</strong> One program from Part A and one from Part B.</p>
+<p><strong>Execution:</strong> Execute any one of the written programs.</p>
+<p><strong>Viva:</strong> Questions related to the practical programs and data structures.</p>
+<p><strong>Important:</strong> Binary Search requires the input array to be sorted. DFS and BFS examples use vertices numbered from 0.</p>
+</div>
+
+<div class="program">
+<h3>Important Viva Questions</h3>
+<p><strong>1. What is a data structure?</strong></p>
+<p>A data structure is a method of organizing and storing data so that it can be accessed and modified efficiently.</p>
+
+<p><strong>2. What is a stack?</strong></p>
+<p>A stack is a linear data structure that follows LIFO (Last In, First Out).</p>
+
+<p><strong>3. What is a queue?</strong></p>
+<p>A queue is a linear data structure that follows FIFO (First In, First Out).</p>
+
+<p><strong>4. What is a linked list?</strong></p>
+<p>A linked list is a collection of nodes where each node contains data and a link to the next node.</p>
+
+<p><strong>5. What is recursion?</strong></p>
+<p>Recursion is a technique in which a function calls itself.</p>
+
+<p><strong>6. What is a binary tree?</strong></p>
+<p>A binary tree is a tree in which each node can have at most two children.</p>
+
+<p><strong>7. What is a Binary Search Tree?</strong></p>
+<p>A BST is a binary tree in which smaller values are stored on the left and larger values on the right.</p>
+
+<p><strong>8. What is DFS?</strong></p>
+<p>Depth First Search explores a graph deeply along a path before backtracking.</p>
+
+<p><strong>9. What is BFS?</strong></p>
+<p>Breadth First Search explores graph vertices level by level using a queue.</p>
+
+<p><strong>10. What is sorting?</strong></p>
+<p>Sorting is the process of arranging data in ascending or descending order.</p>
+
+<p><strong>11. What is searching?</strong></p>
+<p>Searching is the process of finding a particular element in a collection.</p>
+
+<p><strong>12. What is the difference between Linear Search and Binary Search?</strong></p>
+<p>Linear Search checks elements one by one. Binary Search repeatedly divides a sorted search range into two halves.</p>
+</div>
+
+</div>
+
+<footer>
+    <p>STUDENTVERSE | BCA Semester 2</p>
+    <p>Learn • Practice • Succeed</p>
+</footer>
+
+<button id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+function searchPrograms(){
+    const filter=document.getElementById("searchInput").value.toLowerCase().trim();
+    const programs=document.querySelectorAll(".program");
+    let count=0;
+
+    programs.forEach(program=>{
+        const match=program.innerText.toLowerCase().includes(filter);
+        program.style.display=match?"block":"none";
+        if(match) count++;
+    });
+
+    document.querySelectorAll(".section-title").forEach(title=>{
+        let next=title.nextElementSibling;
+        let visible=false;
+
+        while(next && !next.classList.contains("section-title")){
+            if(next.classList.contains("program") && next.style.display!=="none"){
+                visible=true;
+            }
+            next=next.nextElementSibling;
+        }
+
+        title.style.display=visible?"block":"none";
+    });
+
+    document.getElementById("noResults").style.display=
+        count===0?"block":"none";
+}
+
+window.addEventListener("scroll",()=>{
+    document.getElementById("topBtn").style.display=
+        window.scrollY>300?"block":"none";
+});
+</script> 
+
+</body>
+</html>

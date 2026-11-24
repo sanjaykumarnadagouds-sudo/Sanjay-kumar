@@ -1,0 +1,1043 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Problem Solving Using C++ | STUDENTVERSE</title>
+
+<style>
+
+.main-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 6%;
+    background: rgba(12, 8, 35, 0.85);
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+    backdrop-filter: blur(15px);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-logo {
+    color: #d8b4fe;
+    font-size: 21px;
+    font-weight: bold;
+}
+
+.nav-links {
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: #c084fc;
+    text-shadow: 0 0 12px #a855f7;
+}
+
+@media (max-width: 650px) {
+    .main-navbar {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .nav-links {
+        justify-content: center;
+        gap: 15px;
+    }
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #09091c;
+    color: white;
+}
+
+header {
+    text-align: center;
+    padding: 35px 15px;
+    background: linear-gradient(135deg, #251052, #7516a8);
+}
+
+header h1 {
+    font-size: 30px;
+}
+
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 25px;
+}
+
+.unit {
+    background: #17152e;
+    border: 1px solid #7044b8;
+    padding: 22px;
+    margin: 25px 0;
+    border-radius: 16px;
+}
+
+.unit h2 {
+    color: #c9a7ff;
+}
+
+.topic {
+    background: #242044;
+    padding: 18px;
+    margin: 15px 0;
+    border-radius: 12px;
+}
+
+.topic h3 {
+    color: #d7baff;
+}
+
+footer {
+    text-align: center;
+    padding: 25px;
+    color: #aaa;
+}
+
+.unit-nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 20px 0;
+}
+
+.unit-nav a {
+    text-decoration: none;
+    color: white;
+    background: linear-gradient(135deg, #7928ca, #ff0080);
+    padding: 11px 20px;
+    border-radius: 25px;
+    transition: 0.3s;
+}
+
+.unit-nav a:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 5px 20px #7928ca;
+}
+
+.print-btn {
+    display: block;
+    margin: 25px auto;
+    padding: 14px 25px;
+    border: none;
+    border-radius: 30px;
+    background: linear-gradient(135deg, #7928ca, #ff0080);
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.print-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 20px #7928ca;
+}
+
+@media print {
+    body {
+        background: white;
+        color: black;
+    }
+
+    header, footer, .unit-nav, .print-btn {
+        display: none !important;
+    }
+
+    .unit {
+        background: white;
+        color: black;
+        border: 1px solid #ccc;
+        break-inside: avoid;
+    }
+
+    .topic {
+        background: white;
+        color: black;
+        border: 1px solid #ddd;
+    }
+
+    .topic h3, .unit h2 {
+        color: black;
+    }
+}
+
+.notes-search {
+    max-width: 600px;
+    margin: 25px auto;
+}
+
+.notes-search input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 15px;
+    border-radius: 30px;
+    border: 1px solid #7044b8;
+    background: #17152e;
+    color: white;
+    font-size: 16px;
+    outline: none;
+}
+
+.notes-search input:focus {
+    border-color: #ff0080;
+    box-shadow: 0 0 12px #7928ca;
+}
+
+#topBtn {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    padding: 13px 20px;
+    background: linear-gradient(135deg, #7928ca, #ff0080);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: bold;
+    z-index: 1000;
+    box-shadow: 0 4px 15px #7928ca66;
+}
+
+#topBtn:hover {
+    transform: translateY(-4px);
+}
+
+.topic {
+    background: linear-gradient(135deg, #242044, #17152e);
+    padding: 22px;
+    margin: 18px 0;
+    border-radius: 15px;
+    border: 1px solid #7044b8;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    transform-style: preserve-3d;
+}
+
+.topic:hover {
+    transform: perspective(1000px) rotateX(3deg) rotateY(-3deg) translateY(-7px);
+    box-shadow: 0 12px 30px #7928ca55;
+    border-color: #ff0080;
+}
+
+.topic h3 {
+    color: #d7baff;
+    margin-top: 0;
+}
+
+.topic p {
+    line-height: 1.7;
+}
+
+.topic pre {
+    background: #0b0a1c;
+    padding: 15px;
+    border-radius: 10px;
+    overflow-x: auto;
+    border-left: 4px solid #a855f7;
+}
+
+.topic code {
+    color: #8ee7ff;
+    font-size: 14px;
+}
+
+.main-footer {
+    text-align: center;
+    margin-top: 60px;
+    padding: 35px 15px;
+    background: linear-gradient(135deg, #17102e, #35105c);
+    border-top: 1px solid #7044b8;
+}
+
+.main-footer h2 {
+    color: #d7baff;
+    letter-spacing: 3px;
+}
+
+.main-footer p {
+    color: #aaa;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+    margin: 20px 0;
+}
+
+.footer-links a {
+    color: #d7baff;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.footer-links a:hover {
+    color: #ff0080;
+}
+
+.copyright {
+    font-size: 13px;
+}
+
+.back-dashboard {
+    display: inline-block;
+    padding: 12px 22px;
+    margin: 15px 0 20px;
+    border-radius: 25px;
+    background: linear-gradient(135deg, #7928ca, #ff0080);
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.back-dashboard:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 5px 20px #7928ca88;
+}
+
+</style>
+</head>
+
+<body>
+
+<nav class="main-navbar">
+    <div class="nav-logo">🌌 STUDENTVERSE</div>
+
+    <div class="nav-links">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="studyhub.html">StudyHub</a>
+        <a href="skillup.html">SkillUp</a>
+        <a href="index.html">Home</a>
+    </div>
+</nav>
+
+<header>
+    <h1>Problem Solving Using C++</h1>
+    <p>STUDENTVERSE | BCA Semester 1</p>
+    <p>Paper Code: CAM12T | Theory</p>
+</header>
+
+<main class="container">
+
+<a href="dashboard.html" class="back-dashboard">
+    ← Back to Dashboard
+</a>
+
+<nav class="unit-nav">
+    <a href="#cpp-unit1">Unit 1</a>
+    <a href="#cpp-unit2">Unit 2</a>
+    <a href="#cpp-unit3">Unit 3</a>
+    <a href="#cpp-unit4">Unit 4</a>
+</nav>
+
+<div class="notes-search">
+    <input
+        type="text"
+        id="notesSearch"
+        placeholder="🔍 Search C++ topics..."
+    >
+</div>
+
+<button class="print-btn" onclick="window.print()">
+    📄 Download / Save Notes as PDF
+</button>
+
+
+<section class="unit" id="cpp-unit1">
+    <h2>UNIT 1 – INTRODUCTION TO PROGRAMMING</h2>
+
+    <div class="topic">
+        <h3>1. Program Development Life Cycle (PDLC)</h3>
+        <p>The Program Development Life Cycle is a series of steps followed to develop a computer program.</p>
+        <ol>
+            <li><b>Problem Definition:</b> Understand the problem.</li>
+            <li><b>Analysis:</b> Identify the inputs and outputs.</li>
+            <li><b>Design:</b> Prepare an algorithm or flowchart.</li>
+            <li><b>Coding:</b> Write the program using a programming language.</li>
+            <li><b>Testing:</b> Check and correct errors.</li>
+            <li><b>Implementation:</b> Run the program.</li>
+            <li><b>Maintenance:</b> Update the program when required.</li>
+        </ol>
+    </div>
+
+    <div class="topic">
+        <h3>2. Procedure-Oriented Programming (POP)</h3>
+        <p>POP is a programming approach in which a program is divided into functions or procedures.</p>
+        <p><b>Features:</b></p>
+        <ul>
+            <li>Focuses on functions.</li>
+            <li>Uses a top-down approach.</li>
+            <li>Data is often shared between functions.</li>
+            <li>Examples: C and Pascal.</li>
+        </ul>
+    </div>
+
+    <div class="topic">
+        <h3>3. Object-Oriented Programming (OOP)</h3>
+        <p>OOP is a programming approach based on objects and classes. It combines data and functions into a single unit.</p>
+        <p><b>Basic concepts:</b></p>
+        <ul>
+            <li><b>Class:</b> A blueprint for creating objects.</li>
+            <li><b>Object:</b> An instance of a class.</li>
+            <li><b>Encapsulation:</b> Combining data and functions together.</li>
+            <li><b>Abstraction:</b> Hiding unnecessary details.</li>
+            <li><b>Inheritance:</b> Acquiring properties of another class.</li>
+            <li><b>Polymorphism:</b> One name with different forms.</li>
+        </ul>
+    </div>
+
+    <div class="topic">
+        <h3>4. Benefits and Applications of OOP</h3>
+        <p><b>Benefits:</b></p>
+        <ul>
+            <li>Code reusability.</li>
+            <li>Easy maintenance.</li>
+            <li>Better data security.</li>
+            <li>Easy program development.</li>
+        </ul>
+        <p><b>Applications:</b> Banking software, games, mobile applications, business software and simulations.</p>
+    </div>
+
+    <div class="topic">
+        <h3>5. Introduction to C++</h3>
+        <p>C++ is a general-purpose programming language developed by Bjarne Stroustrup. It supports both procedural and object-oriented programming.</p>
+        <p><b>Features:</b> Fast execution, reusable code, classes, objects and functions.</p>
+    </div>
+
+    <div class="topic">
+        <h3>6. Structure of a C++ Program</h3>
+        <pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main()
+{
+    cout &lt;&lt; "Hello World";
+    return 0;
+}</code></pre>
+        <p><b>Explanation:</b></p>
+        <ul>
+            <li><b>#include &lt;iostream&gt;:</b> Includes input-output facilities.</li>
+            <li><b>using namespace std:</b> Allows standard names without writing std::.</li>
+            <li><b>int main():</b> Starting point of the program.</li>
+            <li><b>cout:</b> Displays output.</li>
+            <li><b>return 0:</b> Ends the program successfully.</li>
+        </ul>
+    </div>
+
+    <div class="topic">
+        <h3>7. Input and Output Statements</h3>
+        <p><b>cin:</b> Used to accept input from the user.</p>
+        <p><b>cout:</b> Used to display output.</p>
+        <pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main()
+{
+    int age;
+    cout &lt;&lt; "Enter your age: ";
+    cin &gt;&gt; age;
+    cout &lt;&lt; "Your age is " &lt;&lt; age;
+    return 0;
+}</code></pre>
+    </div>
+
+    <div class="topic">
+        <h3>8. Keywords and Identifiers</h3>
+        <p><b>Keywords:</b> Reserved words with special meanings in C++.</p>
+        <p>Examples: int, float, if, else, return, class.</p>
+        <p><b>Identifiers:</b> Names given to variables, functions and classes.</p>
+        <p>Examples: student, total, marks.</p>
+    </div>
+
+    <div class="topic">
+        <h3>9. Constants and Variables</h3>
+        <p><b>Variable:</b> A named memory location whose value can change.</p>
+        <p>Example: <code>int age = 20;</code></p>
+        <p><b>Constant:</b> A fixed value that cannot be changed during program execution.</p>
+        <p>Example: <code>const float PI = 3.14;</code></p>
+    </div>
+
+    <div class="topic">
+        <h3>10. Data Types</h3>
+        <p>Data types specify the kind of value a variable can store.</p>
+        <ul>
+            <li><b>int:</b> Whole numbers (10).</li>
+            <li><b>float:</b> Decimal numbers (10.5).</li>
+            <li><b>double:</b> Decimal numbers with greater precision.</li>
+            <li><b>char:</b> A single character ('A').</li>
+            <li><b>bool:</b> true or false.</li>
+            <li><b>void:</b> No value.</li>
+        </ul>
+    </div>
+
+    <div class="topic">
+        <h3>11. Operators and Expressions</h3>
+        <p>Operators are symbols used to perform operations on values.</p>
+        <ul>
+            <li><b>Arithmetic:</b> +, -, *, /, %</li>
+            <li><b>Relational:</b> ==, !=, &gt;, &lt;, &gt;=, &lt;=</li>
+            <li><b>Logical:</b> &amp;&amp;, ||, !</li>
+            <li><b>Assignment:</b> =, +=, -=</li>
+            <li><b>Increment/Decrement:</b> ++, --</li>
+            <li><b>Conditional:</b> ?:</li>
+        </ul>
+        <p>An expression is a combination of variables, constants and operators.</p>
+        <p>Example: <code>total = a + b;</code></p>
+    </div>
+
+    <div class="topic">
+        <h3>12. Operator Precedence</h3>
+        <p>Operator precedence determines which operation is performed first in an expression.</p>
+        <p>Example: <code>5 + 2 * 3 = 11</code></p>
+        <p>Multiplication is performed before addition.</p>
+        <p>Parentheses can change the order: <code>(5 + 2) * 3 = 21</code></p>
+    </div>
+
+    <div class="topic">
+        <h3>13. Type Conversion</h3>
+        <p>Type conversion means changing a value from one data type to another.</p>
+        <ul>
+            <li><b>Implicit:</b> Automatically performed by the compiler.</li>
+            <li><b>Explicit:</b> Performed manually using type casting.</li>
+        </ul>
+        <pre><code>int a = 10;
+float b = (float)a;</code></pre>
+    </div>
+
+    <div class="topic">
+        <h3>14. Storage Classes</h3>
+        <p>Storage classes define the scope, lifetime and visibility of variables.</p>
+        <ul>
+            <li><b>auto:</b> Traditional default local variable storage class.</li>
+            <li><b>register:</b> Historical hint to store a variable in a CPU register.</li>
+            <li><b>static:</b> Retains its value between function calls.</li>
+            <li><b>extern:</b> Refers to a variable defined elsewhere.</li>
+        </ul>
+    </div>
+
+    <div class="topic">
+        <h3>Important Exam Questions – Unit 1</h3>
+        <ol>
+            <li>Explain the Program Development Life Cycle.</li>
+            <li>Differentiate POP and OOP.</li>
+            <li>Explain the basic concepts of OOP.</li>
+            <li>Write the benefits and applications of OOP.</li>
+            <li>Explain the structure of a C++ program.</li>
+            <li>Differentiate keywords and identifiers.</li>
+            <li>Explain the different data types in C++.</li>
+            <li>Explain the types of operators with examples.</li>
+            <li>What is operator precedence?</li>
+            <li>Explain type conversion and storage classes.</li>
+        </ol>
+    </div>
+</section>
+
+<section class="unit" id="cpp-unit2">
+    <h2>UNIT 2 – CONTROL STATEMENTS AND FUNCTIONS</h2>
+
+    <div class="topic">
+        <h3>1. Control Statements</h3>
+        <p>Control statements are used to control the flow of execution in a program.</p>
+        <p>Types:</p>
+        <ul>
+            <li>Decision-making statements</li>
+            <li>Looping statements</li>
+            <li>Jump statements</li>
+        </ul>
+    </div>
+
+    <div class="topic">
+        <h3>2. if Statement</h3>
+        <p>The if statement executes a block of code when a condition is true.</p>
+        <pre><code>int age = 20;
+
+if (age >= 18)
+{
+    cout &lt;&lt; "Eligible";
+}</code></pre>
+    </div>
+
+    <div class="topic">
+        <h3>3. if-else Statement</h3>
+        <p>It executes one block if the condition is true and another block if it is false.</p>
+        <pre><code>int n = 5;
+
+if (n % 2 == 0)
+{
+    cout &lt;&lt; "Even";
+}
+else
+{
+    cout &lt;&lt; "Odd";
+}</code></pre>
+    </div>
+
+    <div class="topic">
+        <h3>4. Nested if Statement</h3>
+        <p>A nested if means placing one if statement inside another if statement.</p>
+        <pre><code>int n = 10;
+
+if (n > 0)
+{
+    if (n < 100)
+    {
+        cout &lt;&lt; "Number is between 1 and 99";
+    }
+}</code></pre>
+    </div>
+
+    <div class="topic">
+        <h3>5. switch Statement</h3>
+        <p>The switch statement is used to select one option from multiple choices.</p>
+        <pre><code>int choice = 2;
+
+switch (choice)
+{
+    case 1:
+        cout &lt;&lt; "One";
+        break;
+
+    case 2:
+        cout &lt;&lt; "Two";
+        break;
+
+    default:
+        cout &lt;&lt; "Invalid choice";
+}</code></pre>
+    </div>
+
+    <div class="topic">
+        <h3>6. Looping Statements</h3>
+        <p>Loops are used to execute a block of code repeatedly.</p>
+        <p>Types of loops:</p>
+        <ul>
+            <li>for loop</li>
+            <li>while loop</li>
+            <li>do-while loop</li>
+        </ul>
+    </div>
+
+    <div class="topic">
+        <h3>7. for Loop</h3>
+        <p>A for loop is generally used when the number of repetitions is known.</p>
+        <pre><code>for (int i = 1; i <= 5; i++)
+{
+    cout &lt;&lt; i &lt;&lt; endl;
+}</code></pre>
+        <p>Output: 1 2 3 4 5</p>
+    </div>
+
+    <div class="topic">
+        <h3>8. while Loop</h3>
+        <p>A while loop checks the condition before executing the loop body.</p>
+        <pre><code>int i = 1;
+
+while (i <= 5)
+{
+    cout &lt;&lt; i &lt;&lt; endl;
+    i++;
+}</code></pre>
+    </div>
+
+    <div class="topic">
+        <h3>9. do-while Loop</h3>
+        <p>A do-while loop executes the body at least once before checking the condition.</p>
+        <pre><code>int i = 1;
+
+do
+{
+    cout &lt;&lt; i &lt;&lt; endl;
+    i++;
+}
+while (i <= 5);</code></pre>
+    </div>
+
+    <div class="topic">
+        <h3>10. Jump Statements</h3>
+        <ul>
+            <li><b>break:</b> Terminates a loop or switch statement.</li>
+            <li><b>continue:</b> Skips the current iteration and moves to the next one.</li>
+            <li><b>goto:</b> Transfers control to a labelled statement.</li>
+            <li><b>return:</b> Exits a function and may return a value.</li>
+        </ul>
+    </div>
+
+    <div class="topic">
+        <h3>11. Functions in C++</h3>
+        <p>A function is a block of code designed to perform a particular task.</p>
+        <p>Benefits:</p>
+        <ul>
+            <li>Code reusability.</li>
+            <li>Reduces repetition.</li>
+            <li>Makes programs easier to understand.</li>
+            <li>Easy debugging and maintenance.</li>
+        </ul>
+    </div>
+
+    <div class="topic">
+        <h3>12. Function Declaration, Definition and Calling</h3>
+        <pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+int add(int, int); // Declaration
+
+int main()
+{
+    cout &lt;&lt; add(10, 20); // Function call
+    return 0;
+}
+
+int add(int a, int b) // Definition
+{
+    return a + b;
+}</code></pre>
+        <ul>
+            <li><b>Declaration:</b> Announces the function.</li>
+            <li><b>Definition:</b> Contains the function body.</li>
+            <li><b>Calling:</b> Executes the function.</li>
+        </ul>
+    </div>
+
+    <div class="topic">
+        <h3>13. Function Arguments and Return Values</h3>
+        <p>Arguments are values passed to a function. A return value is the result sent back by the function.</p>
+        <pre><code>int square(int n)
+{
+    return n * n;
+}</code></pre>
+        <p>Calling <code>square(5)</code> returns 25.</p>
+    </div>
+
+    <div class="topic">
+        <h3>14. Call by Value and Call by Reference</h3>
+        <p><b>Call by Value:</b> A copy of the variable is passed. Changes do not affect the original variable.</p>
+        <p><b>Call by Reference:</b> A reference to the original variable is passed. Changes can affect the original variable.</p>
+        <pre><code>void change(int &amp;x)
+{
+    x = 100;
+}</code></pre>
+    </div>
+
+    <div class="topic">
+        <h3>15. Function Overloading</h3>
+        <p>Function overloading means defining multiple functions with the same name but different parameter lists.</p>
+        <pre><code>int add(int a, int b)
+{
+    return a + b;
+}
+
+float add(float a, float b)
+{
+    return a + b;
+}</code></pre>
+    </div>
+
+    <div class="topic">
+        <h3>Important Exam Questions – Unit 2</h3>
+        <ol>
+            <li>Explain different control statements in C++.</li>
+            <li>Explain if-else and nested if with examples.</li>
+            <li>Explain the switch statement.</li>
+            <li>Differentiate for, while and do-while loops.</li>
+            <li>Explain break and continue statements.</li>
+            <li>Define a function and explain its advantages.</li>
+            <li>Explain function declaration, definition and calling.</li>
+            <li>Differentiate call by value and call by reference.</li>
+            <li>Explain function overloading with an example.</li>
+        </ol>
+    </div>
+</section>
+
+
+<section class="unit" id="cpp-unit3">
+    <h2>UNIT 3 – ARRAYS, STRINGS AND POINTERS</h2>
+
+    <div class="topic">
+        <h3>1. Arrays in C++</h3>
+        <p>An array is a collection of elements of the same data type stored under one name.</p>
+        <pre><code>int marks[5] = {80, 75, 90, 85, 70};
+
+cout &lt;&lt; marks[0];</code></pre>
+        <p>Output: 80</p>
+        <p>Array indexing starts from 0.</p>
+    </div>
+
+    <div class="topic">
+        <h3>2. Types of Arrays</h3>
+        <ul>
+            <li><b>One-dimensional array:</b> Stores elements in a single list.</li>
+            <li><b>Two-dimensional array:</b> Stores elements in rows and columns.</li>
+            <li><b>Multidimensional array:</b> An array with more than two dimensions.</li>
+        </ul>
+    </div>
+
+    <div class="topic">
+        <h3>3. One-Dimensional Array</h3>
+        <p>A one-dimensional array stores data in a single sequence.</p>
+        <pre><code>int a[5] = {10, 20, 30, 40, 50};
+
+for(int i = 0; i < 5; i++)
+{
+    cout &lt;&lt; a[i] &lt;&lt; endl;
+}</code></pre>
+    </div>
+
+    <div class="topic">
+        <h3>4. Two-Dimensional Array</h3>
+        <p>A two-dimensional array stores data in the form of rows and columns.</p>
+        <pre><code>int a[2][2] = {
+    {10, 20},
+    {30, 40}
+};
+
+cout &lt;&lt; a[1][0];</code></pre>
+        <p>Output: 30</p>
+    </div>
+
+    <div class="topic">
+        <h3>5. Array Operations</h3>
+        <p>Common operations performed on arrays include:</p>
+        <ul>
+            <li><b>Traversal:</b> Visiting each element.</li>
+            <li><b>Insertion:</b> Adding an element.</li>
+            <li><b>Deletion:</b> Removing an element.</li>
+            <li><b>Searching:</b> Finding an element.</li>
+            <li><b>Sorting:</b> Arranging elements in order.</li>
+        </ul>
+    </div>
+
+    <div class="topic">
+        <h3>6. Strings in C++</h3>
+        <p>A string is a sequence of characters used to store text.</p>
+        <pre><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+int main()
+{
+    string name = "Sanjay";
+    cout &lt;&lt; name;
+    return 0;
+}</code></pre>
+    </div>
+
+    <div class="topic">
+        <h3>7. String Functions</h3>
+        <p>Common C++ string operations include:</p>
+        <ul>
+            <li><b>length():</b> Returns the number of characters.</li>
+            <li><b>size():</b> Returns the string length.</li>
+            <li><b>append():</b> Adds text to the end.</li>
+            <li><b>substr():</b> Extracts part of a string.</li>
+            <li><b>find():</b> Searches for text.</li>
+        </ul>
+        <pre><code>string name = "Student";
+cout &lt;&lt; name.length();</code></pre>
+        <p>Output: 7</p>
+    </div>
+
+    <div class="topic">
+        <h3>8. Pointers in C++</h3>
+        <p>A pointer is a variable that stores the memory address of another variable.</p>
+        <pre><code>int a = 10;
+int *p = &amp;a;
+
+cout &lt;&lt; *p;</code></pre>
+        <p>Output: 10</p>
+        <ul>
+            <li><b>&amp;:</b> Address-of operator.</li>
+            <li><b>*:</b> Dereference operator when used with a pointer.</li>
+        </ul>
+    </div>
+
+    <div class="topic">
+        <h3>9. Pointer Declaration and Initialization</h3>
+        <p>A pointer is declared using the * symbol.</p>
+        <pre><code>int number = 50;
+int *ptr = &amp;number;
+
+cout &lt;&lt; number &lt;&lt; endl;
+cout &lt;&lt; ptr &lt;&lt; endl;
+cout &lt;&lt; *ptr;</code></pre>
+        <p>The pointer stores the address, while *ptr accesses the value at that address.</p>
+    </div>
+
+    <div class="topic">
+        <h3>10. Pointer Arithmetic</h3>
+        <p>Pointer arithmetic means performing arithmetic operations on pointers.</p>
+        <ul>
+            <li>Increment (++).</li>
+            <li>Decrement (--).</li>
+            <li>Addition or subtraction of an integer.</li>
+            <li>Difference between pointers in the same array.</li>
+        </ul>
+        <p>Moving a pointer by one position advances it by the size of its data type.</p>
+    </div>
+
+    <div class="topic">
+        <h3>11. Relationship Between Arrays and Pointers</h3>
+        <p>The array name can be used as a pointer to its first element in many expressions.</p>
+        <pre><code>int a[3] = {10, 20, 30};
+
+cout &lt;&lt; *a;</code></pre>
+        <p>Output: 10</p>
+    </div>
+
+    <div class="topic">
+        <h3>Important Exam Questions – Unit 3</h3>
+        <ol>
+            <li>Define an array and explain its types.</li>
+            <li>Explain one-dimensional arrays with an example.</li>
+            <li>Explain two-dimensional arrays with an example.</li>
+            <li>Explain different array operations.</li>
+            <li>Define a string and explain common string functions.</li>
+            <li>What is a pointer? Explain with an example.</li>
+            <li>Explain pointer declaration and initialization.</li>
+            <li>What is pointer arithmetic?</li>
+            <li>Explain the relationship between arrays and pointers.</li>
+        </ol>
+    </div>
+</section>
+
+<section class="unit" id="cpp-unit4">
+    <h2>UNIT 4 – CLASSES, OBJECTS AND INHERITANCE</h2>
+
+    <div class="topic">
+        <h3>1. Class</h3>
+        <p>A class is a user-defined data type that combines data members and member functions into one unit.</p>
+        <pre><code>class Student {
+public:
+    int rollNo;
+    void display() {
+        cout << rollNo;
+    }
+};</code></pre>
+    </div>
+
+    <div class="topic">
+        <h3>2. Object</h3>
+        <p>An object is an instance of a class. It is used to access the members of a class.</p>
+        <pre><code>Student s1;
+s1.rollNo = 10;
+s1.display();</code></pre>
+    </div>
+
+    <div class="topic">
+        <h3>3. Constructor</h3>
+        <p>A constructor is a special member function that is automatically called when an object is created.</p>
+        <p><b>Types:</b> Default constructor, parameterized constructor and copy constructor.</p>
+        <pre><code>class Student {
+public:
+    Student() {
+        cout << "Constructor called";
+    }
+};</code></pre>
+    </div>
+
+    <div class="topic">
+        <h3>4. Destructor</h3>
+        <p>A destructor is a special member function called automatically when an object is destroyed.</p>
+        <pre><code>class Student {
+public:
+    ~Student() {
+        cout << "Object destroyed";
+    }
+};</code></pre>
+    </div>
+
+    <div class="topic">
+        <h3>5. Inheritance</h3>
+        <p>Inheritance is a feature of OOP in which one class acquires the properties and functions of another class.</p>
+        <p><b>Types:</b> Single, multiple, multilevel, hierarchical and hybrid inheritance.</p>
+        <pre><code>class Animal {
+public:
+    void eat() {
+        cout << "Eating";
+    }
+};
+
+class Dog : public Animal {
+};</code></pre>
+    </div>
+
+    <div class="topic">
+        <h3>6. Polymorphism</h3>
+        <p>Polymorphism means one name having many forms.</p>
+        <p><b>Types:</b> Compile-time polymorphism and run-time polymorphism.</p>
+        <ul>
+            <li>Function overloading</li>
+            <li>Operator overloading</li>
+            <li>Function overriding using virtual functions</li>
+        </ul>
+    </div>
+
+    <div class="topic">
+        <h3>Important Exam Questions</h3>
+        <ol>
+            <li>Define class and object with an example.</li>
+            <li>Explain constructors and their types.</li>
+            <li>What is a destructor?</li>
+            <li>Define inheritance and explain its types.</li>
+            <li>Explain polymorphism and its types.</li>
+        </ol>
+    </div>
+</section>
+
+</main>
+
+
+<footer class="main-footer">
+    <h2>🌌 STUDENTVERSE</h2>
+    <p>Your Universe of Learning</p>
+
+    <div class="footer-links">
+        <a href="studyhub.html">StudyHub</a>
+        <a href="skillup.html">SkillUp</a>
+        <a href="dashboard.html">Dashboard</a>
+    </div>
+
+    <p class="copyright">
+        © 2026 STUDENTVERSE. All Rights Reserved.
+    </p>
+</footer>
+
+
+<script>
+const searchBox = document.getElementById("notesSearch");
+
+searchBox.addEventListener("input", function () {
+    const searchText = this.value.toLowerCase();
+
+    document.querySelectorAll(".unit .topic").forEach(topic => {
+        const content = topic.textContent.toLowerCase();
+
+        topic.style.display = content.includes(searchText)
+            ? ""
+            : "none";
+    });
+});
+</script>
+
+<button id="topBtn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+    ↑ Back to Top
+</button>
+
+</body>
+</html>

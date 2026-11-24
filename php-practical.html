@@ -1,0 +1,641 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PHP & MySQL Lab | STUDENTVERSE</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+    font-family:Arial,sans-serif;
+    color:#fff;
+    background:radial-gradient(circle at top,#172554,#080b20 55%,#020617);
+    min-height:100vh;
+}
+nav{
+    padding:18px 7%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:#080d25;
+    border-bottom:1px solid #334155;
+    position:sticky;
+    top:0;
+    z-index:10;
+}
+nav h2{color:#67e8f9}
+nav a{color:white;text-decoration:none;margin-left:18px}
+header{text-align:center;padding:55px 15px 30px}
+header h1{font-size:35px;color:#67e8f9;margin-bottom:12px}
+header p{color:#cbd5e1}
+.search{
+    display:block;
+    width:min(650px,90%);
+    margin:25px auto;
+    padding:15px;
+    border:1px solid #38bdf8;
+    border-radius:12px;
+    background:#111a35;
+    color:white;
+    font-size:16px;
+    outline:none;
+}
+.container{width:min(1050px,92%);margin:auto;padding-bottom:60px}
+.part-title{
+    color:#f0abfc;
+    margin:35px 0 20px;
+    font-size:25px;
+}
+.lab{
+    background:linear-gradient(145deg,#111a35,#0b1025);
+    border:1px solid #334155;
+    border-radius:16px;
+    padding:23px;
+    margin-bottom:22px;
+    box-shadow:0 8px 30px #0006;
+    transition:.3s;
+}
+.lab:hover{
+    transform:translateY(-4px);
+    border-color:#38bdf8;
+    box-shadow:0 0 20px #0ea5e955;
+}
+.lab h2{color:#67e8f9;font-size:20px;margin-bottom:15px}
+.lab h3{color:#f0abfc;margin:17px 0 8px}
+.lab p{color:#cbd5e1;line-height:1.6}
+pre{
+    background:#020617;
+    color:#a7f3d0;
+    border:1px solid #334155;
+    border-radius:10px;
+    padding:16px;
+    overflow-x:auto;
+    line-height:1.6;
+    margin-top:10px;
+    white-space:pre;
+}
+.output{
+    color:#fde68a;
+    background:#171827;
+}
+button{
+    border:0;
+    border-radius:9px;
+    padding:11px 17px;
+    margin-top:15px;
+    background:#0891b2;
+    color:white;
+    cursor:pointer;
+    font-weight:bold;
+}
+button:hover{background:#0e7490}
+.note{color:#fbbf24!important;margin-top:10px}
+footer{text-align:center;padding:25px;color:#94a3b8}
+#topBtn{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    display:none;
+    border-radius:50%;
+    width:48px;height:48px;
+    font-size:20px;
+}
+@media(max-width:600px){
+    nav{flex-direction:column;gap:12px}
+    nav a{margin:5px}
+    header h1{font-size:27px}
+    .lab{padding:16px}
+}
+@media print{
+    body{background:white;color:black}
+    nav,.search,button,#topBtn{display:none!important}
+    header{padding:20px}
+    header h1,.part-title,.lab h2,.lab h3{color:black}
+    .lab{background:white;color:black;border:1px solid #999;box-shadow:none;break-inside:avoid}
+    .lab p{color:black}
+    pre{background:#f2f2f2;color:black;white-space:pre-wrap}
+    .output{background:#eee;color:black}
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <h2>STUDENTVERSE</h2>
+    <div>
+        <a href="index.html">Home</a>
+        <a href="studyhub.html">StudyHub</a>
+        <a href="php-notes.html">PHP Notes</a>
+    </div>
+</nav>
+
+<header>
+    <h1>PHP & MySQL Practical Lab</h1>
+    <p>CAM43P | BCA Semester IV | University of Mysore</p>
+    <p>PHP Programs with Source Code and Expected Output</p>
+    <button onclick="window.print()">Download / Print PDF</button>
+</header>
+
+<input class="search" id="search" type="text"
+placeholder="Search practical programs...">
+
+<div class="container">
+
+<h2 class="part-title">PART A – PHP Programming</h2>
+
+<div class="lab">
+<h2>1. Find Maximum Among Three Numbers</h2>
+<p><b>Program:</b> Find the largest of three given numbers.</p>
+<pre><code>&lt;?php
+$a = 25;
+$b = 40;
+$c = 15;
+
+if ($a &gt;= $b &amp;&amp; $a &gt;= $c) {
+    echo "Maximum number is: $a";
+} elseif ($b &gt;= $a &amp;&amp; $b &gt;= $c) {
+    echo "Maximum number is: $b";
+} else {
+    echo "Maximum number is: $c";
+}
+?&gt;</code></pre>
+<h3>Output</h3>
+<pre class="output">Maximum number is: 40</pre>
+</div>
+
+<div class="lab">
+<h2>2. Factorial of a Number</h2>
+<p><b>Program:</b> Calculate factorial using a loop.</p>
+<pre><code>&lt;?php
+$n = 5;
+$fact = 1;
+
+for ($i = 1; $i &lt;= $n; $i++) {
+    $fact = $fact * $i;
+}
+
+echo "Factorial of $n is: $fact";
+?&gt;</code></pre>
+<h3>Output</h3>
+<pre class="output">Factorial of 5 is: 120</pre>
+</div>
+
+<div class="lab">
+<h2>3. Check Palindrome Number</h2>
+<p><b>Program:</b> Check whether a number reads the same forward and backward.</p>
+<pre><code>&lt;?php
+$n = 121;
+$temp = $n;
+$reverse = 0;
+
+while ($temp &gt; 0) {
+    $digit = $temp % 10;
+    $reverse = $reverse * 10 + $digit;
+    $temp = (int)($temp / 10);
+}
+
+if ($n == $reverse) {
+    echo "$n is a Palindrome";
+} else {
+    echo "$n is not a Palindrome";
+}
+?&gt;</code></pre>
+<h3>Output</h3>
+<pre class="output">121 is a Palindrome</pre>
+</div>
+
+<div class="lab">
+<h2>4. Reverse a Number and Find Sum of Digits</h2>
+<p><b>Program:</b> Reverse the number and calculate the sum of its digits.</p>
+<pre><code>&lt;?php
+$n = 1234;
+$temp = $n;
+$reverse = 0;
+$sum = 0;
+
+while ($temp &gt; 0) {
+    $digit = $temp % 10;
+    $reverse = $reverse * 10 + $digit;
+    $sum = $sum + $digit;
+    $temp = (int)($temp / 10);
+}
+
+echo "Original Number: $n&lt;br&gt;";
+echo "Reverse Number: $reverse&lt;br&gt;";
+echo "Sum of Digits: $sum";
+?&gt;</code></pre>
+<h3>Output</h3>
+<pre class="output">Original Number: 1234
+Reverse Number: 4321
+Sum of Digits: 10</pre>
+</div>
+
+<div class="lab">
+<h2>5. Fibonacci Series Using Recursive Function</h2>
+<p><b>Program:</b> Generate Fibonacci numbers using recursion.</p>
+<pre><code>&lt;?php
+function fibonacci($n) {
+    if ($n == 0) {
+        return 0;
+    }
+    if ($n == 1) {
+        return 1;
+    }
+    return fibonacci($n - 1) + fibonacci($n - 2);
+}
+
+$count = 7;
+
+for ($i = 0; $i &lt; $count; $i++) {
+    echo fibonacci($i) . " ";
+}
+?&gt;</code></pre>
+<h3>Output</h3>
+<pre class="output">0 1 1 2 3 5 8</pre>
+</div>
+
+<div class="lab">
+<h2>6. Demonstrate Seven String Functions</h2>
+<p><b>Program:</b> Demonstrate commonly used PHP string functions.</p>
+<pre><code>&lt;?php
+$str = "Hello PHP Programming";
+
+echo "Original: $str&lt;br&gt;";
+echo "Length: " . strlen($str) . "&lt;br&gt;";
+echo "Word Count: " . str_word_count($str) . "&lt;br&gt;";
+echo "Reverse: " . strrev($str) . "&lt;br&gt;";
+echo "Uppercase: " . strtoupper($str) . "&lt;br&gt;";
+echo "Lowercase: " . strtolower($str) . "&lt;br&gt;";
+echo "Position of PHP: " . strpos($str, "PHP") . "&lt;br&gt;";
+echo "Replace: " . str_replace("PHP", "Web", $str);
+?&gt;</code></pre>
+<h3>Output</h3>
+<pre class="output">Original: Hello PHP Programming
+Length: 21
+Word Count: 3
+Reverse: gnimmargorP PHP olleH
+Uppercase: HELLO PHP PROGRAMMING
+Lowercase: hello php programming
+Position of PHP: 6
+Replace: Hello Web Programming</pre>
+</div>
+
+<div class="lab">
+<h2>7. Date and Time Functions</h2>
+<p><b>Program:</b> Display current date, day, time and year.</p>
+<pre><code>&lt;?php
+date_default_timezone_set("Asia/Kolkata");
+
+echo "Current Date: " . date("d-m-Y") . "&lt;br&gt;";
+echo "Current Day: " . date("l") . "&lt;br&gt;";
+echo "Current Time: " . date("h:i:s A") . "&lt;br&gt;";
+echo "Current Year: " . date("Y");
+?&gt;</code></pre>
+<h3>Sample Output</h3>
+<pre class="output">Current Date: 21-11-2026
+Current Day: Saturday
+Current Time: 01:30:00 PM
+Current Year: 2026</pre>
+<p class="note">The date and time will change when you execute the program.</p>
+</div>
+
+<div class="lab">
+<h2>8. Insert an Element into an Array at a Specified Position</h2>
+<p><b>Program:</b> Insert a new value at a specified array position.</p>
+<pre><code>&lt;?php
+$numbers = array(10, 20, 30, 40);
+
+$position = 2;
+$newValue = 25;
+
+array_splice($numbers, $position, 0, $newValue);
+
+echo "Updated Array: ";
+print_r($numbers);
+?&gt;</code></pre>
+<h3>Output</h3>
+<pre class="output">Updated Array:
+Array
+(
+    [0] =&gt; 10
+    [1] =&gt; 20
+    [2] =&gt; 25
+    [3] =&gt; 30
+    [4] =&gt; 40
+)</pre>
+</div>
+
+<h2 class="part-title">PART B – Advanced PHP & MySQL</h2>
+
+<div class="lab">
+<h2>9. Constructors and Destructors</h2>
+<p><b>Program:</b> Demonstrate constructor and destructor in a PHP class.</p>
+<pre><code>&lt;?php
+class Student {
+    function __construct() {
+        echo "Constructor called&lt;br&gt;";
+    }
+
+    function display() {
+        echo "Welcome to PHP OOP";
+    }
+
+    function __destruct() {
+        echo "&lt;br&gt;Destructor called";
+    }
+}
+
+$obj = new Student();
+$obj-&gt;display();
+?&gt;</code></pre>
+<h3>Output</h3>
+<pre class="output">Constructor called
+Welcome to PHP OOP
+Destructor called</pre>
+</div>
+
+<div class="lab">
+<h2>10. Multilevel Inheritance</h2>
+<p><b>Program:</b> Demonstrate multilevel inheritance using three classes.</p>
+<pre><code>&lt;?php
+class Grandparent {
+    function showGrandparent() {
+        echo "Grandparent Class&lt;br&gt;";
+    }
+}
+
+class ParentClass extends Grandparent {
+    function showParent() {
+        echo "Parent Class&lt;br&gt;";
+    }
+}
+
+class Child extends ParentClass {
+    function showChild() {
+        echo "Child Class";
+    }
+}
+
+$obj = new Child();
+
+$obj-&gt;showGrandparent();
+$obj-&gt;showParent();
+$obj-&gt;showChild();
+?&gt;</code></pre>
+<h3>Output</h3>
+<pre class="output">Grandparent Class
+Parent Class
+Child Class</pre>
+</div>
+
+<div class="lab">
+<h2>11. Exception Handling – Divide by Zero</h2>
+<p><b>Program:</b> Use try, throw and catch to handle division by zero.</p>
+<pre><code>&lt;?php
+$a = 10;
+$b = 0;
+
+try {
+    if ($b == 0) {
+        throw new Exception("Division by zero is not allowed");
+    }
+
+    echo "Result: " . ($a / $b);
+}
+catch (Exception $e) {
+    echo "Error: " . $e-&gt;getMessage();
+}
+?&gt;</code></pre>
+<h3>Output</h3>
+<pre class="output">Error: Division by zero is not allowed</pre>
+</div>
+
+<div class="lab">
+<h2>12. Form Handling Using POST Method</h2>
+<p><b>Program:</b> Accept a student's name using an HTML form and display it.</p>
+<pre><code>&lt;?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $name = htmlspecialchars($_POST["student_name"]);
+    echo "Student Name: " . $name;
+}
+?&gt;
+
+&lt;form method="POST" action=""&gt;
+    Enter Name:
+    &lt;input type="text" name="student_name" required&gt;
+    &lt;button type="submit"&gt;Submit&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+<h3>Sample Output</h3>
+<pre class="output">Enter Name: Sanjay
+
+Student Name: Sanjay</pre>
+</div>
+
+<div class="lab">
+<h2>13. Session Handling Using Session Variables</h2>
+<p><b>Program:</b> Store and display username and user role using sessions.</p>
+<pre><code>&lt;?php
+session_start();
+
+$_SESSION["username"] = "Sanjay";
+$_SESSION["role"] = "Student";
+
+echo "Username: " . $_SESSION["username"] . "&lt;br&gt;";
+echo "User Role: " . $_SESSION["role"];
+?&gt;</code></pre>
+<h3>Output</h3>
+<pre class="output">Username: Sanjay
+User Role: Student</pre>
+</div>
+
+<div class="lab">
+<h2>14. Create a Database Using PHP</h2>
+<p><b>Program:</b> Connect to MySQL and create a database.</p>
+<pre><code>&lt;?php
+$conn = new mysqli("localhost", "root", "");
+
+if ($conn-&gt;connect_error) {
+    die("Connection failed: " . $conn-&gt;connect_error);
+}
+
+$sql = "CREATE DATABASE studentverse";
+
+if ($conn-&gt;query($sql) === TRUE) {
+    echo "Database created successfully";
+} else {
+    echo "Error: " . $conn-&gt;error;
+}
+
+$conn-&gt;close();
+?&gt;</code></pre>
+<h3>Output</h3>
+<pre class="output">Database created successfully</pre>
+<p class="note">Run this after starting Apache and MySQL in XAMPP. If the database already exists, MySQL will report an error.</p>
+</div>
+
+<div class="lab">
+<h2>15. Create a Table and Insert Data Using PHP</h2>
+<p><b>Program:</b> Create a student table and insert a record into it.</p>
+<pre><code>&lt;?php
+$conn = new mysqli("localhost", "root", "", "studentverse");
+
+if ($conn-&gt;connect_error) {
+    die("Connection failed: " . $conn-&gt;connect_error);
+}
+
+$sql = "CREATE TABLE IF NOT EXISTS students (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100),
+    course VARCHAR(50)
+)";
+
+if (!$conn-&gt;query($sql)) {
+    die("Table error: " . $conn-&gt;error);
+}
+
+$stmt = $conn-&gt;prepare(
+    "INSERT INTO students (name, course) VALUES (?, ?)"
+);
+
+$name = "Sanjay";
+$course = "BCA";
+
+$stmt-&gt;bind_param("ss", $name, $course);
+
+if ($stmt-&gt;execute()) {
+    echo "Student record inserted successfully";
+} else {
+    echo "Insert failed: " . $stmt-&gt;error;
+}
+
+$stmt-&gt;close();
+$conn-&gt;close();
+?&gt;</code></pre>
+<h3>Output</h3>
+<pre class="output">Student record inserted successfully</pre>
+</div>
+
+<div class="lab">
+<h2>16. College Admission Form Using MySQL</h2>
+<p><b>Program:</b> Create an admission form and store submitted details in a MySQL database.</p>
+
+<h3>Step 1 – Create Database and Table</h3>
+<pre><code>CREATE DATABASE college;
+
+USE college;
+
+CREATE TABLE admission (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    student_name VARCHAR(100),
+    email VARCHAR(100),
+    course VARCHAR(50)
+);</code></pre>
+
+<h3>Step 2 – Save as admission.php</h3>
+<pre><code>&lt;?php
+$conn = new mysqli("localhost", "root", "", "college");
+
+if ($conn-&gt;connect_error) {
+    die("Connection failed");
+}
+
+$message = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $name = trim($_POST["name"]);
+    $email = trim($_POST["email"]);
+    $course = trim($_POST["course"]);
+
+    $stmt = $conn-&gt;prepare(
+        "INSERT INTO admission (student_name, email, course)
+         VALUES (?, ?, ?)"
+    );
+
+    $stmt-&gt;bind_param("sss", $name, $email, $course);
+
+    if ($stmt-&gt;execute()) {
+        $message = "Admission submitted successfully";
+    } else {
+        $message = "Unable to submit admission";
+    }
+
+    $stmt-&gt;close();
+}
+?&gt;
+
+&lt;h2&gt;College Admission Form&lt;/h2&gt;
+
+&lt;form method="POST" action=""&gt;
+    Student Name:
+    &lt;input type="text" name="name" required&gt;
+    &lt;br&gt;&lt;br&gt;
+
+    Email:
+    &lt;input type="email" name="email" required&gt;
+    &lt;br&gt;&lt;br&gt;
+
+    Course:
+    &lt;select name="course" required&gt;
+        &lt;option value=""&gt;Select Course&lt;/option&gt;
+        &lt;option value="BCA"&gt;BCA&lt;/option&gt;
+        &lt;option value="BCom"&gt;BCom&lt;/option&gt;
+        &lt;option value="BSc"&gt;BSc&lt;/option&gt;
+    &lt;/select&gt;
+    &lt;br&gt;&lt;br&gt;
+
+    &lt;button type="submit"&gt;Submit Admission&lt;/button&gt;
+&lt;/form&gt;
+
+&lt;p&gt;&lt;?php echo htmlspecialchars($message); ?&gt;&lt;/p&gt;
+
+&lt;?php $conn-&gt;close(); ?&gt;</code></pre>
+
+<h3>Sample Output</h3>
+<pre class="output">College Admission Form
+
+Student Name: Sanjay
+Email: sanjay@example.com
+Course: BCA
+
+Admission submitted successfully</pre>
+
+<p class="note">Save this file inside the XAMPP htdocs folder and open it through localhost. Create the college database and table first.</p>
+</div>
+
+</div>
+
+<footer>
+    <p>STUDENTVERSE | Learn • Practice • Succeed</p>
+    <p>CAM43P – PHP & MySQL Lab</p>
+</footer>
+
+<button id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const searchBox = document.getElementById("search");
+    const cards = document.querySelectorAll(".lab");
+
+    searchBox.addEventListener("input", function () {
+        const query = searchBox.value.trim().toLowerCase();
+
+        cards.forEach(function (card) {
+            card.hidden = !card.textContent.toLowerCase().includes(query);
+        });
+    });
+
+    const topBtn = document.getElementById("topBtn");
+
+    window.addEventListener("scroll", function () {
+        topBtn.style.display = window.scrollY > 300 ? "block" : "none";
+    });
+
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1367 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STUDYHUB | STUDENTVERSE</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap">
+
+    <style>
+
+.main-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 6%;
+    background: rgba(12, 8, 35, 0.85);
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+    backdrop-filter: blur(15px);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-logo {
+    color: #d8b4fe;
+    font-size: 21px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: #c084fc;
+    text-shadow: 0 0 12px #a855f7;
+}
+
+@media (max-width: 650px) {
+    .main-navbar {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .nav-links {
+        justify-content: center;
+        gap: 15px;
+    }
+}
+
+        .completed-label {
+    color: #4ade80;
+    font-weight: bold;
+    margin: 10px 0;
+}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            padding: 30px 7%;
+            font-family: 'Poppins', sans-serif;
+            color: white;
+            background: radial-gradient(circle at top, #28165a, #080817 65%);
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            color: white;
+            font-size: 22px;
+            font-weight: 800;
+            text-decoration: none;
+        }
+
+        .logo span, h1 span {
+            color: #a98aff;
+        }
+
+        .back {
+            color: white;
+            text-decoration: none;
+            border: 1px solid #8d6bff;
+            padding: 10px 18px;
+            border-radius: 25px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 85px 0 50px;
+        }
+
+        .hero p {
+            color: #bcb5d9;
+            margin: 15px 0;
+        }
+
+        h1 {
+            font-size: clamp(35px, 6vw, 60px);
+        }
+
+        .search {
+            width: min(100%, 550px);
+            margin: 25px auto;
+            padding: 16px 20px;
+            border: 1px solid #7654c9;
+            border-radius: 30px;
+            background: rgba(255,255,255,0.08);
+            color: white;
+            outline: none;
+        }
+
+        .search::placeholder {
+            color: #bcb5d9;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 22px;
+            margin: 20px 0 60px;
+        }
+
+        .card {
+            padding: 28px;
+            border: 1px solid rgba(169,138,255,0.3);
+            border-radius: 20px;
+            background: rgba(255,255,255,0.06);
+            backdrop-filter: blur(12px);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: #a98aff;
+            box-shadow: 0 0 25px rgba(169,138,255,0.25);
+        }
+
+        .card .icon {
+            font-size: 35px;
+        }
+
+        .card h2 {
+            margin: 15px 0 8px;
+            font-size: 19px;
+        }
+
+        .card p {
+            color: #bcb5d9;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .card a {
+            display: inline-block;
+            margin-top: 20px;
+            color: #b69aff;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .empty {
+            display: none;
+            text-align: center;
+            color: #bcb5d9;
+            padding: 30px;
+        }
+
+        footer {
+            text-align: center;
+            color: #77718f;
+            padding: 25px;
+        }
+
+.semester-box {
+    text-align: center;
+    margin: 20px auto 45px;
+}
+
+.semester-box h2 {
+    margin-bottom: 18px;
+    color: #c5adff;
+}
+
+#semester-select {
+    width: min(100%, 350px);
+    padding: 15px;
+    border: 1px solid #9270ff;
+    border-radius: 15px;
+    background: #17102f;
+    color: white;
+    font-size: 15px;
+    outline: none;
+    cursor: pointer;
+}
+
+#semester-message {
+    color: #bcb5d9;
+    margin-top: 15px;
+    font-size: 13px;
+}
+
+/* BCA SUBJECT LIBRARY */
+
+.bca-library {
+    margin: 40px 0 70px;
+}
+
+.library-heading {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.library-heading h2 {
+    font-size: 32px;
+    margin: 12px 0;
+}
+
+.library-heading h2 span {
+    color: #a98aff;
+}
+
+.library-heading p {
+    color: #bcb5d9;
+}
+
+.subject-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 22px;
+}
+
+.subject-card {
+    padding: 25px;
+    border: 1px solid rgba(169,138,255,.3);
+    border-radius: 20px;
+    background: rgba(255,255,255,.06);
+    backdrop-filter: blur(12px);
+    transition: .35s;
+}
+
+.subject-card:hover {
+    transform: translateY(-8px);
+    border-color: #a98aff;
+    box-shadow: 0 0 25px rgba(169,138,255,.25);
+}
+
+.subject-card h3 {
+    margin: 12px 0;
+    color: #c7adff;
+}
+
+.subject-card p {
+    color: #bcb5d9;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.subject-card details {
+    margin-top: 18px;
+    color: #c7adff;
+}
+
+.subject-card summary {
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.subject-card ul {
+    padding: 15px 0 0 20px;
+    color: #c5c0dd;
+    font-size: 12px;
+    line-height: 2;
+}
+.notes-button {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 18px;
+    background: #7045ff;
+    color: white;
+    text-decoration: none;
+    border-radius: 20px;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.notes-button:hover {
+    background: #a34dff;
+    transform: translateY(-3px);
+    box-shadow: 0 0 15px #a34dff;
+}
+
+/* STUDY PROGRESS TRACKER */
+
+.progress-tracker {
+    margin: 35px 0;
+    padding: 28px;
+    border: 1px solid rgba(169,138,255,.4);
+    border-radius: 22px;
+    background: linear-gradient(135deg, rgba(91,55,170,.25), rgba(20,20,55,.7));
+    box-shadow: 0 0 25px rgba(169,138,255,.12);
+}
+
+.progress-tracker h2 {
+    color: #c7adff;
+    margin-bottom: 10px;
+}
+
+.progress-tracker p {
+    color: #bcb5d9;
+    font-size: 14px;
+}
+
+.progress-details {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 20px 0 12px;
+}
+
+.progress-details strong {
+    color: #75eaff;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 15px;
+    background: rgba(255,255,255,.12);
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #7045ff, #42e8ff);
+    border-radius: 20px;
+    transition: width .5s ease;
+}
+
+.subject-progress {
+    margin-top: 18px;
+    color: #d7d0f5;
+    font-size: 13px;
+}
+
+.subject-progress input {
+    accent-color: #a98aff;
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+    margin-right: 7px;
+    cursor: pointer;
+}
+
+.progress-reset {
+    margin-top: 18px;
+    padding: 9px 16px;
+    background: rgba(255,80,100,.15);
+    border: 1px solid rgba(255,100,120,.5);
+    border-radius: 20px;
+    color: #ffb8c2;
+    cursor: pointer;
+}
+
+.progress-reset:hover {
+    background: rgba(255,80,100,.3);
+}
+
+    </style>
+</head>
+
+<body>
+
+<nav class="main-navbar">
+    <div class="nav-logo">🌌 STUDENTVERSE</div>
+
+    <div class="nav-links">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="studyhub.html" class="active">StudyHub</a>
+        <a href="skillup.html">SkillUp</a>
+        <a href="index.html">Home</a>
+    </div>
+</nav>
+
+<header>
+    <a href="dashboard.html" class="logo">STUDENT<span>VERSE</span></a>
+    <a href="dashboard.html" class="back">← Dashboard</a>
+</header>
+
+<section class="hero">
+    <h1>Welcome to <span>StudyHub</span></h1>
+    <p>Your knowledge library. Learn, practice and achieve more.</p>
+
+    <input
+        type="search"
+        class="search"
+        id="search"
+        placeholder="Search your study materials..."
+    >
+
+<div class="semester-box">
+    <h2>Select Your Semester</h2>
+
+    <select id="semester-select">
+        <option value="">Choose Semester</option>
+        <option value="1">Semester 1</option>
+        <option value="2">Semester 2</option>
+        <option value="3">Semester 3</option>
+        <option value="4">Semester 4</option>
+        <option value="5">Semester 5</option>
+        <option value="6">Semester 6</option>
+    </select>
+
+    <p id="semester-message">
+        Select a semester to explore your subjects.
+    </p>
+</div>
+
+<!-- BCA SEMESTER 1 SUBJECT LIBRARY -->
+
+<section class="bca-library">
+    <div class="library-heading">
+        <p class="eyebrow">UNIVERSITY OF MYSORE</p>
+        <h2>BCA <span id="semester-heading">Semester 1</span></h2>
+        <p>Select a subject to explore its syllabus topics.</p>
+    </div>
+
+    <div class="subject-grid" id="subject-list"></div>
+</section>
+
+</section>
+
+<section class="grid" id="materials">
+
+    <div class="card">
+        <div class="icon">📘</div>
+        <h2>Study Notes</h2>
+        <p>Organized notes for your degree subjects.</p>
+        <a href="#">Explore Notes ↗</a>
+    </div>
+
+    
+
+    
+    <div class="card">
+        <div class="icon">💻</div>
+        <h2>Programming</h2>
+        <p>Learn C, C++, Java, Python and web development.</p>
+        <a href="#">Start Learning ↗</a>
+    </div>
+
+</section>
+
+<p class="empty" id="empty">No matching materials found.</p>
+
+<footer>
+    © 2026 STUDENTVERSE | StudyHub
+</footer>
+
+<script>
+    const search = document.getElementById("search");
+    const cards = document.querySelectorAll(".card");
+    const empty = document.getElementById("empty");
+
+    search.addEventListener("input", () => {
+        let visible = 0;
+
+        cards.forEach(card => {
+            const match = card.textContent
+                .toLowerCase()
+                .includes(search.value.toLowerCase());
+
+            card.style.display = match ? "block" : "none";
+
+            if (match) visible++;
+        });
+
+        empty.style.display = visible ? "none" : "block";
+    });
+</script>
+
+<script>
+let semesterSubjects = [
+    {
+        code: "CAM11T",
+        title: "Digital Computer Organization",
+        type: "Theory",
+        icon: "🖥️",
+         notesLink: "dco-notes.html",
+        topics: [
+            "Fundamentals of Computers",
+            "Input and Output Organization",
+            "Memory Organization",
+            "Computer Number Systems",
+            "Binary Arithmetic and Codes",
+            "Boolean Algebra and Logic Gates",
+            "Adders and Subtractors",
+            "Flip-Flops and Counters"
+        ]
+    },
+    {
+        code: "CAM11P",
+        title: "Office Automation and HTML",
+        type: "Practical",
+        icon: "🌐",
+        topics: [
+            "Word Processing and Tables",
+            "Mail Merge",
+            "Spreadsheet Formulas",
+            "Charts and PowerPoint",
+            "HTML Headings and Paragraphs",
+            "HTML Lists and Hyperlinks",
+            "HTML Tables and Forms",
+            "HTML Login Page and Calculator"
+        ]
+    },
+    {
+        code: "CAM12T",
+        title: "Problem Solving using C++",
+        type: "Theory",
+        icon: "💻",
+        notesLink: "cpp-notes.html",
+        topics: [
+            "Introduction to Programming and OOP",
+            "C++ Basics and Data Types",
+            "Operators and Expressions",
+            "Control Statements and Loops",
+            "Functions and Recursion",
+            "Arrays, Strings and Pointers",
+            "Classes and Objects",
+            "Inheritance and Polymorphism",
+            "File Handling"
+        ]
+    },
+    {
+        code: "CAM12P",
+        title: "C++ Programming",
+        type: "Practical",
+        icon: "⚡",
+        notesLink:"cpp-practical.html",
+        topics: [
+            "Swapping Two Numbers",
+            "Fahrenheit and Celsius Conversion",
+            "Complex Number Operations",
+            "Simple Calculator",
+            "Palindrome and Fibonacci",
+            "Functions and Recursion",
+            "Classes and Objects",
+            "Function Overloading",
+            "Inheritance and Operator Overloading",
+            "File Reading and Writing"
+        ]
+    },
+    {
+        code: "CAM13T",
+        title: "Mathematical and Statistical Computing",
+        type: "Theory",
+        icon: "📊",
+        notesLink: "maths-notes.html",
+        topics: [
+            "Mathematical Logic and Truth Tables",
+            "Set Theory and Venn Diagrams",
+            "Cartesian Products and Relations",
+            "Functions and Inverse Functions",
+            "Mean, Median and Mode",
+            "Standard Deviation",
+            "Coefficient of Variation",
+            "Correlation and Regression"
+        ]
+    },
+    {
+        code: "CAM13P",
+        title: "Mathematical and Statistical Computing using R",
+        type: "Practical",
+        icon: "📈",
+        notesLink: "r-practical.html",
+        topics: [
+            "R Programming Basics",
+            "Set Operations",
+            "One-to-One and Inverse Functions",
+            "Cartesian Products",
+            "Properties of Relations",
+            "Logic Gates using R",
+            "Mean, Median and Mode",
+            "Standard Deviation and Variance",
+            "Linear Regression"
+        ]
+    }
+];
+const semester1Subjects = semesterSubjects;
+const semester2Subjects = [
+    {
+        code: "CAM21T",
+        title: "Data Structures",
+        type: "Theory",
+        icon: "🌳",
+        notesLink: "ds-notes.html",
+        topics: [
+            "Introduction to Data Structures",
+            "Stack and Stack Operations",
+            "Queue and Circular Queue",
+            "Linked Lists",
+            "Trees and Binary Search Trees",
+            "Graphs, Sorting and Searching",
+            "Heap"
+        ]
+    },
+    {
+        code: "CAM21P",
+        title: "Data Structures using C++",
+        type: "Practical",
+        icon: "💻",
+        notesLink: "ds-practical.html",
+        topics: [
+            "GCD of Two Numbers",
+            "Tower of Hanoi",
+            "Fibonacci Series",
+            "Array Operations",
+            "Stack Operations",
+            "Queue Operations",
+            "Linked List Programs",
+            "Binary Search Tree",
+            "BFS and DFS",
+            "Sorting and Searching"
+        ]
+    },
+    {
+        code: "CAM22T",
+        title: "Object Oriented Programming with Java",
+        type: "Theory",
+        icon: "☕",
+        notesLink: "java-notes.html",
+        topics: [
+            "OOP Fundamentals",
+            "Introduction to Java",
+            "Java Programming Fundamentals",
+            "Classes and Objects",
+            "Constructors and Arrays",
+            "Strings",
+            "Multithreading",
+            "Exception Handling",
+            "File Handling",
+            "AWT and GUI Programming"
+        ]
+    },
+    {
+        code: "CAM22P",
+        title: "Programming with Java",
+        type: "Practical",
+        icon: "⌨️",
+        notesLink: "java-practical.html",
+        topics: [
+            "Java Basic Programs",
+            "Factorial Program",
+            "Classes and Objects",
+            "Method Overloading",
+            "Inheritance",
+            "Array Programs",
+            "String Palindrome",
+            "Exception Handling",
+            "AWT Programs",
+            "File Handling"
+        ]
+    },
+    {
+        code: "CAM23T",
+        title: "Operating Systems",
+        type: "Theory",
+        icon: "🖥️",
+        notesLink: "os-notes.html",
+        topics: [
+            "Introduction to Operating Systems",
+            "Process Management",
+            "CPU Scheduling",
+            "Process Synchronization",
+            "Deadlocks",
+            "Memory Management",
+            "Virtual Memory",
+            "File Systems",
+            "UNIX System",
+            "Shell Programming"
+        ]
+    },
+    {
+        code: "CAM23P",
+        title: "Shell Programming",
+        type: "Practical",
+        icon: "⚙️",
+        notesLink: "os-practical.html",
+        topics: [
+            "Introduction to Shell",
+            "Swapping Two Values",
+            "Even or Odd",
+            "Largest of Three Numbers",
+            "Arithmetic Operations",
+            "Factorial and Fibonacci",
+            "String Operations",
+            "File Operations",
+            "Array Searching",
+            "System Information Scripts"
+        ]
+    }
+];
+
+const semester3Subjects = [
+
+    {
+        code: "CAM31T",
+        title: "C#.NET Programming",
+        type: "Theory",
+        icon: "💻",
+        notesLink: "csharp-notes.html",
+        topics: []
+    },
+    {
+        code: "CAM31P",
+        title: "C#.NET Programming",
+        type: "Practical",
+        icon: "⌨️",
+        notesLink: "csharp-practical.html",
+        topics: []
+    },
+    {
+        code: "CAM32T",
+        title: "Database Management System",
+        type: "Theory",
+        icon: "🗄️",
+        notesLink: "dbms-notes.html",
+        topics: []
+    },
+    {
+        code: "CAM32P",
+        title: "Database Management System",
+        type: "Practical",
+        icon: "💾",
+        notesLink: "dbms-practical.html",
+        topics: []
+    },
+    {
+        code: "CAM33T",
+        title: "Web Technologies",
+        type: "Theory",
+        icon: "🌐",
+        notesLink: "web-notes.html",
+        topics: []
+    },
+    {
+        code: "CAM33P",
+        title: "Web Technologies",
+        type: "Practical",
+        icon: "🖥️",
+        notesLink: "web-practical.html",
+        topics: []
+    },
+    {
+        code: "CAE31X",
+        title: "Cyber Security",
+        type: "Theory",
+        icon: "🔐",
+        notesLink :"cyber-notes.html",
+        topics: []
+    },
+    {
+        code: "CAE32X",
+        title: "Cloud Computing",
+        type: "Theory",
+        icon: "☁️",
+        notesLink : "cloud-notes.html",
+        topics: []
+    }
+
+];
+
+const semester4Subjects = [
+
+    // COMPUTER NETWORKS - THEORY
+    {
+        code: "CAM41T",
+        title: "Computer Networks",
+        type: "Theory",
+        icon: "🌐",
+        notesLink: "networks-notes.html",
+        topics: [
+            "Characteristics of Data Communication",
+            "Components of Data Communication",
+            "Network Topologies: Mesh, Star, Tree, Bus, Ring and Hybrid",
+            "Transmission Modes: Simplex, Half Duplex and Full Duplex",
+            "Network Categories: LAN, WAN and MAN",
+            "ISO/OSI Reference Model",
+            "TCP/IP Reference Model",
+            "Digital-to-Analog Conversion",
+            "Amplitude Shift Keying (ASK)",
+            "Frequency Shift Keying (FSK)",
+            "Phase Shift Keying (PSK)",
+            "Analog-to-Analog Conversion",
+            "Amplitude Modulation",
+            "Frequency Modulation",
+            "Phase Modulation",
+            "Physical Layer",
+            "Transmission Media: Twisted Pair, Coaxial Cable and Optical Fiber",
+            "Radio, Microwave and Infrared Transmission",
+            "Message Switching",
+            "Multiplexing",
+            "Networking Devices: Repeater, Hub, Router and Bridge",
+            "Data Link Layer Design Issues",
+            "Error Detection: Parity Checking, Checksum and CRC",
+            "Error Correction: Hamming Code",
+            "Elementary Data Link Protocols",
+            "Sliding Window Protocols",
+            "Network Layer Design Issues",
+            "Dijkstra's Shortest Path Routing",
+            "Flooding and Distance Vector Routing",
+            "Hierarchical Routing and Link State Routing",
+            "Congestion Control Algorithms",
+            "Leaky Bucket and Token Bucket Algorithms",
+            "Admission Control and Choke Packets",
+            "Transport Layer",
+            "TCP and UDP Protocols",
+            "Application Layer",
+            "DNS and Electronic Mail",
+            "SMTP, POP3 and SNMP",
+            "FTP and TELNET",
+            "World Wide Web"
+        ]
+    },
+
+    // COMPUTER NETWORKS - PRACTICAL
+    {
+        code: "CAM41P",
+        title: "Networking Lab",
+        type: "Practical",
+        icon: "🔌",
+        notesLink: "networking-practical.html",
+        topics: [
+            "Hardware and Software Specifications for Computer Networking",
+            "Study of Network Cables",
+            "Cross-Wired Cable Using Clamping Tool",
+            "Straight-Through Cable Using Clamping Tool",
+            "Identification of Networking Devices",
+            "Configure IP Address of a Computer",
+            "Create a Basic Network",
+            "File and Folder Sharing",
+            "Basic Network Commands",
+            "Network Configuration Commands",
+            "Installation of Open-Source Network Simulator",
+            "Connecting Two Nodes Using Network Simulator",
+            "Connecting Three Nodes with a Central Node",
+            "Bus Topology Using Network Simulator",
+            "Star Topology Using Network Simulator",
+            "Ring Topology Using Network Simulator",
+            "Wireless LAN Using Network Simulator",
+            "FTP Using TCP Bulk Transfer",
+            "Hybrid Topology Using Multiple Routers and Nodes"
+        ]
+    },
+
+    // PYTHON - THEORY
+    {
+        code: "CAM42T",
+        title: "Python Programming",
+        type: "Theory",
+        icon: "🐍",
+        notesLink: "python-notes.html",
+        topics: [
+            "Features and Applications of Python",
+            "Python Versions and Installation",
+            "Python Command Line Mode and IDEs",
+            "Simple Python Programs",
+            "Identifiers and Keywords",
+            "Statements and Expressions",
+            "Variables and Operators",
+            "Operator Precedence and Associativity",
+            "Python Data Types",
+            "Indentation and Comments",
+            "Console Input and Output",
+            "Type Conversion",
+            "Python Libraries and Importing Libraries",
+            "Conditional Statements: if, if-else, elif and match-case",
+            "Looping Statements: while and for",
+            "break and continue Statements",
+            "range() and exit() Functions",
+            "Arrays and Array Methods",
+            "Types of Functions",
+            "Defining and Calling Functions",
+            "Function Parameters and Arguments",
+            "return Statement",
+            "Default and Keyword Arguments",
+            "Command-Line Arguments",
+            "Recursive Functions",
+            "Scope and Lifetime of Variables",
+            "Creating and Accessing Strings",
+            "String Concatenation and Comparison",
+            "String Slicing, Joining and Traversing",
+            "Format Specifiers and Escape Sequences",
+            "Raw and Unicode Strings",
+            "Python String Methods",
+            "Creating and Operating on Lists",
+            "Built-in List Functions",
+            "Stacks and Queues Using Lists",
+            "Nested Lists",
+            "Creating and Operating on Dictionaries",
+            "Dictionary Methods and Traversal",
+            "Tuples and Tuple Methods",
+            "Sets and Set Operations",
+            "File Types and File Operations",
+            "Reading, Writing and Appending Files",
+            "Renaming and Deleting Files",
+            "Classes and Objects",
+            "Multiple Objects and Objects as Arguments",
+            "Constructors and Types of Constructors",
+            "Single, Multiple and Multilevel Inheritance",
+            "Multipath Inheritance",
+            "Tkinter Module and GUI Widgets",
+            "Layout Management: pack, grid and place",
+            "Python SQLite3 Module",
+            "Database Connection and Cursor",
+            "Create, Insert, Select, Update and Delete Records",
+            "NumPy Arrays and Array Operations",
+            "Pandas Series and DataFrames",
+            "Creating DataFrames from Excel and CSV Files",
+            "DataFrame Operations",
+            "Data Visualization Using Matplotlib",
+            "Line Charts, Bar Charts, Histograms and Pie Charts"
+        ]
+    },
+
+    // PYTHON - PRACTICAL
+    {
+        code: "CAM42P",
+        title: "Python Programming Lab",
+        type: "Practical",
+        icon: "💻",
+        notesLink: "python-practical.html",
+        topics: [
+            "Check Whether a Year is a Leap Year",
+            "Check Whether a Number Belongs to Fibonacci Sequence",
+            "Solve Quadratic Equations",
+            "Numbers Divisible by 7 but Not Multiples of 5",
+            "Multiplication Tables",
+            "Calculator Program",
+            "Python String Functions",
+            "Find Length of the Longest Word in a List",
+            "Handle Multiple Errors Using One Except Statement",
+            "Password Validation",
+            "Remove Duplicates from a List",
+            "Find Repeated Items in a Tuple",
+            "Check Whether a Key Exists in a Dictionary",
+            "Implement Method Overloading",
+            "Create SQLite Database and Perform Table Operations",
+            "Create GUI Using Tkinter",
+            "Line Chart and Bar Chart Using Matplotlib",
+            "Histogram and Pie Chart Using Matplotlib",
+            "Create NumPy Array and Perform Operations",
+            "Create Pandas DataFrame from Excel and Perform Operations"
+        ]
+    },
+
+    // PHP AND MYSQL - THEORY
+    {
+        code: "CAM43T",
+        title: "PHP & MySQL",
+        type: "Theory",
+        icon: "🐘",
+        notesLink: "php-notes.html",
+        topics: [
+            "Introduction to PHP",
+            "History and Features of PHP",
+            "Installation and Configuration of PHP",
+            "Embedding PHP in HTML",
+            "PHP, HTML and Whitespace",
+            "Comments in PHP",
+            "Sending Data to Web Browser",
+            "PHP Data Types",
+            "Keywords, Variables and Constants",
+            "Expressions and Operators",
+            "Conditional Statements: if, if-else and switch",
+            "Conditional Operator",
+            "Looping Statements: while, do-while, for and foreach",
+            "break and continue Statements",
+            "Arrays in PHP",
+            "Indexed Arrays",
+            "Associative Arrays",
+            "Multidimensional Arrays",
+            "Accessing and Manipulating Arrays",
+            "Array Functions",
+            "User-Defined Functions",
+            "Formal and Actual Parameters",
+            "Function and Variable Scope",
+            "Recursive Functions",
+            "PHP Library Functions",
+            "Date and Time Functions",
+            "Strings and String Functions",
+            "Object-Oriented Concepts in PHP",
+            "Classes and Objects",
+            "Object Properties and Methods",
+            "Constructors and Destructors",
+            "Polymorphism",
+            "Method and Property Overloading",
+            "Access Specifiers",
+            "Single, Multilevel and Hierarchical Inheritance",
+            "Interfaces and Abstract Classes",
+            "Method Overriding",
+            "Exception Handling: try, catch, throw and finally",
+            "HTML Form Creation",
+            "Handling Form Data in PHP",
+            "File Inclusion: include() and require()",
+            "Session Handling",
+            "session_start(), session_id() and session_destroy()",
+            "Session Variables",
+            "Introduction to MySQL",
+            "Database Terms and Data Types",
+            "MySQL Client and phpMyAdmin",
+            "MySQL Commands",
+            "PHP MySQL Functions",
+            "Connecting PHP to MySQL",
+            "Selecting a Database",
+            "Executing SQL Queries",
+            "Retrieving Query Results",
+            "Counting Returned Records",
+            "Updating Database Records Using PHP"
+        ]
+    },
+
+    // PHP AND MYSQL - PRACTICAL
+    {
+        code: "CAM43P",
+        title: "PHP & MySQL Lab",
+        type: "Practical",
+        icon: "🗄️",
+        notesLink: "php-practical.html",
+        topics: [
+            "Find Maximum Among Three Numbers",
+            "Factorial of a Number",
+            "Check Whether a Number is a Palindrome",
+            "Reverse a Number and Calculate Sum of Digits",
+            "Fibonacci Series Using Recursive Function",
+            "Demonstrate Seven PHP String Functions",
+            "PHP Date and Time Functions",
+            "Insert an Element into an Array at a Specified Position",
+            "Constructors and Destructors in PHP",
+            "Multilevel Inheritance in PHP",
+            "Exception Handling for Division by Zero",
+            "Handle Form Data Using POST Method",
+            "Session Handling Using Username and User Role",
+            "Create a MySQL Database Using PHP",
+            "Create MySQL Table and Insert Data Using PHP",
+            "College Admission Form with MySQL Database"
+        ]
+    },
+
+    // ELECTIVE 1 - DATA SCIENCE
+    {
+        code: "CAE4E11",
+        title: "Fundamentals of Data Science",
+        type: "Elective",
+        icon: "📊",
+        notesLink: "data-science-notes.html",
+        topics: [
+            "Introduction to Data Mining",
+            "Data Mining Definitions",
+            "Knowledge Discovery in Databases (KDD)",
+            "Kinds of Data for Data Mining",
+            "Data Mining Functionalities",
+            "Types of Patterns in Data Mining",
+            "KDD vs Data Mining",
+            "DBMS vs Data Mining",
+            "Data Mining Techniques",
+            "Problems and Challenges in Data Mining",
+            "Applications of Data Mining",
+            "Data Warehouse and Its Architecture",
+            "Three-Tier Data Warehouse Architecture",
+            "Multidimensional Data Model",
+            "Schemas for Multidimensional Data Models",
+            "OLAP Operations",
+            "Data Cleaning and Missing Values",
+            "Handling Noisy Data",
+            "Data Integration",
+            "Data Reduction Strategies",
+            "Data Transformation and Normalization",
+            "Frequent Pattern Mining",
+            "Items, Itemsets, Support and Confidence",
+            "Maximal and Closed Itemsets",
+            "Association Rules",
+            "Apriori Algorithm",
+            "FP-Growth Algorithm",
+            "Vertical Data Format",
+            "Classification and Its Basic Concepts",
+            "Decision Tree Induction",
+            "Attribute Selection Measures",
+            "Bayesian Classification",
+            "Rule-Based Classification",
+            "Lazy Learners and K-Nearest Neighbour",
+            "Precision, Recall and Confusion Matrix",
+            "Clustering and Cluster Analysis",
+            "K-Means and K-Medoids",
+            "Hierarchical Clustering",
+            "Density-Based Clustering: DBSCAN and DENCLUE",
+            "Grid-Based Clustering: STING and CLIQUE",
+            "Dendrogram and Distance Measurement",
+            "Cluster Linkage Methods",
+            "Evaluation of Clustering"
+        ]
+    },
+
+    // ELECTIVE 2 - INTERNET OF THINGS
+    {
+        code: "CAE4E12",
+        title: "Internet of Things",
+        type: "Elective",
+        icon: "📡",
+        notesLink: "iot-notes.html",
+        topics: [
+            "Introduction to Internet of Things",
+            "Definition of IoT",
+            "IoT and Digitization",
+            "Impact of IoT",
+            "Convergence of IT and OT",
+            "IoT Challenges",
+            "IoT Architectures",
+            "Core IoT Functional Stack",
+            "IoT Data Management and Compute Stack",
+            "IoT Networks",
+            "Sensors, Actuators and Smart Objects",
+            "Sensor Networks",
+            "Communication Criteria",
+            "IoT Access Technologies",
+            "Network Optimization",
+            "Optimizing IP for IoT",
+            "Application Protocols",
+            "Transport Layer in IoT",
+            "IoT Application Transport Methods",
+            "Data Analytics for IoT",
+            "Machine Learning in IoT",
+            "Big Data Analytics Tools and Technologies",
+            "Network Analytics",
+            "IoT in Industry",
+            "Smart and Connected Cities",
+            "IoT Strategy for Smart Cities",
+            "Smart City IoT Architecture",
+            "Smart City Security Architecture",
+            "Smart City Use Cases"
+        ]
+    },
+
+    // ELECTIVE 3 - SOFTWARE TESTING
+    {
+        code: "CAE4E13",
+        title: "Software Testing",
+        type: "Elective",
+        icon: "🧪",
+        notesLink: "software-testing-notes.html",
+        topics: [
+            "Introduction to Software Testing",
+            "Basic Testing Definitions",
+            "Test Cases",
+            "Insights from Venn Diagrams",
+            "Identifying Test Cases",
+            "Error and Fault Taxonomies",
+            "Levels of Testing",
+            "Generalized Pseudocode",
+            "Triangle Problem",
+            "Next Date Function",
+            "Commission Problem",
+            "Simple Automatic Teller Machine Problem",
+            "Decision Table-Based Testing",
+            "Decision Tables and Test Cases",
+            "Data Flow Testing",
+            "Definition-Use Testing",
+            "Slice-Based Testing",
+            "Life Cycle-Based Testing",
+            "Waterfall Testing",
+            "Iterative Life Cycle Testing",
+            "Agile Testing",
+            "Model-Based Testing",
+            "Peterson's Lattice",
+            "Modeling Issues and Choices",
+            "Integration Testing",
+            "Decomposition-Based Integration",
+            "Call Graph-Based Integration",
+            "Path-Based Integration",
+            "System Testing",
+            "Requirements Specification",
+            "Model-Based Threads",
+            "Use Case-Based Threads",
+            "Atomic System Functions",
+            "Object-Oriented Testing",
+            "Composition and Encapsulation Testing",
+            "Inheritance and Polymorphism Testing",
+            "Levels of Object-Oriented Testing",
+            "GUI Testing",
+            "Object-Oriented Data Flow Testing",
+            "Class Testing",
+            "Methods and Classes as Testing Units",
+            "Object-Oriented Integration Testing",
+            "UML Support for Integration Testing",
+            "MM-Paths for Object-Oriented Software",
+            "Object-Oriented Data Flow Integration Testing",
+            "Object-Oriented System Testing",
+            "UML-Based System Testing",
+            "State Chart-Based System Testing",
+            "GUI Testing Case Studies"
+        ]
+    },
+
+    // COMPULSORY PAPER
+    {
+        code: "CACP41",
+        title: "Digital Marketing",
+        type: "Theory",
+        icon: "📱",
+        notesLink: "digital-marketing.html",
+        topics: [
+            "Introduction to Digital Marketing",
+            "Evolution of Digital Marketing",
+            "Importance and Benefits of Digital Marketing",
+            "Digital Marketing Channels and Platforms",
+            "Digital Marketing Strategy and Planning",
+            "Setting Goals and Objectives",
+            "Budgeting and Resource Allocation",
+            "Campaign Planning and Execution",
+            "Monitoring and Adjusting Campaigns",
+            "Introduction to Social Media Marketing",
+            "Social Media Platforms and Their Features",
+            "Creating and Optimizing Social Media Profiles",
+            "Social Media Content Strategy",
+            "Social Media Advertising and Analytics",
+            "Introduction to Email Marketing",
+            "Building an Email List",
+            "Creating Effective Email Campaigns",
+            "Email Automation and Segmentation",
+            "Email Marketing Metrics and Analytics",
+            "Content Marketing",
+            "Content Strategy and Planning",
+            "Content Creation and Distribution",
+            "Content Promotion and Amplification",
+            "Content Marketing Metrics and Analytics",
+            "Mobile Marketing",
+            "Mobile Advertising Strategies",
+            "Mobile App Marketing",
+            "Location-Based Marketing",
+            "Mobile Marketing Analytics"
+        ]
+    }
+];
+
+
+
+const subjectList = document.getElementById("subject-list");
+
+function displaySubjects() {
+    subjectList.innerHTML = semesterSubjects.map(subject => `
+        <div class="subject-card">
+            ${JSON.parse(localStorage.getItem("subjectProgress") || "{}")[subject.code]
+    ? '<p class="completed-label">✓ Subject Completed</p>'
+    : ''}
+            ${JSON.parse(localStorage.getItem("subjectProgress") || "{}")[subject.code] ? "✓" : ""}
+            <span style="font-size:32px">${subject.icon}</span>
+            <p>${subject.code} | ${subject.type}</p>
+            <h3>${subject.title}</h3>
+            <details>
+                <summary>View Syllabus Topics</summary>
+                <ul>
+                    ${subject.topics.map(topic =>
+                        `<li>${topic}</li>`
+                    ).join("")}
+                </ul>
+            </details>
+            <div class="subject-progress">
+    <label>
+        <input type="checkbox"
+       ${JSON.parse(localStorage.getItem("subjectProgress") || "{}")[subject.code] ? "checked" : ""}
+       onchange="toggleSubjectProgress('${subject.code}', this.checked)">
+        Mark as Completed
+    </label>
+</div>
+            ${subject.notesLink ? `
+    <a class="notes-button"
+       href="${subject.notesLink}"
+       onclick="localStorage.setItem('lastSubject', '${subject.code} | ${subject.title}')">
+        ${subject.type === "Practical" ? "Open Practicals ↗" : "Open Notes ↗"}
+    </a>
+` : ""}
+            
+        </div>
+    `).join("");
+}
+
+
+const semesterSelect = document.getElementById("semester-select");
+
+semesterSelect.value = "1";
+
+
+displaySubjects();
+
+semesterSelect.addEventListener("change", function () {
+
+    if (semesterSelect.value === "4") {
+        semesterSubjects = semester4Subjects;
+        document.getElementById("semester-heading").textContent = "Semester 4";
+    }
+    else if (semesterSelect.value === "3") {
+        semesterSubjects = semester3Subjects;
+        document.getElementById("semester-heading").textContent = "Semester 3";
+    }
+    else if (semesterSelect.value === "2") {
+        semesterSubjects = semester2Subjects;
+        document.getElementById("semester-heading").textContent = "Semester 2";
+    }
+    else {
+        semesterSubjects = semester1Subjects;
+        document.getElementById("semester-heading").textContent = "Semester 1";
+    }
+
+    displaySubjects();
+});
+
+
+const searchInput = document.getElementById("search");
+
+searchInput.addEventListener("input", function () {
+    const searchText = this.value.toLowerCase().trim();
+
+    document.querySelectorAll(".subject-card").forEach(card => {
+        const cardText = card.textContent.toLowerCase();
+
+        card.style.display = cardText.includes(searchText) ? "" : "none";
+    });
+});
+
+function toggleSubjectProgress(code, completed) {
+    let progress = JSON.parse(
+        localStorage.getItem("subjectProgress") || "{}"
+    );
+
+    progress[code] = completed;
+
+    localStorage.setItem("subjectProgress", JSON.stringify(progress));
+}
+
+</script>
+
+</body>
+</html>

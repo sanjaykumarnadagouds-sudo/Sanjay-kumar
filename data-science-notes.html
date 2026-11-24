@@ -1,0 +1,1271 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fundamentals of Data Science | STUDENTVERSE</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+    font-family:Arial,sans-serif;
+    color:white;
+    background:radial-gradient(circle at top,#172554,#080b20 55%,#020617);
+    min-height:100vh;
+}
+nav{
+    padding:18px 7%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:#080d25;
+    border-bottom:1px solid #334155;
+    position:sticky;
+    top:0;
+    z-index:10;
+}
+nav h2{color:#67e8f9}
+nav a{color:white;text-decoration:none;margin-left:18px}
+header{text-align:center;padding:55px 15px 30px}
+header h1{font-size:34px;color:#67e8f9;margin-bottom:12px}
+header p{color:#cbd5e1;line-height:1.7}
+.search{
+    display:block;
+    width:min(650px,90%);
+    margin:25px auto;
+    padding:15px;
+    border:1px solid #38bdf8;
+    border-radius:12px;
+    background:#111a35;
+    color:white;
+    font-size:16px;
+    outline:none;
+}
+.container{width:min(1050px,92%);margin:auto;padding-bottom:60px}
+.subject-info{
+    background:#111a35;
+    padding:20px;
+    border:1px solid #334155;
+    border-radius:14px;
+    margin-bottom:30px;
+    line-height:1.8;
+    color:#cbd5e1;
+}
+.subject-info strong{color:#67e8f9}
+.section-title{
+    color:#f0abfc;
+    font-size:25px;
+    margin:35px 0 18px;
+}
+.topic{
+    background:linear-gradient(145deg,#111a35,#0b1025);
+    border:1px solid #334155;
+    border-radius:15px;
+    padding:23px;
+    margin-bottom:20px;
+    box-shadow:0 8px 25px #0005;
+    transition:.3s;
+}
+.topic:hover{
+    transform:translateY(-3px);
+    border-color:#38bdf8;
+    box-shadow:0 0 18px #0ea5e955;
+}
+.topic h2{color:#67e8f9;font-size:21px;margin-bottom:14px}
+.topic h3{color:#f0abfc;margin:18px 0 9px}
+.topic p{
+    color:#d1d5db;
+    line-height:1.8;
+    margin-bottom:10px;
+}
+.topic ul,.topic ol{
+    padding-left:25px;
+    color:#cbd5e1;
+    line-height:1.9;
+    margin:10px 0;
+}
+.topic li{margin-bottom:4px}
+.topic table{
+    width:100%;
+    border-collapse:collapse;
+    margin:15px 0;
+}
+.topic th,.topic td{
+    border:1px solid #475569;
+    padding:11px;
+    text-align:left;
+}
+.topic th{background:#172554;color:#67e8f9}
+.topic td{color:#e2e8f0}
+.example{
+    background:#020617;
+    padding:14px;
+    border-left:3px solid #22d3ee;
+    border-radius:7px;
+    color:#a7f3d0;
+    margin:12px 0;
+    line-height:1.7;
+}
+.note{
+    background:#292044;
+    border-left:3px solid #c084fc;
+    padding:13px;
+    margin-top:12px;
+    border-radius:7px;
+    color:#e9d5ff;
+    line-height:1.7;
+}
+button{
+    border:0;
+    border-radius:9px;
+    padding:11px 17px;
+    margin-top:15px;
+    background:#0891b2;
+    color:white;
+    cursor:pointer;
+    font-weight:bold;
+}
+button:hover{background:#0e7490}
+footer{text-align:center;padding:25px;color:#94a3b8}
+#topBtn{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    display:none;
+    border-radius:50%;
+    width:48px;height:48px;
+    font-size:20px;
+}
+@media(max-width:600px){
+    nav{flex-direction:column;gap:12px}
+    nav a{margin:5px}
+    header h1{font-size:27px}
+    .topic{padding:16px}
+    .topic table{font-size:13px}
+}
+@media print{
+    body{background:white;color:black}
+    nav,.search,button,#topBtn{display:none!important}
+    header{padding:20px}
+    header h1,.section-title,.topic h2,.topic h3{color:black}
+    .subject-info,.topic{
+        background:white;
+        color:black;
+        border:1px solid #999;
+        box-shadow:none;
+        break-inside:avoid;
+    }
+    .subject-info,.topic p,.topic li,.topic td{color:black}
+    .topic th{background:#eee;color:black}
+    .example,.note{background:#f2f2f2;color:black}
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <h2>STUDENTVERSE</h2>
+    <div>
+        <a href="index.html">Home</a>
+        <a href="studyhub.html">StudyHub</a>
+        <a href="php-notes.html">Previous Subject</a>
+    </div>
+</nav>
+
+<header>
+    <h1>Fundamentals of Data Science</h1>
+    <p>CAE41X | BCA Semester IV</p>
+    <p>University of Mysore | Theory Notes</p>
+    <button onclick="window.print()">Download / Print PDF</button>
+</header>
+
+<input class="search" id="search" type="text"
+placeholder="Search topics, definitions and questions...">
+
+<div class="container">
+
+<div class="subject-info">
+    <p><strong>Subject:</strong> Fundamentals of Data Science</p>
+    <p><strong>Course Code:</strong> CAE41X (Elective 1)</p>
+    <p><strong>Credits:</strong> 3</p>
+    <p><strong>Total Contact Hours:</strong> 44</p>
+    <p><strong>Examination Marks:</strong> 80</p>
+    <p><strong>Course Focus:</strong> Data Mining, Data Warehousing, Classification and Clustering.</p>
+</div>
+
+<h2 class="section-title">Course Outcomes</h2>
+
+<div class="topic">
+<h2>Learning Outcomes</h2>
+<ul>
+<li>Understand data mining, KDD and their real-world applications.</li>
+<li>Understand data preprocessing and frequent pattern mining.</li>
+<li>Apply classification techniques and prediction models.</li>
+<li>Understand clustering methods and evaluate clustering results.</li>
+</ul>
+</div>
+
+<h2 class="section-title">Unit 1 – Introduction to Data Mining</h2>
+
+<div class="topic">
+<h2>1. Introduction to Data Science</h2>
+<p><b>Data Science</b> is an interdisciplinary field that uses scientific methods, statistics, programming and analytical techniques to extract useful information from data.</p>
+
+<h3>Definition of Data</h3>
+<p>Data means raw facts and figures collected from different sources. Data can be numbers, text, images, videos or other information.</p>
+
+<h3>What is Data Mining?</h3>
+<p>Data Mining is the process of discovering useful patterns, relationships and knowledge from large amounts of data.</p>
+
+<h3>Examples</h3>
+<ul>
+<li>Online shopping websites recommending products.</li>
+<li>Banks identifying suspicious transactions.</li>
+<li>Hospitals analysing patient information.</li>
+<li>Social media platforms suggesting content.</li>
+<li>Supermarkets studying customer purchasing habits.</li>
+</ul>
+
+<h3>Advantages of Data Mining</h3>
+<ul>
+<li>Helps in better decision-making.</li>
+<li>Identifies hidden patterns.</li>
+<li>Improves business performance.</li>
+<li>Helps predict future trends.</li>
+<li>Finds unusual activities and possible fraud.</li>
+</ul>
+</div>
+
+<div class="topic">
+<h2>2. Knowledge Discovery in Databases (KDD)</h2>
+<p>KDD stands for Knowledge Discovery in Databases. It is the complete process of finding useful knowledge from large datasets.</p>
+
+<h3>Steps in KDD</h3>
+<ol>
+<li><b>Data Cleaning:</b> Removes incorrect, duplicate and incomplete data.</li>
+<li><b>Data Integration:</b> Combines data from different sources.</li>
+<li><b>Data Selection:</b> Selects relevant data for analysis.</li>
+<li><b>Data Transformation:</b> Converts data into a suitable format.</li>
+<li><b>Data Mining:</b> Applies algorithms to discover patterns.</li>
+<li><b>Pattern Evaluation:</b> Identifies useful and meaningful patterns.</li>
+<li><b>Knowledge Presentation:</b> Displays discovered knowledge using reports and visualizations.</li>
+</ol>
+
+<h3>KDD Process Example</h3>
+<div class="example">
+Customer Data → Cleaning → Integration → Selection → Transformation → Data Mining → Pattern Evaluation → Knowledge
+</div>
+
+<h3>Difference Between KDD and Data Mining</h3>
+<table>
+<tr><th>KDD</th><th>Data Mining</th></tr>
+<tr><td>Complete knowledge discovery process.</td><td>One step of the KDD process.</td></tr>
+<tr><td>Includes cleaning, selection and evaluation.</td><td>Finds patterns using algorithms.</td></tr>
+<tr><td>Broader process.</td><td>Part of KDD.</td></tr>
+</table>
+</div>
+
+<div class="topic">
+<h2>3. Types of Data That Can Be Mined</h2>
+<p>Different types of data can be analysed using data mining techniques.</p>
+<ul>
+<li><b>Relational Database:</b> Data stored in tables with rows and columns.</li>
+<li><b>Data Warehouse:</b> Integrated data collected from multiple sources.</li>
+<li><b>Transactional Data:</b> Data related to purchases and transactions.</li>
+<li><b>Time-Series Data:</b> Data collected over time, such as daily temperatures.</li>
+<li><b>Spatial Data:</b> Geographical and location-related data.</li>
+<li><b>Text Data:</b> Emails, documents and social media posts.</li>
+<li><b>Multimedia Data:</b> Images, audio and videos.</li>
+<li><b>Web Data:</b> Website clicks, browsing history and online activity.</li>
+</ul>
+</div>
+
+<div class="topic">
+<h2>4. Data Mining Functionalities</h2>
+<p>Data mining functionalities describe the different types of knowledge that can be discovered from data.</p>
+
+<h3>1. Concept Description</h3>
+<p>Summarizes and describes the general characteristics of data.</p>
+
+<h3>2. Association Analysis</h3>
+<p>Finds relationships between items that frequently occur together.</p>
+<p>Example: Customers who purchase bread may also purchase butter.</p>
+
+<h3>3. Classification</h3>
+<p>Places data into predefined categories.</p>
+<p>Example: Classifying emails as spam or not spam.</p>
+
+<h3>4. Prediction</h3>
+<p>Uses existing data to estimate future values.</p>
+<p>Example: Predicting next month's sales.</p>
+
+<h3>5. Clustering</h3>
+<p>Groups similar data objects without predefined labels.</p>
+<p>Example: Grouping customers according to shopping behaviour.</p>
+
+<h3>6. Outlier Analysis</h3>
+<p>Identifies data objects that are significantly different from normal data.</p>
+<p>Example: Detecting unusual bank transactions.</p>
+
+<h3>7. Evolution Analysis</h3>
+<p>Studies changes and trends in data over time.</p>
+</div>
+
+<div class="topic">
+<h2>5. Data Mining Techniques</h2>
+<ul>
+<li>Classification</li>
+<li>Clustering</li>
+<li>Association Rule Mining</li>
+<li>Prediction</li>
+<li>Regression</li>
+<li>Outlier Detection</li>
+<li>Sequential Pattern Mining</li>
+<li>Summarization</li>
+</ul>
+
+<h3>Problems, Issues and Challenges</h3>
+<ul>
+<li><b>Data Quality:</b> Incomplete or incorrect information.</li>
+<li><b>Privacy:</b> Protecting personal and confidential data.</li>
+<li><b>Scalability:</b> Processing very large datasets.</li>
+<li><b>Data Integration:</b> Combining data from different formats.</li>
+<li><b>Security:</b> Preventing unauthorized access.</li>
+<li><b>Complexity:</b> Selecting suitable algorithms.</li>
+</ul>
+</div>
+
+<div class="topic">
+<h2>6. Applications of Data Mining</h2>
+<table>
+<tr><th>Field</th><th>Application</th></tr>
+<tr><td>Banking</td><td>Fraud detection and credit analysis.</td></tr>
+<tr><td>Education</td><td>Student performance analysis.</td></tr>
+<tr><td>Healthcare</td><td>Disease prediction and patient analysis.</td></tr>
+<tr><td>Retail</td><td>Customer purchasing patterns.</td></tr>
+<tr><td>Telecommunication</td><td>Customer behaviour and network analysis.</td></tr>
+<tr><td>Marketing</td><td>Customer segmentation.</td></tr>
+<tr><td>Science</td><td>Research and pattern discovery.</td></tr>
+</table>
+</div>
+
+<h2 class="section-title">Unit 2 – Data Warehouse and Frequent Pattern Mining</h2>
+
+<div class="topic">
+<h2>7. Data Warehouse</h2>
+<p>A <b>Data Warehouse</b> is a central storage system that collects and stores integrated historical data from different sources for analysis and decision-making.</p>
+
+<h3>Characteristics</h3>
+<ul>
+<li><b>Subject-Oriented:</b> Organized around subjects such as sales or customers.</li>
+<li><b>Integrated:</b> Combines data from different sources.</li>
+<li><b>Time-Variant:</b> Stores historical data over time.</li>
+<li><b>Non-Volatile:</b> Data is mainly used for reading and analysis rather than frequent modification.</li>
+</ul>
+
+<h3>Advantages</h3>
+<ul>
+<li>Provides centralized data storage.</li>
+<li>Supports business decisions.</li>
+<li>Helps analyse historical information.</li>
+<li>Improves reporting and analysis.</li>
+</ul>
+</div>
+
+<div class="topic">
+<h2>8. Three-Tier Data Warehouse Architecture</h2>
+<p>Three-tier architecture divides a data warehouse system into three layers.</p>
+
+<h3>1. Bottom Tier</h3>
+<p>Contains databases and data sources. Data is collected, cleaned and loaded into the warehouse.</p>
+
+<h3>2. Middle Tier</h3>
+<p>Contains the OLAP server, which processes analytical queries.</p>
+
+<h3>3. Top Tier</h3>
+<p>Contains front-end tools used for reporting, querying and data analysis.</p>
+
+<div class="example">
+Top Tier: Reports and Analysis Tools<br>
+↓<br>
+Middle Tier: OLAP Server<br>
+↓<br>
+Bottom Tier: Data Warehouse and Data Sources
+</div>
+</div>
+
+<div class="topic">
+<h2>9. Multidimensional Data Model</h2>
+<p>A multidimensional data model represents data using multiple dimensions for easy analysis.</p>
+
+<h3>Important Terms</h3>
+<ul>
+<li><b>Fact Table:</b> Stores measurable business information such as sales amount.</li>
+<li><b>Dimension Table:</b> Stores descriptive information such as time, product and location.</li>
+<li><b>Measures:</b> Numerical values used for analysis.</li>
+<li><b>Dimensions:</b> Different perspectives used to analyse data.</li>
+</ul>
+
+<h3>Example</h3>
+<p>A sales data warehouse can analyse sales according to product, location and time.</p>
+
+<table>
+<tr><th>Dimension</th><th>Example</th></tr>
+<tr><td>Product</td><td>Mobile, Laptop</td></tr>
+<tr><td>Location</td><td>Mysuru, Bengaluru</td></tr>
+<tr><td>Time</td><td>January, February</td></tr>
+<tr><td>Measure</td><td>Total Sales</td></tr>
+</table>
+</div>
+
+<div class="topic">
+<h2>10. Schemas for Multidimensional Data Models</h2>
+
+<h3>1. Star Schema</h3>
+<p>A central fact table is connected directly to multiple dimension tables. It has a star-like structure.</p>
+<p><b>Advantage:</b> Simple design and faster queries in many analytical situations.</p>
+
+<h3>2. Snowflake Schema</h3>
+<p>Dimension tables are divided into additional related tables. Its structure looks like a snowflake.</p>
+<p><b>Advantage:</b> Reduces repeated dimension data through normalization.</p>
+
+<h3>3. Fact Constellation Schema</h3>
+<p>Contains multiple fact tables that share dimension tables.</p>
+<p><b>Advantage:</b> Supports analysis of multiple related business processes.</p>
+
+<table>
+<tr><th>Star Schema</th><th>Snowflake Schema</th></tr>
+<tr><td>Simple structure.</td><td>More complex structure.</td></tr>
+<tr><td>Dimension tables are usually denormalized.</td><td>Dimension tables are normalized.</td></tr>
+<tr><td>Fewer joins are generally needed.</td><td>More joins may be needed.</td></tr>
+</table>
+</div>
+
+<div class="topic">
+<h2>11. OLAP Operations</h2>
+<p>OLAP stands for Online Analytical Processing. It is used to analyse multidimensional data.</p>
+
+<h3>1. Roll-Up</h3>
+<p>Summarizes data by moving from detailed information to a higher level.</p>
+<p>Example: Daily sales to monthly sales.</p>
+
+<h3>2. Drill-Down</h3>
+<p>Moves from summarized information to detailed information.</p>
+<p>Example: Yearly sales to monthly sales.</p>
+
+<h3>3. Slice</h3>
+<p>Selects one particular value of a dimension.</p>
+<p>Example: Viewing sales for the year 2026 only.</p>
+
+<h3>4. Dice</h3>
+<p>Selects a smaller portion of data using multiple dimension values.</p>
+
+<h3>5. Pivot</h3>
+<p>Rotates the data view to analyse information from a different perspective.</p>
+</div>
+
+<div class="topic">
+<h2>12. Data Preprocessing</h2>
+<p>Data preprocessing is the process of preparing raw data before applying data mining techniques.</p>
+
+<h3>1. Data Cleaning</h3>
+<p>Removes errors, duplicates and inconsistencies from data.</p>
+<ul>
+<li>Handling missing values.</li>
+<li>Removing duplicate records.</li>
+<li>Handling noisy data.</li>
+<li>Correcting inconsistent values.</li>
+</ul>
+
+<h3>Handling Missing Values</h3>
+<ul>
+<li>Ignore the incomplete record when appropriate.</li>
+<li>Fill using a constant value.</li>
+<li>Fill using mean, median or mode.</li>
+<li>Estimate the value using a suitable model.</li>
+</ul>
+
+<h3>Handling Noisy Data</h3>
+<p>Noisy data contains random errors or unusual variations.</p>
+<p>Methods include binning, regression and clustering-based methods.</p>
+</div>
+
+<div class="topic">
+<h2>13. Data Integration</h2>
+<p>Data integration combines information from multiple data sources into a single consistent dataset.</p>
+
+<h3>Challenges</h3>
+<ul>
+<li>Different data formats.</li>
+<li>Duplicate records.</li>
+<li>Different naming conventions.</li>
+<li>Conflicting values.</li>
+<li>Data redundancy.</li>
+</ul>
+
+<h3>Example</h3>
+<p>A college may combine student information from admission records, examination records and attendance systems.</p>
+</div>
+
+<div class="topic">
+<h2>14. Data Reduction</h2>
+<p>Data reduction reduces the size of data while maintaining important information needed for analysis.</p>
+
+<h3>Strategies</h3>
+<ul>
+<li><b>Data Cube Aggregation:</b> Summarizes detailed data.</li>
+<li><b>Dimensionality Reduction:</b> Reduces the number of attributes.</li>
+<li><b>Numerosity Reduction:</b> Represents data using a smaller model.</li>
+<li><b>Data Compression:</b> Stores information in a compact form.</li>
+<li><b>Discretization:</b> Converts continuous values into intervals.</li>
+</ul>
+</div>
+
+<div class="topic">
+<h2>15. Data Transformation and Normalization</h2>
+<p>Data transformation converts data into a suitable format for mining and analysis.</p>
+
+<h3>Common Methods</h3>
+<ul>
+<li>Smoothing</li>
+<li>Aggregation</li>
+<li>Generalization</li>
+<li>Normalization</li>
+<li>Attribute construction</li>
+</ul>
+
+<h3>Min-Max Normalization</h3>
+<p>Converts values into a specified range.</p>
+<div class="example">
+New Value = (X - Minimum) / (Maximum - Minimum)
+</div>
+<p>For a range from 0 to 1:</p>
+<div class="example">
+X = 50, Minimum = 0, Maximum = 100<br>
+Normalized Value = (50 - 0) / (100 - 0) = 0.5
+</div>
+
+<h3>Z-Score Normalization</h3>
+<p>Transforms data based on its mean and standard deviation.</p>
+<div class="example">
+Z = (X - Mean) / Standard Deviation
+</div>
+</div>
+
+<div class="topic">
+<h2>16. Frequent Pattern Mining</h2>
+<p>Frequent pattern mining identifies items, sequences or structures that occur frequently in a dataset.</p>
+
+<h3>Important Terms</h3>
+<ul>
+<li><b>Item:</b> A single object, such as bread.</li>
+<li><b>Itemset:</b> A collection of one or more items.</li>
+<li><b>Support:</b> Frequency of an itemset in the transaction database.</li>
+<li><b>Confidence:</b> Strength of an association rule.</li>
+<li><b>Frequent Itemset:</b> An itemset whose support is greater than or equal to minimum support.</li>
+<li><b>Maximal Frequent Itemset:</b> A frequent itemset that has no frequent superset.</li>
+<li><b>Closed Frequent Itemset:</b> A frequent itemset with no superset having the same support.</li>
+</ul>
+
+<h3>Support Formula</h3>
+<div class="example">
+Support(A) = Transactions containing A / Total Transactions
+</div>
+
+<h3>Confidence Formula</h3>
+<div class="example">
+Confidence(A → B) = Support(A ∪ B) / Support(A)
+</div>
+</div>
+
+<div class="topic">
+<h2>17. Association Rule Mining</h2>
+<p>Association rule mining discovers relationships between items in large datasets.</p>
+
+<p><b>Example:</b> Customers who buy bread may also buy butter.</p>
+
+<div class="example">
+Bread → Butter
+</div>
+
+<h3>Applications</h3>
+<ul>
+<li>Market basket analysis.</li>
+<li>Product recommendations.</li>
+<li>Shopping behaviour analysis.</li>
+<li>Website usage analysis.</li>
+</ul>
+</div>
+
+<div class="topic">
+<h2>18. Apriori Algorithm</h2>
+<p>The Apriori algorithm is used to discover frequent itemsets and association rules in transactional databases.</p>
+
+<h3>Apriori Principle</h3>
+<p>If an itemset is frequent, all its non-empty subsets must also be frequent. If an itemset is infrequent, its supersets cannot be frequent.</p>
+
+<h3>Steps</h3>
+<ol>
+<li>Find frequent one-itemsets.</li>
+<li>Generate candidate two-itemsets.</li>
+<li>Calculate their support.</li>
+<li>Remove itemsets below minimum support.</li>
+<li>Generate larger candidate itemsets.</li>
+<li>Repeat until no more frequent itemsets are found.</li>
+<li>Generate association rules using confidence.</li>
+</ol>
+
+<h3>Example</h3>
+<p>Consider these transactions:</p>
+<table>
+<tr><th>Transaction</th><th>Items</th></tr>
+<tr><td>T1</td><td>Bread, Milk</td></tr>
+<tr><td>T2</td><td>Bread, Butter</td></tr>
+<tr><td>T3</td><td>Bread, Milk, Butter</td></tr>
+<tr><td>T4</td><td>Milk, Butter</td></tr>
+</table>
+<p>If minimum support is 50%, the item Bread occurs in 3 out of 4 transactions.</p>
+<div class="example">
+Support(Bread) = 3/4 × 100 = 75%
+</div>
+<p>Therefore, Bread is a frequent item.</p>
+
+<h3>Advantages</h3>
+<ul>
+<li>Easy to understand and implement.</li>
+<li>Useful for market basket analysis.</li>
+</ul>
+
+<h3>Disadvantages</h3>
+<ul>
+<li>Generates many candidate itemsets.</li>
+<li>Requires repeated database scans.</li>
+<li>Can be slow for large datasets.</li>
+</ul>
+</div>
+
+<div class="topic">
+<h2>19. FP-Growth Algorithm</h2>
+<p>FP-Growth stands for Frequent Pattern Growth. It finds frequent itemsets without generating large candidate sets like Apriori.</p>
+
+<h3>Steps</h3>
+<ol>
+<li>Scan the database and calculate item frequencies.</li>
+<li>Remove items below minimum support.</li>
+<li>Sort frequent items by descending support.</li>
+<li>Build an FP-Tree.</li>
+<li>Generate conditional pattern bases.</li>
+<li>Construct conditional FP-Trees.</li>
+<li>Discover frequent patterns.</li>
+</ol>
+
+<h3>Advantages</h3>
+<ul>
+<li>Avoids candidate generation.</li>
+<li>Often faster than Apriori.</li>
+<li>Uses a compact tree structure.</li>
+</ul>
+
+<h3>Difference Between Apriori and FP-Growth</h3>
+<table>
+<tr><th>Apriori</th><th>FP-Growth</th></tr>
+<tr><td>Generates candidate itemsets.</td><td>Does not generate candidates in the same way.</td></tr>
+<tr><td>Uses repeated database scans.</td><td>Uses an FP-Tree structure.</td></tr>
+<tr><td>May be slower for large datasets.</td><td>Often more efficient for large datasets.</td></tr>
+</table>
+</div>
+
+<div class="topic">
+<h2>20. Vertical Data Format in Frequent Itemset Mining</h2>
+<p>In vertical data format, each item is stored with the list of transaction IDs in which it appears.</p>
+
+<h3>Example</h3>
+<table>
+<tr><th>Item</th><th>Transaction IDs</th></tr>
+<tr><td>Bread</td><td>T1, T2, T3</td></tr>
+<tr><td>Milk</td><td>T1, T3, T4</td></tr>
+<tr><td>Butter</td><td>T2, T3, T4</td></tr>
+</table>
+<p>To find the support of Bread and Milk together, intersect their transaction ID lists.</p>
+<div class="example">
+Bread = {T1, T2, T3}<br>
+Milk = {T1, T3, T4}<br>
+Intersection = {T1, T3}<br>
+Support Count = 2
+</div>
+</div>
+
+<h2 class="section-title">Unit 3 – Classification and Prediction</h2>
+
+<div class="topic">
+<h2>21. Classification</h2>
+<p>Classification is a supervised learning technique that assigns data objects to predefined classes or categories.</p>
+
+<h3>Example</h3>
+<p>An email system classifies messages into:</p>
+<ul>
+<li>Spam</li>
+<li>Not Spam</li>
+</ul>
+
+<h3>Steps in Classification</h3>
+<ol>
+<li>Collect training data.</li>
+<li>Prepare and clean the data.</li>
+<li>Build a classification model.</li>
+<li>Test the model using test data.</li>
+<li>Classify new records.</li>
+</ol>
+
+<h3>Applications</h3>
+<ul>
+<li>Spam detection.</li>
+<li>Medical diagnosis.</li>
+<li>Credit approval.</li>
+<li>Fraud detection.</li>
+</ul>
+</div>
+
+<div class="topic">
+<h2>22. Decision Tree Induction</h2>
+<p>A decision tree is a tree-shaped model used for classification and prediction.</p>
+
+<h3>Main Components</h3>
+<ul>
+<li><b>Root Node:</b> Starting point of the tree.</li>
+<li><b>Internal Node:</b> Represents a test on an attribute.</li>
+<li><b>Branch:</b> Represents the outcome of a test.</li>
+<li><b>Leaf Node:</b> Represents the final class or decision.</li>
+</ul>
+
+<h3>Example</h3>
+<div class="example">
+                 Weather<br>
+               /         \<br>
+           Sunny         Rainy<br>
+             |              |<br>
+          Play?          No Play
+</div>
+
+<h3>Attribute Selection Measures</h3>
+<p>Attribute selection measures help choose the best attribute for splitting data.</p>
+<ul>
+<li>Information Gain</li>
+<li>Gain Ratio</li>
+<li>Gini Index</li>
+</ul>
+
+<h3>Advantages</h3>
+<ul>
+<li>Easy to understand.</li>
+<li>Simple to visualize.</li>
+<li>Can handle different types of data.</li>
+</ul>
+
+<h3>Disadvantages</h3>
+<ul>
+<li>May overfit training data.</li>
+<li>Small data changes may produce a different tree.</li>
+</ul>
+</div>
+
+<div class="topic">
+<h2>23. Bayes Classification Method</h2>
+<p>Bayesian classification is a statistical classification method based on Bayes' theorem.</p>
+
+<h3>Bayes' Theorem</h3>
+<div class="example">
+P(A|B) = [P(B|A) × P(A)] / P(B)
+</div>
+
+<p>Where:</p>
+<ul>
+<li>P(A|B) = Probability of A given B.</li>
+<li>P(B|A) = Probability of B given A.</li>
+<li>P(A) = Prior probability of A.</li>
+<li>P(B) = Probability of B.</li>
+</ul>
+
+<h3>Naive Bayes Classifier</h3>
+<p>Naive Bayes assumes that features are conditionally independent given the class.</p>
+
+<h3>Applications</h3>
+<ul>
+<li>Email spam filtering.</li>
+<li>Text classification.</li>
+<li>Sentiment analysis.</li>
+<li>Medical prediction.</li>
+</ul>
+
+<h3>Advantages</h3>
+<ul>
+<li>Simple and fast.</li>
+<li>Works well with many text classification tasks.</li>
+<li>Requires relatively little training data.</li>
+</ul>
+</div>
+
+<div class="topic">
+<h2>24. Rule-Based Classification</h2>
+<p>Rule-based classification uses IF–THEN rules to assign data to classes.</p>
+
+<h3>Example</h3>
+<div class="example">
+IF marks >= 35<br>
+THEN Result = Pass<br><br>
+IF marks < 35<br>
+THEN Result = Fail
+</div>
+
+<h3>Advantages</h3>
+<ul>
+<li>Easy to understand.</li>
+<li>Rules can be interpreted by humans.</li>
+<li>Useful for decision-making systems.</li>
+</ul>
+</div>
+
+<div class="topic">
+<h2>25. Lazy Learners and K-Nearest Neighbour</h2>
+<p>Lazy learners delay building a general model until a new record needs classification.</p>
+
+<h3>K-Nearest Neighbour (KNN)</h3>
+<p>KNN classifies a new data point based on the majority class among its K nearest neighbours.</p>
+
+<h3>Steps</h3>
+<ol>
+<li>Choose the value of K.</li>
+<li>Calculate distances between the new point and training points.</li>
+<li>Find the K nearest points.</li>
+<li>Count the class labels of the neighbours.</li>
+<li>Assign the majority class.</li>
+</ol>
+
+<h3>Euclidean Distance Formula</h3>
+<div class="example">
+d = √[(x2 - x1)² + (y2 - y1)²]
+</div>
+
+<h3>Advantages</h3>
+<ul>
+<li>Simple to understand.</li>
+<li>No complex training phase.</li>
+<li>Can be used for classification and regression.</li>
+</ul>
+
+<h3>Disadvantages</h3>
+<ul>
+<li>Can be slow on large datasets.</li>
+<li>Choosing the correct K is important.</li>
+<li>Can be affected by irrelevant features and different feature scales.</li>
+</ul>
+</div>
+
+<div class="topic">
+<h2>26. Prediction</h2>
+<p>Prediction uses existing data to estimate unknown or future values.</p>
+
+<h3>Examples</h3>
+<ul>
+<li>Predicting house prices.</li>
+<li>Predicting future sales.</li>
+<li>Estimating student marks.</li>
+<li>Predicting rainfall.</li>
+</ul>
+
+<h3>Classification vs Prediction</h3>
+<table>
+<tr><th>Classification</th><th>Prediction</th></tr>
+<tr><td>Usually predicts class labels.</td><td>Often predicts numerical values.</td></tr>
+<tr><td>Example: Spam or Not Spam.</td><td>Example: Expected sales amount.</td></tr>
+</table>
+</div>
+
+<div class="topic">
+<h2>27. Confusion Matrix</h2>
+<p>A confusion matrix is a table used to evaluate the performance of a classification model.</p>
+
+<table>
+<tr><th></th><th>Predicted Positive</th><th>Predicted Negative</th></tr>
+<tr><th>Actual Positive</th><td>True Positive (TP)</td><td>False Negative (FN)</td></tr>
+<tr><th>Actual Negative</th><td>False Positive (FP)</td><td>True Negative (TN)</td></tr>
+</table>
+
+<ul>
+<li><b>True Positive:</b> Correctly predicted positive.</li>
+<li><b>True Negative:</b> Correctly predicted negative.</li>
+<li><b>False Positive:</b> Incorrectly predicted positive.</li>
+<li><b>False Negative:</b> Incorrectly predicted negative.</li>
+</ul>
+</div>
+
+<div class="topic">
+<h2>28. Accuracy, Precision and Recall</h2>
+
+<h3>Accuracy</h3>
+<p>Measures the proportion of all predictions that are correct.</p>
+<div class="example">
+Accuracy = (TP + TN) / (TP + TN + FP + FN)
+</div>
+
+<h3>Precision</h3>
+<p>Measures how many predicted positive results are actually positive.</p>
+<div class="example">
+Precision = TP / (TP + FP)
+</div>
+
+<h3>Recall</h3>
+<p>Measures how many actual positive cases were correctly identified.</p>
+<div class="example">
+Recall = TP / (TP + FN)
+</div>
+
+<h3>Example</h3>
+<p>Suppose TP = 40, TN = 50, FP = 5 and FN = 5.</p>
+<div class="example">
+Accuracy = (40 + 50) / 100 = 90%<br>
+Precision = 40 / 45 = 88.89%<br>
+Recall = 40 / 45 = 88.89%
+</div>
+</div>
+
+<h2 class="section-title">Unit 4 – Clustering</h2>
+
+<div class="topic">
+<h2>29. Clustering</h2>
+<p>Clustering is an unsupervised learning technique that groups similar data objects into clusters.</p>
+
+<h3>Example</h3>
+<p>A shopping company groups customers based on their purchasing behaviour.</p>
+
+<h3>Characteristics</h3>
+<ul>
+<li>Does not require predefined class labels.</li>
+<li>Groups similar objects together.</li>
+<li>Separates dissimilar objects.</li>
+<li>Helps discover hidden structures.</li>
+</ul>
+
+<h3>Applications</h3>
+<ul>
+<li>Customer segmentation.</li>
+<li>Image segmentation.</li>
+<li>Document grouping.</li>
+<li>Medical data analysis.</li>
+<li>Social network analysis.</li>
+</ul>
+
+<h3>Classification vs Clustering</h3>
+<table>
+<tr><th>Classification</th><th>Clustering</th></tr>
+<tr><td>Supervised learning.</td><td>Unsupervised learning.</td></tr>
+<tr><td>Uses labelled data.</td><td>Uses unlabelled data.</td></tr>
+<tr><td>Predicts predefined classes.</td><td>Discovers groups in data.</td></tr>
+</table>
+</div>
+
+<div class="topic">
+<h2>30. Partitioning Methods</h2>
+<p>Partitioning methods divide a dataset into a fixed number of clusters.</p>
+
+<h3>1. K-Means Clustering</h3>
+<p>K-Means divides data into K clusters. Each cluster is represented by its centroid.</p>
+
+<h3>Steps</h3>
+<ol>
+<li>Select the number of clusters K.</li>
+<li>Choose initial centroids.</li>
+<li>Assign each data point to its nearest centroid.</li>
+<li>Calculate new centroids.</li>
+<li>Repeat until assignments stop changing significantly.</li>
+</ol>
+
+<h3>Advantages</h3>
+<ul>
+<li>Simple and easy to implement.</li>
+<li>Works well for many compact clusters.</li>
+<li>Efficient for many datasets.</li>
+</ul>
+
+<h3>Disadvantages</h3>
+<ul>
+<li>K must be selected in advance.</li>
+<li>Sensitive to initial centroids.</li>
+<li>Can be affected by outliers.</li>
+</ul>
+
+<h3>2. K-Medoids</h3>
+<p>K-Medoids is a partitioning method where each cluster is represented by an actual data object called a medoid.</p>
+
+<h3>K-Means vs K-Medoids</h3>
+<table>
+<tr><th>K-Means</th><th>K-Medoids</th></tr>
+<tr><td>Uses the mean as centroid.</td><td>Uses an actual data point as medoid.</td></tr>
+<tr><td>More sensitive to outliers.</td><td>Generally more robust to outliers.</td></tr>
+<tr><td>Often faster.</td><td>Can be more computationally expensive.</td></tr>
+</table>
+</div>
+
+<div class="topic">
+<h2>31. Hierarchical Clustering</h2>
+<p>Hierarchical clustering creates a hierarchy of clusters. The results can be represented using a tree-like diagram called a dendrogram.</p>
+
+<h3>Types</h3>
+
+<h3>1. Agglomerative Clustering</h3>
+<p>Bottom-up approach. Starts with each data point as an individual cluster and repeatedly merges the closest clusters.</p>
+
+<h3>2. Divisive Clustering</h3>
+<p>Top-down approach. Starts with all data points in one cluster and repeatedly divides them into smaller clusters.</p>
+
+<h3>Advantages</h3>
+<ul>
+<li>Produces a hierarchy of clusters.</li>
+<li>Does not always require the number of clusters in advance.</li>
+<li>Useful for exploring relationships.</li>
+</ul>
+
+<h3>Disadvantages</h3>
+<ul>
+<li>Can be computationally expensive.</li>
+<li>Early merging or splitting decisions are difficult to reverse.</li>
+</ul>
+</div>
+
+<div class="topic">
+<h2>32. Probabilistic and Bayesian Methods</h2>
+<p>Probabilistic clustering uses probability distributions to represent data and estimate the likelihood that an object belongs to a cluster.</p>
+
+<h3>Bayesian Methods</h3>
+<p>Bayesian methods use probability and Bayes' theorem to estimate cluster membership and update beliefs when new data becomes available.</p>
+
+<h3>Uses</h3>
+<ul>
+<li>Handling uncertainty in data.</li>
+<li>Modelling overlapping clusters.</li>
+<li>Analysing complex datasets.</li>
+</ul>
+</div>
+
+<div class="topic">
+<h2>33. Density-Based Clustering</h2>
+<p>Density-based clustering forms clusters from areas containing many closely located data points and separates sparse areas as noise or outliers.</p>
+
+<h3>1. DBSCAN</h3>
+<p>DBSCAN stands for Density-Based Spatial Clustering of Applications with Noise.</p>
+
+<h3>Important Parameters</h3>
+<ul>
+<li><b>Epsilon (ε):</b> Neighbourhood radius.</li>
+<li><b>MinPts:</b> Minimum number of points required to form a dense region.</li>
+</ul>
+
+<h3>Types of Points</h3>
+<ul>
+<li><b>Core Point:</b> Has at least MinPts points within its neighbourhood.</li>
+<li><b>Border Point:</b> Lies within the neighbourhood of a core point but does not itself satisfy the core condition.</li>
+<li><b>Noise Point:</b> Does not belong to any cluster.</li>
+</ul>
+
+<h3>2. DENCLUE</h3>
+<p>DENCLUE stands for DENsity-based CLUstEring. It uses mathematical density functions to identify dense regions and clusters.</p>
+
+<h3>Advantages of Density-Based Methods</h3>
+<ul>
+<li>Can identify clusters with irregular shapes.</li>
+<li>Can identify noise and outliers.</li>
+<li>Does not always require the number of clusters in advance.</li>
+</ul>
+</div>
+
+<div class="topic">
+<h2>34. Grid-Based Clustering</h2>
+<p>Grid-based clustering divides the data space into a finite number of cells and performs clustering on those cells.</p>
+
+<h3>1. STING</h3>
+<p>STING stands for Statistical Information Grid. It uses statistical information stored in grid cells to perform clustering.</p>
+
+<h3>2. CLIQUE</h3>
+<p>CLIQUE stands for CLustering In QUEst. It is a grid-based and density-based method used for high-dimensional data.</p>
+
+<h3>Advantages</h3>
+<ul>
+<li>Can process large datasets efficiently.</li>
+<li>Uses grid structures for analysis.</li>
+<li>Useful for multidimensional datasets.</li>
+</ul>
+</div>
+
+<div class="topic">
+<h2>35. Dendrogram</h2>
+<p>A dendrogram is a tree-shaped diagram used to represent the merging or splitting of clusters in hierarchical clustering.</p>
+
+<h3>Uses</h3>
+<ul>
+<li>Shows relationships between clusters.</li>
+<li>Helps select the number of clusters.</li>
+<li>Displays the order in which clusters are combined.</li>
+</ul>
+
+<div class="example">
+          All Data<br>
+          /      \<br>
+       C1        C2<br>
+      /  \      /  \<br> 
+     A    B    C    D
+</div>
+</div>
+
+<div class="topic">
+<h2>36. Distance Measures in Clustering</h2>
+<p>Distance measures calculate how similar or different two data objects are.</p>
+
+<h3>1. Euclidean Distance</h3>
+<div class="example">
+d = √Σ(xi - yi)²
+</div>
+<p>Measures straight-line distance between two points.</p>
+
+<h3>2. Manhattan Distance</h3>
+<div class="example">
+d = Σ|xi - yi|
+</div>
+<p>Calculates distance by adding absolute differences across dimensions.</p>
+
+<h3>3. Minkowski Distance</h3>
+<div class="example">
+d = (Σ|xi - yi|p)^(1/p)
+</div>
+<p>A general distance measure that includes Euclidean and Manhattan distance as special cases.</p>
+</div>
+
+<div class="topic">
+<h2>37. Types of Linkage in Hierarchical Clustering</h2>
+<p>Linkage methods decide how the distance between two clusters is calculated.</p>
+
+<h3>1. Single Linkage</h3>
+<p>Uses the minimum distance between points in two clusters.</p>
+
+<h3>2. Complete Linkage</h3>
+<p>Uses the maximum distance between points in two clusters.</p>
+
+<h3>3. Average Linkage</h3>
+<p>Uses the average distance between points in two clusters.</p>
+
+<h3>4. Ward's Method</h3>
+<p>Merges clusters in a way that minimizes the increase in within-cluster variance.</p>
+</div>
+
+<div class="topic">
+<h2>38. Evaluation of Clustering</h2>
+<p>Clustering evaluation measures how well data objects have been grouped.</p>
+
+<h3>Important Measures</h3>
+<ul>
+<li><b>Silhouette Score:</b> Measures how well an object fits within its cluster compared with other clusters.</li>
+<li><b>Within-Cluster Sum of Squares:</b> Measures how close data points are to their cluster centers.</li>
+<li><b>Davies-Bouldin Index:</b> Measures cluster similarity; lower values are generally better.</li>
+<li><b>Dunn Index:</b> Compares separation between clusters with their internal diameter; higher values are generally better.</li>
+</ul>
+
+<h3>Good Clustering Should Have</h3>
+<ul>
+<li>High similarity within the same cluster.</li>
+<li>Low similarity between different clusters.</li>
+<li>Well-separated clusters.</li>
+<li>Meaningful groups.</li>
+</ul>
+</div>
+
+<h2 class="section-title">Important Examination Questions</h2>
+
+<div class="topic">
+<h2>Short Answer Questions – 2 Marks</h2>
+<ol>
+<li>Define Data Mining.</li>
+<li>What is KDD?</li>
+<li>Define Data Warehouse.</li>
+<li>What is an Itemset?</li>
+<li>Define Support and Confidence.</li>
+<li>What is the Apriori algorithm?</li>
+<li>What is FP-Growth?</li>
+<li>Define Classification.</li>
+<li>What is a Decision Tree?</li>
+<li>Define Naive Bayes classifier.</li>
+<li>What is KNN?</li>
+<li>Define Clustering.</li>
+<li>What is K-Means?</li>
+<li>Define DBSCAN.</li>
+<li>What is a Dendrogram?</li>
+</ol>
+</div>
+
+<div class="topic">
+<h2>Long Answer Questions – 10 / 15 Marks</h2>
+<ol>
+<li>Explain the KDD process with a neat diagram.</li>
+<li>Explain the functionalities and applications of Data Mining.</li>
+<li>Explain the three-tier architecture of a Data Warehouse.</li>
+<li>Explain multidimensional data models and their schemas.</li>
+<li>Explain OLAP operations with examples.</li>
+<li>Explain data preprocessing techniques.</li>
+<li>Explain the Apriori algorithm with an example.</li>
+<li>Explain FP-Growth algorithm and compare it with Apriori.</li>
+<li>Explain Decision Tree Induction and attribute selection measures.</li>
+<li>Explain Bayesian classification and K-Nearest Neighbour.</li>
+<li>Explain confusion matrix, accuracy, precision and recall.</li>
+<li>Explain K-Means and K-Medoids clustering.</li>
+<li>Explain hierarchical clustering methods.</li>
+<li>Explain DBSCAN and DENCLUE algorithms.</li>
+<li>Explain grid-based clustering methods STING and CLIQUE.</li>
+<li>Explain clustering evaluation methods.</li>
+</ol>
+</div>
+
+<div class="topic">
+<h2>Recommended Textbooks</h2>
+<ol>
+<li>Jiawei Han and Micheline Kamber – Data Mining: Concepts and Techniques, 2nd Edition, Morgan Kaufmann.</li>
+<li>Arun K. Pujari – Data Mining Techniques, 4th Edition, Universities Press.</li>
+<li>Pang-Ning Tan, Michael Steinbach and Vipin Kumar – Introduction to Data Mining, Pearson Education, 2012.</li>
+<li>K.P. Soman, Shyam Diwakar and V. Ajay – Insight into Data Mining: Theory and Practice, PHI.</li>
+</ol>
+</div>
+
+</div>
+
+<footer>
+    <p>STUDENTVERSE | Learn • Practice • Succeed</p>
+    <p>Fundamentals of Data Science – CAE41X</p>
+</footer>
+
+<button id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const searchBox = document.getElementById("search");
+    const cards = document.querySelectorAll(".topic");
+
+    searchBox.addEventListener("input", function () {
+        const query = searchBox.value.trim().toLowerCase();
+
+        cards.forEach(function (card) {
+            card.hidden = !card.textContent.toLowerCase().includes(query);
+        });
+    });
+
+    const topBtn = document.getElementById("topBtn");
+
+    window.addEventListener("scroll", function () {
+        topBtn.style.display =
+            window.scrollY > 300 ? "block" : "none";
+    });
+
+});
+</script>
+
+</body>
+</html>

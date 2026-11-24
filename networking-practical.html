@@ -1,0 +1,776 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Networking Lab | STUDENTVERSE</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+    font-family:Arial,sans-serif;
+    color:#eaf2ff;
+    background:#050816;
+    background-image:
+    radial-gradient(circle at 15% 20%,#15275b 0,transparent 35%),
+    radial-gradient(circle at 85% 80%,#32145b 0,transparent 35%);
+    min-height:100vh;
+}
+nav{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:18px 7%;background:#080e24;
+    border-bottom:1px solid #263b72;
+    position:sticky;top:0;z-index:10;
+}
+.logo{font-size:23px;font-weight:bold;color:#65d9ff}
+nav a{color:white;text-decoration:none;margin-left:20px}
+nav a:hover{color:#65d9ff}
+header{text-align:center;padding:55px 15px 30px}
+header h1{
+    font-size:38px;color:#75dcff;
+    text-shadow:0 0 20px #168cff;
+}
+header p{color:#b9c9e9;margin-top:12px;line-height:1.7}
+.info{
+    display:flex;justify-content:center;gap:12px;
+    flex-wrap:wrap;margin:20px;
+}
+.info span{
+    background:#111d3c;border:1px solid #34528e;
+    padding:10px 17px;border-radius:20px;color:#9de8ff;
+}
+.search{
+    display:block;width:min(600px,90%);
+    margin:25px auto;padding:14px 18px;
+    border-radius:25px;border:1px solid #4386ca;
+    background:#101a35;color:white;font-size:16px;
+    outline:none;
+}
+.search:focus{box-shadow:0 0 15px #168cff}
+.container{width:90%;max-width:1050px;margin:auto}
+.section-title{
+    margin:40px 0 20px;color:#75dcff;
+    font-size:25px;border-left:4px solid #38caff;
+    padding-left:13px;
+}
+.lab{
+    background:linear-gradient(135deg,#101a36,#101027);
+    border:1px solid #2d477c;border-radius:15px;
+    padding:23px;margin:20px 0;
+    box-shadow:0 8px 25px #0008;
+    transition:.3s;
+}
+.lab:hover{
+    transform:translateY(-4px);
+    border-color:#58d5ff;
+    box-shadow:0 0 20px #168cff35;
+}
+.lab h3{color:#8ce5ff;margin-bottom:15px}
+.lab h4{color:#d5e7ff;margin:17px 0 8px}
+.lab p,.lab li{color:#c5d2ec;line-height:1.7}
+.lab ul,.lab ol{padding-left:23px}
+.lab pre{
+    white-space:pre-wrap;overflow-x:auto;
+    background:#050b1b;color:#a8e7ff;
+    padding:14px;border-radius:9px;
+    margin:10px 0;border:1px solid #243c69;
+    line-height:1.6;
+}
+.result{
+    margin-top:15px;padding:12px;
+    border-left:3px solid #38dba7;
+    background:#102c2b;color:#b8ffe6;
+    border-radius:5px;
+}
+button{
+    display:block;margin:30px auto;
+    padding:12px 25px;border:0;border-radius:25px;
+    background:linear-gradient(90deg,#087dce,#713bdb);
+    color:white;font-size:15px;cursor:pointer;
+}
+button:hover{box-shadow:0 0 18px #168cff}
+footer{text-align:center;padding:30px;color:#899bbd}
+.backtop{
+    position:fixed;bottom:20px;right:20px;
+    background:#147bd1;color:white;text-decoration:none;
+    padding:12px 16px;border-radius:50%;
+}
+@media(max-width:600px){
+    nav{padding:15px 4%}
+    nav a{margin-left:8px;font-size:13px}
+    header h1{font-size:29px}
+    .lab{padding:17px}
+}
+@media print{
+    body{background:white;color:black}
+    nav,.search,button,.backtop{display:none}
+    header h1,.section-title,.lab h3,.lab h4{color:black}
+    .lab{background:white;color:black;border:1px solid #aaa;box-shadow:none;break-inside:avoid}
+    .lab p,.lab li{color:black}
+    .lab pre{background:#eee;color:black}
+    .result{background:#eee;color:black}
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">STUDENTVERSE</div>
+    <div>
+        <a href="index.html">Home</a>
+        <a href="studyhub.html">StudyHub</a>
+    </div>
+</nav>
+
+<header>
+    <h1>Networking Lab</h1>
+    <p>Semester 4 | CAM41P | Computer Networks Practical</p>
+    <div class="info">
+        <span>2 Credits</span>
+        <span>60 Contact Hours</span>
+        <span>40 Marks</span>
+        <span>15 Experiments</span>
+    </div>
+</header>
+
+<input type="text" class="search" id="search"
+placeholder="Search networking practicals...">
+
+<div class="container">
+
+<h2 class="section-title">PART A – Basic Networking Activities</h2>
+
+<div class="lab">
+<h3>1. Prepare Hardware and Software Specifications for a Basic Computer System and Networking</h3>
+
+<h4>Aim</h4>
+<p>To identify the hardware and software requirements of a computer system used for networking.</p>
+
+<h4>Hardware Requirements</h4>
+<ul>
+<li>Desktop computer or laptop</li>
+<li>Processor, motherboard and RAM</li>
+<li>Network Interface Card (NIC)</li>
+<li>Ethernet cable (RJ45)</li>
+<li>Switch or router</li>
+<li>Wireless network adapter</li>
+</ul>
+
+<h4>Software Requirements</h4>
+<ul>
+<li>Windows or Linux operating system</li>
+<li>Network drivers</li>
+<li>Web browser</li>
+<li>Command Prompt or Terminal</li>
+<li>Packet Tracer or another network simulator</li>
+</ul>
+
+<h4>Procedure</h4>
+<ol>
+<li>Identify the processor, RAM and storage of the computer.</li>
+<li>Check whether a network adapter is available.</li>
+<li>Identify the operating system and network drivers.</li>
+<li>List the networking devices required for a basic LAN.</li>
+<li>Prepare a specification report.</li>
+</ol>
+
+<div class="result">Result: The hardware and software specifications required for a basic computer network were identified.</div>
+</div>
+
+<div class="lab">
+<h3>2. Study Different Types of Network Cables and Implement Cross-Wired and Straight-Through Cables</h3>
+
+<h4>Aim</h4>
+<p>To study network cables and prepare straight-through and crossover cables using an RJ45 connector and crimping tool.</p>
+
+<h4>Types of Network Cables</h4>
+<ul>
+<li>Twisted Pair Cable – UTP and STP</li>
+<li>Coaxial Cable</li>
+<li>Optical Fibre Cable</li>
+</ul>
+
+<h4>RJ45 T568B Colour Sequence</h4>
+<pre>
+1. White-Orange
+2. Orange
+3. White-Green
+4. Blue
+5. White-Blue
+6. Green
+7. White-Brown
+8. Brown
+</pre>
+
+<h4>RJ45 T568A Colour Sequence</h4>
+<pre>
+1. White-Green
+2. Green
+3. White-Orange
+4. Blue
+5. White-Blue
+6. Orange
+7. White-Brown
+8. Brown
+</pre>
+
+<h4>Procedure – Straight-Through Cable</h4>
+<ol>
+<li>Cut the required length of UTP cable.</li>
+<li>Remove the outer insulation carefully.</li>
+<li>Arrange the eight wires using T568B at both ends.</li>
+<li>Insert the wires into RJ45 connectors.</li>
+<li>Crimp both connectors using the crimping tool.</li>
+<li>Test the cable using a cable tester.</li>
+</ol>
+
+<h4>Procedure – Crossover Cable</h4>
+<ol>
+<li>Prepare the cable as above.</li>
+<li>Arrange one end using T568A.</li>
+<li>Arrange the other end using T568B.</li>
+<li>Insert both ends into RJ45 connectors.</li>
+<li>Crimp and test the cable.</li>
+</ol>
+
+<p><b>Note:</b> Follow proper cable safety procedures and use a cable tester. Modern devices often support Auto-MDI-X, so crossover cables may not always be required.</p>
+
+<div class="result">Result: Straight-through and crossover cable arrangements were studied and tested.</div>
+</div>
+
+<div class="lab">
+<h3>3. Identify Networking Devices on a Network</h3>
+
+<h4>Aim</h4>
+<p>To identify different networking devices and understand their functions.</p>
+
+<h4>Devices and Functions</h4>
+<ul>
+<li><b>Hub:</b> Connects multiple computers and broadcasts incoming data to all ports.</li>
+<li><b>Switch:</b> Connects devices in a LAN and forwards frames using MAC addresses.</li>
+<li><b>Router:</b> Connects different networks and forwards packets using IP addresses.</li>
+<li><b>Modem:</b> Converts signals for communication over an internet connection.</li>
+<li><b>Repeater:</b> Regenerates signals to extend network distance.</li>
+<li><b>Bridge:</b> Connects and filters traffic between LAN segments.</li>
+<li><b>Access Point:</b> Provides wireless connectivity to network devices.</li>
+<li><b>Network Interface Card:</b> Enables a computer to connect to a network.</li>
+</ul>
+
+<h4>Procedure</h4>
+<ol>
+<li>Observe the networking devices in the laboratory.</li>
+<li>Identify the ports, indicators and antennas.</li>
+<li>Read the device labels and model numbers.</li>
+<li>Record the function of each device.</li>
+</ol>
+
+<div class="result">Result: Different networking devices and their functions were identified.</div>
+</div>
+
+<div class="lab">
+<h3>4. Configure the IP Address of a Computer</h3>
+
+<h4>Aim</h4>
+<p>To configure an IPv4 address on a computer.</p>
+
+<h4>Example Network Configuration</h4>
+<pre>
+IP Address      : 192.168.1.10
+Subnet Mask     : 255.255.255.0
+Default Gateway : 192.168.1.1
+DNS Server      : 8.8.8.8
+</pre>
+
+<h4>Procedure – Windows</h4>
+<ol>
+<li>Open Control Panel.</li>
+<li>Select Network and Internet.</li>
+<li>Open Network and Sharing Center.</li>
+<li>Select Change adapter settings.</li>
+<li>Right-click Ethernet and select Properties.</li>
+<li>Select Internet Protocol Version 4 (TCP/IPv4).</li>
+<li>Choose Use the following IP address.</li>
+<li>Enter the IP address, subnet mask and gateway.</li>
+<li>Click OK to save the configuration.</li>
+</ol>
+
+<h4>Verification Command</h4>
+<pre>
+ipconfig
+</pre>
+
+<div class="result">Result: The computer's IPv4 address was configured and verified.</div>
+</div>
+
+<div class="lab">
+<h3>5. Create a Basic Network and Share Files and Folders</h3>
+
+<h4>Aim</h4>
+<p>To connect computers in a basic LAN and share files and folders.</p>
+
+<h4>Requirements</h4>
+<ul>
+<li>Two or more computers</li>
+<li>Ethernet cables</li>
+<li>Network switch or router</li>
+</ul>
+
+<h4>Example Network</h4>
+<pre>
+Computer 1                 Computer 2
+192.168.1.10               192.168.1.11
+       |                         |
+       +-------- Switch ---------+
+</pre>
+
+<h4>Procedure</h4>
+<ol>
+<li>Connect both computers to the same switch or router.</li>
+<li>Configure IP addresses in the same subnet.</li>
+<li>Enable network discovery and file sharing.</li>
+<li>Choose a folder to share.</li>
+<li>Open folder Properties and select Sharing.</li>
+<li>Configure the required sharing permissions.</li>
+<li>Access the shared folder from the other computer.</li>
+</ol>
+
+<h4>Test Connection</h4>
+<pre>
+ping 192.168.1.11
+</pre>
+
+<div class="result">Result: A basic LAN was created and file sharing was tested between computers.</div>
+</div>
+
+<div class="lab">
+<h3>6. Study Basic Network Commands and Network Configuration Commands</h3>
+
+<h4>Aim</h4>
+<p>To study and execute commonly used network commands.</p>
+
+<h4>Basic Network Commands</h4>
+<pre>
+ping 127.0.0.1
+ping google.com
+tracert google.com
+nslookup google.com
+hostname
+netstat -an
+</pre>
+
+<h4>Network Configuration Commands</h4>
+<pre>
+ipconfig
+ipconfig /all
+ipconfig /release
+ipconfig /renew
+ipconfig /flushdns
+getmac
+</pre>
+
+<h4>Command Explanation</h4>
+<ul>
+<li><b>ping:</b> Checks connectivity with another device.</li>
+<li><b>tracert:</b> Displays the route taken by packets.</li>
+<li><b>nslookup:</b> Finds DNS information for a domain.</li>
+<li><b>hostname:</b> Displays the computer name.</li>
+<li><b>netstat:</b> Displays network connections and statistics.</li>
+<li><b>ipconfig:</b> Displays IP configuration.</li>
+<li><b>getmac:</b> Displays the MAC address.</li>
+</ul>
+
+<h4>Procedure</h4>
+<ol>
+<li>Open Command Prompt.</li>
+<li>Enter each command separately.</li>
+<li>Observe the output.</li>
+<li>Record the purpose and result of each command.</li>
+</ol>
+
+<div class="result">Result: Basic network and network configuration commands were executed and studied.</div>
+</div>
+
+<div class="lab">
+<h3>7. Install Open-Source Network Simulation Software</h3>
+
+<h4>Aim</h4>
+<p>To install and study network simulation software.</p>
+
+<h4>Software Examples</h4>
+<ul>
+<li>NS-3 Network Simulator</li>
+<li>GNS3</li>
+<li>Cisco Packet Tracer (educational network simulator)</li>
+</ul>
+
+<h4>Procedure – Packet Tracer</h4>
+<ol>
+<li>Visit the official Cisco Networking Academy website.</li>
+<li>Sign in or create an account if required.</li>
+<li>Download the available Packet Tracer installer.</li>
+<li>Run the installer.</li>
+<li>Accept the licence agreement.</li>
+<li>Complete the installation.</li>
+<li>Open the software and explore its workspace.</li>
+</ol>
+
+<h4>Important Features</h4>
+<ul>
+<li>Network device placement</li>
+<li>Topology creation</li>
+<li>IP address configuration</li>
+<li>Packet simulation</li>
+<li>Network troubleshooting</li>
+</ul>
+
+<div class="result">Result: Network simulation software was installed and its basic features were studied.</div>
+</div>
+
+<h2 class="section-title">PART B – Network Simulation Activities</h2>
+
+<div class="lab">
+<h3>8. Connect Two Nodes Using a Network Simulator</h3>
+
+<h4>Aim</h4>
+<p>To connect two computers using a network simulation tool.</p>
+
+<h4>Network Diagram</h4>
+<pre>
+PC0 -------- PC1
+</pre>
+
+<h4>IP Configuration</h4>
+<pre>
+PC0: 192.168.1.1
+PC1: 192.168.1.2
+Subnet Mask: 255.255.255.0
+</pre>
+
+<h4>Procedure</h4>
+<ol>
+<li>Open the network simulator.</li>
+<li>Add two PC devices to the workspace.</li>
+<li>Connect the PCs using a suitable cable.</li>
+<li>Configure the IP address of PC0.</li>
+<li>Configure the IP address of PC1.</li>
+<li>Open the command prompt on PC0.</li>
+<li>Execute ping 192.168.1.2.</li>
+<li>Observe the simulation result.</li>
+</ol>
+
+<div class="result">Result: Two nodes were connected and communication was tested using the simulator.</div>
+</div>
+
+<div class="lab">
+<h3>9. Connect Three Nodes with One Central Node Using a Network Simulator</h3>
+
+<h4>Aim</h4>
+<p>To connect three computers by using one central networking device.</p>
+
+<h4>Network Diagram</h4>
+<pre>
+       PC0
+        |
+        |
+PC1 --- Switch --- PC2
+</pre>
+
+<h4>IP Configuration</h4>
+<pre>
+PC0: 192.168.1.1
+PC1: 192.168.1.2
+PC2: 192.168.1.3
+Subnet Mask: 255.255.255.0
+</pre>
+
+<h4>Procedure</h4>
+<ol>
+<li>Add three PC devices and one switch.</li>
+<li>Connect each PC to the central switch.</li>
+<li>Configure a unique IP address for every PC.</li>
+<li>Use ping to test communication between the nodes.</li>
+<li>Observe packet transmission.</li>
+</ol>
+
+<div class="result">Result: Three nodes were connected through a central switch and communication was verified.</div>
+</div>
+
+<div class="lab">
+<h3>10. Implement Bus Topology Using a Network Simulator</h3>
+
+<h4>Aim</h4>
+<p>To implement bus topology using a network simulator.</p>
+
+<h4>Diagram</h4>
+<pre>
+PC0 ---- PC1 ---- PC2 ---- PC3
+          |
+      Shared Bus
+</pre>
+
+<h4>Characteristics</h4>
+<ul>
+<li>All devices share a common communication backbone.</li>
+<li>Data travels along the shared medium.</li>
+<li>A backbone failure can affect the entire network.</li>
+</ul>
+
+<h4>Procedure</h4>
+<ol>
+<li>Open the network simulator.</li>
+<li>Choose the available bus-topology or shared-medium setup supported by the simulator.</li>
+<li>Add the required nodes.</li>
+<li>Connect the nodes to the shared medium.</li>
+<li>Configure the IP addresses.</li>
+<li>Send test packets between computers.</li>
+<li>Observe packet movement.</li>
+</ol>
+
+<div class="result">Result: Bus topology was studied and demonstrated using the simulator.</div>
+</div>
+
+<div class="lab">
+<h3>11. Implement Star Topology Using a Network Simulator</h3>
+
+<h4>Aim</h4>
+<p>To create a star topology using a central switch.</p>
+
+<h4>Diagram</h4>
+<pre>
+          PC0
+           |
+PC1 ---- Switch ---- PC2
+           |
+          PC3
+</pre>
+
+<h4>Procedure</h4>
+<ol>
+<li>Open the network simulator.</li>
+<li>Add one switch and four PCs.</li>
+<li>Connect every PC to the switch.</li>
+<li>Configure IP addresses in the same subnet.</li>
+<li>Send packets between the PCs.</li>
+<li>Observe the packet transmission.</li>
+</ol>
+
+<h4>Characteristics</h4>
+<ul>
+<li>Easy to install and manage.</li>
+<li>Failure of one cable affects only its connected device.</li>
+<li>Failure of the central switch affects the entire network.</li>
+</ul>
+
+<div class="result">Result: Star topology was successfully created and tested.</div>
+</div>
+
+<div class="lab">
+<h3>12. Implement Ring Topology Using a Network Simulator</h3>
+
+<h4>Aim</h4>
+<p>To implement ring topology using a network simulator.</p>
+
+<h4>Diagram</h4>
+<pre>
+       PC0 ------ PC1
+        |          |
+        |          |
+       PC3 ------ PC2
+</pre>
+
+<h4>Procedure</h4>
+<ol>
+<li>Open the network simulator.</li>
+<li>Add four network nodes.</li>
+<li>Connect the nodes in a closed loop using suitable simulated links or devices.</li>
+<li>Configure IP addresses.</li>
+<li>Send test packets between nodes.</li>
+<li>Observe the communication path.</li>
+</ol>
+
+<h4>Characteristics</h4>
+<ul>
+<li>Each node is connected to two neighbouring nodes.</li>
+<li>Data travels around the ring.</li>
+<li>A break in a simple ring can interrupt communication.</li>
+</ul>
+
+<div class="result">Result: Ring topology was implemented and its communication process was observed.</div>
+</div>
+
+<div class="lab">
+<h3>13. Demonstrate Wireless LAN Using a Network Simulator</h3>
+
+<h4>Aim</h4>
+<p>To create and demonstrate a wireless local area network.</p>
+
+<h4>Requirements</h4>
+<ul>
+<li>Wireless router or access point</li>
+<li>Wireless-enabled computers or laptops</li>
+<li>Network simulator</li>
+</ul>
+
+<h4>Procedure</h4>
+<ol>
+<li>Add a wireless router or access point.</li>
+<li>Add wireless client devices.</li>
+<li>Configure the wireless network name (SSID).</li>
+<li>Configure wireless security and password.</li>
+<li>Connect the client devices to the wireless network.</li>
+<li>Assign IP addresses using DHCP or manual configuration.</li>
+<li>Test connectivity using ping.</li>
+</ol>
+
+<div class="result">Result: A wireless LAN was configured and connectivity between wireless devices was tested.</div>
+</div>
+
+<div class="lab">
+<h3>14. Implement FTP Using TCP Bulk Transfer Using a Network Simulator</h3>
+
+<h4>Aim</h4>
+<p>To demonstrate FTP communication using TCP bulk transfer in a network simulator.</p>
+
+<h4>Network Diagram</h4>
+<pre>
+Client PC -------- Switch -------- Server
+</pre>
+
+<h4>Example IP Configuration</h4>
+<pre>
+Client: 192.168.1.10
+Server: 192.168.1.20
+Subnet Mask: 255.255.255.0
+</pre>
+
+<h4>Procedure</h4>
+<ol>
+<li>Open the network simulator.</li>
+<li>Add a client PC, a switch and a server.</li>
+<li>Connect all devices.</li>
+<li>Configure IP addresses.</li>
+<li>Enable FTP service on the server if supported.</li>
+<li>Create an FTP user account and password.</li>
+<li>Configure the client to access the FTP server.</li>
+<li>Transfer a test file.</li>
+<li>Observe the TCP communication and packet flow.</li>
+</ol>
+
+<h4>Important Concepts</h4>
+<ul>
+<li>FTP stands for File Transfer Protocol.</li>
+<li>FTP uses TCP for reliable communication.</li>
+<li>TCP provides connection-oriented data transfer.</li>
+<li>FTP commonly uses TCP ports 20 and 21.</li>
+</ul>
+
+<div class="result">Result: FTP communication and TCP-based file transfer were demonstrated using the simulator.</div>
+</div>
+
+<div class="lab">
+<h3>15. Connect Multiple Routers and Nodes to Build a Hybrid Topology</h3>
+
+<h4>Aim</h4>
+<p>To connect multiple routers and computers and implement a hybrid network topology.</p>
+
+<h4>Network Diagram</h4>
+<pre>
+PC0 --- Switch1 --- Router1
+                       |
+                       |
+                    Router2
+                       |
+                       |
+PC1 --- Switch2 -------+
+</pre>
+
+<h4>Procedure</h4>
+<ol>
+<li>Open the network simulator.</li>
+<li>Add two routers, two switches and multiple PCs.</li>
+<li>Connect PCs to their respective switches.</li>
+<li>Connect each switch to a router.</li>
+<li>Connect the two routers using a suitable link.</li>
+<li>Configure IP addresses on the PCs and router interfaces.</li>
+<li>Configure routing using suitable static routes or a supported routing protocol.</li>
+<li>Check that router interfaces are enabled.</li>
+<li>Use ping to test communication between different networks.</li>
+<li>Observe packet movement through the routers.</li>
+</ol>
+
+<h4>Characteristics</h4>
+<ul>
+<li>Combines two or more network topologies.</li>
+<li>Supports communication between different network segments.</li>
+<li>Can be expanded according to network requirements.</li>
+</ul>
+
+<div class="result">Result: Multiple routers and nodes were connected to create and test a hybrid network topology.</div>
+</div>
+
+<h2 class="section-title">Important Viva Questions</h2>
+
+<div class="lab">
+<h3>Networking Lab – Viva Preparation</h3>
+<ol>
+<li><b>What is a computer network?</b><p>A computer network is a group of connected devices that share data and resources.</p></li>
+<li><b>What is an IP address?</b><p>An IP address identifies a device on an IP network.</p></li>
+<li><b>What is a MAC address?</b><p>A MAC address is a hardware address associated with a network interface.</p></li>
+<li><b>What is a router?</b><p>A router forwards packets between different networks.</p></li>
+<li><b>What is a switch?</b><p>A switch connects devices in a LAN and forwards frames using MAC addresses.</p></li>
+<li><b>What is LAN?</b><p>LAN stands for Local Area Network.</p></li>
+<li><b>What is WAN?</b><p>WAN stands for Wide Area Network.</p></li>
+<li><b>What is DNS?</b><p>DNS translates domain names into IP addresses.</p></li>
+<li><b>What is DHCP?</b><p>DHCP automatically assigns IP configuration to network devices.</p></li>
+<li><b>What is ping?</b><p>Ping is used to test network connectivity.</p></li>
+<li><b>What is FTP?</b><p>FTP stands for File Transfer Protocol.</p></li>
+<li><b>What is TCP?</b><p>TCP is a connection-oriented transport protocol that provides reliable data delivery.</p></li>
+<li><b>What is a network topology?</b><p>It is the physical or logical arrangement of devices in a network.</p></li>
+<li><b>What is a crossover cable?</b><p>It is a cable wired with different pinout standards at its two ends, traditionally used to connect similar Ethernet devices.</p></li>
+<li><b>What is a wireless LAN?</b><p>A wireless LAN connects devices using wireless communication, usually Wi-Fi.</p></li>
+</ol>
+</div>
+
+<button onclick="window.print()">Download / Print Practical Notes</button>
+
+</div>
+
+<footer>
+    STUDENTVERSE | Learn • Practice • Grow
+</footer>
+
+<a href="#" class="backtop">↑</a>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const searchBox = document.getElementById("search");
+
+    searchBox.addEventListener("input", function () {
+        const query = searchBox.value.trim().toLowerCase();
+
+        document.querySelectorAll(".container .lab").forEach(function (lab) {
+            const content = lab.textContent.toLowerCase();
+            lab.hidden = query !== "" && !content.includes(query);
+        });
+
+        document.querySelectorAll(".section-title").forEach(function (heading) {
+            let next = heading.nextElementSibling;
+            let hasVisibleLab = false;
+
+            while (next && !next.classList.contains("section-title")) {
+                if (next.classList.contains("lab") && !next.hidden) {
+                    hasVisibleLab = true;
+                }
+                next = next.nextElementSibling;
+            }
+
+            heading.hidden = query !== "" && !hasVisibleLab;
+        });
+    });
+});
+</script>
+
+</body>
+</html>

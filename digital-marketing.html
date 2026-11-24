@@ -1,0 +1,1141 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Marketing | STUDENTVERSE</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+    font-family:Arial,sans-serif;
+    color:white;
+    background:radial-gradient(circle at top,#172554,#080b20 55%,#020617);
+    min-height:100vh;
+}
+nav{
+    padding:18px 7%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:#080d25;
+    border-bottom:1px solid #334155;
+    position:sticky;
+    top:0;
+    z-index:10;
+}
+nav h2{color:#67e8f9}
+nav a{color:white;text-decoration:none;margin-left:18px}
+header{text-align:center;padding:55px 15px 30px}
+header h1{font-size:35px;color:#67e8f9;margin-bottom:12px}
+header p{color:#cbd5e1;line-height:1.7}
+.search{
+    display:block;
+    width:min(650px,90%);
+    margin:25px auto;
+    padding:15px;
+    border:1px solid #38bdf8;
+    border-radius:12px;
+    background:#111a35;
+    color:white;
+    font-size:16px;
+    outline:none;
+}
+.container{width:min(1050px,92%);margin:auto;padding-bottom:60px}
+.info{
+    background:#111a35;
+    padding:20px;
+    border:1px solid #334155;
+    border-radius:14px;
+    margin-bottom:30px;
+    line-height:1.8;
+    color:#cbd5e1;
+}
+.info strong{color:#67e8f9}
+.section-title{
+    color:#f0abfc;
+    font-size:25px;
+    margin:35px 0 18px;
+}
+.topic{
+    background:linear-gradient(145deg,#111a35,#0b1025);
+    border:1px solid #334155;
+    border-radius:15px;
+    padding:23px;
+    margin-bottom:20px;
+    box-shadow:0 8px 25px #0005;
+    transition:.3s;
+}
+.topic:hover{
+    transform:translateY(-3px);
+    border-color:#38bdf8;
+    box-shadow:0 0 18px #0ea5e955;
+}
+.topic h2{color:#67e8f9;font-size:21px;margin-bottom:14px}
+.topic h3{color:#f0abfc;margin:18px 0 9px}
+.topic p{color:#d1d5db;line-height:1.8;margin-bottom:10px}
+.topic ul,.topic ol{
+    padding-left:25px;
+    color:#cbd5e1;
+    line-height:1.9;
+    margin:10px 0;
+}
+.topic li{margin-bottom:4px}
+.topic table{width:100%;border-collapse:collapse;margin:15px 0}
+.topic th,.topic td{
+    border:1px solid #475569;
+    padding:11px;
+    text-align:left;
+}
+.topic th{background:#172554;color:#67e8f9}
+.topic td{color:#e2e8f0}
+.example{
+    background:#020617;
+    padding:14px;
+    border-left:3px solid #22d3ee;
+    border-radius:7px;
+    color:#a7f3d0;
+    margin:12px 0;
+    line-height:1.7;
+}
+.note{
+    background:#292044;
+    border-left:3px solid #c084fc;
+    padding:13px;
+    margin-top:12px;
+    border-radius:7px;
+    color:#e9d5ff;
+    line-height:1.7;
+}
+button{
+    border:0;
+    border-radius:9px;
+    padding:11px 17px;
+    margin-top:15px;
+    background:#0891b2;
+    color:white;
+    cursor:pointer;
+    font-weight:bold;
+}
+button:hover{background:#0e7490}
+footer{text-align:center;padding:25px;color:#94a3b8}
+#topBtn{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    display:none;
+    border-radius:50%;
+    width:48px;height:48px;
+    font-size:20px;
+}
+@media(max-width:600px){
+    nav{flex-direction:column;gap:12px}
+    nav a{margin:5px}
+    header h1{font-size:27px}
+    .topic{padding:16px}
+    .topic table{font-size:13px}
+}
+@media print{
+    body{background:white;color:black}
+    nav,.search,button,#topBtn{display:none!important}
+    header{padding:20px}
+    header h1,.section-title,.topic h2,.topic h3{color:black}
+    .info,.topic{
+        background:white;color:black;
+        border:1px solid #999;box-shadow:none;
+        break-inside:avoid;
+    }
+    .info,.topic p,.topic li,.topic td{color:black}
+    .topic th{background:#eee;color:black}
+    .example,.note{background:#f2f2f2;color:black}
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <h2>STUDENTVERSE</h2>
+    <div>
+        <a href="index.html">Home</a>
+        <a href="studyhub.html">StudyHub</a>
+        <a href="data-science-notes.html">Previous Subject</a>
+    </div>
+</nav>
+
+<header>
+    <h1>Digital Marketing</h1>
+    <p>CACP41 | BCA Semester IV</p>
+    <p>University of Mysore | Theory Notes</p>
+    <button onclick="window.print()">Download / Print PDF</button>
+</header>
+
+<input class="search" id="search" type="text"
+placeholder="Search digital marketing topics...">
+
+<div class="container">
+
+<div class="info">
+    <p><strong>Subject:</strong> Digital Marketing</p>
+    <p><strong>Course Code:</strong> CACP41</p>
+    <p><strong>Semester:</strong> IV</p>
+    <p><strong>Credits:</strong> 2</p>
+    <p><strong>Contact Hours:</strong> 30</p>
+    <p><strong>Examination Marks:</strong> 40</p>
+    <p><strong>Course Type:</strong> Compulsory Theory</p>
+</div>
+
+<h2 class="section-title">Course Outcomes</h2>
+
+<div class="topic">
+<h2>Learning Outcomes</h2>
+<ul>
+<li>Understand the basics, evolution and channels of digital marketing.</li>
+<li>Apply social media and email marketing strategies.</li>
+<li>Create content and mobile marketing plans using analytics.</li>
+</ul>
+</div>
+
+<h2 class="section-title">Unit 1 – Introduction to Digital Marketing</h2>
+
+<div class="topic">
+<h2>1. Introduction to Marketing</h2>
+<p><b>Marketing</b> is the process of promoting and selling products or services to customers by understanding their needs and satisfying them.</p>
+
+<h3>Objectives of Marketing</h3>
+<ul>
+<li>Identify customer needs.</li>
+<li>Promote products and services.</li>
+<li>Increase sales and profit.</li>
+<li>Build customer relationships.</li>
+<li>Improve brand awareness.</li>
+</ul>
+
+<h3>What is Digital Marketing?</h3>
+<p>Digital marketing is the promotion of products and services using digital technologies and internet-based platforms such as websites, search engines, social media, email and mobile applications.</p>
+
+<h3>Examples</h3>
+<ul>
+<li>Advertising products on Instagram.</li>
+<li>Sending promotional emails.</li>
+<li>Promoting a business through Google Search.</li>
+<li>Publishing videos on YouTube.</li>
+<li>Running advertisements on websites.</li>
+</ul>
+
+<h3>Traditional Marketing vs Digital Marketing</h3>
+<table>
+<tr><th>Traditional Marketing</th><th>Digital Marketing</th></tr>
+<tr><td>Uses newspapers, television and radio.</td><td>Uses websites, social media and email.</td></tr>
+<tr><td>Usually has limited audience targeting.</td><td>Can target specific audiences.</td></tr>
+<tr><td>Performance measurement may be difficult.</td><td>Performance can be measured using analytics.</td></tr>
+<tr><td>Often requires higher distribution costs.</td><td>Can be started with different budget levels.</td></tr>
+<tr><td>Communication is often one-way.</td><td>Allows direct customer interaction.</td></tr>
+</table>
+</div>
+
+<div class="topic">
+<h2>2. Evolution of Digital Marketing</h2>
+<p>Digital marketing developed as internet usage, computers, smartphones and online platforms became popular.</p>
+
+<h3>Stages of Evolution</h3>
+<ol>
+<li><b>Early Internet:</b> Businesses started creating websites to provide information.</li>
+<li><b>Search Engines:</b> Search engines helped users find websites and information.</li>
+<li><b>Email Marketing:</b> Businesses started sending promotional messages through email.</li>
+<li><b>Social Media:</b> Platforms allowed businesses to interact directly with customers.</li>
+<li><b>Mobile Marketing:</b> Smartphones and mobile applications created new marketing opportunities.</li>
+<li><b>Data-Driven Marketing:</b> Analytics and automation helped businesses understand customer behaviour.</li>
+</ol>
+
+<h3>Modern Trends</h3>
+<ul>
+<li>Artificial Intelligence in marketing.</li>
+<li>Influencer marketing.</li>
+<li>Short-form video marketing.</li>
+<li>Personalized advertisements.</li>
+<li>Marketing automation.</li>
+<li>Voice search and conversational marketing.</li>
+</ul>
+</div>
+
+<div class="topic">
+<h2>3. Importance and Benefits of Digital Marketing</h2>
+
+<h3>Importance</h3>
+<ul>
+<li>Most customers use the internet to search for products.</li>
+<li>Businesses can reach customers across different locations.</li>
+<li>Online platforms help build brand identity.</li>
+<li>Digital campaigns can be monitored and improved.</li>
+<li>Customers can communicate with businesses easily.</li>
+</ul>
+
+<h3>Benefits</h3>
+<ol>
+<li><b>Global Reach:</b> Promotes products to customers worldwide.</li>
+<li><b>Cost Flexibility:</b> Supports campaigns with different budgets.</li>
+<li><b>Targeted Advertising:</b> Reaches selected groups of customers.</li>
+<li><b>Measurable Results:</b> Tracks clicks, views, leads and sales.</li>
+<li><b>Customer Engagement:</b> Allows interaction through comments and messages.</li>
+<li><b>Fast Communication:</b> Shares information quickly.</li>
+<li><b>Brand Awareness:</b> Helps people recognize a business.</li>
+</ol>
+</div>
+
+<div class="topic">
+<h2>4. Digital Marketing Channels and Platforms</h2>
+<p>A digital marketing channel is a method used by businesses to communicate with customers through digital media.</p>
+
+<h3>Important Channels</h3>
+
+<h3>1. Search Engine Marketing</h3>
+<p>Promotes websites through search engines using paid advertising and related search marketing methods.</p>
+
+<h3>2. Social Media Marketing</h3>
+<p>Uses social media platforms to promote products, services and brands.</p>
+
+<h3>3. Email Marketing</h3>
+<p>Uses email to communicate with customers, share updates and promote offers.</p>
+
+<h3>4. Content Marketing</h3>
+<p>Creates useful content such as blogs, videos and articles to attract an audience.</p>
+
+<h3>5. Mobile Marketing</h3>
+<p>Promotes products through mobile applications, SMS, mobile websites and mobile advertisements.</p>
+
+<h3>6. Affiliate Marketing</h3>
+<p>Promotes products through partners who earn commissions for successful referrals or sales.</p>
+
+<h3>Examples of Platforms</h3>
+<table>
+<tr><th>Platform</th><th>Marketing Use</th></tr>
+<tr><td>Google</td><td>Search advertising and business visibility.</td></tr>
+<tr><td>Instagram</td><td>Photos, reels and brand promotion.</td></tr>
+<tr><td>Facebook</td><td>Business pages and advertisements.</td></tr>
+<tr><td>YouTube</td><td>Video marketing.</td></tr>
+<tr><td>LinkedIn</td><td>Professional and business marketing.</td></tr>
+<tr><td>Email</td><td>Customer communication and promotions.</td></tr>
+</table>
+</div>
+
+<div class="topic">
+<h2>5. Digital Marketing Strategy and Planning</h2>
+<p>A digital marketing strategy is a planned approach used to achieve business goals through online marketing channels.</p>
+
+<h3>Steps to Develop a Strategy</h3>
+<ol>
+<li><b>Identify Business Goals:</b> Decide what the business wants to achieve.</li>
+<li><b>Understand Target Audience:</b> Identify customer needs, interests and behaviour.</li>
+<li><b>Analyse Competitors:</b> Study competitors and their marketing activities.</li>
+<li><b>Select Marketing Channels:</b> Choose suitable platforms.</li>
+<li><b>Create Content:</b> Prepare advertisements, videos, posts and articles.</li>
+<li><b>Set Budget:</b> Allocate money to different activities.</li>
+<li><b>Launch Campaign:</b> Publish advertisements and content.</li>
+<li><b>Measure Performance:</b> Study results and improve the strategy.</li>
+</ol>
+
+<h3>Example</h3>
+<p>A coaching academy wants to increase student admissions. It can create a website, publish educational videos, use social media and run local advertisements.</p>
+</div>
+
+<div class="topic">
+<h2>6. Setting Goals and Objectives</h2>
+<p>Marketing goals are the results that a business wants to achieve through its marketing activities.</p>
+
+<h3>Common Digital Marketing Goals</h3>
+<ul>
+<li>Increase website traffic.</li>
+<li>Generate new leads.</li>
+<li>Increase product sales.</li>
+<li>Improve brand awareness.</li>
+<li>Increase social media followers.</li>
+<li>Improve customer retention.</li>
+</ul>
+
+<h3>SMART Goals</h3>
+<p>SMART is a method for setting clear and measurable goals.</p>
+<ul>
+<li><b>S – Specific:</b> Clearly state the goal.</li>
+<li><b>M – Measurable:</b> Track progress using numbers.</li>
+<li><b>A – Achievable:</b> Set a realistic target.</li>
+<li><b>R – Relevant:</b> Make the goal useful for the business.</li>
+<li><b>T – Time-bound:</b> Set a deadline.</li>
+</ul>
+
+<div class="example">
+Example:<br>
+Increase website visitors by 20% within three months.
+</div>
+</div>
+
+<div class="topic">
+<h2>7. Budgeting and Resource Allocation</h2>
+<p>Digital marketing budgeting means deciding how much money should be spent on different online marketing activities.</p>
+
+<h3>Common Budget Areas</h3>
+<ul>
+<li>Social media advertisements.</li>
+<li>Search engine advertisements.</li>
+<li>Website development and hosting.</li>
+<li>Content creation.</li>
+<li>Email marketing tools.</li>
+<li>Analytics and marketing software.</li>
+</ul>
+
+<h3>Resource Allocation</h3>
+<p>Resource allocation means distributing available resources such as money, time, employees and tools among different marketing activities.</p>
+
+<h3>Factors Affecting Budget</h3>
+<ul>
+<li>Business size.</li>
+<li>Marketing objectives.</li>
+<li>Target audience.</li>
+<li>Competition.</li>
+<li>Selected marketing channels.</li>
+<li>Expected return on investment.</li>
+</ul>
+</div>
+
+<div class="topic">
+<h2>8. Campaign Planning and Execution</h2>
+<p>A digital marketing campaign is a planned set of online promotional activities designed to achieve a particular goal.</p>
+
+<h3>Campaign Planning Steps</h3>
+<ol>
+<li>Identify campaign objectives.</li>
+<li>Select the target audience.</li>
+<li>Choose suitable digital platforms.</li>
+<li>Prepare campaign content.</li>
+<li>Decide the budget and duration.</li>
+<li>Schedule and publish advertisements.</li>
+<li>Monitor campaign performance.</li>
+<li>Make necessary improvements.</li>
+</ol>
+
+<h3>Campaign Example</h3>
+<p>A college may run an online admission campaign using Instagram posts, YouTube videos, a website admission form and targeted advertisements.</p>
+</div>
+
+<div class="topic">
+<h2>9. Monitoring and Adjusting Digital Marketing Campaigns</h2>
+<p>Monitoring means continuously checking campaign performance. Adjusting means making changes to improve results.</p>
+
+<h3>Important Metrics</h3>
+<ul>
+<li><b>Reach:</b> Number of unique people who see content.</li>
+<li><b>Impressions:</b> Total number of times content is displayed.</li>
+<li><b>Clicks:</b> Number of times users click a link or advertisement.</li>
+<li><b>CTR:</b> Click-through rate.</li>
+<li><b>Conversions:</b> Desired actions completed by users.</li>
+<li><b>Engagement:</b> Likes, comments, shares and other interactions.</li>
+</ul>
+
+<h3>Click-Through Rate Formula</h3>
+<div class="example">
+CTR = (Number of Clicks / Number of Impressions) × 100
+</div>
+
+<h3>Example</h3>
+<p>An advertisement receives 100 clicks from 2,000 impressions.</p>
+<div class="example">
+CTR = (100 / 2000) × 100 = 5%
+</div>
+</div>
+
+<h2 class="section-title">Unit 2 – Social Media Marketing and Email Marketing</h2>
+
+<div class="topic">
+<h2>10. Introduction to Social Media Marketing</h2>
+<p>Social Media Marketing (SMM) is the use of social media platforms to promote products, services and brands and to communicate with customers.</p>
+
+<h3>Objectives</h3>
+<ul>
+<li>Increase brand awareness.</li>
+<li>Attract new customers.</li>
+<li>Promote products and services.</li>
+<li>Build customer relationships.</li>
+<li>Generate website traffic.</li>
+<li>Increase sales and enquiries.</li>
+</ul>
+
+<h3>Advantages</h3>
+<ul>
+<li>Direct customer interaction.</li>
+<li>Wide audience reach.</li>
+<li>Quick content sharing.</li>
+<li>Different advertising options.</li>
+<li>Measurable engagement.</li>
+</ul>
+</div>
+
+<div class="topic">
+<h2>11. Social Media Platforms and Their Features</h2>
+
+<table>
+<tr><th>Platform</th><th>Features</th><th>Marketing Use</th></tr>
+<tr><td>Facebook</td><td>Pages, groups, posts and ads.</td><td>Business promotion.</td></tr>
+<tr><td>Instagram</td><td>Posts, stories, reels and direct messages.</td><td>Visual marketing.</td></tr>
+<tr><td>YouTube</td><td>Videos, shorts and channels.</td><td>Video promotion.</td></tr>
+<tr><td>LinkedIn</td><td>Professional profiles and company pages.</td><td>Professional marketing.</td></tr>
+<tr><td>X</td><td>Short posts and live discussions.</td><td>News and customer interaction.</td></tr>
+<tr><td>Pinterest</td><td>Images, collections and idea boards.</td><td>Visual product discovery.</td></tr>
+</table>
+</div>
+
+<div class="topic">
+<h2>12. Creating and Optimizing Social Media Profiles</h2>
+<p>A social media profile represents a person, organization or business on a social media platform.</p>
+
+<h3>Steps to Create a Business Profile</h3>
+<ol>
+<li>Select a suitable social media platform.</li>
+<li>Choose a professional business name.</li>
+<li>Upload a clear profile picture or logo.</li>
+<li>Write a short business description.</li>
+<li>Add contact details.</li>
+<li>Add website and location information when relevant.</li>
+<li>Publish useful and regular content.</li>
+</ol>
+
+<h3>Profile Optimization</h3>
+<ul>
+<li>Use relevant keywords in the description.</li>
+<li>Maintain consistent branding.</li>
+<li>Use high-quality images.</li>
+<li>Keep contact information updated.</li>
+<li>Respond to customer messages.</li>
+<li>Include a clear call to action.</li>
+</ul>
+</div>
+
+<div class="topic">
+<h2>13. Social Media Content Strategy</h2>
+<p>A social media content strategy is a plan for creating, publishing and managing content to achieve marketing goals.</p>
+
+<h3>Types of Content</h3>
+<ul>
+<li>Educational posts.</li>
+<li>Product photographs.</li>
+<li>Short videos and reels.</li>
+<li>Customer testimonials.</li>
+<li>Infographics.</li>
+<li>Polls and questions.</li>
+<li>Announcements and offers.</li>
+</ul>
+
+<h3>Steps to Create a Content Strategy</h3>
+<ol>
+<li>Identify the target audience.</li>
+<li>Define content goals.</li>
+<li>Select suitable platforms.</li>
+<li>Choose content formats.</li>
+<li>Create a content calendar.</li>
+<li>Publish content regularly.</li>
+<li>Measure engagement and improve.</li>
+</ol>
+
+<h3>Content Calendar</h3>
+<p>A content calendar is a schedule that specifies what content will be published, where and when.</p>
+
+<table>
+<tr><th>Day</th><th>Content</th></tr>
+<tr><td>Monday</td><td>Educational post</td></tr>
+<tr><td>Wednesday</td><td>Short video</td></tr>
+<tr><td>Friday</td><td>Customer testimonial</td></tr>
+<tr><td>Sunday</td><td>Weekly offer or update</td></tr>
+</table>
+</div>
+
+<div class="topic">
+<h2>14. Social Media Advertising</h2>
+<p>Social media advertising is paid promotion of products, services or content through social media platforms.</p>
+
+<h3>Types of Social Media Advertisements</h3>
+<ul>
+<li><b>Image Ads:</b> Advertisements using pictures.</li>
+<li><b>Video Ads:</b> Advertisements using videos.</li>
+<li><b>Carousel Ads:</b> Advertisements containing multiple images or cards.</li>
+<li><b>Story Ads:</b> Full-screen advertisements displayed in stories.</li>
+<li><b>Lead Ads:</b> Advertisements designed to collect customer enquiries.</li>
+<li><b>Sponsored Posts:</b> Paid posts shown to selected audiences.</li>
+</ul>
+
+<h3>Targeting Options</h3>
+<ul>
+<li>Location.</li>
+<li>Age group.</li>
+<li>Interests.</li>
+<li>Language.</li>
+<li>Behaviour and engagement.</li>
+</ul>
+
+<h3>Advantages</h3>
+<ul>
+<li>Reaches selected audiences.</li>
+<li>Supports different advertising budgets.</li>
+<li>Provides campaign performance reports.</li>
+<li>Can generate enquiries and sales.</li>
+</ul>
+</div>
+
+<div class="topic">
+<h2>15. Social Media Analytics</h2>
+<p>Social media analytics is the process of collecting and analysing social media data to understand marketing performance.</p>
+
+<h3>Important Metrics</h3>
+<ul>
+<li><b>Followers:</b> People who follow an account.</li>
+<li><b>Reach:</b> Unique people who viewed content.</li>
+<li><b>Impressions:</b> Total content displays.</li>
+<li><b>Engagement Rate:</b> Level of audience interaction.</li>
+<li><b>Link Clicks:</b> Number of clicks on links.</li>
+<li><b>Conversions:</b> Actions completed by users.</li>
+</ul>
+
+<h3>Engagement Rate Formula</h3>
+<div class="example">
+Engagement Rate = (Total Engagements / Reach) × 100
+</div>
+
+<h3>Uses</h3>
+<ul>
+<li>Understand audience interests.</li>
+<li>Identify successful content.</li>
+<li>Improve posting schedules.</li>
+<li>Measure campaign performance.</li>
+</ul>
+</div>
+
+<div class="topic">
+<h2>16. Introduction to Email Marketing</h2>
+<p>Email marketing is a digital marketing method that uses email to communicate with customers, share information and promote products or services.</p>
+
+<h3>Objectives</h3>
+<ul>
+<li>Promote products and services.</li>
+<li>Share news and updates.</li>
+<li>Build customer relationships.</li>
+<li>Send special offers.</li>
+<li>Increase website visits and sales.</li>
+</ul>
+
+<h3>Types of Marketing Emails</h3>
+<ul>
+<li><b>Promotional Emails:</b> Announce discounts and offers.</li>
+<li><b>Welcome Emails:</b> Welcome new subscribers.</li>
+<li><b>Newsletter Emails:</b> Share regular information.</li>
+<li><b>Transactional Emails:</b> Confirm orders or transactions.</li>
+<li><b>Reminder Emails:</b> Remind users about important activities.</li>
+</ul>
+</div>
+
+<div class="topic">
+<h2>17. Building an Email List</h2>
+<p>An email list is a collection of email addresses belonging to people who have agreed to receive communications from a business.</p>
+
+<h3>Methods to Build an Email List</h3>
+<ul>
+<li>Website subscription forms.</li>
+<li>Newsletter registration.</li>
+<li>Event registration.</li>
+<li>Free downloadable resources.</li>
+<li>Customer enquiry forms.</li>
+<li>Permission-based sign-up campaigns.</li>
+</ul>
+
+<h3>Best Practices</h3>
+<ul>
+<li>Collect consent before sending marketing emails.</li>
+<li>Provide clear information about subscriptions.</li>
+<li>Keep customer information secure.</li>
+<li>Provide an unsubscribe option.</li>
+<li>Do not purchase or use unauthorized email lists.</li>
+</ul>
+</div>
+
+<div class="topic">
+<h2>18. Creating Effective Email Campaigns</h2>
+<p>An email campaign is a planned series of emails sent to a target audience to achieve a marketing objective.</p>
+
+<h3>Steps</h3>
+<ol>
+<li>Define the campaign objective.</li>
+<li>Select the target audience.</li>
+<li>Write an attractive subject line.</li>
+<li>Create clear and useful email content.</li>
+<li>Add suitable images and links.</li>
+<li>Include a call to action.</li>
+<li>Test the email on different devices.</li>
+<li>Send and measure the campaign.</li>
+</ol>
+
+<h3>Elements of an Effective Email</h3>
+<ul>
+<li>Sender name.</li>
+<li>Subject line.</li>
+<li>Greeting.</li>
+<li>Main message.</li>
+<li>Call-to-action button or link.</li>
+<li>Contact information.</li>
+<li>Unsubscribe link.</li>
+</ul>
+
+<div class="example">
+Subject: Admissions Open for BCA<br><br>
+Dear Student,<br>
+Admissions are now open for our BCA programme. Visit our website to know more and submit your enquiry.<br><br>
+Thank you.
+</div>
+</div>
+
+<div class="topic">
+<h2>19. Email Automation and Segmentation</h2>
+
+<h3>Email Automation</h3>
+<p>Email automation means sending emails automatically when a specific event or condition occurs.</p>
+
+<h3>Examples</h3>
+<ul>
+<li>Automatic welcome emails.</li>
+<li>Order confirmation emails.</li>
+<li>Birthday greetings.</li>
+<li>Subscription reminders.</li>
+<li>Follow-up emails.</li>
+</ul>
+
+<h3>Email Segmentation</h3>
+<p>Email segmentation means dividing subscribers into smaller groups based on their interests, behaviour or characteristics.</p>
+
+<h3>Segmentation Methods</h3>
+<ul>
+<li>Age group.</li>
+<li>Location.</li>
+<li>Purchase history.</li>
+<li>Interests.</li>
+<li>Customer activity.</li>
+</ul>
+
+<h3>Difference</h3>
+<table>
+<tr><th>Automation</th><th>Segmentation</th></tr>
+<tr><td>Sends emails automatically.</td><td>Divides subscribers into groups.</td></tr>
+<tr><td>Based on triggers or schedules.</td><td>Based on subscriber information.</td></tr>
+<tr><td>Reduces manual work.</td><td>Improves message relevance.</td></tr>
+</table>
+</div>
+
+<div class="topic">
+<h2>20. Email Marketing Metrics and Analytics</h2>
+<p>Email analytics measures the performance of email campaigns.</p>
+
+<h3>Important Metrics</h3>
+<ul>
+<li><b>Delivery Rate:</b> Percentage of emails successfully delivered.</li>
+<li><b>Open Rate:</b> Percentage of delivered emails recorded as opened.</li>
+<li><b>Click-Through Rate:</b> Percentage of delivered emails that generated clicks, depending on the reporting method used.</li>
+<li><b>Bounce Rate:</b> Percentage of emails that could not be delivered.</li>
+<li><b>Unsubscribe Rate:</b> Percentage of recipients who unsubscribe.</li>
+<li><b>Conversion Rate:</b> Percentage of recipients who complete a desired action.</li>
+</ul>
+
+<h3>Open Rate Formula</h3>
+<div class="example">
+Open Rate = (Unique Opens / Delivered Emails) × 100
+</div>
+
+<h3>Click-Through Rate Formula</h3>
+<div class="example">
+CTR = (Unique Clicks / Delivered Emails) × 100
+</div>
+
+<h3>Importance</h3>
+<ul>
+<li>Measures campaign performance.</li>
+<li>Identifies successful subject lines.</li>
+<li>Helps improve email content.</li>
+<li>Helps understand subscriber behaviour.</li>
+</ul>
+</div>
+
+<h2 class="section-title">Unit 3 – Content Marketing and Mobile Marketing</h2>
+
+<div class="topic">
+<h2>21. Understanding Content Marketing</h2>
+<p>Content marketing is a strategy of creating and sharing valuable, relevant and useful content to attract and retain a target audience.</p>
+
+<h3>Types of Content</h3>
+<ul>
+<li>Blog articles.</li>
+<li>Videos.</li>
+<li>Infographics.</li>
+<li>Social media posts.</li>
+<li>Podcasts.</li>
+<li>E-books.</li>
+<li>Case studies.</li>
+<li>Email newsletters.</li>
+</ul>
+
+<h3>Benefits</h3>
+<ul>
+<li>Builds brand awareness.</li>
+<li>Provides useful information.</li>
+<li>Builds trust with customers.</li>
+<li>Supports search engine visibility.</li>
+<li>Attracts potential customers.</li>
+</ul>
+</div>
+
+<div class="topic">
+<h2>22. Content Strategy and Planning</h2>
+<p>A content strategy is a plan for creating and distributing content to reach specific marketing goals.</p>
+
+<h3>Steps in Content Planning</h3>
+<ol>
+<li>Identify the target audience.</li>
+<li>Understand audience needs.</li>
+<li>Set content goals.</li>
+<li>Select content formats.</li>
+<li>Choose suitable platforms.</li>
+<li>Create a publishing calendar.</li>
+<li>Prepare and review content.</li>
+<li>Publish and measure results.</li>
+</ol>
+
+<h3>Content Planning Example</h3>
+<p>A coaching academy can create educational articles, programming tutorials, admission announcements and student success stories.</p>
+</div>
+
+<div class="topic">
+<h2>23. Content Creation and Distribution</h2>
+
+<h3>Content Creation</h3>
+<p>Content creation is the process of preparing useful information in different formats for a target audience.</p>
+
+<h3>Steps</h3>
+<ul>
+<li>Select a topic.</li>
+<li>Research the subject.</li>
+<li>Prepare an outline.</li>
+<li>Create the content.</li>
+<li>Check accuracy and quality.</li>
+<li>Publish the content.</li>
+</ul>
+
+<h3>Content Distribution</h3>
+<p>Content distribution means sharing created content through different channels so that the target audience can access it.</p>
+
+<h3>Distribution Channels</h3>
+<ul>
+<li>Company websites.</li>
+<li>Blogs.</li>
+<li>Social media platforms.</li>
+<li>Email newsletters.</li>
+<li>Video-sharing platforms.</li>
+<li>Online communities.</li>
+</ul>
+</div>
+
+<div class="topic">
+<h2>24. Content Promotion and Amplification</h2>
+<p>Content promotion is the process of increasing the visibility of published content. Content amplification uses additional channels and methods to reach a larger audience.</p>
+
+<h3>Methods</h3>
+<ul>
+<li>Share content on social media.</li>
+<li>Send content through newsletters.</li>
+<li>Use relevant keywords.</li>
+<li>Collaborate with influencers.</li>
+<li>Promote useful posts through paid advertising.</li>
+<li>Share content in relevant online communities.</li>
+<li>Repurpose articles into videos or infographics.</li>
+</ul>
+
+<h3>Benefits</h3>
+<ul>
+<li>Increases content reach.</li>
+<li>Attracts website visitors.</li>
+<li>Improves audience engagement.</li>
+<li>Increases brand awareness.</li>
+</ul>
+</div>
+
+<div class="topic">
+<h2>25. Content Marketing Metrics and Analytics</h2>
+<p>Content marketing analytics measures how audiences interact with published content.</p>
+
+<h3>Important Metrics</h3>
+<ul>
+<li><b>Page Views:</b> Number of times a page is viewed.</li>
+<li><b>Unique Visitors:</b> Number of distinct visitors.</li>
+<li><b>Time on Page:</b> Time spent viewing a page.</li>
+<li><b>Engagement:</b> Audience interactions with content.</li>
+<li><b>Shares:</b> Number of times content is shared.</li>
+<li><b>Conversions:</b> Desired actions completed after viewing content.</li>
+</ul>
+
+<h3>Why Analytics Is Important</h3>
+<ul>
+<li>Identifies popular topics.</li>
+<li>Measures audience interest.</li>
+<li>Improves content quality.</li>
+<li>Helps plan future content.</li>
+</ul>
+</div>
+
+<div class="topic">
+<h2>26. Introduction to Mobile Marketing</h2>
+<p>Mobile marketing is the promotion of products and services through mobile devices such as smartphones and tablets.</p>
+
+<h3>Mobile Marketing Channels</h3>
+<ul>
+<li>SMS marketing.</li>
+<li>Mobile applications.</li>
+<li>Mobile websites.</li>
+<li>Mobile advertisements.</li>
+<li>Push notifications.</li>
+<li>Location-based messages.</li>
+</ul>
+
+<h3>Advantages</h3>
+<ul>
+<li>Reaches customers through devices they use regularly.</li>
+<li>Supports location-based promotion.</li>
+<li>Allows quick communication.</li>
+<li>Provides interactive experiences.</li>
+<li>Can measure campaign performance.</li>
+</ul>
+</div>
+
+<div class="topic">
+<h2>27. Mobile Advertising Strategies</h2>
+<p>Mobile advertising is the promotion of products and services through advertisements displayed on mobile devices.</p>
+
+<h3>Types</h3>
+<ul>
+<li><b>Banner Ads:</b> Small advertisements displayed within applications or websites.</li>
+<li><b>Video Ads:</b> Promotional videos shown on mobile platforms.</li>
+<li><b>Native Ads:</b> Advertisements designed to match the style of the platform.</li>
+<li><b>In-App Ads:</b> Advertisements displayed inside mobile applications.</li>
+<li><b>Search Ads:</b> Advertisements displayed in mobile search results.</li>
+</ul>
+
+<h3>Effective Strategies</h3>
+<ul>
+<li>Use mobile-friendly designs.</li>
+<li>Keep messages short and clear.</li>
+<li>Use suitable images and videos.</li>
+<li>Make landing pages load quickly.</li>
+<li>Provide clear calls to action.</li>
+<li>Respect user privacy and permissions.</li>
+</ul>
+</div>
+
+<div class="topic">
+<h2>28. Mobile App Marketing</h2>
+<p>Mobile app marketing is the process of promoting a mobile application to attract users, increase downloads and encourage continued use.</p>
+
+<h3>Important Activities</h3>
+<ul>
+<li>App Store Optimization (ASO).</li>
+<li>App launch campaigns.</li>
+<li>Social media promotion.</li>
+<li>Referral campaigns.</li>
+<li>Push notifications.</li>
+<li>User engagement campaigns.</li>
+</ul>
+
+<h3>App Store Optimization</h3>
+<p>ASO improves the visibility of an application in app stores.</p>
+
+<h3>ASO Techniques</h3>
+<ul>
+<li>Choose a suitable app name.</li>
+<li>Write a clear app description.</li>
+<li>Use relevant keywords.</li>
+<li>Upload attractive screenshots.</li>
+<li>Maintain good app quality.</li>
+<li>Encourage genuine user reviews.</li>
+</ul>
+</div>
+
+<div class="topic">
+<h2>29. Location-Based Marketing</h2>
+<p>Location-based marketing delivers relevant advertisements or messages based on a user's geographical location, subject to appropriate permissions and privacy requirements.</p>
+
+<h3>Technologies Used</h3>
+<ul>
+<li>GPS.</li>
+<li>Wi-Fi positioning.</li>
+<li>Bluetooth beacons.</li>
+<li>Geofencing.</li>
+<li>Mobile location services.</li>
+</ul>
+
+<h3>Examples</h3>
+<ul>
+<li>A restaurant displaying offers to nearby customers.</li>
+<li>A shopping centre sending an offer to visitors who opted in.</li>
+<li>A local business promoting services in a selected area.</li>
+</ul>
+
+<h3>Advantages</h3>
+<ul>
+<li>Reaches relevant local audiences.</li>
+<li>Supports location-specific offers.</li>
+<li>Improves local business promotion.</li>
+</ul>
+
+<h3>Privacy Considerations</h3>
+<p>Businesses should obtain appropriate consent, explain location use and protect customer information.</p>
+</div>
+
+<div class="topic">
+<h2>30. Mobile Marketing Analytics</h2>
+<p>Mobile marketing analytics is the process of measuring and analysing the performance of mobile marketing campaigns and applications.</p>
+
+<h3>Important Metrics</h3>
+<ul>
+<li>App downloads.</li>
+<li>Active users.</li>
+<li>App retention rate.</li>
+<li>Click-through rate.</li>
+<li>Conversion rate.</li>
+<li>Uninstall rate.</li>
+<li>In-app purchases.</li>
+<li>Campaign engagement.</li>
+</ul>
+
+<h3>Importance</h3>
+<ul>
+<li>Measures mobile campaign success.</li>
+<li>Identifies user behaviour.</li>
+<li>Improves application experience.</li>
+<li>Helps optimize advertisements.</li>
+<li>Supports better marketing decisions.</li>
+</ul>
+</div>
+
+<h2 class="section-title">Important Examination Questions</h2>
+
+<div class="topic">
+<h2>Short Answer Questions – 2 Marks</h2>
+<ol>
+<li>Define Digital Marketing.</li>
+<li>What is a digital marketing channel?</li>
+<li>Define social media marketing.</li>
+<li>What is email marketing?</li>
+<li>What is a digital marketing campaign?</li>
+<li>Define target audience.</li>
+<li>What is a content calendar?</li>
+<li>Define email segmentation.</li>
+<li>What is email automation?</li>
+<li>What is content marketing?</li>
+<li>Define mobile marketing.</li>
+<li>What is mobile advertising?</li>
+<li>What is App Store Optimization?</li>
+<li>Define location-based marketing.</li>
+<li>What is campaign monitoring?</li>
+</ol>
+</div>
+
+<div class="topic">
+<h2>Long Answer Questions – 5 / 10 Marks</h2>
+<ol>
+<li>Explain the evolution, importance and benefits of digital marketing.</li>
+<li>Compare traditional marketing and digital marketing.</li>
+<li>Explain the different digital marketing channels and platforms.</li>
+<li>Describe the steps involved in developing a digital marketing strategy.</li>
+<li>Explain goal setting, budgeting and resource allocation.</li>
+<li>Explain campaign planning, execution and monitoring.</li>
+<li>Explain social media marketing and its benefits.</li>
+<li>Describe different social media platforms and their features.</li>
+<li>Explain social media content strategy and profile optimization.</li>
+<li>Explain social media advertising and analytics.</li>
+<li>Describe the steps involved in creating an email campaign.</li>
+<li>Explain email automation and segmentation.</li>
+<li>Explain email marketing metrics and analytics.</li>
+<li>Explain content strategy, creation and distribution.</li>
+<li>Explain content promotion and amplification.</li>
+<li>Describe mobile marketing and its channels.</li>
+<li>Explain mobile advertising strategies and app marketing.</li>
+<li>Explain location-based marketing and its applications.</li>
+<li>Explain mobile marketing analytics.</li>
+</ol>
+</div>
+
+<div class="topic">
+<h2>Important Formulas for Revision</h2>
+
+<h3>Click-Through Rate</h3>
+<div class="example">
+CTR = (Clicks / Impressions) × 100
+</div>
+
+<h3>Conversion Rate</h3>
+<div class="example">
+Conversion Rate = (Conversions / Total Visitors) × 100
+</div>
+
+<h3>Return on Investment</h3>
+<div class="example">
+ROI = [(Revenue - Cost) / Cost] × 100
+</div>
+
+<h3>Engagement Rate</h3>
+<div class="example">
+Engagement Rate = (Engagements / Reach) × 100
+</div>
+
+<h3>Email Open Rate</h3>
+<div class="example">
+Open Rate = (Unique Opens / Delivered Emails) × 100
+</div>
+</div>
+
+<div class="topic">
+<h2>Recommended Study Resources</h2>
+<ul>
+<li><a href="https://skillshop.withgoogle.com/" target="_blank" rel="noopener">Google Skillshop</a> – Learn about Google's digital marketing tools.</li>
+<li><a href="https://www.facebook.com/business/learn" target="_blank" rel="noopener">Meta Blueprint</a> – Learn social media advertising.</li>
+<li><a href="https://analytics.google.com/" target="_blank" rel="noopener">Google Analytics</a> – Understand website analytics.</li>
+<li><a href="https://academy.hubspot.com/" target="_blank" rel="noopener">HubSpot Academy</a> – Learn content and email marketing.</li>
+</ul>
+</div>
+
+</div>
+
+<footer>
+    <p>STUDENTVERSE | Learn • Practice • Succeed</p>
+    <p>CACP41 – Digital Marketing</p>
+</footer>
+
+<button id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const searchBox = document.getElementById("search");
+    const cards = document.querySelectorAll(".topic");
+
+    searchBox.addEventListener("input", function () {
+        const query = searchBox.value.trim().toLowerCase();
+
+        cards.forEach(function (card) {
+            card.hidden = !card.textContent.toLowerCase().includes(query);
+        });
+    });
+
+    const topBtn = document.getElementById("topBtn");
+
+    window.addEventListener("scroll", function () {
+        topBtn.style.display =
+            window.scrollY > 300 ? "block" : "none";
+    });
+
+});
+</script>
+
+</body>
+</html>

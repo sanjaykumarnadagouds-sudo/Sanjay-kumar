@@ -1,0 +1,996 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Java Practical | STUDENTVERSE</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:Arial,sans-serif;color:white;background:radial-gradient(circle at top,#172554,#080d20 55%,#030712);min-height:100vh}
+body:before{content:"";position:fixed;inset:0;z-index:-1;background-image:radial-gradient(white 1px,transparent 1px);background-size:45px 45px;opacity:.2;animation:stars 25s linear infinite}
+@keyframes stars{to{background-position:300px 300px}}
+nav{padding:17px 7%;display:flex;justify-content:space-between;align-items:center;background:#080d20dd;border-bottom:1px solid #38bdf855;position:sticky;top:0;z-index:10;backdrop-filter:blur(12px)}
+nav h2{color:#38bdf8;letter-spacing:2px}
+nav a{color:white;text-decoration:none;margin-left:18px}
+nav a:hover{color:#38bdf8}
+header{text-align:center;padding:55px 15px 30px}
+header h1{font-size:clamp(27px,5vw,43px);color:#67e8f9;text-shadow:0 0 20px #0ea5e9}
+header p{margin-top:10px;color:#cbd5e1}
+.actions{text-align:center;margin:10px 0 25px}
+button{border:0;border-radius:9px;padding:11px 17px;background:linear-gradient(120deg,#0284c7,#7c3aed);color:white;font-weight:bold;cursor:pointer;margin:5px}
+button:hover{transform:translateY(-2px);box-shadow:0 0 15px #38bdf8}
+.search{display:block;width:min(650px,90%);margin:20px auto;padding:14px;border-radius:10px;border:1px solid #38bdf8;background:#0f172a;color:white;font-size:16px}
+.subnav{display:flex;justify-content:center;flex-wrap:wrap;margin:20px auto}
+.subnav a{display:inline-block;padding:10px 15px;border:1px solid #38bdf866;border-radius:9px;margin:5px;color:white;text-decoration:none}
+.container{width:min(1100px,92%);margin:auto}
+.section-title{text-align:center;color:#a5f3fc;font-size:27px;margin:35px 0 20px;scroll-margin-top:90px}
+.program{background:linear-gradient(145deg,#111c38ee,#111827ee);border:1px solid #38bdf844;border-radius:15px;padding:23px;margin:20px 0;box-shadow:0 8px 25px #0005;scroll-margin-top:85px}
+.program h3{color:#67e8f9;margin-bottom:15px}
+.program h4{color:#c4b5fd;margin:16px 0 8px}
+.program p{color:#cbd5e1;line-height:1.6;margin:7px 0}
+.tag{display:inline-block;color:#bae6fd;background:#07598566;padding:5px 9px;border-radius:6px;margin-bottom:12px;font-size:12px}
+pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#020617;border:1px solid #334155;border-radius:9px;padding:16px;color:#bbf7d0;line-height:1.55;overflow-x:auto;font-size:13px}
+.output{color:#fde68a}
+footer{text-align:center;padding:35px;color:#94a3b8}
+#topBtn{position:fixed;right:20px;bottom:20px;display:none}
+@media(max-width:600px){nav{padding:14px 4%}nav a{margin-left:8px;font-size:13px}.program{padding:15px}pre{font-size:12px}}
+@media print{
+body{background:white;color:black}
+body:before,nav,.actions,.search,.subnav,#topBtn{display:none!important}
+header{padding:15px;color:black}
+header h1,.section-title,.program h3,.program h4{color:black;text-shadow:none}
+.program{background:white;color:black;border:1px solid #aaa;box-shadow:none;break-inside:avoid}
+.program p{color:black}
+pre{background:#f3f4f6;color:black;border:1px solid #aaa;white-space:pre-wrap}
+.output{color:black}
+footer{color:black}
+}
+</style>
+</head>
+<body>
+
+<nav>
+<h2>STUDENTVERSE</h2>
+<div>
+<a href="index.html">Home</a>
+<a href="studyhub.html">StudyHub</a>
+</div>
+</nav>
+
+<header>
+<h1>PROGRAMMING WITH JAVA</h1>
+<p>CAM22P | BCA Semester 2</p>
+<p>University of Mysore – Practical Programs</p>
+</header>
+
+<div class="actions">
+<button onclick="window.print()">📥 Download / Save as PDF</button>
+</div>
+
+<input class="search" id="searchBox" type="text"
+placeholder="🔍 Search Java practical programs..."
+oninput="searchPrograms()">
+
+<div class="subnav">
+<a href="#partA">Part A – Java Fundamentals</a>
+<a href="#partB">Part B – Exceptions and AWT</a>
+</div>
+
+<div class="container">
+
+<h2 class="section-title" id="partA">PART A – JAVA FUNDAMENTALS</h2>
+
+<div class="program" data-part="A">
+<span class="tag">PART A – PROGRAM 1</span>
+<h3>1. Check Whether a Number is Positive, Negative or Zero</h3>
+<h4>Aim</h4>
+<p>To check whether the given number is positive, negative or zero using Java.</p>
+<h4>Source Code – PositiveNegative.java</h4>
+<pre><code>import java.util.Scanner;
+
+class PositiveNegative {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter a number: ");
+        int n = sc.nextInt();
+
+        if (n > 0) {
+            System.out.println("Positive number");
+        } else if (n < 0) {
+            System.out.println("Negative number");
+        } else {
+            System.out.println("Zero");
+        }
+
+        sc.close();
+    }
+}</code></pre>
+<h4>Sample Output</h4>
+<pre class="output">Enter a number: 25
+Positive number</pre>
+<h4>Result</h4>
+<p>Thus, the given number is checked as positive, negative or zero.</p>
+</div>
+
+<div class="program" data-part="A">
+<span class="tag">PART A – PROGRAM 2</span>
+<h3>2. Display Factorial of Numbers from 1 to 10</h3>
+<h4>Aim</h4>
+<p>To calculate and display the factorial of numbers from 1 to 10.</p>
+<h4>Source Code – FactorialSeries.java</h4>
+<pre><code>class FactorialSeries {
+    public static void main(String[] args) {
+        long fact = 1;
+
+        for (int i = 1; i <= 10; i++) {
+            fact = fact * i;
+            System.out.println("Factorial of " + i + " = " + fact);
+        }
+    }
+}</code></pre>
+<h4>Sample Output</h4>
+<pre class="output">Factorial of 1 = 1
+Factorial of 2 = 2
+Factorial of 3 = 6
+Factorial of 4 = 24
+Factorial of 5 = 120
+Factorial of 6 = 720
+Factorial of 7 = 5040
+Factorial of 8 = 40320
+Factorial of 9 = 362880
+Factorial of 10 = 3628800</pre>
+<h4>Result</h4>
+<p>Thus, factorials of numbers from 1 to 10 are displayed successfully.</p>
+</div>
+
+<div class="program" data-part="A">
+<span class="tag">PART A – PROGRAM 3</span>
+<h3>3. Demonstrate Classes and Objects</h3>
+<h4>Aim</h4>
+<p>To create a class and object in Java and display employee details.</p>
+<h4>Source Code – EmployeeDemo.java</h4>
+<pre><code>class Employee {
+    int id;
+    String name;
+    double salary;
+
+    void display() {
+        System.out.println("Employee ID: " + id);
+        System.out.println("Employee Name: " + name);
+        System.out.println("Salary: " + salary);
+    }
+}
+
+class EmployeeDemo {
+    public static void main(String[] args) {
+        Employee e = new Employee();
+
+        e.id = 101;
+        e.name = "Rahul";
+        e.salary = 25000;
+
+        e.display();
+    }
+}</code></pre>
+<h4>Sample Output</h4>
+<pre class="output">Employee ID: 101
+Employee Name: Rahul
+Salary: 25000.0</pre>
+<h4>Result</h4>
+<p>Thus, a class and its object are created and used successfully.</p>
+</div>
+
+<div class="program" data-part="A">
+<span class="tag">PART A – PROGRAM 4</span>
+<h3>4. Demonstrate Method Overloading</h3>
+<h4>Aim</h4>
+<p>To demonstrate method overloading using methods with different parameters.</p>
+<h4>Source Code – MethodOverloading.java</h4>
+<pre><code>class Calculator {
+    int add(int a, int b) {
+        return a + b;
+    }
+
+    int add(int a, int b, int c) {
+        return a + b + c;
+    }
+
+    double add(double a, double b) {
+        return a + b;
+    }
+}
+
+class MethodOverloading {
+    public static void main(String[] args) {
+        Calculator c = new Calculator();
+
+        System.out.println("Sum of two integers: " + c.add(10, 20));
+        System.out.println("Sum of three integers: " + c.add(10, 20, 30));
+        System.out.println("Sum of two decimals: " + c.add(2.5, 3.5));
+    }
+}</code></pre>
+<h4>Sample Output</h4>
+<pre class="output">Sum of two integers: 30
+Sum of three integers: 60
+Sum of two decimals: 6.0</pre>
+<h4>Result</h4>
+<p>Thus, method overloading is demonstrated successfully.</p>
+</div>
+
+<div class="program" data-part="A">
+<span class="tag">PART A – PROGRAM 5</span>
+<h3>5. Single Inheritance – Simple and Advanced Calculator</h3>
+<h4>Aim</h4>
+<p>To demonstrate single inheritance using a simple calculator as the base class and an advanced calculator as the derived class.</p>
+<h4>Source Code – InheritanceDemo.java</h4>
+<pre><code>class SimpleCalculator {
+    int add(int a, int b) {
+        return a + b;
+    }
+
+    int subtract(int a, int b) {
+        return a - b;
+    }
+}
+
+class AdvancedCalculator extends SimpleCalculator {
+    int multiply(int a, int b) {
+        return a * b;
+    }
+
+    double divide(int a, int b) {
+        return (double) a / b;
+    }
+}
+
+class InheritanceDemo {
+    public static void main(String[] args) {
+        AdvancedCalculator obj = new AdvancedCalculator();
+
+        System.out.println("Addition: " + obj.add(20, 10));
+        System.out.println("Subtraction: " + obj.subtract(20, 10));
+        System.out.println("Multiplication: " + obj.multiply(20, 10));
+        System.out.println("Division: " + obj.divide(20, 10));
+    }
+}</code></pre>
+<h4>Sample Output</h4>
+<pre class="output">Addition: 30
+Subtraction: 10
+Multiplication: 200
+Division: 2.0</pre>
+<h4>Result</h4>
+<p>Thus, single inheritance is implemented using a simple and advanced calculator.</p>
+</div>
+
+<div class="program" data-part="A">
+<span class="tag">PART A – PROGRAM 6</span>
+<h3>6. Find Maximum and Minimum Elements in a One-Dimensional Array</h3>
+<h4>Aim</h4>
+<p>To find the maximum and minimum elements in a one-dimensional array.</p>
+<h4>Source Code – ArrayMaxMin.java</h4>
+<pre><code>import java.util.Scanner;
+
+class ArrayMaxMin {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int[] a = new int[100];
+
+        System.out.print("Enter number of elements: ");
+        int n = sc.nextInt();
+
+        if (n <= 0 || n > 100) {
+            System.out.println("Invalid array size");
+            sc.close();
+            return;
+        }
+
+        System.out.println("Enter array elements:");
+        for (int i = 0; i < n; i++) {
+            a[i] = sc.nextInt();
+        }
+
+        int max = a[0];
+        int min = a[0];
+
+        for (int i = 1; i < n; i++) {
+            if (a[i] > max) {
+                max = a[i];
+            }
+
+            if (a[i] < min) {
+                min = a[i];
+            }
+        }
+
+        System.out.println("Maximum element: " + max);
+        System.out.println("Minimum element: " + min);
+
+        sc.close();
+    }
+}</code></pre>
+<h4>Sample Output</h4>
+<pre class="output">Enter number of elements: 5
+Enter array elements:
+10 50 20 5 40
+Maximum element: 50
+Minimum element: 5</pre>
+<h4>Result</h4>
+<p>Thus, maximum and minimum elements are found successfully.</p>
+</div>
+
+<div class="program" data-part="A">
+<span class="tag">PART A – PROGRAM 7</span>
+<h3>7. Check Whether a String is Palindrome</h3>
+<h4>Aim</h4>
+<p>To check whether the given string is a palindrome or not.</p>
+<h4>Source Code – StringPalindrome.java</h4>
+<pre><code>import java.util.Scanner;
+
+class StringPalindrome {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter a string: ");
+        String str = sc.nextLine();
+
+        String reverse = "";
+
+        for (int i = str.length() - 1; i >= 0; i--) {
+            reverse = reverse + str.charAt(i);
+        }
+
+        if (str.equalsIgnoreCase(reverse)) {
+            System.out.println("Palindrome string");
+        } else {
+            System.out.println("Not a palindrome string");
+        }
+
+        sc.close();
+    }
+}</code></pre>
+<h4>Sample Output</h4>
+<pre class="output">Enter a string: madam
+Palindrome string</pre>
+<h4>Result</h4>
+<p>Thus, the given string is checked for palindrome.</p>
+</div>
+
+<div class="program" data-part="A">
+<span class="tag">PART A – PROGRAM 8</span>
+<h3>8. Student Class Using an Array of Three Student Objects</h3>
+<h4>Aim</h4>
+<p>To create a Student class with registration number, name and marks of three subjects, calculate total marks and display the results of three students.</p>
+<h4>Source Code – StudentArray.java</h4>
+<pre><code>import java.util.Scanner;
+
+class Student {
+    String regNo;
+    String name;
+    int m1, m2, m3;
+    int total;
+
+    void accept(Scanner sc) {
+        System.out.print("Enter registration number: ");
+        regNo = sc.next();
+
+        System.out.print("Enter name: ");
+        name = sc.next();
+
+        System.out.print("Enter three subject marks: ");
+        m1 = sc.nextInt();
+        m2 = sc.nextInt();
+        m3 = sc.nextInt();
+
+        total = m1 + m2 + m3;
+    }
+
+    void display() {
+        System.out.println("\nRegistration Number: " + regNo);
+        System.out.println("Name: " + name);
+        System.out.println("Subject 1: " + m1);
+        System.out.println("Subject 2: " + m2);
+        System.out.println("Subject 3: " + m3);
+        System.out.println("Total Marks: " + total);
+    }
+}
+
+class StudentArray {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Student[] s = new Student[3];
+
+        for (int i = 0; i < 3; i++) {
+            s[i] = new Student();
+            System.out.println("\nEnter Student " + (i + 1) + " Details");
+            s[i].accept(sc);
+        }
+
+        System.out.println("\n----- STUDENT RESULTS -----");
+
+        for (int i = 0; i < 3; i++) {
+            s[i].display();
+        }
+
+        sc.close();
+    }
+}</code></pre>
+<h4>Sample Output</h4>
+<pre class="output">Enter Student 1 Details
+Enter registration number: 101
+Enter name: Ravi
+Enter three subject marks: 80 75 85
+
+Enter Student 2 Details
+Enter registration number: 102
+Enter name: Anu
+Enter three subject marks: 90 85 80
+
+Enter Student 3 Details
+Enter registration number: 103
+Enter name: Kiran
+Enter three subject marks: 70 75 80
+
+----- STUDENT RESULTS -----
+
+Registration Number: 101
+Name: Ravi
+Subject 1: 80
+Subject 2: 75
+Subject 3: 85
+Total Marks: 240
+
+Registration Number: 102
+Name: Anu
+Subject 1: 90
+Subject 2: 85
+Subject 3: 80
+Total Marks: 255
+
+Registration Number: 103
+Name: Kiran
+Subject 1: 70
+Subject 2: 75
+Subject 3: 80
+Total Marks: 225</pre>
+<h4>Result</h4>
+<p>Thus, three student objects are created, their marks are calculated and the results are displayed.</p>
+</div>
+
+<h2 class="section-title" id="partB">PART B – EXCEPTION HANDLING AND AWT</h2>
+
+<div class="program" data-part="B">
+<span class="tag">PART B – PROGRAM 1</span>
+<h3>9. Generate Negative Array Size Exception</h3>
+<h4>Aim</h4>
+<p>To demonstrate NegativeArraySizeException in Java.</p>
+<h4>Source Code – NegativeArray.java</h4>
+<pre><code>class NegativeArray {
+    public static void main(String[] args) {
+        try {
+            int[] a = new int[-5];
+        }
+        catch (NegativeArraySizeException e) {
+            System.out.println("Exception caught: " + e);
+        }
+
+        System.out.println("Program continues normally");
+    }
+}</code></pre>
+<h4>Sample Output</h4>
+<pre class="output">Exception caught: java.lang.NegativeArraySizeException: -5
+Program continues normally</pre>
+<h4>Result</h4>
+<p>Thus, NegativeArraySizeException is generated and handled using try-catch.</p>
+</div>
+
+<div class="program" data-part="B">
+<span class="tag">PART B – PROGRAM 2</span>
+<h3>10. Generate NullPointerException</h3>
+<h4>Aim</h4>
+<p>To demonstrate NullPointerException in Java.</p>
+<h4>Source Code – NullPointerDemo.java</h4>
+<pre><code>class NullPointerDemo {
+    public static void main(String[] args) {
+        try {
+            String str = null;
+
+            System.out.println(str.length());
+        }
+        catch (NullPointerException e) {
+            System.out.println("NullPointerException caught");
+        }
+
+        System.out.println("Program continues");
+    }
+}</code></pre>
+<h4>Sample Output</h4>
+<pre class="output">NullPointerException caught
+Program continues</pre>
+<h4>Result</h4>
+<p>Thus, NullPointerException is demonstrated and handled successfully.</p>
+</div>
+
+<div class="program" data-part="B">
+<span class="tag">PART B – PROGRAM 3</span>
+<h3>11. Handle NumberFormatException</h3>
+<h4>Aim</h4>
+<p>To read two integer values and handle NumberFormatException when the input is not a valid integer.</p>
+<h4>Source Code – NumberFormatDemo.java</h4>
+<pre><code>import java.util.Scanner;
+
+class NumberFormatDemo {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        try {
+            System.out.print("Enter first number: ");
+            String a = sc.nextLine();
+
+            System.out.print("Enter second number: ");
+            String b = sc.nextLine();
+
+            int x = Integer.parseInt(a);
+            int y = Integer.parseInt(b);
+
+            System.out.println("Sum = " + (x + y));
+        }
+        catch (NumberFormatException e) {
+            System.out.println("Error: Please enter valid integers");
+        }
+
+        sc.close();
+    }
+}</code></pre>
+<h4>Sample Output – Valid Input</h4>
+<pre class="output">Enter first number: 10
+Enter second number: 20
+Sum = 30</pre>
+<h4>Sample Output – Invalid Input</h4>
+<pre class="output">Enter first number: abc
+Enter second number: 20
+Error: Please enter valid integers</pre>
+<h4>Result</h4>
+<p>Thus, NumberFormatException is handled using a try-catch block.</p>
+</div>
+
+<div class="program" data-part="B">
+<span class="tag">PART B – PROGRAM 4</span>
+<h3>12. AWT Window with Morning, Afternoon, Evening and Close Buttons</h3>
+<h4>Aim</h4>
+<p>To create an AWT window with four buttons M, A, E and Close to display greetings.</p>
+<h4>Source Code – GreetingWindow.java</h4>
+<pre><code>import java.awt.*;
+import java.awt.event.*;
+
+class GreetingWindow extends Frame implements ActionListener {
+    Label message;
+    Button morning, afternoon, evening, close;
+
+    GreetingWindow() {
+        setTitle("Greeting Window");
+        setSize(400, 250);
+        setLayout(new FlowLayout());
+
+        message = new Label("Click a button");
+        morning = new Button("M");
+        afternoon = new Button("A");
+        evening = new Button("E");
+        close = new Button("Close");
+
+        add(message);
+        add(morning);
+        add(afternoon);
+        add(evening);
+        add(close);
+
+        morning.addActionListener(this);
+        afternoon.addActionListener(this);
+        evening.addActionListener(this);
+        close.addActionListener(this);
+
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                dispose();
+            }
+        });
+
+        setVisible(true);
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        String command = e.getActionCommand();
+
+        if (command.equals("M")) {
+            message.setText("Good Morning");
+        } else if (command.equals("A")) {
+            message.setText("Good Afternoon");
+        } else if (command.equals("E")) {
+            message.setText("Good Evening");
+        } else if (command.equals("Close")) {
+            dispose();
+        }
+    }
+
+    public static void main(String[] args) {
+        new GreetingWindow();
+    }
+}</code></pre>
+<h4>Expected Output</h4>
+<pre class="output">An AWT window appears with:
+[M] [A] [E] [Close]
+
+Click M     → Good Morning
+Click A     → Good Afternoon
+Click E     → Good Evening
+Click Close → Window closes</pre>
+<h4>Result</h4>
+<p>Thus, an AWT greeting window is created with four buttons and event handling.</p>
+</div>
+
+<div class="program" data-part="B">
+<span class="tag">PART B – PROGRAM 5</span>
+<h3>13. Demonstrate Mouse Handling Events</h3>
+<h4>Aim</h4>
+<p>To demonstrate mouse handling events such as click, press, release, enter and exit.</p>
+<h4>Source Code – MouseEventsDemo.java</h4>
+<pre><code>import java.awt.*;
+import java.awt.event.*;
+
+class MouseEventsDemo extends Frame implements MouseListener {
+    Label message;
+
+    MouseEventsDemo() {
+        setTitle("Mouse Events");
+        setSize(400, 250);
+        setLayout(new FlowLayout());
+
+        message = new Label("Perform mouse actions inside the window");
+        add(message);
+
+        addMouseListener(this);
+
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                dispose();
+            }
+        });
+
+        setVisible(true);
+    }
+
+    public void mouseClicked(MouseEvent e) {
+        message.setText("Mouse Clicked");
+    }
+
+    public void mousePressed(MouseEvent e) {
+        message.setText("Mouse Pressed");
+    }
+
+    public void mouseReleased(MouseEvent e) {
+        message.setText("Mouse Released");
+    }
+
+    public void mouseEntered(MouseEvent e) {
+        message.setText("Mouse Entered");
+    }
+
+    public void mouseExited(MouseEvent e) {
+        message.setText("Mouse Exited");
+    }
+
+    public static void main(String[] args) {
+        new MouseEventsDemo();
+    }
+}</code></pre>
+<h4>Expected Output</h4>
+<pre class="output">An AWT window appears.
+
+Move mouse inside window → Mouse Entered
+Click mouse             → Mouse Clicked
+Press mouse button      → Mouse Pressed
+Release mouse button    → Mouse Released
+Move mouse outside      → Mouse Exited</pre>
+<h4>Result</h4>
+<p>Thus, different mouse handling events are demonstrated using MouseListener.</p>
+</div>
+
+<div class="program" data-part="B">
+<span class="tag">PART B – PROGRAM 6</span>
+<h3>14. Read and Write Binary I/O File</h3>
+<h4>Aim</h4>
+<p>To write data into a binary file and read the stored data using Java byte streams.</p>
+<h4>Source Code – BinaryFileDemo.java</h4>
+<pre><code>import java.io.*;
+
+class BinaryFileDemo {
+    public static void main(String[] args) {
+        String fileName = "student.dat";
+
+        // Writing binary data
+        try {
+            DataOutputStream out =
+                new DataOutputStream(
+                    new FileOutputStream(fileName)
+                );
+
+            out.writeInt(101);
+            out.writeUTF("Rahul");
+            out.writeDouble(85.5);
+
+            out.close();
+
+            System.out.println("Data written successfully");
+        }
+        catch (IOException e) {
+            System.out.println("Writing error: " + e.getMessage());
+        }
+
+        // Reading binary data
+        try {
+            DataInputStream in =
+                new DataInputStream(
+                    new FileInputStream(fileName)
+                );
+
+            int id = in.readInt();
+            String name = in.readUTF();
+            double marks = in.readDouble();
+
+            System.out.println("Student ID: " + id);
+            System.out.println("Student Name: " + name);
+            System.out.println("Student Marks: " + marks);
+
+            in.close();
+        }
+        catch (IOException e) {
+            System.out.println("Reading error: " + e.getMessage());
+        }
+    }
+}</code></pre>
+<h4>Sample Output</h4>
+<pre class="output">Data written successfully
+Student ID: 101
+Student Name: Rahul
+Student Marks: 85.5</pre>
+<h4>Result</h4>
+<p>Thus, binary data is written into and read from a file successfully. The file student.dat is created in the program's working directory.</p>
+</div>
+
+<div class="program" data-part="B">
+<span class="tag">PART B – PROGRAM 7</span>
+<h3>15. AWT Window with Father, Mother and Close Buttons</h3>
+<h4>Aim</h4>
+<p>To create an AWT window with Father, Mother and Close buttons and display the respective name, age and designation.</p>
+<h4>Source Code – FamilyWindow.java</h4>
+<pre><code>import java.awt.*;
+import java.awt.event.*;
+
+class FamilyWindow extends Frame implements ActionListener {
+    Button father, mother, close;
+    Label details;
+
+    FamilyWindow() {
+        setTitle("Family Details");
+        setSize(450, 250);
+        setLayout(new FlowLayout());
+
+        father = new Button("Father");
+        mother = new Button("Mother");
+        close = new Button("Close");
+
+        details = new Label("Select Father or Mother");
+
+        add(father);
+        add(mother);
+        add(close);
+        add(details);
+
+        father.addActionListener(this);
+        mother.addActionListener(this);
+        close.addActionListener(this);
+
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                dispose();
+            }
+        });
+
+        setVisible(true);
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        String command = e.getActionCommand();
+
+        if (command.equals("Father")) {
+            details.setText(
+                "Father: Name - Ramesh, Age - 50, Designation - Teacher"
+            );
+        } else if (command.equals("Mother")) {
+            details.setText(
+                "Mother: Name - Lakshmi, Age - 45, Designation - Homemaker"
+            );
+        } else if (command.equals("Close")) {
+            dispose();
+        }
+    }
+
+    public static void main(String[] args) {
+        new FamilyWindow();
+    }
+}</code></pre>
+<h4>Expected Output</h4>
+<pre class="output">An AWT window appears with:
+[Father] [Mother] [Close]
+
+Click Father:
+Father: Name - Ramesh, Age - 50, Designation - Teacher
+
+Click Mother:
+Mother: Name - Lakshmi, Age - 45, Designation - Homemaker
+
+Click Close:
+Window closes.</pre>
+<h4>Result</h4>
+<p>Thus, an AWT family details window is created using buttons and event handling.</p>
+</div>
+
+<div class="program" data-part="B">
+<span class="tag">PART B – PROGRAM 8</span>
+<h3>16. Create Menu Bar and Pull-Down Menus</h3>
+<h4>Aim</h4>
+<p>To create an AWT window containing a menu bar and pull-down menus.</p>
+<h4>Source Code – MenuDemo.java</h4>
+<pre><code>import java.awt.*;
+import java.awt.event.*;
+
+class MenuDemo extends Frame implements ActionListener {
+    Label message;
+
+    MenuDemo() {
+        setTitle("Menu Bar Demo");
+        setSize(400, 250);
+        setLayout(new FlowLayout());
+
+        message = new Label("Select an option from the menu");
+        add(message);
+
+        MenuBar menuBar = new MenuBar();
+
+        Menu fileMenu = new Menu("File");
+        Menu editMenu = new Menu("Edit");
+
+        MenuItem newItem = new MenuItem("New");
+        MenuItem openItem = new MenuItem("Open");
+        MenuItem exitItem = new MenuItem("Exit");
+
+        MenuItem copyItem = new MenuItem("Copy");
+        MenuItem pasteItem = new MenuItem("Paste");
+
+        fileMenu.add(newItem);
+        fileMenu.add(openItem);
+        fileMenu.addSeparator();
+        fileMenu.add(exitItem);
+
+        editMenu.add(copyItem);
+        editMenu.add(pasteItem);
+
+        menuBar.add(fileMenu);
+        menuBar.add(editMenu);
+
+        setMenuBar(menuBar);
+
+        newItem.addActionListener(this);
+        openItem.addActionListener(this);
+        exitItem.addActionListener(this);
+        copyItem.addActionListener(this);
+        pasteItem.addActionListener(this);
+
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                dispose();
+            }
+        });
+
+        setVisible(true);
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        String command = e.getActionCommand();
+
+        if (command.equals("Exit")) {
+            dispose();
+        } else {
+            message.setText(command + " selected");
+        }
+    }
+
+    public static void main(String[] args) {
+        new MenuDemo();
+    }
+}</code></pre>
+<h4>Expected Output</h4>
+<pre class="output">An AWT window appears.
+
+Menu bar:
+File       Edit
+
+File menu:
+New
+Open
+Exit
+
+Edit menu:
+Copy
+Paste
+
+Selecting New   → New selected
+Selecting Open  → Open selected
+Selecting Copy  → Copy selected
+Selecting Paste → Paste selected
+Selecting Exit  → Window closes</pre>
+<h4>Result</h4>
+<p>Thus, a menu bar and pull-down menus are created successfully using AWT.</p>
+</div>
+
+<h2 class="section-title">Java Practical Viva Questions</h2>
+
+<div class="program">
+<h3>Important Viva Questions and Answers</h3>
+<p><b>1. What is Java?</b><br>Java is a high-level, object-oriented programming language.</p>
+<p><b>2. What is JVM?</b><br>JVM stands for Java Virtual Machine. It executes Java bytecode.</p>
+<p><b>3. What is JDK?</b><br>JDK stands for Java Development Kit. It provides tools to develop Java programs.</p>
+<p><b>4. What is JRE?</b><br>JRE stands for Java Runtime Environment. It provides the environment to run Java programs.</p>
+<p><b>5. What is a class?</b><br>A class is a blueprint used to create objects.</p>
+<p><b>6. What is an object?</b><br>An object is an instance of a class.</p>
+<p><b>7. What is inheritance?</b><br>Inheritance allows one class to acquire the properties and methods of another class.</p>
+<p><b>8. What is method overloading?</b><br>Defining multiple methods with the same name but different parameter lists.</p>
+<p><b>9. What is an exception?</b><br>An exception is an event that interrupts the normal flow of program execution.</p>
+<p><b>10. What is try-catch?</b><br>It is used to detect and handle exceptions.</p>
+<p><b>11. What is AWT?</b><br>AWT stands for Abstract Window Toolkit. It is used to create graphical user interfaces in Java.</p>
+<p><b>12. What is an event?</b><br>An event is an action such as a mouse click or button press.</p>
+<p><b>13. What is a thread?</b><br>A thread is a lightweight unit of execution within a program.</p>
+<p><b>14. What is file handling?</b><br>File handling is the process of reading data from and writing data to files.</p>
+<p><b>15. What is an array?</b><br>An array stores multiple values of the same data type in a single variable.</p>
+</div>
+
+</div>
+
+<footer>
+<p>© STUDENTVERSE | BCA Semester 2 – CAM22P</p>
+<p>Learn • Practice • Execute • Succeed</p>
+</footer>
+
+<button id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">⬆ Top</button>
+
+<script>
+function searchPrograms() {
+    const value = document.getElementById("searchBox").value.toLowerCase();
+
+    const programs = document.querySelectorAll(".program[data-part]");
+    const partA = document.querySelectorAll('.program[data-part="A"]');
+    const partB = document.querySelectorAll('.program[data-part="B"]');
+
+    programs.forEach(program => {
+        program.style.display =
+            program.innerText.toLowerCase().includes(value) ? "block" : "none";
+    });
+
+    document.getElementById("partA").style.display =
+        [...partA].some(p => p.style.display !== "none") ? "block" : "none";
+
+    document.getElementById("partB").style.display =
+        [...partB].some(p => p.style.display !== "none") ? "block" : "none";
+}
+
+window.addEventListener("scroll", function() {
+    document.getElementById("topBtn").style.display =
+        window.scrollY > 300 ? "block" : "none";
+});
+</script>
+
+</body>
+</html>

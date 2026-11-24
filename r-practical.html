@@ -1,0 +1,671 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>R Programming Practical | STUDENTVERSE</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:Arial,sans-serif;color:white;background:radial-gradient(circle at top,#172554,#080d20 55%,#030712);min-height:100vh}
+body:before{content:"";position:fixed;inset:0;z-index:-1;background-image:radial-gradient(white 1px,transparent 1px);background-size:45px 45px;opacity:.2;animation:stars 25s linear infinite}
+@keyframes stars{to{background-position:300px 300px}}
+nav{padding:17px 7%;display:flex;justify-content:space-between;align-items:center;background:#080d20dd;border-bottom:1px solid #38bdf855;position:sticky;top:0;z-index:10;backdrop-filter:blur(12px)}
+nav h2{color:#38bdf8;letter-spacing:2px}
+nav a{color:white;text-decoration:none;margin-left:18px}
+nav a:hover{color:#38bdf8}
+header{text-align:center;padding:55px 15px 30px}
+header h1{font-size:clamp(27px,5vw,43px);color:#67e8f9;text-shadow:0 0 20px #0ea5e9}
+header p{margin-top:10px;color:#cbd5e1}
+.actions{text-align:center;margin:10px 0 25px}
+button{border:0;border-radius:9px;padding:11px 17px;background:linear-gradient(120deg,#0284c7,#7c3aed);color:white;font-weight:bold;cursor:pointer;margin:5px}
+button:hover{transform:translateY(-2px);box-shadow:0 0 15px #38bdf8}
+.search{display:block;width:min(650px,90%);margin:20px auto;padding:14px;border-radius:10px;border:1px solid #38bdf8;background:#0f172a;color:white;font-size:16px}
+.subnav{display:flex;justify-content:center;flex-wrap:wrap;margin:20px auto}
+.subnav a{display:inline-block;padding:10px 15px;border:1px solid #38bdf866;border-radius:9px;margin:5px;color:white;text-decoration:none}
+.container{width:min(1100px,92%);margin:auto}
+.section-title{text-align:center;color:#a5f3fc;font-size:27px;margin:35px 0 20px;scroll-margin-top:90px}
+.program{background:linear-gradient(145deg,#111c38ee,#111827ee);border:1px solid #38bdf844;border-radius:15px;padding:23px;margin:20px 0;box-shadow:0 8px 25px #0005;scroll-margin-top:85px}
+.program h3{color:#67e8f9;margin-bottom:15px}
+.program h4{color:#c4b5fd;margin:16px 0 8px}
+.program p{color:#cbd5e1;line-height:1.6}
+.tag{display:inline-block;color:#bae6fd;background:#07598566;padding:5px 9px;border-radius:6px;margin-bottom:12px;font-size:12px}
+pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#020617;border:1px solid #334155;border-radius:9px;padding:16px;color:#bbf7d0;line-height:1.55;overflow-x:auto;font-size:13px}
+.output{color:#fde68a}
+footer{text-align:center;padding:35px;color:#94a3b8}
+#topBtn{position:fixed;right:20px;bottom:20px;display:none}
+@media(max-width:600px){nav{padding:14px 4%}nav a{margin-left:8px;font-size:13px}.program{padding:15px}pre{font-size:12px}}
+@media print{
+body{background:white;color:black}
+body:before,nav,.actions,.search,.subnav,#topBtn{display:none!important}
+header{padding:15px;color:black}
+header h1,.section-title,.program h3,.program h4{color:black;text-shadow:none}
+.program{background:white;color:black;border:1px solid #aaa;box-shadow:none;break-inside:avoid}
+.program p{color:black}
+pre{background:#f3f4f6;color:black;border:1px solid #aaa;white-space:pre-wrap}
+.output{color:black}
+footer{color:black}
+}
+</style>
+</head>
+<body>
+
+<nav>
+<h2>STUDENTVERSE</h2>
+<div>
+<a href="index.html">Home</a>
+<a href="studyhub.html">StudyHub</a>
+</div>
+</nav>
+
+<header>
+<h1>R PROGRAMMING PRACTICAL</h1>
+<p>CAM13P | BCA Semester 1</p>
+<p>Mathematical and Statistical Computing using R</p>
+</header>
+
+<div class="actions">
+<button onclick="window.print()">📥 Download / Save as PDF</button>
+</div>
+
+<input class="search" id="searchBox" type="text" placeholder="🔍 Search practical programs..." oninput="searchPrograms()">
+
+<div class="subnav">
+<a href="#partA">Part A – Mathematical Programs</a>
+<a href="#partB">Part B – Statistical Programs</a>
+</div>
+
+<div class="container">
+
+<h2 class="section-title" id="partA">PART A – MATHEMATICAL PROGRAMS</h2>
+
+<div class="program" data-part="A">
+<span class="tag">PART A – PROGRAM 1</span>
+<h3>1. Set Operations – Union, Intersection, Difference and Subset</h3>
+<h4>Aim</h4><p>To perform union, intersection, difference and subset operations on two sets using R.</p>
+<h4>Source Code</h4>
+<pre><code>A &lt;- c(1, 2, 3, 4)
+B &lt;- c(3, 4, 5, 6)
+
+cat("Set A:", A, "\n")
+cat("Set B:", B, "\n")
+
+cat("Union:", union(A, B), "\n")
+cat("Intersection:", intersect(A, B), "\n")
+cat("Difference A-B:", setdiff(A, B), "\n")
+cat("Difference B-A:", setdiff(B, A), "\n")
+
+C &lt;- c(1, 2)
+cat("Is C a subset of A:", all(C %in% A), "\n")</code></pre>
+<h4>Sample Output</h4>
+<pre class="output">Set A: 1 2 3 4
+Set B: 3 4 5 6
+Union: 1 2 3 4 5 6
+Intersection: 3 4
+Difference A-B: 1 2
+Difference B-A: 5 6
+Is C a subset of A: TRUE</pre>
+<h4>Result</h4><p>Thus, set operations are performed successfully using R.</p>
+</div>
+
+<div class="program" data-part="A">
+<span class="tag">PART A – PROGRAM 2</span>
+<h3>2. Inverse Function</h3>
+<h4>Aim</h4><p>To find the inverse of a one-to-one function using R.</p>
+<h4>Source Code</h4>
+<pre><code># Function: f(x) = 2x + 3
+f &lt;- function(x) {
+  2 * x + 3
+}
+
+# Inverse: f inverse(y) = (y - 3) / 2
+inverse_f &lt;- function(y) {
+  (y - 3) / 2
+}
+
+x &lt;- 4
+y &lt;- f(x)
+
+cat("Original value:", x, "\n")
+cat("Function value:", y, "\n")
+cat("Inverse value:", inverse_f(y), "\n")</code></pre>
+<h4>Sample Output</h4>
+<pre class="output">Original value: 4
+Function value: 11
+Inverse value: 4</pre>
+<h4>Result</h4><p>Thus, the inverse function is implemented and the original value is obtained.</p>
+</div>
+
+<div class="program" data-part="A">
+<span class="tag">PART A – PROGRAM 3</span>
+<h3>3. One-to-One Function</h3>
+<h4>Aim</h4><p>To check whether a function is one-to-one for a given finite domain.</p>
+<h4>Source Code</h4>
+<pre><code>x &lt;- c(1, 2, 3, 4, 5)
+
+# Function f(x) = 2x + 1
+y &lt;- 2 * x + 1
+
+cat("Domain:", x, "\n")
+cat("Function values:", y, "\n")
+
+if(length(unique(y)) == length(y)) {
+  cat("The function is one-to-one")
+} else {
+  cat("The function is not one-to-one")
+}</code></pre>
+<h4>Sample Output</h4>
+<pre class="output">Domain: 1 2 3 4 5
+Function values: 3 5 7 9 11
+The function is one-to-one</pre>
+<h4>Result</h4><p>Thus, the given function is checked for the one-to-one property over the specified domain.</p>
+</div>
+
+<div class="program" data-part="A">
+<span class="tag">PART A – PROGRAM 4</span>
+<h3>4. Cartesian Product of Two Sets</h3>
+<h4>Aim</h4><p>To find the Cartesian product of two sets using R.</p>
+<h4>Source Code</h4>
+<pre><code>A &lt;- c(1, 2, 3)
+B &lt;- c("a", "b")
+
+result &lt;- expand.grid(A = A, B = B)
+
+cat("Set A:", A, "\n")
+cat("Set B:", B, "\n")
+cat("Cartesian Product:\n")
+
+for(i in 1:nrow(result)) {
+  cat("(", result$A[i], ",", result$B[i], ")\n")
+}</code></pre>
+<h4>Sample Output</h4>
+<pre class="output">Set A: 1 2 3
+Set B: a b
+Cartesian Product:
+( 1 , a )
+( 2 , a )
+( 3 , a )
+( 1 , b )
+( 2 , b )
+( 3 , b )</pre>
+<h4>Result</h4><p>Thus, the Cartesian product of two sets is calculated.</p>
+</div>
+
+<div class="program" data-part="A">
+<span class="tag">PART A – PROGRAM 5</span>
+<h3>5. Check Whether a Relation is Reflexive</h3>
+<h4>Aim</h4><p>To check whether a given relation is reflexive.</p>
+<h4>Source Code</h4>
+<pre><code>A &lt;- c(1, 2, 3)
+
+# Relation R
+R &lt;- matrix(c(
+  1, 1, 0,
+  0, 1, 0,
+  0, 0, 1
+), nrow=3, byrow=TRUE)
+
+print(R)
+
+reflexive &lt;- TRUE
+
+for(i in 1:length(A)) {
+  if(R[i,i] != 1) {
+    reflexive &lt;- FALSE
+  }
+}
+
+if(reflexive) {
+  cat("The relation is reflexive")
+} else {
+  cat("The relation is not reflexive")
+}</code></pre>
+<h4>Sample Output</h4>
+<pre class="output">     [,1] [,2] [,3]
+[1,]    1    1    0
+[2,]    0    1    0
+[3,]    0    0    1
+
+The relation is reflexive</pre>
+<h4>Result</h4><p>Thus, the given relation is checked for reflexivity.</p>
+</div>
+
+<div class="program" data-part="A">
+<span class="tag">PART A – PROGRAM 6</span>
+<h3>6. Check Whether a Relation is Transitive</h3>
+<h4>Aim</h4><p>To check whether a given relation is transitive.</p>
+<h4>Source Code</h4>
+<pre><code>A &lt;- 1:3
+
+# Relation: (1,2), (2,3), (1,3)
+R &lt;- matrix(c(
+  0, 1, 1,
+  0, 0, 1,
+  0, 0, 0
+), nrow=3, byrow=TRUE)
+
+print(R)
+
+transitive &lt;- TRUE
+
+for(i in A) {
+  for(j in A) {
+    for(k in A) {
+      if(R[i,j] == 1 && R[j,k] == 1 && R[i,k] != 1) {
+        transitive &lt;- FALSE
+      }
+    }
+  }
+}
+
+if(transitive) {
+  cat("The relation is transitive")
+} else {
+  cat("The relation is not transitive")
+}</code></pre>
+<h4>Sample Output</h4>
+<pre class="output">     [,1] [,2] [,3]
+[1,]    0    1    1
+[2,]    0    0    1
+[3,]    0    0    0
+
+The relation is transitive</pre>
+<h4>Result</h4><p>Thus, the given relation is checked for transitivity.</p>
+</div>
+
+<div class="program" data-part="A">
+<span class="tag">PART A – PROGRAM 7</span>
+<h3>7. Implement Logic Gates – NOT, AND, OR and XOR</h3>
+<h4>Aim</h4><p>To implement basic logic gates using R programming.</p>
+<h4>Source Code</h4>
+<pre><code>A &lt;- 1
+B &lt;- 0
+
+NOT_A &lt;- !as.logical(A)
+AND &lt;- as.logical(A) &amp; as.logical(B)
+OR &lt;- as.logical(A) | as.logical(B)
+XOR &lt;- xor(as.logical(A), as.logical(B))
+
+cat("A =", A, "\n")
+cat("B =", B, "\n")
+cat("NOT A =", as.integer(NOT_A), "\n")
+cat("AND =", as.integer(AND), "\n")
+cat("OR =", as.integer(OR), "\n")
+cat("XOR =", as.integer(XOR), "\n")</code></pre>
+<h4>Sample Output</h4>
+<pre class="output">A = 1
+B = 0
+NOT A = 0
+AND = 0
+OR = 1
+XOR = 1</pre>
+<h4>Result</h4><p>Thus, NOT, AND, OR and XOR logic gates are implemented using R.</p>
+</div>
+
+<div class="program" data-part="A">
+<span class="tag">PART A – PROGRAM 8</span>
+<h3>8. Check Whether a Relation is Symmetric</h3>
+<h4>Aim</h4><p>To check whether a given relation is symmetric.</p>
+<h4>Source Code</h4>
+<pre><code>A &lt;- 1:3
+
+R &lt;- matrix(c(
+  1, 1, 0,
+  1, 1, 1,
+  0, 1, 1
+), nrow=3, byrow=TRUE)
+
+print(R)
+
+symmetric &lt;- TRUE
+
+for(i in A) {
+  for(j in A) {
+    if(R[i,j] != R[j,i]) {
+      symmetric &lt;- FALSE
+    }
+  }
+}
+
+if(symmetric) {
+  cat("The relation is symmetric")
+} else {
+  cat("The relation is not symmetric")
+}</code></pre>
+<h4>Sample Output</h4>
+<pre class="output">     [,1] [,2] [,3]
+[1,]    1    1    0
+[2,]    1    1    1
+[3,]    0    1    1
+
+The relation is symmetric</pre>
+<h4>Result</h4><p>Thus, the given relation is checked for symmetry.</p>
+</div>
+
+<h2 class="section-title" id="partB">PART B – STATISTICAL PROGRAMS</h2>
+
+<div class="program" data-part="B">
+<span class="tag">PART B – PROGRAM 1</span>
+<h3>9. Calculate Mean, Median and Mode</h3>
+<h4>Aim</h4><p>To calculate the measures of central tendency: mean, median and mode.</p>
+<h4>Source Code</h4>
+<pre><code>x &lt;- c(10, 20, 20, 30, 40, 20, 50)
+
+mean_value &lt;- mean(x)
+median_value &lt;- median(x)
+
+get_mode &lt;- function(v) {
+  values &lt;- unique(v)
+  frequencies &lt;- tabulate(match(v, values))
+  values[which.max(frequencies)]
+}
+
+mode_value &lt;- get_mode(x)
+
+cat("Data:", x, "\n")
+cat("Mean:", mean_value, "\n")
+cat("Median:", median_value, "\n")
+cat("Mode:", mode_value, "\n")</code></pre>
+<h4>Sample Output</h4>
+<pre class="output">Data: 10 20 20 30 40 20 50
+Mean: 27.14286
+Median: 20
+Mode: 20</pre>
+<h4>Result</h4><p>Thus, mean, median and mode are calculated successfully.</p>
+</div>
+
+<div class="program" data-part="B">
+<span class="tag">PART B – PROGRAM 2</span>
+<h3>10. Calculate Variance and Standard Deviation for Discrete and Continuous Series</h3>
+<h4>Aim</h4><p>To calculate variance and standard deviation for discrete and continuous frequency distributions.</p>
+<h4>Source Code</h4>
+<pre><code># Discrete frequency distribution
+x &lt;- c(10, 20, 30)
+f &lt;- c(2, 3, 5)
+
+N &lt;- sum(f)
+mean_d &lt;- sum(x*f)/N
+variance_d &lt;- sum(f*(x-mean_d)^2)/N
+sd_d &lt;- sqrt(variance_d)
+
+cat("Discrete Mean:", mean_d, "\n")
+cat("Discrete Variance:", variance_d, "\n")
+cat("Discrete SD:", sd_d, "\n\n")
+
+# Continuous frequency distribution
+lower &lt;- c(0, 10, 20)
+upper &lt;- c(10, 20, 30)
+mid &lt;- (lower + upper)/2
+fc &lt;- c(2, 3, 5)
+
+Nc &lt;- sum(fc)
+mean_c &lt;- sum(mid*fc)/Nc
+variance_c &lt;- sum(fc*(mid-mean_c)^2)/Nc
+sd_c &lt;- sqrt(variance_c)
+
+cat("Continuous Mean:", mean_c, "\n")
+cat("Continuous Variance:", variance_c, "\n")
+cat("Continuous SD:", sd_c)</code></pre>
+<h4>Sample Output</h4>
+<pre class="output">Discrete Mean: 23
+Discrete Variance: 61
+Discrete SD: 7.81025
+
+Continuous Mean: 18
+Continuous Variance: 61
+Continuous SD: 7.81025</pre>
+<h4>Result</h4><p>Thus, variance and standard deviation are calculated for both distributions. These calculations use population formulas, dividing by total frequency.</p>
+</div>
+
+<div class="program" data-part="B">
+<span class="tag">PART B – PROGRAM 3</span>
+<h3>11. Calculate Coefficient of Variation for Discrete and Continuous Series</h3>
+<h4>Aim</h4><p>To calculate the coefficient of variation for discrete and continuous frequency distributions.</p>
+<h4>Source Code</h4>
+<pre><code># Discrete series
+x &lt;- c(10, 20, 30)
+f &lt;- c(2, 3, 5)
+
+N &lt;- sum(f)
+mean_d &lt;- sum(x*f)/N
+sd_d &lt;- sqrt(sum(f*(x-mean_d)^2)/N)
+cv_d &lt;- (sd_d/mean_d)*100
+
+cat("Discrete CV:", cv_d, "%\n")
+
+# Continuous series
+lower &lt;- c(0, 10, 20)
+upper &lt;- c(10, 20, 30)
+mid &lt;- (lower+upper)/2
+fc &lt;- c(2, 3, 5)
+
+Nc &lt;- sum(fc)
+mean_c &lt;- sum(mid*fc)/Nc
+sd_c &lt;- sqrt(sum(fc*(mid-mean_c)^2)/Nc)
+cv_c &lt;- (sd_c/mean_c)*100
+
+cat("Continuous CV:", cv_c, "%")</code></pre>
+<h4>Sample Output</h4>
+<pre class="output">Discrete CV: 33.95761 %
+Continuous CV: 43.39028 %</pre>
+<h4>Result</h4><p>Thus, the coefficient of variation is calculated for discrete and continuous series.</p>
+</div>
+
+<div class="program" data-part="B">
+<span class="tag">PART B – PROGRAM 4</span>
+<h3>12. Simple Linear Algebra Operations</h3>
+<h4>Aim</h4><p>To perform basic vector and matrix operations using R.</p>
+<h4>Source Code</h4>
+<pre><code># Vector operations
+A &lt;- c(1, 2, 3)
+B &lt;- c(4, 5, 6)
+
+cat("Vector Addition:", A+B, "\n")
+cat("Vector Subtraction:", A-B, "\n")
+cat("Dot Product:", sum(A*B), "\n\n")
+
+# Matrix operations
+M1 &lt;- matrix(c(1, 2, 3, 4), nrow=2)
+M2 &lt;- matrix(c(5, 6, 7, 8), nrow=2)
+
+cat("Matrix Addition:\n")
+print(M1+M2)
+
+cat("Matrix Multiplication:\n")
+print(M1 %*% M2)
+
+cat("Transpose of M1:\n")
+print(t(M1))</code></pre>
+<h4>Sample Output</h4>
+<pre class="output">Vector Addition: 5 7 9
+Vector Subtraction: -3 -3 -3
+Dot Product: 32
+
+Matrix Addition:
+     [,1] [,2]
+[1,]    6   10
+[2,]    8   12
+
+Matrix Multiplication:
+     [,1] [,2]
+[1,]   23   31
+[2,]   34   46
+
+Transpose of M1:
+     [,1] [,2]
+[1,]    1    2
+[2,]    3    4</pre>
+<h4>Result</h4><p>Thus, vector and matrix operations are performed successfully.</p>
+</div>
+
+<div class="program" data-part="B">
+<span class="tag">PART B – PROGRAM 5</span>
+<h3>13. Arithmetic Mean for Grouped and Ungrouped Data</h3>
+<h4>Aim</h4><p>To calculate arithmetic mean for grouped and ungrouped data.</p>
+<h4>Source Code</h4>
+<pre><code># Ungrouped data
+x &lt;- c(10, 20, 30, 40, 50)
+mean_ungrouped &lt;- mean(x)
+
+cat("Ungrouped Mean:", mean_ungrouped, "\n")
+
+# Grouped discrete data
+values &lt;- c(10, 20, 30, 40)
+frequency &lt;- c(2, 3, 4, 1)
+
+mean_grouped &lt;- sum(values*frequency)/sum(frequency)
+
+cat("Grouped Mean:", mean_grouped, "\n")</code></pre>
+<h4>Sample Output</h4>
+<pre class="output">Ungrouped Mean: 30
+Grouped Mean: 24</pre>
+<h4>Result</h4><p>Thus, arithmetic mean is calculated for grouped and ungrouped data.</p>
+</div>
+
+<div class="program" data-part="B">
+<span class="tag">PART B – PROGRAM 6</span>
+<h3>14. Cumulative Sum, Product, Minimum and Maximum</h3>
+<h4>Aim</h4><p>To calculate cumulative sums, cumulative products, minimum and maximum values using R.</p>
+<h4>Source Code</h4>
+<pre><code>x &lt;- c(2, 3, 4, 5)
+
+cat("Original Data:", x, "\n")
+cat("Cumulative Sum:", cumsum(x), "\n")
+cat("Cumulative Product:", cumprod(x), "\n")
+cat("Minimum Value:", min(x), "\n")
+cat("Maximum Value:", max(x), "\n")</code></pre>
+<h4>Sample Output</h4>
+<pre class="output">Original Data: 2 3 4 5
+Cumulative Sum: 2 5 9 14
+Cumulative Product: 2 6 24 120
+Minimum Value: 2
+Maximum Value: 5</pre>
+<h4>Result</h4><p>Thus, cumulative sums, products, minimum and maximum values are calculated.</p>
+</div>
+
+<div class="program" data-part="B">
+<span class="tag">PART B – PROGRAM 7</span>
+<h3>15. Frequency Distribution for Discrete and Continuous Series</h3>
+<h4>Aim</h4><p>To construct frequency distributions for discrete and continuous data.</p>
+<h4>Source Code</h4>
+<pre><code># Discrete frequency distribution
+x &lt;- c(10, 20, 10, 30, 20, 10, 40, 20, 30)
+
+cat("Discrete Frequency Distribution:\n")
+print(table(x))
+
+# Continuous frequency distribution
+marks &lt;- c(12, 18, 22, 25, 29, 31, 35, 38, 42, 47)
+
+breaks &lt;- c(0, 10, 20, 30, 40, 50)
+
+cat("\nContinuous Frequency Distribution:\n")
+print(table(cut(marks, breaks=breaks, right=FALSE)))</code></pre>
+<h4>Sample Output</h4>
+<pre class="output">Discrete Frequency Distribution:
+x
+10 20 30 40
+ 3  3  2  1
+
+Continuous Frequency Distribution:
+
+[0,10)  [10,20)  [20,30)  [30,40)  [40,50)
+   0       2        3        3        2</pre>
+<h4>Result</h4><p>Thus, frequency distributions are constructed for discrete and continuous data.</p>
+</div>
+
+<div class="program" data-part="B">
+<span class="tag">PART B – PROGRAM 8</span>
+<h3>16. Simple Linear Regression</h3>
+<h4>Aim</h4><p>To perform simple linear regression and predict a value using R.</p>
+<h4>Source Code</h4>
+<pre><code># Independent variable
+x &lt;- c(1, 2, 3, 4, 5)
+
+# Dependent variable
+y &lt;- c(2, 4, 5, 4, 5)
+
+# Create data frame
+data &lt;- data.frame(x, y)
+
+# Fit linear regression model
+model &lt;- lm(y ~ x, data=data)
+
+cat("Regression Model:\n")
+print(coef(model))
+
+# Predict value for x = 6
+new_data &lt;- data.frame(x=6)
+prediction &lt;- predict(model, newdata=new_data)
+
+cat("Predicted value for x=6:", prediction, "\n")
+
+# Draw regression graph
+plot(x, y, main="Simple Linear Regression",
+     xlab="X Values", ylab="Y Values",
+     pch=19, col="blue")
+abline(model, col="red", lwd=2)</code></pre>
+<h4>Sample Output</h4>
+<pre class="output">Regression Model:
+(Intercept)           x
+        2.2         0.6
+
+Predicted value for x=6: 5.8</pre>
+<h4>Result</h4><p>Thus, simple linear regression is performed and a predicted value is obtained. The program also displays the regression graph.</p>
+</div>
+
+<h2 class="section-title">Practical Examination Preparation</h2>
+
+<div class="program">
+<h3>Important R Programming Viva Questions</h3>
+<p><b>1. What is R?</b><br>R is a programming language used for statistical computing, data analysis and graphical representation.</p>
+<p><b>2. What is RStudio?</b><br>RStudio is an integrated development environment (IDE) used to write and execute R programs.</p>
+<p><b>3. What is a vector?</b><br>A vector is a one-dimensional data structure containing elements of the same basic type.</p>
+<p><b>4. What is a matrix?</b><br>A matrix is a two-dimensional data structure containing elements of the same type.</p>
+<p><b>5. What is a data frame?</b><br>A data frame is a table-like structure containing rows and columns.</p>
+<p><b>6. What is mean?</b><br>Mean is the sum of observations divided by the number of observations.</p>
+<p><b>7. What is median?</b><br>Median is the middle value of an ordered dataset.</p>
+<p><b>8. What is mode?</b><br>Mode is the value that occurs most frequently in a dataset.</p>
+<p><b>9. What is standard deviation?</b><br>Standard deviation measures the spread of values around the mean.</p>
+<p><b>10. What is linear regression?</b><br>Linear regression is a statistical method used to model the relationship between variables using a straight line.</p>
+<p><b>11. What does lm() do?</b><br>The lm() function fits linear models in R.</p>
+<p><b>12. What does plot() do?</b><br>The plot() function creates graphical representations of data.</p>
+</div>
+
+</div>
+
+<footer>
+<p>© STUDENTVERSE | BCA Semester 1 – CAM13P</p>
+<p>Learn • Practice • Execute • Succeed</p>
+</footer>
+
+<button id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">⬆ Top</button>
+
+<script>
+function searchPrograms() {
+    const value = document.getElementById("searchBox").value.toLowerCase();
+    const programs = document.querySelectorAll(".program[data-part]");
+    const partA = document.querySelectorAll('.program[data-part="A"]');
+    const partB = document.querySelectorAll('.program[data-part="B"]');
+
+    programs.forEach(program => {
+        program.style.display =
+            program.innerText.toLowerCase().includes(value) ? "block" : "none";
+    });
+
+    document.getElementById("partA").style.display =
+        [...partA].some(p => p.style.display !== "none") ? "block" : "none";
+
+    document.getElementById("partB").style.display =
+        [...partB].some(p => p.style.display !== "none") ? "block" : "none";
+}
+
+window.addEventListener("scroll", function() {
+    document.getElementById("topBtn").style.display =
+        window.scrollY > 300 ? "block" : "none";
+});
+</script>
+
+</body>
+</html>

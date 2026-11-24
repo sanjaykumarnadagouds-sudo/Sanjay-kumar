@@ -1,0 +1,718 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mathematical and Statistical Computing | STUDENTVERSE</title>
+
+<style>
+
+.main-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 6%;
+    background: rgba(12, 8, 35, 0.85);
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+    backdrop-filter: blur(15px);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-logo {
+    color: #d8b4fe;
+    font-size: 21px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: #c084fc;
+    text-shadow: 0 0 12px #a855f7;
+}
+
+@media (max-width: 650px) {
+    .main-navbar {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .nav-links {
+        justify-content: center;
+        gap: 15px;
+    }
+}
+
+    .unit-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin: 25px 0;
+}
+
+.unit-nav a {
+    color: white;
+    text-decoration: none;
+    background: linear-gradient(135deg, #7928ca, #ff0080);
+    padding: 12px 22px;
+    border-radius: 25px;
+    transition: 0.3s;
+}
+
+.unit-nav a:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px #7928ca;
+}
+
+.unit {
+    scroll-margin-top: 30px;
+}
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #09091c;
+    color: white;
+}
+
+header {
+    text-align: center;
+    padding: 40px 15px;
+    background: linear-gradient(135deg, #251052, #7516a8);
+}
+
+header h1 {
+    font-size: 30px;
+}
+
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 25px;
+}
+
+.back-dashboard {
+    display: inline-block;
+    padding: 12px 22px;
+    margin-bottom: 20px;
+    border-radius: 25px;
+    background: linear-gradient(135deg, #7928ca, #ff0080);
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.unit {
+    background: #17152e;
+    border: 1px solid #7044b8;
+    padding: 22px;
+    margin: 25px 0;
+    border-radius: 16px;
+}
+
+.unit h2 {
+    color: #c9a7ff;
+}
+
+.topic {
+    background: linear-gradient(135deg, #242044, #17152e);
+    padding: 20px;
+    margin: 18px 0;
+    border-radius: 15px;
+    border: 1px solid #7044b8;
+    transition: 0.3s;
+}
+
+.topic:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px #7928ca55;
+    border-color: #ff0080;
+}
+
+.topic h3 {
+    color: #d7baff;
+}
+
+footer {
+    text-align: center;
+    padding: 25px;
+    color: #aaa;
+}
+.download-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, #7928ca, #ff0080);
+    color: white;
+    border: none;
+    padding: 13px 24px;
+    border-radius: 25px;
+    font-size: 15px;
+    cursor: pointer;
+    margin: 15px 0 25px;
+    transition: 0.3s;
+}
+
+.download-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(180, 80, 255, 0.4);
+}
+
+@media print {
+    .download-btn,
+    .unit-nav,
+    .back-dashboard {
+        display: none !important;
+    }
+
+    body {
+        background: white !important;
+        color: black !important;
+    }
+
+    .topic {
+        background: white !important;
+        color: black !important;
+        box-shadow: none !important;
+        border: 1px solid #ccc;
+        break-inside: avoid;
+    }
+
+    .unit h2,
+    .topic h3 {
+        color: black !important;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav class="main-navbar">
+    <div class="nav-logo">🌌 STUDENTVERSE</div>
+
+    <div class="nav-links">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="studyhub.html">StudyHub</a>
+        <a href="skillup.html">SkillUp</a>
+        <a href="index.html">Home</a>
+    </div>
+</nav>
+
+<header>
+    <h1>Mathematical and Statistical Computing</h1>
+    <p>STUDENTVERSE | BCA Semester 1</p>
+    <p>Paper Code: CAM13T | Theory</p>
+</header>
+
+<main class="container">
+    <button class="download-btn" onclick="window.print()">
+    📥 Download Notes as PDF
+</button>
+<nav class="unit-nav">
+    <a href="#math-unit1">Unit 1</a>
+    <a href="#math-unit2">Unit 2</a>
+    <a href="#math-unit3">Unit 3</a>
+    <a href="#math-unit4">Unit 4</a>
+</nav>
+<a href="dashboard.html" class="back-dashboard">
+    ← Back to Dashboard
+</a>
+
+
+<section class="unit" id="math-unit1">
+<h2>UNIT 1 – MATHEMATICAL LOGIC AND SET THEORY</h2>
+
+<div class="topic">
+<h3>1. Mathematical Logic</h3>
+<p>Mathematical logic is the study of statements and their truth values. A statement is a sentence that is either True or False.</p>
+<p><b>Example:</b> 5 is greater than 3 – True.</p>
+</div>
+
+<div class="topic">
+<h3>2. Logical Connectives</h3>
+<ul>
+<li><b>Negation (NOT):</b> Reverses the truth value.</li>
+<li><b>Conjunction (AND):</b> True only when both statements are true.</li>
+<li><b>Disjunction (OR):</b> True when at least one statement is true.</li>
+<li><b>Conditional:</b> If p, then q.</li>
+<li><b>Biconditional:</b> p if and only if q.</li>
+</ul>
+</div>
+
+<div class="topic">
+<h3>3. Truth Table</h3>
+<p>A truth table shows the truth values of logical expressions.</p>
+<table border="1" cellpadding="10">
+<tr><th>p</th><th>q</th><th>p AND q</th><th>p OR q</th></tr>
+<tr><td>T</td><td>T</td><td>T</td><td>T</td></tr>
+<tr><td>T</td><td>F</td><td>F</td><td>T</td></tr>
+<tr><td>F</td><td>T</td><td>F</td><td>T</td></tr>
+<tr><td>F</td><td>F</td><td>F</td><td>F</td></tr>
+</table>
+</div>
+
+<div class="topic">
+<h3>4. Tautology and Contradiction</h3>
+<p><b>Tautology:</b> A statement that is always true.</p>
+<p>Example: p OR NOT p.</p>
+<p><b>Contradiction:</b> A statement that is always false.</p>
+<p>Example: p AND NOT p.</p>
+</div>
+
+<div class="topic">
+<h3>5. Set Theory</h3>
+<p>A set is a well-defined collection of distinct objects.</p>
+<p>Example: A = {1, 2, 3, 4, 5}</p>
+<p><b>Empty set:</b> A set containing no elements.</p>
+<p><b>Subset:</b> A set whose elements are all contained in another set.</p>
+</div>
+
+<div class="topic">
+<h3>6. Set Operations</h3>
+<p>Let A = {1, 2, 3} and B = {3, 4, 5}.</p>
+<ul>
+<li><b>Union (A ∪ B):</b> {1, 2, 3, 4, 5}</li>
+<li><b>Intersection (A ∩ B):</b> {3}</li>
+<li><b>Difference (A − B):</b> {1, 2}</li>
+</ul>
+</div>
+
+<div class="topic">
+<h3>7. Laws of Set Theory</h3>
+<ul>
+<li>Commutative law: A ∪ B = B ∪ A</li>
+<li>Associative law: (A ∪ B) ∪ C = A ∪ (B ∪ C)</li>
+<li>Identity law: A ∪ ∅ = A</li>
+<li>Idempotent law: A ∪ A = A</li>
+<li>De Morgan's law: (A ∪ B)' = A' ∩ B'</li>
+</ul>
+</div>
+
+<div class="topic">
+<h3>8. Counting and Venn Diagrams</h3>
+<p>Venn diagrams represent sets using circles.</p>
+<p>Formula for two sets:</p>
+<p><b>n(A ∪ B) = n(A) + n(B) − n(A ∩ B)</b></p>
+<p>Example: If n(A) = 20, n(B) = 15 and n(A ∩ B) = 5:</p>
+<p>n(A ∪ B) = 20 + 15 − 5 = 30.</p>
+</div>
+
+<div class="topic">
+<h3>Important Exam Questions</h3>
+<ol>
+<li>Define mathematical logic.</li>
+<li>Explain logical connectives with truth tables.</li>
+<li>Define tautology and contradiction.</li>
+<li>Explain sets and subsets.</li>
+<li>Explain different set operations.</li>
+<li>State the laws of set theory.</li>
+<li>Solve problems using Venn diagrams.</li>
+</ol>
+</div>
+</section>
+
+<section class="unit" id="math-unit2">
+<h2>UNIT 2 – CARTESIAN PRODUCTS, RELATIONS AND FUNCTIONS</h2>
+
+<div class="topic">
+<h3>1. Cartesian Product</h3>
+<p>The Cartesian product of two sets A and B is the set of all ordered pairs (a, b), where a belongs to A and b belongs to B.</p>
+<p><b>Example:</b></p>
+<p>A = {1, 2} and B = {a, b}</p>
+<p>A × B = {(1,a), (1,b), (2,a), (2,b)}</p>
+<p><b>Formula:</b> n(A × B) = n(A) × n(B)</p>
+</div>
+
+<div class="topic">
+<h3>2. Relation</h3>
+<p>A relation is a connection between elements of two sets. Mathematically, a relation from A to B is a subset of A × B.</p>
+<p><b>Example:</b></p>
+<p>A = {1, 2, 3}</p>
+<p>R = {(1,2), (2,3)}</p>
+<p>Here, R is a relation on A.</p>
+</div>
+
+<div class="topic">
+<h3>3. Types of Relations</h3>
+<ul>
+<li><b>Reflexive:</b> Every element is related to itself.</li>
+<li><b>Symmetric:</b> If a is related to b, then b is related to a.</li>
+<li><b>Transitive:</b> If a is related to b and b to c, then a is related to c.</li>
+<li><b>Antisymmetric:</b> If a is related to b and b to a, then a = b.</li>
+<li><b>Equivalence relation:</b> A relation that is reflexive, symmetric and transitive.</li>
+</ul>
+</div>
+
+<div class="topic">
+<h3>4. Domain and Range</h3>
+<p><b>Domain:</b> The set of all first elements in ordered pairs.</p>
+<p><b>Range:</b> The set of all second elements in ordered pairs.</p>
+<p>Example: R = {(1,2), (2,3), (3,4)}</p>
+<p>Domain = {1, 2, 3}</p>
+<p>Range = {2, 3, 4}</p>
+</div>
+
+<div class="topic">
+<h3>5. Function</h3>
+<p>A function is a relation in which every input has exactly one output.</p>
+<p><b>Example:</b> f(x) = x + 2</p>
+<p>If x = 3, then f(3) = 3 + 2 = 5.</p>
+</div>
+
+<div class="topic">
+<h3>6. Types of Functions</h3>
+<ul>
+<li><b>One-to-One (Injective):</b> Different inputs have different outputs.</li>
+<li><b>Many-to-One:</b> Different inputs may have the same output.</li>
+<li><b>Onto (Surjective):</b> Every element of the codomain has a preimage.</li>
+<li><b>Into:</b> At least one element of the codomain is not an output.</li>
+<li><b>Bijective:</b> A function that is both one-to-one and onto.</li>
+</ul>
+</div>
+
+<div class="topic">
+<h3>7. Composition of Functions</h3>
+<p>Composition means applying one function after another.</p>
+<p><b>Formula:</b> (f ∘ g)(x) = f(g(x))</p>
+<p><b>Example:</b></p>
+<p>f(x) = x + 2 and g(x) = 3x</p>
+<p>(f ∘ g)(x) = f(3x) = 3x + 2</p>
+</div>
+
+<div class="topic">
+<h3>8. Inverse Function</h3>
+<p>An inverse function reverses the operation of the original function.</p>
+<p><b>Example:</b></p>
+<p>f(x) = x + 5</p>
+<p>Replace f(x) with y: y = x + 5</p>
+<p>Interchange x and y: x = y + 5</p>
+<p>Therefore, f⁻¹(x) = x − 5.</p>
+</div>
+
+<div class="topic">
+<h3>Important Exam Questions</h3>
+<ol>
+<li>Define Cartesian product with an example.</li>
+<li>Define relation and explain its types.</li>
+<li>Explain reflexive, symmetric and transitive relations.</li>
+<li>Define domain and range.</li>
+<li>Define function and explain its types.</li>
+<li>Explain composition of functions with an example.</li>
+<li>Find the inverse of a given function.</li>
+</ol>
+</div>
+
+</section>
+
+
+<section class="unit" id="math-unit3">
+
+    <h2>UNIT 3 – STATISTICS: MEAN, MEDIAN AND MODE</h2>
+
+    <div class="topic">
+        <h3>1. Meaning of Statistics</h3>
+        <p>Statistics is the branch of mathematics that deals with collecting, organizing, presenting, analysing and interpreting data.</p>
+
+        <h4>Types of Data</h4>
+        <ul>
+            <li><b>Primary Data:</b> Data collected directly by the researcher.</li>
+            <li><b>Secondary Data:</b> Data collected from existing sources such as books and websites.</li>
+            <li><b>Discrete Data:</b> Data that can be counted, such as the number of students.</li>
+            <li><b>Continuous Data:</b> Data that can be measured, such as height and weight.</li>
+        </ul>
+    </div>
+
+    <div class="topic">
+        <h3>2. Arithmetic Mean</h3>
+        <p>Mean is the average value of a given set of observations.</p>
+
+        <h4>Formula</h4>
+        <p><b>Mean = Sum of all observations / Number of observations</b></p>
+        <p>x̄ = Σx / n</p>
+
+        <h4>Example</h4>
+        <p>Find the mean of 2, 4, 6, 8.</p>
+        <p>Sum = 2 + 4 + 6 + 8 = 20</p>
+        <p>Number of observations = 4</p>
+        <p>Mean = 20 / 4 = <b>5</b></p>
+
+        <h4>Mean for Frequency Distribution</h4>
+        <p><b>Mean = Σfx / Σf</b></p>
+        <p>Here, f = frequency and x = observation.</p>
+
+        <table>
+            <tr><th>x</th><th>f</th><th>fx</th></tr>
+            <tr><td>2</td><td>1</td><td>2</td></tr>
+            <tr><td>4</td><td>2</td><td>8</td></tr>
+            <tr><td>6</td><td>1</td><td>6</td></tr>
+            <tr><th>Total</th><th>4</th><th>16</th></tr>
+        </table>
+        <p>Mean = 16 / 4 = <b>4</b></p>
+    </div>
+
+    <div class="topic">
+        <h3>3. Median</h3>
+        <p>Median is the middle value of a set of observations arranged in ascending or descending order.</p>
+
+        <h4>For Odd Number of Observations</h4>
+        <p>Median = Value of the (n + 1) / 2 th observation.</p>
+
+        <p><b>Example:</b> 3, 5, 7, 9, 11</p>
+        <p>Middle value = <b>7</b></p>
+
+        <h4>For Even Number of Observations</h4>
+        <p>Median = Average of the two middle values.</p>
+
+        <p><b>Example:</b> 2, 4, 6, 8</p>
+        <p>Median = (4 + 6) / 2 = <b>5</b></p>
+
+        <h4>Median for Grouped Data</h4>
+        <p><b>Median = L + [(N/2 - cf) / f] × h</b></p>
+        <ul>
+            <li>L = Lower boundary of median class</li>
+            <li>N = Total frequency</li>
+            <li>cf = Cumulative frequency before median class</li>
+            <li>f = Frequency of median class</li>
+            <li>h = Class width</li>
+        </ul>
+    </div>
+
+    <div class="topic">
+        <h3>4. Mode</h3>
+        <p>Mode is the value that occurs most frequently in a given set of observations.</p>
+
+        <h4>Example</h4>
+        <p>Find the mode of 2, 3, 3, 4, 5.</p>
+        <p>The number 3 occurs most frequently.</p>
+        <p>Mode = <b>3</b></p>
+
+        <h4>Mode for Grouped Data</h4>
+        <p><b>Mode = L + [(f₁ - f₀) / (2f₁ - f₀ - f₂)] × h</b></p>
+        <ul>
+            <li>L = Lower boundary of modal class</li>
+            <li>f₁ = Frequency of modal class</li>
+            <li>f₀ = Frequency of preceding class</li>
+            <li>f₂ = Frequency of succeeding class</li>
+            <li>h = Class width</li>
+        </ul>
+    </div>
+
+    <div class="topic">
+        <h3>5. Difference Between Mean, Median and Mode</h3>
+
+        <table>
+            <tr>
+                <th>Mean</th>
+                <th>Median</th>
+                <th>Mode</th>
+            </tr>
+            <tr>
+                <td>Average value</td>
+                <td>Middle value</td>
+                <td>Most repeated value</td>
+            </tr>
+            <tr>
+                <td>Uses all values</td>
+                <td>Uses middle position</td>
+                <td>Uses frequency</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="topic">
+        <h3>Important Exam Questions</h3>
+        <ol>
+            <li>Define Statistics.</li>
+            <li>Explain primary and secondary data.</li>
+            <li>Define Arithmetic Mean with an example.</li>
+            <li>Calculate the mean of a frequency distribution.</li>
+            <li>Define Median and explain its calculation.</li>
+            <li>Define Mode with an example.</li>
+            <li>Differentiate Mean, Median and Mode.</li>
+        </ol>
+    </div>
+
+</section>
+
+<section class="unit" id="math-unit4">
+
+    <h2>UNIT 4 – STANDARD DEVIATION, COEFFICIENT OF VARIATION, CORRELATION AND REGRESSION</h2>
+
+    <div class="topic">
+        <h3>1. Standard Deviation</h3>
+        <p>Standard deviation is a measure used to find how much the values are spread out from their mean.</p>
+
+        <h4>Formula</h4>
+        <p><b>SD (σ) = √[Σ(x - x̄)² / n]</b></p>
+
+        <ul>
+            <li>x = Individual observation</li>
+            <li>x̄ = Arithmetic mean</li>
+            <li>n = Number of observations</li>
+            <li>Σ = Summation</li>
+        </ul>
+
+        <h4>Example</h4>
+        <p>Find the standard deviation of 2, 4, 6.</p>
+        <p>Mean = (2 + 4 + 6) / 3 = 4</p>
+        <p>Squared deviations = (2 - 4)² + (4 - 4)² + (6 - 4)²</p>
+        <p>= 4 + 0 + 4 = 8</p>
+        <p>Variance = 8 / 3</p>
+        <p>SD = √(8 / 3) = <b>1.63 approximately</b></p>
+    </div>
+
+    <div class="topic">
+        <h3>2. Coefficient of Variation (CV)</h3>
+        <p>Coefficient of Variation is used to compare the variability of two or more data sets.</p>
+
+        <h4>Formula</h4>
+        <p><b>CV = (Standard Deviation / Mean) × 100</b></p>
+
+        <h4>Example</h4>
+        <p>Mean = 50 and Standard Deviation = 5.</p>
+        <p>CV = (5 / 50) × 100</p>
+        <p>CV = <b>10%</b></p>
+
+        <h4>Uses</h4>
+        <ul>
+            <li>To compare consistency between data sets.</li>
+            <li>To measure relative variation.</li>
+            <li>Lower CV generally indicates greater consistency.</li>
+        </ul>
+    </div>
+
+    <div class="topic">
+        <h3>3. Correlation</h3>
+        <p>Correlation is a statistical method used to measure the relationship between two variables.</p>
+
+        <h4>Types of Correlation</h4>
+        <ul>
+            <li><b>Positive Correlation:</b> Both variables move in the same direction.</li>
+            <li><b>Negative Correlation:</b> Variables move in opposite directions.</li>
+            <li><b>Zero Correlation:</b> No linear relationship between the variables.</li>
+        </ul>
+
+        <h4>Examples</h4>
+        <ul>
+            <li>Positive: More study time may be associated with higher marks.</li>
+            <li>Negative: More speed may be associated with less travel time for a fixed distance.</li>
+            <li>Zero: Two variables with no apparent linear relationship.</li>
+        </ul>
+
+        <h4>Correlation Coefficient</h4>
+        <p>The correlation coefficient is represented by <b>r</b>.</p>
+        <p><b>-1 ≤ r ≤ +1</b></p>
+        <ul>
+            <li>r = +1: Perfect positive correlation.</li>
+            <li>r = -1: Perfect negative correlation.</li>
+            <li>r = 0: No linear correlation.</li>
+        </ul>
+    </div>
+
+    <div class="topic">
+        <h3>4. Karl Pearson's Correlation Coefficient</h3>
+        <p>Karl Pearson's method measures the degree and direction of a linear relationship between two variables.</p>
+
+        <h4>Formula</h4>
+        <p><b>r = Σ(x - x̄)(y - ȳ) / √[Σ(x - x̄)² × Σ(y - ȳ)²]</b></p>
+
+        <p>Here:</p>
+        <ul>
+            <li>x and y = Two variables</li>
+            <li>x̄ = Mean of x values</li>
+            <li>ȳ = Mean of y values</li>
+            <li>r = Correlation coefficient</li>
+        </ul>
+    </div>
+
+    <div class="topic">
+        <h3>5. Regression</h3>
+        <p>Regression is a statistical technique used to estimate or predict the value of one variable based on another variable.</p>
+
+        <h4>Types of Regression</h4>
+        <ul>
+            <li><b>Simple Linear Regression:</b> Uses one independent variable to predict a dependent variable.</li>
+            <li><b>Multiple Regression:</b> Uses two or more independent variables to predict a dependent variable.</li>
+        </ul>
+
+        <h4>Regression Equation</h4>
+        <p><b>y = a + bx</b></p>
+        <ul>
+            <li>y = Predicted value</li>
+            <li>x = Independent variable</li>
+            <li>a = Intercept</li>
+            <li>b = Slope</li>
+        </ul>
+
+        <h4>Uses of Regression</h4>
+        <ul>
+            <li>Predicting sales.</li>
+            <li>Estimating future values.</li>
+            <li>Studying relationships between variables.</li>
+        </ul>
+    </div>
+
+    <div class="topic">
+        <h3>6. Difference Between Correlation and Regression</h3>
+
+        <table>
+            <tr>
+                <th>Correlation</th>
+                <th>Regression</th>
+            </tr>
+            <tr>
+                <td>Measures relationship between variables.</td>
+                <td>Predicts one variable using another.</td>
+            </tr>
+            <tr>
+                <td>Represented by r.</td>
+                <td>Represented by a regression equation.</td>
+            </tr>
+            <tr>
+                <td>Does not identify dependent and independent variables.</td>
+                <td>Uses dependent and independent variables.</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="topic">
+        <h3>Important Exam Questions</h3>
+        <ol>
+            <li>Define Standard Deviation and explain its formula.</li>
+            <li>Calculate standard deviation for a given data set.</li>
+            <li>What is Coefficient of Variation?</li>
+            <li>Explain the types of correlation.</li>
+            <li>Explain Karl Pearson's correlation coefficient.</li>
+            <li>Define Regression.</li>
+            <li>Explain the difference between correlation and regression.</li>
+        </ol>
+    </div>
+
+</section>
+
+</main>
+
+<footer>
+    STUDENTVERSE | Learn • Practice • Succeed
+</footer>
+
+</body>
+</html>

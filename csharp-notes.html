@@ -1,0 +1,1124 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>C#.NET Programming | STUDENTVERSE</title>
+
+<style>
+
+/* ================= BASIC SETTINGS ================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #030712;
+    color: white;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+/* ================= COSMIC BACKGROUND ================= */
+
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.25;
+    z-index: -1;
+    animation: cosmicMove 12s infinite alternate ease-in-out;
+}
+
+body::before {
+    background: #6d28d9;
+    top: -150px;
+    left: -150px;
+}
+
+body::after {
+    background: #0284c7;
+    bottom: -150px;
+    right: -150px;
+    animation-delay: 3s;
+}
+
+@keyframes cosmicMove {
+    from {
+        transform: translate(0, 0) scale(1);
+    }
+    to {
+        transform: translate(100px, 80px) scale(1.3);
+    }
+}
+
+/* ================= NAVBAR ================= */
+
+.main-navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 7%;
+    background: rgba(3, 7, 18, 0.88);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+}
+
+.logo {
+    color: #38bdf8;
+    font-size: 23px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 25px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: #38bdf8;
+}
+
+/* ================= HEADER ================= */
+
+header {
+    text-align: center;
+    padding: 75px 20px 45px;
+}
+
+header h1 {
+    font-size: clamp(28px, 5vw, 48px);
+    color: #38bdf8;
+    text-shadow: 0 0 25px #0284c7;
+    margin-bottom: 15px;
+}
+
+header p {
+    color: #cbd5e1;
+    line-height: 1.8;
+}
+
+/* ================= ACTION BUTTONS ================= */
+
+.action-buttons {
+    text-align: center;
+    margin: 20px;
+}
+
+.action-buttons button {
+    padding: 13px 25px;
+    background: linear-gradient(135deg, #2563eb, #9333ea);
+    border: none;
+    border-radius: 30px;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(59,130,246,0.4);
+    transition: 0.3s;
+}
+
+.action-buttons button:hover {
+    transform: translateY(-4px) scale(1.04);
+    box-shadow: 0 0 30px #2563eb;
+}
+
+/* ================= UNIT NAVIGATION ================= */
+
+.unit-nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 25px 15px;
+}
+
+.unit-nav a {
+    text-decoration: none;
+    color: white;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(56,189,248,0.4);
+    padding: 11px 18px;
+    border-radius: 25px;
+    transition: 0.3s;
+}
+
+.unit-nav a:hover {
+    background: #2563eb;
+    transform: translateY(-4px);
+}
+
+/* ================= SEARCH ================= */
+
+.program-search {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 20px;
+}
+
+.program-search input {
+    width: min(500px, 70%);
+    padding: 14px 18px;
+    border-radius: 30px;
+    border: 1px solid #38bdf8;
+    outline: none;
+    background: rgba(255,255,255,0.08);
+    color: white;
+    font-size: 15px;
+}
+
+.program-search input::placeholder {
+    color: #cbd5e1;
+}
+
+.program-search button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 25px;
+    background: #7c3aed;
+    color: white;
+    cursor: pointer;
+}
+
+#noResults {
+    text-align: center;
+    padding: 30px;
+    color: #f87171;
+    display: none;
+}
+
+/* ================= UNIT SECTIONS ================= */
+
+.unit-section {
+    padding: 35px 7%;
+}
+
+.unit-section h2 {
+    text-align: center;
+    color: #38bdf8;
+    font-size: 27px;
+    margin-bottom: 30px;
+    text-shadow: 0 0 15px #0284c7;
+}
+
+/* ================= THEORY CARDS ================= */
+
+.theory-card {
+    background: rgba(15,23,42,0.78);
+    border: 1px solid rgba(56,189,248,0.25);
+    border-radius: 18px;
+    padding: 25px;
+    margin: 22px auto;
+    max-width: 1050px;
+    box-shadow: 0 10px 35px rgba(0,0,0,0.35);
+    backdrop-filter: blur(12px);
+    transition: 0.4s;
+    animation: cardAppear 0.8s ease both;
+}
+
+.theory-card:hover {
+    transform: translateY(-6px) perspective(1000px) rotateX(2deg);
+    border-color: #38bdf8;
+    box-shadow: 0 15px 40px rgba(14,165,233,0.2);
+}
+
+@keyframes cardAppear {
+    from {
+        opacity: 0;
+        transform: translateY(35px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.theory-card h3 {
+    color: #a78bfa;
+    font-size: 21px;
+    margin-bottom: 15px;
+}
+
+.theory-card h4 {
+    color: #38bdf8;
+    margin: 15px 0 8px;
+}
+
+.theory-card p {
+    color: #e2e8f0;
+    line-height: 1.8;
+    margin-bottom: 10px;
+}
+
+.theory-card ul,
+.theory-card ol {
+    margin: 10px 0 12px 25px;
+    color: #cbd5e1;
+    line-height: 1.9;
+}
+
+.theory-card strong {
+    color: #fbbf24;
+}
+
+/* ================= TABLE ================= */
+
+.theory-card table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.theory-card th,
+.theory-card td {
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 12px;
+    text-align: left;
+    color: #e2e8f0;
+}
+
+.theory-card th {
+    background: rgba(37,99,235,0.3);
+    color: #38bdf8;
+}
+
+/* ================= BACK TO TOP ================= */
+
+#backToTop {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    padding: 13px 17px;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    display: none;
+    z-index: 999;
+    box-shadow: 0 0 20px #2563eb;
+}
+
+#backToTop:hover {
+    transform: scale(1.1);
+}
+
+/* ================= FOOTER ================= */
+
+footer {
+    text-align: center;
+    padding: 30px 15px;
+    color: #94a3b8;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    margin-top: 50px;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width: 700px) {
+
+    .main-navbar {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    header {
+        padding: 45px 15px;
+    }
+
+    .unit-section {
+        padding: 25px 15px;
+    }
+
+    .theory-card {
+        padding: 18px;
+    }
+
+    .theory-card h3 {
+        font-size: 19px;
+    }
+
+    .program-search {
+        flex-wrap: wrap;
+    }
+
+    .program-search input {
+        width: 100%;
+    }
+
+    .theory-card table {
+        font-size: 13px;
+    }
+}
+
+/* ================= PRINT / PDF ================= */
+
+@media print {
+
+    body {
+        background: white !important;
+        color: black !important;
+    }
+
+    body::before,
+    body::after {
+        display: none !important;
+    }
+
+    .main-navbar,
+    .action-buttons,
+    .unit-nav,
+    .program-search,
+    #noResults,
+    #backToTop {
+        display: none !important;
+    }
+
+    header {
+        padding: 20px;
+    }
+
+    header h1,
+    header p {
+        color: black !important;
+        text-shadow: none;
+    }
+
+    .unit-section {
+        padding: 15px;
+    }
+
+    .unit-section h2 {
+        color: black;
+        text-shadow: none;
+    }
+
+    .theory-card {
+        background: white !important;
+        color: black !important;
+        border: 1px solid #999;
+        box-shadow: none;
+        break-inside: avoid;
+        transform: none !important;
+        animation: none !important;
+    }
+
+    .theory-card h3,
+    .theory-card h4,
+    .theory-card p,
+    .theory-card li,
+    .theory-card strong,
+    .theory-card td,
+    .theory-card th {
+        color: black !important;
+    }
+
+    .theory-card th {
+        background: #eee !important;
+    }
+
+    .theory-card td,
+    .theory-card th {
+        border: 1px solid #777;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="main-navbar">
+
+    <div class="logo">STUDENTVERSE</div>
+
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="studyhub.html">StudyHub</a>
+        <a href="skillup.html">SkillUp</a>
+    </div>
+
+</nav>
+
+<!-- ================= HEADER ================= -->
+
+<header>
+
+    <h1>C#.NET PROGRAMMING</h1>
+
+    <p>BCA Semester 3 | Theory Notes</p>
+
+    <p>Complete Unit-wise Study Material</p>
+
+</header>
+
+<!-- ================= PDF BUTTON ================= -->
+
+<div class="action-buttons">
+
+    <button onclick="window.print()">
+        📥 Download / Save as PDF
+    </button>
+
+</div>
+
+<!-- ================= UNIT NAVIGATION ================= -->
+
+<div class="unit-nav">
+
+    <a href="#unit1">Unit 1 – Introduction</a>
+    <a href="#unit2">Unit 2 – OOP Concepts</a>
+    <a href="#unit3">Unit 3 – Advanced C#</a>
+    <a href="#unit4">Unit 4 – .NET Applications</a>
+
+</div>
+
+<!-- ================= SEARCH ================= -->
+
+<div class="program-search">
+
+    <input
+        type="text"
+        id="searchInput"
+        placeholder="🔍 Search C#.NET theory topics..."
+    >
+
+    <button onclick="clearSearch()">Clear ✕</button>
+
+</div>
+
+<p id="noResults">No matching topics found!</p>
+
+<!-- ================================================= -->
+<!-- UNIT 1 -->
+<!-- ================================================= -->
+
+<section class="unit-section" id="unit1">
+
+<h2>UNIT 1 – INTRODUCTION TO C# AND .NET FRAMEWORK</h2>
+
+<div class="theory-card">
+<h3>1. Introduction to C#</h3>
+<p>C# (C-Sharp) is a modern, object-oriented and type-safe programming language developed by Microsoft. It is mainly used to develop desktop applications, web applications, games and enterprise software.</p>
+<h4>Features of C#</h4>
+<ul>
+<li>Simple and easy to learn.</li>
+<li>Object-oriented programming language.</li>
+<li>Type-safe language.</li>
+<li>Automatic memory management.</li>
+<li>Supports exception handling.</li>
+<li>Supports multithreading.</li>
+<li>Rich .NET library support.</li>
+<li>Cross-platform development through modern .NET.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>2. History of C#</h3>
+<p>C# was developed by Microsoft under the leadership of Anders Hejlsberg. It was introduced in 2000 as part of Microsoft's .NET initiative. It was designed to combine the power of C++ with the simplicity of modern programming languages.</p>
+<h4>Important points</h4>
+<ul>
+<li>Developed by Microsoft.</li>
+<li>Designed by Anders Hejlsberg and his team.</li>
+<li>Introduced around 2000.</li>
+<li>Used with the .NET platform.</li>
+<li>Continues to evolve with new language versions.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>3. .NET Framework</h3>
+<p>The .NET Framework is a software development platform created by Microsoft. It provides an environment and libraries for developing and executing applications, especially on Windows.</p>
+<h4>Main components</h4>
+<ul>
+<li><strong>CLR:</strong> Common Language Runtime.</li>
+<li><strong>FCL:</strong> Framework Class Library.</li>
+<li><strong>CTS:</strong> Common Type System.</li>
+<li><strong>CLS:</strong> Common Language Specification.</li>
+<li><strong>MSIL:</strong> Microsoft Intermediate Language.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>4. Common Language Runtime (CLR)</h3>
+<p>CLR is the execution engine of the .NET Framework. It manages the execution of .NET programs and provides services required during program execution.</p>
+<h4>Functions of CLR</h4>
+<ul>
+<li>Memory management.</li>
+<li>Garbage collection.</li>
+<li>Exception handling.</li>
+<li>Security management.</li>
+<li>Thread management.</li>
+<li>Code execution.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>5. CTS and CLS</h3>
+<p><strong>Common Type System (CTS):</strong> Defines the data types and programming constructs supported by the .NET runtime.</p>
+<p><strong>Common Language Specification (CLS):</strong> Defines a set of rules that .NET languages follow to support language interoperability.</p>
+<h4>Difference</h4>
+<table>
+<tr><th>CTS</th><th>CLS</th></tr>
+<tr><td>Defines common data types.</td><td>Defines common language rules.</td></tr>
+<tr><td>Supports type compatibility.</td><td>Supports language interoperability.</td></tr>
+</table>
+</div>
+
+<div class="theory-card">
+<h3>6. Intermediate Language and JIT Compiler</h3>
+<p>C# source code is compiled into Intermediate Language (IL) by the C# compiler. At runtime, the Just-In-Time (JIT) compiler converts the IL into native machine code for execution.</p>
+<h4>Compilation steps</h4>
+<ol>
+<li>Write C# source code.</li>
+<li>Compile source code.</li>
+<li>Generate Intermediate Language.</li>
+<li>JIT compiler converts IL into machine code.</li>
+<li>Program executes.</li>
+</ol>
+</div>
+
+<div class="theory-card">
+<h3>7. Data Types in C#</h3>
+<p>Data types specify the kind of value a variable can store.</p>
+<h4>Main categories</h4>
+<ul>
+<li><strong>Value types:</strong> int, float, double, char, bool, struct and enum.</li>
+<li><strong>Reference types:</strong> string, object, arrays, classes and interfaces.</li>
+</ul>
+<h4>Examples</h4>
+<ul>
+<li>int age = 20;</li>
+<li>float marks = 85.5f;</li>
+<li>char grade = 'A';</li>
+<li>bool result = true;</li>
+<li>string name = "Student";</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>8. Variables and Constants</h3>
+<p>A variable is a named memory location used to store data. Its value can change during program execution.</p>
+<p>A constant is a fixed value that cannot be changed after declaration.</p>
+<h4>Example</h4>
+<ul>
+<li>int age = 20;</li>
+<li>const double PI = 3.14;</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>9. Operators in C#</h3>
+<p>Operators are symbols used to perform operations on variables and values.</p>
+<ul>
+<li><strong>Arithmetic:</strong> +, -, *, /, %</li>
+<li><strong>Relational:</strong> ==, !=, greater than, less than</li>
+<li><strong>Logical:</strong> &&, ||, !</li>
+<li><strong>Assignment:</strong> =, +=, -=, *=</li>
+<li><strong>Unary:</strong> ++, --</li>
+<li><strong>Conditional:</strong> ?:</li>
+</ul>
+</div>
+
+<!-- ================================================= -->
+<!-- UNIT 2 -->
+<!-- ================================================= -->
+
+</section>
+
+<section class="unit-section" id="unit2">
+
+<h2>UNIT 2 – OBJECT ORIENTED PROGRAMMING CONCEPTS</h2>
+
+<div class="theory-card">
+<h3>10. Object-Oriented Programming</h3>
+<p>Object-Oriented Programming (OOP) is a programming approach based on classes and objects. It helps organize programs into reusable and manageable components.</p>
+<h4>Main principles</h4>
+<ul>
+<li>Class and Object.</li>
+<li>Encapsulation.</li>
+<li>Inheritance.</li>
+<li>Polymorphism.</li>
+<li>Abstraction.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>11. Class and Object</h3>
+<p><strong>Class:</strong> A class is a blueprint or template used to create objects. It contains data members and methods.</p>
+<p><strong>Object:</strong> An object is an instance of a class. It represents a real-world entity.</p>
+<h4>Example</h4>
+<ul>
+<li>Student is a class.</li>
+<li>Sanju is an object of the Student class.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>12. Methods in C#</h3>
+<p>A method is a block of code that performs a particular task. Methods help divide a program into smaller reusable parts.</p>
+<h4>Types of methods</h4>
+<ul>
+<li>Static methods.</li>
+<li>Instance methods.</li>
+<li>Methods with parameters.</li>
+<li>Methods with return values.</li>
+<li>Methods without return values.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>13. Constructors</h3>
+<p>A constructor is a special member of a class that is automatically called when an object is created. It is commonly used to initialize objects.</p>
+<h4>Types of constructors</h4>
+<ul>
+<li>Default constructor.</li>
+<li>Parameterized constructor.</li>
+<li>Copy constructor (user-defined pattern in C#).</li>
+<li>Static constructor.</li>
+</ul>
+<h4>Important features</h4>
+<ul>
+<li>Constructor name is the same as the class name.</li>
+<li>It has no return type.</li>
+<li>It can be overloaded.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>14. Constructor Overloading</h3>
+<p>Constructor overloading means defining multiple constructors in the same class with different parameter lists.</p>
+<p>It allows objects to be initialized in different ways.</p>
+</div>
+
+<div class="theory-card">
+<h3>15. Encapsulation</h3>
+<p>Encapsulation is the process of combining data and methods into a single unit called a class. It protects data from direct unwanted access.</p>
+<h4>Advantages</h4>
+<ul>
+<li>Data security.</li>
+<li>Better code organization.</li>
+<li>Controlled access to data.</li>
+<li>Easy maintenance.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>16. Inheritance</h3>
+<p>Inheritance is an OOP feature in which one class acquires the properties and methods of another class.</p>
+<h4>Types of inheritance</h4>
+<ul>
+<li>Single inheritance.</li>
+<li>Multilevel inheritance.</li>
+<li>Hierarchical inheritance.</li>
+</ul>
+<p>C# supports multiple inheritance of class behavior through interfaces, but a class cannot directly inherit from multiple classes.</p>
+</div>
+
+<div class="theory-card">
+<h3>17. Polymorphism</h3>
+<p>Polymorphism means one name having many forms. It allows the same method or operation to behave differently in different situations.</p>
+<h4>Types</h4>
+<ul>
+<li><strong>Compile-time polymorphism:</strong> Method overloading and operator overloading.</li>
+<li><strong>Runtime polymorphism:</strong> Method overriding using inheritance and virtual methods.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>18. Method Overloading and Overriding</h3>
+<p><strong>Method Overloading:</strong> Multiple methods have the same name but different parameter lists in the same class or scope.</p>
+<p><strong>Method Overriding:</strong> A derived class provides a new implementation of an inherited virtual or abstract method.</p>
+<table>
+<tr><th>Overloading</th><th>Overriding</th></tr>
+<tr><td>Different parameter lists.</td><td>Same method signature in derived class.</td></tr>
+<tr><td>Compile-time polymorphism.</td><td>Runtime polymorphism.</td></tr>
+<tr><td>Inheritance is not required.</td><td>Inheritance is required.</td></tr>
+</table>
+</div>
+
+<div class="theory-card">
+<h3>19. Abstract Classes and Interfaces</h3>
+<p><strong>Abstract class:</strong> A class declared using the abstract keyword. It cannot be directly instantiated and may contain abstract and implemented members.</p>
+<p><strong>Interface:</strong> A contract that specifies members a type must implement, subject to the language's interface rules.</p>
+<h4>Difference</h4>
+<table>
+<tr><th>Abstract Class</th><th>Interface</th></tr>
+<tr><td>Can contain instance fields.</td><td>Does not contain instance fields.</td></tr>
+<tr><td>A class can inherit one base class.</td><td>A class can implement multiple interfaces.</td></tr>
+<tr><td>Can contain constructors.</td><td>Cannot be instantiated or have ordinary instance constructors.</td></tr>
+</table>
+</div>
+
+</section>
+
+<!-- ================================================= -->
+<!-- UNIT 3 -->
+<!-- ================================================= -->
+
+<section class="unit-section" id="unit3">
+
+<h2>UNIT 3 – ADVANCED C# CONCEPTS</h2>
+
+<div class="theory-card">
+<h3>20. Arrays in C#</h3>
+<p>An array is a collection of elements of the same data type stored under one variable name. Each element is accessed using an index.</p>
+<h4>Types of arrays</h4>
+<ul>
+<li>Single-dimensional array.</li>
+<li>Multidimensional array.</li>
+<li>Jagged array.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>21. Strings in C#</h3>
+<p>A string is a sequence of characters. In C#, string is a reference type and string objects are immutable, meaning their contents cannot be changed after creation.</p>
+<h4>Common string methods</h4>
+<ul>
+<li>Length</li>
+<li>ToUpper()</li>
+<li>ToLower()</li>
+<li>Substring()</li>
+<li>Replace()</li>
+<li>Contains()</li>
+<li>Trim()</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>22. Exception Handling</h3>
+<p>An exception is an unexpected event that occurs during program execution and interrupts the normal flow of the program.</p>
+<h4>Keywords</h4>
+<ul>
+<li><strong>try:</strong> Contains code that may generate an exception.</li>
+<li><strong>catch:</strong> Handles the exception.</li>
+<li><strong>finally:</strong> Contains code that normally executes whether an exception occurs or not.</li>
+<li><strong>throw:</strong> Used to explicitly raise an exception.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>23. Delegates</h3>
+<p>A delegate is a type-safe reference to a method. It allows methods to be passed as arguments and called through a delegate instance.</p>
+<h4>Uses</h4>
+<ul>
+<li>Callback methods.</li>
+<li>Event handling.</li>
+<li>Flexible method execution.</li>
+<li>Connecting methods with events.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>24. Events in C#</h3>
+<p>An event is a notification mechanism used by an object to inform other objects that something has happened. Events commonly use delegates.</p>
+<h4>Example</h4>
+<p>A button click in a Windows Forms application is an event. When the user clicks the button, the associated event handler runs.</p>
+</div>
+
+<div class="theory-card">
+<h3>25. Collections in C#</h3>
+<p>Collections are used to store and manage groups of objects or values. They provide flexible ways to add, remove and access elements.</p>
+<h4>Common collections</h4>
+<ul>
+<li>ArrayList.</li>
+<li>List.</li>
+<li>Stack.</li>
+<li>Queue.</li>
+<li>Dictionary.</li>
+<li>HashSet.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>26. File Handling</h3>
+<p>File handling is used to create, read, write, append and delete files. C# provides classes in the System.IO namespace for file operations.</p>
+<h4>Common classes</h4>
+<ul>
+<li>File.</li>
+<li>FileInfo.</li>
+<li>StreamReader.</li>
+<li>StreamWriter.</li>
+<li>FileStream.</li>
+<li>Directory.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>27. Multithreading</h3>
+<p>Multithreading is the process of executing multiple threads within a single program. It helps perform multiple tasks concurrently.</p>
+<h4>Advantages</h4>
+<ul>
+<li>Improves responsiveness.</li>
+<li>Supports concurrent tasks.</li>
+<li>Can improve resource utilization.</li>
+<li>Useful for background operations.</li>
+</ul>
+</div>
+
+</section>
+
+<!-- ================================================= -->
+<!-- UNIT 4 -->
+<!-- ================================================= -->
+
+<section class="unit-section" id="unit4">
+
+<h2>UNIT 4 – .NET APPLICATIONS AND DATABASE CONNECTIVITY</h2>
+
+<div class="theory-card">
+<h3>28. Windows Forms</h3>
+<p>Windows Forms is a graphical user interface technology for building Windows desktop applications using .NET.</p>
+<h4>Common controls</h4>
+<ul>
+<li>Label.</li>
+<li>TextBox.</li>
+<li>Button.</li>
+<li>CheckBox.</li>
+<li>RadioButton.</li>
+<li>ComboBox.</li>
+<li>ListBox.</li>
+<li>DataGridView.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>29. Properties, Methods and Events of Controls</h3>
+<p>Windows Forms controls provide properties, methods and events to manage their behavior.</p>
+<ul>
+<li><strong>Properties:</strong> Describe the appearance and state of a control.</li>
+<li><strong>Methods:</strong> Perform actions on a control.</li>
+<li><strong>Events:</strong> Respond to user actions.</li>
+</ul>
+<h4>Examples</h4>
+<ul>
+<li>Text – property.</li>
+<li>Show() – method.</li>
+<li>Click – event.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>30. ADO.NET</h3>
+<p>ADO.NET is a data access technology used by .NET applications to communicate with databases. It provides classes for connecting to databases, retrieving data and updating records.</p>
+<h4>Main components</h4>
+<ul>
+<li>Connection.</li>
+<li>Command.</li>
+<li>DataReader.</li>
+<li>DataAdapter.</li>
+<li>DataSet.</li>
+<li>DataTable.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>31. Connected and Disconnected Architecture</h3>
+<p><strong>Connected architecture:</strong> Maintains a database connection while data is being accessed. DataReader is commonly used for fast, forward-only reading.</p>
+<p><strong>Disconnected architecture:</strong> Retrieves data into memory and allows it to be used without keeping the database connection continuously open. DataSet and DataAdapter are commonly used.</p>
+<table>
+<tr><th>Connected</th><th>Disconnected</th></tr>
+<tr><td>Connection remains open during access.</td><td>Connection can be closed after fetching data.</td></tr>
+<tr><td>DataReader is commonly used.</td><td>DataSet and DataAdapter are commonly used.</td></tr>
+<tr><td>Forward-only reading is typical.</td><td>Data can be manipulated in memory.</td></tr>
+</table>
+</div>
+
+<div class="theory-card">
+<h3>32. Database Connection</h3>
+<p>A database connection establishes communication between a .NET application and a database. A connection object uses a connection string containing information required to connect.</p>
+<h4>Common providers</h4>
+<ul>
+<li>SqlClient for SQL Server.</li>
+<li>OleDb for OLE DB data sources.</li>
+<li>Odbc for ODBC data sources.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>33. DataReader and DataAdapter</h3>
+<p><strong>DataReader:</strong> Reads data from a database in a forward-only, read-only manner while the connection is open.</p>
+<p><strong>DataAdapter:</strong> Acts as a bridge between a database and a DataSet or DataTable. It can retrieve and update data.</p>
+</div>
+
+<div class="theory-card">
+<h3>34. DataSet and DataTable</h3>
+<p><strong>DataSet:</strong> An in-memory representation of data that can contain multiple DataTables and relationships.</p>
+<p><strong>DataTable:</strong> Represents one table of in-memory data containing rows and columns.</p>
+</div>
+
+<div class="theory-card">
+<h3>35. Advantages of ADO.NET</h3>
+<ul>
+<li>Provides database connectivity.</li>
+<li>Supports connected and disconnected data access.</li>
+<li>Supports multiple database providers.</li>
+<li>Allows data retrieval and modification.</li>
+<li>Supports XML integration.</li>
+<li>Can work with DataSet and DataTable.</li>
+</ul>
+</div>
+
+</section>
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <p>STUDENTVERSE | BCA Semester 3</p>
+    <p>C#.NET Programming – Theory Notes</p>
+    <p>Learn • Practice • Grow</p>
+
+</footer>
+
+<button id="backToTop" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+    ↑
+</button>
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script>
+
+/* SEARCH FUNCTION */
+
+const searchInput = document.getElementById("searchInput");
+const clearButton = document.querySelector(".program-search button");
+const cards = document.querySelectorAll(".theory-card");
+const units = document.querySelectorAll(".unit-section");
+const noResults = document.getElementById("noResults");
+
+function searchTopics() {
+
+    const searchText = searchInput.value.toLowerCase().trim();
+
+    let totalVisible = 0;
+
+    cards.forEach(card => {
+
+        const cardText = card.textContent.toLowerCase();
+
+        const matched = cardText.includes(searchText);
+
+        card.style.display = matched ? "" : "none";
+
+        if (matched) {
+            totalVisible++;
+        }
+
+    });
+
+    units.forEach(unit => {
+
+        const visibleCards = unit.querySelectorAll(
+            ".theory-card:not([style*='display: none'])"
+        );
+
+        unit.style.display = visibleCards.length > 0 ? "" : "none";
+
+    });
+
+    noResults.style.display =
+        totalVisible === 0 ? "block" : "none";
+
+}
+
+searchInput.addEventListener("input", searchTopics);
+
+/* CLEAR SEARCH */
+
+function clearSearch() {
+
+    searchInput.value = "";
+
+    cards.forEach(card => {
+        card.style.display = "";
+    });
+
+    units.forEach(unit => {
+        unit.style.display = "";
+    });
+
+    noResults.style.display = "none";
+
+    searchInput.focus();
+
+}
+
+/* BACK TO TOP */
+
+const backToTop = document.getElementById("backToTop");
+
+window.addEventListener("scroll", function() {
+
+    if (window.scrollY > 400) {
+        backToTop.style.display = "block";
+    } else {
+        backToTop.style.display = "none";
+    }
+
+});
+
+/* UNIT REVEAL ANIMATION */
+
+const observer = new IntersectionObserver(entries => {
+
+    entries.forEach(entry => {
+
+        if (entry.isIntersecting) {
+
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0)";
+
+        }
+
+    });
+
+}, {
+    threshold: 0.1
+});
+
+document.querySelectorAll(".unit-section").forEach(unit => {
+
+    unit.style.opacity = "0";
+    unit.style.transform = "translateY(30px)";
+    unit.style.transition = "0.8s ease";
+
+    observer.observe(unit);
+
+});
+
+</script>
+
+</body>
+</html>

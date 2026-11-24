@@ -1,0 +1,1019 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Operating System Notes | STUDENTVERSE</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    color: white;
+    background: radial-gradient(circle at top, #172554, #020617 65%);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* COSMIC BACKGROUND */
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    width: 450px;
+    height: 450px;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.22;
+    z-index: -1;
+    animation: float 10s infinite alternate ease-in-out;
+}
+
+body::before {
+    background: #7c3aed;
+    top: -100px;
+    left: -100px;
+}
+
+body::after {
+    background: #06b6d4;
+    bottom: -100px;
+    right: -100px;
+    animation-delay: 3s;
+}
+
+@keyframes float {
+    from { transform: translate(0, 0); }
+    to { transform: translate(100px, 80px); }
+}
+
+/* NAVBAR */
+.main-navbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 7%;
+    background: rgba(2, 6, 23, 0.85);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+}
+
+.logo {
+    font-size: 23px;
+    font-weight: bold;
+    color: #67e8f9;
+    letter-spacing: 1px;
+}
+
+.main-navbar a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 14px;
+}
+
+.main-navbar a:hover {
+    color: #67e8f9;
+}
+
+/* HEADER */
+header {
+    text-align: center;
+    padding: 65px 15px 35px;
+}
+
+header h1 {
+    font-size: clamp(28px, 5vw, 45px);
+    color: #67e8f9;
+    text-shadow: 0 0 20px rgba(34,211,238,0.5);
+    margin-bottom: 12px;
+}
+
+header p {
+    color: #cbd5e1;
+    margin: 8px;
+}
+
+/* ACTION BUTTON */
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    margin: 15px;
+}
+
+.action-buttons button {
+    background: linear-gradient(135deg, #7c3aed, #0891b2);
+    border: none;
+    color: white;
+    padding: 12px 22px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.action-buttons button:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0 20px #0891b2;
+}
+
+/* UNIT NAVIGATION */
+.unit-nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 20px;
+}
+
+.unit-nav a {
+    color: white;
+    text-decoration: none;
+    background: rgba(30,41,59,0.8);
+    border: 1px solid rgba(103,232,249,0.4);
+    padding: 11px 18px;
+    border-radius: 25px;
+    transition: 0.3s;
+}
+
+.unit-nav a:hover {
+    background: #0891b2;
+    transform: translateY(-3px);
+}
+
+/* SEARCH */
+.program-search {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px auto 35px;
+    padding: 0 15px;
+}
+
+.program-search input {
+    width: min(500px, 75%);
+    padding: 13px 18px;
+    border-radius: 25px;
+    border: 1px solid #38bdf8;
+    outline: none;
+    background: rgba(15,23,42,0.9);
+    color: white;
+    font-size: 15px;
+}
+
+.program-search button {
+    padding: 12px 18px;
+    border: none;
+    border-radius: 25px;
+    background: #7c3aed;
+    color: white;
+    cursor: pointer;
+}
+
+#noResults {
+    display: none;
+    text-align: center;
+    color: #fca5a5;
+    padding: 25px;
+}
+
+/* UNIT SECTIONS */
+.unit-section {
+    width: 90%;
+    max-width: 1100px;
+    margin: 35px auto;
+    scroll-margin-top: 90px;
+    animation: appear 0.8s ease;
+}
+
+.unit-section h2 {
+    text-align: center;
+    color: #67e8f9;
+    margin-bottom: 25px;
+    padding: 15px;
+    border-bottom: 1px solid rgba(103,232,249,0.35);
+    font-size: 25px;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* THEORY CARDS */
+.theory-card {
+    background: rgba(15,23,42,0.78);
+    border: 1px solid rgba(103,232,249,0.25);
+    border-radius: 18px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    transition: 0.35s;
+}
+
+.theory-card:hover {
+    transform: translateY(-5px);
+    border-color: #67e8f9;
+    box-shadow: 0 10px 35px rgba(6,182,212,0.18);
+}
+
+.theory-card h3 {
+    color: #a5f3fc;
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+.theory-card h4 {
+    color: #c4b5fd;
+    margin: 15px 0 8px;
+}
+
+.theory-card p {
+    color: #e2e8f0;
+    line-height: 1.8;
+}
+
+.theory-card ul {
+    padding-left: 22px;
+    color: #e2e8f0;
+    line-height: 1.9;
+}
+
+/* BACK TO TOP */
+#backToTop {
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    width: 45px;
+    height: 45px;
+    border: none;
+    border-radius: 50%;
+    background: #0891b2;
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+    display: none;
+    z-index: 99;
+}
+
+footer {
+    text-align: center;
+    padding: 30px 15px;
+    color: #94a3b8;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    margin-top: 50px;
+}
+
+/* MOBILE */
+@media(max-width: 650px) {
+    .main-navbar {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .main-navbar a {
+        margin: 0 7px;
+    }
+
+    .theory-card {
+        padding: 17px;
+    }
+
+    .unit-section {
+        width: 94%;
+    }
+}
+
+/* PDF PRINT */
+@media print {
+    body {
+        background: white !important;
+        color: black !important;
+    }
+
+    body::before,
+    body::after {
+        display: none !important;
+    }
+
+    .main-navbar,
+    .action-buttons,
+    .unit-nav,
+    .program-search,
+    #noResults,
+    #backToTop {
+        display: none !important;
+    }
+
+    header {
+        padding: 15px;
+    }
+
+    header h1,
+    header p,
+    .unit-section h2,
+    .theory-card h3,
+    .theory-card h4,
+    .theory-card p,
+    .theory-card ul {
+        color: black !important;
+        text-shadow: none !important;
+    }
+
+    .unit-section,
+    .theory-card {
+        width: 100%;
+        animation: none;
+        transform: none;
+    }
+
+    .theory-card {
+        background: white !important;
+        border: 1px solid #999;
+        box-shadow: none;
+        break-inside: avoid;
+        margin-bottom: 18px;
+    }
+
+    .unit-section {
+        break-before: page;
+    }
+
+    footer {
+        color: black;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav class="main-navbar">
+    <div class="logo">STUDENTVERSE</div>
+    <div>
+        <a href="index.html">Dashboard</a>
+        <a href="studyhub.html">StudyHub</a>
+        <a href="skillup.html">SkillUp</a>
+    </div>
+</nav>
+
+<header>
+    <h1>OPERATING SYSTEM</h1>
+    <p>OS | BCA Theory Notes</p>
+    <p>STUDENTVERSE | Learn • Practice • Succeed</p>
+</header>
+
+<div class="action-buttons">
+    <button onclick="window.print()">
+        📥 Download / Save as PDF
+    </button>
+</div>
+
+<div class="unit-nav">
+    <a href="#unit1">UNIT 1 – Introduction</a>
+    <a href="#unit2">UNIT 2 – Process Management</a>
+    <a href="#unit3">UNIT 3 – Memory Management</a>
+    <a href="#unit4">UNIT 4 – File Management</a>
+</div>
+
+<div class="program-search">
+    <input
+        type="text"
+        id="searchInput"
+        placeholder="🔍 Search Operating System topics..."
+        oninput="searchTopics()"
+    >
+    <button onclick="clearSearch()">Clear ✕</button>
+</div>
+
+<p id="noResults">No matching topics found.</p>
+
+<!-- UNIT 1 -->
+<section class="unit-section" id="unit1">
+<h2>UNIT 1 – INTRODUCTION TO OPERATING SYSTEM</h2>
+
+<div class="theory-card">
+<h3>1. What is an Operating System?</h3>
+<p>An Operating System (OS) is system software that acts as an interface between the user and computer hardware. It manages all computer resources and provides an environment for executing programs.</p>
+<h4>Examples</h4>
+<ul>
+<li>Microsoft Windows</li>
+<li>Linux</li>
+<li>macOS</li>
+<li>Android</li>
+<li>UNIX</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>2. Objectives of Operating System</h3>
+<p>The main objectives of an operating system are:</p>
+<ul>
+<li><b>Convenience:</b> Makes the computer easy to use.</li>
+<li><b>Efficiency:</b> Uses hardware resources efficiently.</li>
+<li><b>Resource Management:</b> Manages CPU, memory and devices.</li>
+<li><b>Security:</b> Protects data and programs.</li>
+<li><b>Performance:</b> Improves overall system performance.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>3. Functions of Operating System</h3>
+<p>An operating system performs the following functions:</p>
+<ul>
+<li>Process management</li>
+<li>Memory management</li>
+<li>File management</li>
+<li>Device management</li>
+<li>Security management</li>
+<li>User interface management</li>
+<li>Error detection and handling</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>4. Types of Operating System</h3>
+<ul>
+<li><b>Batch OS:</b> Executes a group of jobs in batches without direct user interaction.</li>
+<li><b>Multiprogramming OS:</b> Keeps multiple programs in memory to improve CPU utilization.</li>
+<li><b>Multitasking OS:</b> Allows multiple tasks to run seemingly at the same time.</li>
+<li><b>Time Sharing OS:</b> Gives each user or process a small amount of CPU time.</li>
+<li><b>Multiprocessing OS:</b> Uses two or more processors to execute tasks.</li>
+<li><b>Real-Time OS:</b> Responds to events within specified time limits.</li>
+<li><b>Distributed OS:</b> Manages multiple connected computers as a coordinated system.</li>
+<li><b>Network OS:</b> Provides services and resource sharing over a network.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>5. Batch Operating System</h3>
+<p>A Batch Operating System collects similar jobs and executes them in groups called batches. There is no direct interaction between the user and the job during execution.</p>
+<h4>Advantages</h4>
+<ul>
+<li>Suitable for large repetitive tasks.</li>
+<li>Reduces manual intervention.</li>
+<li>Can process many jobs together.</li>
+</ul>
+<h4>Disadvantages</h4>
+<ul>
+<li>Long waiting time.</li>
+<li>Debugging is difficult.</li>
+<li>No immediate user interaction.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>6. Multiprogramming Operating System</h3>
+<p>Multiprogramming is a technique in which multiple programs are kept in main memory at the same time. When one program waits for input or output, the CPU can execute another program.</p>
+<h4>Advantages</h4>
+<ul>
+<li>Improves CPU utilization.</li>
+<li>Reduces CPU idle time.</li>
+<li>Increases system efficiency.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>7. Time Sharing Operating System</h3>
+<p>A Time Sharing Operating System allows multiple users or processes to share CPU time. Each process receives a small time interval called a time slice or time quantum.</p>
+<h4>Advantages</h4>
+<ul>
+<li>Provides quick response.</li>
+<li>Supports multiple users.</li>
+<li>Allows interactive computing.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>8. Real-Time Operating System</h3>
+<p>A Real-Time Operating System (RTOS) processes data and responds to events within a specified time limit.</p>
+<h4>Types</h4>
+<ul>
+<li><b>Hard Real-Time OS:</b> Missing a deadline is considered a system failure.</li>
+<li><b>Soft Real-Time OS:</b> Missing a deadline occasionally is undesirable but may be acceptable.</li>
+</ul>
+<h4>Examples</h4>
+<p>Air traffic control systems, industrial control systems and medical monitoring systems.</p>
+</div>
+
+<div class="theory-card">
+<h3>9. Kernel and Shell</h3>
+<p><b>Kernel:</b> The kernel is the core part of an operating system. It manages CPU, memory and hardware resources.</p>
+<p><b>Shell:</b> The shell is a user interface that allows users to communicate with the operating system through commands or graphical tools.</p>
+<h4>Difference</h4>
+<ul>
+<li>Kernel manages system resources.</li>
+<li>Shell accepts user commands.</li>
+<li>Kernel works close to hardware.</li>
+<li>Shell provides access to OS services.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>10. System Calls</h3>
+<p>System calls are the interface through which application programs request services from the operating system kernel.</p>
+<h4>Types of System Calls</h4>
+<ul>
+<li>Process control</li>
+<li>File management</li>
+<li>Device management</li>
+<li>Information maintenance</li>
+<li>Communication</li>
+<li>Protection</li>
+</ul>
+</div>
+
+</section>
+
+<!-- UNIT 2 -->
+<section class="unit-section" id="unit2">
+<h2>UNIT 2 – PROCESS MANAGEMENT AND CPU SCHEDULING</h2>
+
+<div class="theory-card">
+<h3>1. What is a Process?</h3>
+<p>A process is a program that is currently in execution. It includes program code, data, memory, CPU registers and other resources needed for execution.</p>
+<h4>Examples</h4>
+<ul>
+<li>Running a web browser.</li>
+<li>Playing a video.</li>
+<li>Running a calculator application.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>2. Process States</h3>
+<p>A process passes through different states during its execution.</p>
+<ul>
+<li><b>New:</b> Process is being created.</li>
+<li><b>Ready:</b> Process is waiting for CPU allocation.</li>
+<li><b>Running:</b> Process is being executed by the CPU.</li>
+<li><b>Waiting:</b> Process is waiting for an event or I/O operation.</li>
+<li><b>Terminated:</b> Process has completed execution.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>3. Process Control Block (PCB)</h3>
+<p>A Process Control Block is a data structure maintained by the operating system to store information about a process.</p>
+<h4>Information stored in PCB</h4>
+<ul>
+<li>Process ID</li>
+<li>Process state</li>
+<li>Program counter</li>
+<li>CPU registers</li>
+<li>CPU scheduling information</li>
+<li>Memory management information</li>
+<li>I/O status information</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>4. Process Scheduling</h3>
+<p>Process scheduling is the method used by the operating system to select a process from the ready queue and allocate the CPU to it.</p>
+<h4>Types of Schedulers</h4>
+<ul>
+<li><b>Long-Term Scheduler:</b> Selects jobs to be brought into memory.</li>
+<li><b>Short-Term Scheduler:</b> Selects a ready process for CPU execution.</li>
+<li><b>Medium-Term Scheduler:</b> Temporarily removes processes from memory and later brings them back.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>5. CPU Scheduling Algorithms</h3>
+<p>CPU scheduling algorithms decide which process gets the CPU next.</p>
+<ul>
+<li>First Come First Served (FCFS)</li>
+<li>Shortest Job First (SJF)</li>
+<li>Priority Scheduling</li>
+<li>Round Robin Scheduling</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>6. First Come First Served (FCFS)</h3>
+<p>FCFS is a non-preemptive scheduling algorithm. The process that arrives first gets the CPU first.</p>
+<h4>Advantages</h4>
+<ul>
+<li>Simple and easy to implement.</li>
+<li>Fair according to arrival order.</li>
+</ul>
+<h4>Disadvantages</h4>
+<ul>
+<li>Can cause long waiting times.</li>
+<li>May suffer from the convoy effect.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>7. Shortest Job First (SJF)</h3>
+<p>SJF is a scheduling algorithm that selects the process with the smallest CPU burst time first.</p>
+<h4>Advantages</h4>
+<ul>
+<li>Can give minimum average waiting time when burst times are known.</li>
+<li>Short processes finish quickly.</li>
+</ul>
+<h4>Disadvantages</h4>
+<ul>
+<li>CPU burst time is difficult to predict exactly.</li>
+<li>Long processes may suffer starvation.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>8. Priority Scheduling</h3>
+<p>Priority Scheduling assigns a priority value to every process. The CPU is allocated to the process with the highest priority according to the system's priority convention.</p>
+<h4>Advantages</h4>
+<ul>
+<li>Important processes can be executed first.</li>
+<li>Useful in priority-based systems.</li>
+</ul>
+<h4>Disadvantages</h4>
+<ul>
+<li>Low-priority processes may suffer starvation.</li>
+<li>Aging can be used to reduce starvation.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>9. Round Robin Scheduling</h3>
+<p>Round Robin is a preemptive scheduling algorithm. Each process gets a fixed time quantum. If it does not finish within that time, it goes back to the ready queue.</p>
+<h4>Advantages</h4>
+<ul>
+<li>Suitable for time-sharing systems.</li>
+<li>Provides regular CPU access to processes.</li>
+</ul>
+<h4>Disadvantages</h4>
+<ul>
+<li>Performance depends on time quantum.</li>
+<li>Very small time quantum causes many context switches.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>10. Context Switching</h3>
+<p>Context switching is the process of saving the state of one process and loading the state of another process so that the CPU can switch between them.</p>
+<p>It allows multitasking but also introduces some overhead because the CPU spends time switching instead of executing user processes.</p>
+</div>
+
+</section>
+
+<!-- UNIT 3 -->
+<section class="unit-section" id="unit3">
+<h2>UNIT 3 – MEMORY MANAGEMENT AND DEADLOCKS</h2>
+
+<div class="theory-card">
+<h3>1. Memory Management</h3>
+<p>Memory management is the function of an operating system that controls and coordinates the use of main memory. It allocates and deallocates memory to processes.</p>
+<h4>Functions</h4>
+<ul>
+<li>Memory allocation.</li>
+<li>Memory deallocation.</li>
+<li>Memory protection.</li>
+<li>Memory tracking.</li>
+<li>Memory sharing.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>2. Contiguous Memory Allocation</h3>
+<p>Contiguous memory allocation is a memory management technique in which each process is allocated a continuous block of memory.</p>
+<h4>Types</h4>
+<ul>
+<li>Fixed partitioning.</li>
+<li>Variable partitioning.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>3. Fragmentation</h3>
+<p>Fragmentation refers to the wastage of memory space during memory allocation.</p>
+<h4>Types</h4>
+<ul>
+<li><b>Internal Fragmentation:</b> Wasted space inside an allocated memory block.</li>
+<li><b>External Fragmentation:</b> Free memory exists in small scattered blocks, making it difficult to allocate a large continuous block.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>4. Paging</h3>
+<p>Paging is a memory management technique in which physical memory is divided into fixed-size blocks called frames and logical memory is divided into blocks called pages.</p>
+<h4>Advantages</h4>
+<ul>
+<li>Eliminates external fragmentation in basic paging.</li>
+<li>Allows non-contiguous memory allocation.</li>
+<li>Supports virtual memory.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>5. Segmentation</h3>
+<p>Segmentation is a memory management technique in which a program is divided into variable-sized logical units called segments.</p>
+<h4>Examples of Segments</h4>
+<ul>
+<li>Code segment</li>
+<li>Data segment</li>
+<li>Stack segment</li>
+</ul>
+<p>Segmentation supports logical program organization but can cause external fragmentation.</p>
+</div>
+
+<div class="theory-card">
+<h3>6. Virtual Memory</h3>
+<p>Virtual memory is a memory management technique that allows a program to execute even when the entire program is not loaded into main memory.</p>
+<h4>Advantages</h4>
+<ul>
+<li>Allows large programs to run.</li>
+<li>Improves memory utilization.</li>
+<li>Supports multiprogramming.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>7. Demand Paging</h3>
+<p>Demand paging is a technique in which a page is loaded into main memory only when it is required by the executing process.</p>
+<p>If the required page is not available in memory, a page fault occurs and the operating system brings the page from secondary storage.</p>
+</div>
+
+<div class="theory-card">
+<h3>8. Page Replacement Algorithms</h3>
+<p>Page replacement algorithms decide which page should be removed from memory when a new page must be loaded and no free frame is available.</p>
+<ul>
+<li><b>FIFO:</b> Replaces the page that entered memory first.</li>
+<li><b>LRU:</b> Replaces the page that has not been used for the longest time.</li>
+<li><b>Optimal:</b> Replaces the page that will not be used for the longest time in the future. It is mainly a theoretical benchmark.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>9. What is Deadlock?</h3>
+<p>Deadlock is a situation in which two or more processes wait indefinitely for resources held by one another, so none of them can proceed.</p>
+<h4>Example</h4>
+<p>Process P1 holds Resource R1 and waits for R2, while Process P2 holds R2 and waits for R1.</p>
+</div>
+
+<div class="theory-card">
+<h3>10. Necessary Conditions for Deadlock</h3>
+<p>Four conditions must hold simultaneously for a deadlock to occur:</p>
+<ul>
+<li><b>Mutual Exclusion:</b> A resource can be used by only one process at a time.</li>
+<li><b>Hold and Wait:</b> A process holds resources while waiting for more resources.</li>
+<li><b>No Preemption:</b> Resources cannot be forcibly taken away.</li>
+<li><b>Circular Wait:</b> Processes form a circular chain of waiting.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>11. Deadlock Handling Methods</h3>
+<ul>
+<li><b>Prevention:</b> Ensure at least one necessary deadlock condition cannot hold.</li>
+<li><b>Avoidance:</b> Allocate resources only when the system remains in a safe state.</li>
+<li><b>Detection:</b> Identify deadlocks after they occur.</li>
+<li><b>Recovery:</b> Take action to break the deadlock, such as terminating processes or reclaiming resources.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>12. Banker's Algorithm</h3>
+<p>Banker's Algorithm is a deadlock avoidance algorithm. It checks whether allocating resources will keep the system in a safe state.</p>
+<h4>Important Terms</h4>
+<ul>
+<li><b>Available:</b> Resources currently available.</li>
+<li><b>Maximum:</b> Maximum resources a process may need.</li>
+<li><b>Allocation:</b> Resources currently allocated.</li>
+<li><b>Need:</b> Remaining resources required by a process.</li>
+</ul>
+<p>Need = Maximum − Allocation.</p>
+</div>
+
+</section>
+
+<!-- UNIT 4 -->
+<section class="unit-section" id="unit4">
+<h2>UNIT 4 – FILE MANAGEMENT AND DEVICE MANAGEMENT</h2>
+
+<div class="theory-card">
+<h3>1. File System</h3>
+<p>A file system is a method used by an operating system to organize, store, retrieve and manage files on storage devices.</p>
+<h4>Functions</h4>
+<ul>
+<li>File creation and deletion.</li>
+<li>File naming and organization.</li>
+<li>File storage and retrieval.</li>
+<li>File protection and access control.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>2. File Attributes</h3>
+<p>File attributes are the properties associated with a file.</p>
+<ul>
+<li><b>Name:</b> Name of the file.</li>
+<li><b>Identifier:</b> Unique identification of the file.</li>
+<li><b>Type:</b> Type or format of the file.</li>
+<li><b>Location:</b> Storage location of the file.</li>
+<li><b>Size:</b> Size of the file.</li>
+<li><b>Protection:</b> Access permissions.</li>
+<li><b>Time and Date:</b> Creation and modification details.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>3. File Operations</h3>
+<p>The operating system provides several operations to manage files.</p>
+<ul>
+<li>Create a file.</li>
+<li>Open a file.</li>
+<li>Read a file.</li>
+<li>Write to a file.</li>
+<li>Close a file.</li>
+<li>Delete a file.</li>
+<li>Rename a file.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>4. File Access Methods</h3>
+<p>File access methods describe how data is accessed from a file.</p>
+<ul>
+<li><b>Sequential Access:</b> Data is accessed one after another in sequence.</li>
+<li><b>Direct Access:</b> Any location in the file can be accessed directly.</li>
+<li><b>Indexed Access:</b> An index is used to locate records quickly.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>5. Directory Structure</h3>
+<p>A directory is a structure used by an operating system to organize files and folders.</p>
+<h4>Types of Directory Structures</h4>
+<ul>
+<li>Single-level directory.</li>
+<li>Two-level directory.</li>
+<li>Tree-structured directory.</li>
+<li>Acyclic-graph directory.</li>
+<li>General graph directory.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>6. File Allocation Methods</h3>
+<p>File allocation methods describe how disk blocks are assigned to files.</p>
+<ul>
+<li><b>Contiguous Allocation:</b> File blocks are stored next to each other.</li>
+<li><b>Linked Allocation:</b> File blocks are connected using pointers.</li>
+<li><b>Indexed Allocation:</b> An index block stores addresses of file blocks.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>7. Device Management</h3>
+<p>Device management is the operating system function responsible for controlling and coordinating input and output devices.</p>
+<h4>Functions</h4>
+<ul>
+<li>Allocating and releasing devices.</li>
+<li>Managing device drivers.</li>
+<li>Handling input and output operations.</li>
+<li>Monitoring device status.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>8. Device Drivers</h3>
+<p>A device driver is system software that allows the operating system to communicate with a hardware device.</p>
+<h4>Examples</h4>
+<ul>
+<li>Printer driver.</li>
+<li>Keyboard driver.</li>
+<li>Graphics driver.</li>
+<li>Audio driver.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>9. Spooling</h3>
+<p>Spooling stands for Simultaneous Peripheral Operations On-Line. It stores data temporarily in a queue or buffer so that a device can process jobs one by one.</p>
+<h4>Example</h4>
+<p>When several documents are sent to a printer, they are placed in a print queue and printed one after another.</p>
+</div>
+
+<div class="theory-card">
+<h3>10. Disk Scheduling</h3>
+<p>Disk scheduling is the method used by the operating system to decide the order in which disk I/O requests are serviced.</p>
+<h4>Disk Scheduling Algorithms</h4>
+<ul>
+<li><b>FCFS:</b> Services requests in arrival order.</li>
+<li><b>SSTF:</b> Selects the request closest to the current disk head position.</li>
+<li><b>SCAN:</b> Disk head moves in one direction servicing requests, then reverses.</li>
+<li><b>C-SCAN:</b> Disk head services requests in one direction and returns to the beginning.</li>
+<li><b>LOOK:</b> Similar to SCAN, but reverses at the last pending request.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>11. Protection and Security</h3>
+<p>Protection and security help prevent unauthorized access to computer resources and data.</p>
+<h4>Security Methods</h4>
+<ul>
+<li>User authentication.</li>
+<li>Password protection.</li>
+<li>File permissions.</li>
+<li>Access control.</li>
+<li>Encryption.</li>
+<li>Security updates.</li>
+</ul>
+</div>
+
+</section>
+
+<footer>
+    <p>© 2026 STUDENTVERSE | Learn Today, Lead Tomorrow</p>
+    <p>Operating System – Theory Notes</p>
+</footer>
+
+<button id="backToTop"
+onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+↑
+</button>
+
+<script>
+
+/* SEARCH TOPICS */
+function searchTopics() {
+    const input = document
+        .getElementById("searchInput")
+        .value.toLowerCase();
+
+    const cards = document.querySelectorAll(".theory-card");
+    const sections = document.querySelectorAll(".unit-section");
+
+    let found = 0;
+
+    cards.forEach(card => {
+        const text = card.innerText.toLowerCase();
+
+        if (text.includes(input)) {
+            card.style.display = "block";
+            found++;
+        } else {
+            card.style.display = "none";
+        }
+    });
+
+    sections.forEach(section => {
+        const visibleCards = section.querySelectorAll(
+            '.theory-card:not([style*="display: none"])'
+        );
+
+        section.style.display =
+            visibleCards.length > 0 ? "block" : "none";
+    });
+
+    document.getElementById("noResults").style.display =
+        found === 0 ? "block" : "none";
+}
+
+/* CLEAR SEARCH */
+function clearSearch() {
+    document.getElementById("searchInput").value = "";
+
+    document.querySelectorAll(".theory-card").forEach(card => {
+        card.style.display = "block";
+    });
+
+    document.querySelectorAll(".unit-section").forEach(section => {
+        section.style.display = "block";
+    });
+
+    document.getElementById("noResults").style.display = "none";
+}
+
+/* BACK TO TOP */
+const backToTop = document.getElementById("backToTop");
+
+window.addEventListener("scroll", function() {
+    if (window.scrollY > 300) {
+        backToTop.style.display = "block";
+    } else {
+        backToTop.style.display = "none";
+    }
+});
+
+</script>
+
+</body>
+</html>

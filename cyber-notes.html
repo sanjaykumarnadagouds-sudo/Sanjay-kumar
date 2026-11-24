@@ -1,0 +1,873 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cyber Security | STUDENTVERSE</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+    font-family:Arial,sans-serif;
+    color:#fff;
+    background:radial-gradient(circle at top,#172554,#080d20 55%,#020617);
+    min-height:100vh;
+    overflow-x:hidden;
+}
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background-image:
+    radial-gradient(2px 2px at 20% 30%,#fff,transparent),
+    radial-gradient(2px 2px at 70% 60%,#60a5fa,transparent),
+    radial-gradient(2px 2px at 40% 80%,#fff,transparent);
+    background-size:180px 180px;
+    animation:stars 15s linear infinite;
+    opacity:.5;
+}
+@keyframes stars{from{transform:translateY(0)}to{transform:translateY(-180px)}}
+
+nav{
+    position:sticky;top:0;z-index:10;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:16px 7%;
+    background:#080d20dd;
+    backdrop-filter:blur(15px);
+    border-bottom:1px solid #334155;
+}
+nav h2{color:#38bdf8;letter-spacing:2px}
+nav a{
+    color:white;text-decoration:none;margin-left:20px;
+    font-weight:bold;
+}
+nav a:hover{color:#38bdf8}
+
+header{
+    text-align:center;padding:65px 20px 40px;
+}
+header h1{
+    color:#38bdf8;font-size:clamp(28px,5vw,45px);
+    text-shadow:0 0 20px #0284c7;
+    margin-bottom:12px;
+}
+header p{color:#cbd5e1;margin:8px}
+
+.actions{
+    display:flex;justify-content:center;gap:12px;
+    flex-wrap:wrap;margin:15px;
+}
+button{
+    padding:11px 20px;border:none;border-radius:9px;
+    background:#0284c7;color:white;font-weight:bold;
+    cursor:pointer;transition:.3s;
+}
+button:hover{background:#0ea5e9;transform:translateY(-3px)}
+
+.search-box{
+    display:block;width:min(90%,650px);
+    margin:25px auto;padding:14px 18px;
+    border:1px solid #38bdf8;border-radius:12px;
+    background:#0f172a;color:white;font-size:16px;
+    outline:none;
+}
+.search-box:focus{box-shadow:0 0 15px #0284c7}
+
+.container{width:min(1100px,92%);margin:auto;padding-bottom:60px}
+
+.section-nav{
+    display:flex;flex-wrap:wrap;justify-content:center;
+    gap:10px;margin:25px 0 35px;
+}
+.section-nav a{
+    text-decoration:none;color:#bae6fd;
+    border:1px solid #0ea5e9;padding:10px 15px;
+    border-radius:20px;background:#0f172a;
+}
+.section-nav a:hover{background:#0369a1;color:white}
+
+.section-title{
+    color:#38bdf8;font-size:25px;
+    margin:45px 0 20px;
+    border-left:4px solid #38bdf8;padding-left:12px;
+}
+.note-card{
+    background:linear-gradient(145deg,#172554dd,#0f172add);
+    border:1px solid #334e68;
+    border-radius:15px;padding:24px;
+    margin-bottom:20px;
+    box-shadow:0 10px 30px #0005;
+    transition:.3s;
+    animation:appear .6s ease;
+}
+.note-card:hover{
+    transform:translateY(-4px);
+    border-color:#38bdf8;
+    box-shadow:0 12px 30px #0284c755;
+}
+.note-card h3{color:#7dd3fc;margin-bottom:13px;font-size:20px}
+.note-card p{color:#e2e8f0;line-height:1.8;margin:8px 0}
+.note-card ul{padding-left:25px;color:#e2e8f0;line-height:1.9}
+.note-card strong{color:#bae6fd}
+.example{
+    background:#020617;padding:14px;border-radius:9px;
+    margin-top:12px;color:#a7f3d0;line-height:1.7;
+    border-left:3px solid #22c55e;
+}
+.tag{
+    display:inline-block;background:#075985;
+    color:#e0f2fe;padding:5px 10px;
+    border-radius:20px;font-size:12px;margin:4px 4px 4px 0;
+}
+#noResults{
+    display:none;text-align:center;color:#fca5a5;
+    padding:30px;font-size:18px;
+}
+footer{
+    text-align:center;padding:25px;
+    color:#94a3b8;border-top:1px solid #334155;
+}
+#topBtn{
+    position:fixed;bottom:20px;right:20px;
+    display:none;border-radius:50%;width:48px;height:48px;
+    font-size:20px;padding:0;
+}
+@keyframes appear{
+    from{opacity:0;transform:translateY(15px)}
+    to{opacity:1;transform:translateY(0)}
+}
+@media(max-width:600px){
+    nav{padding:14px 4%;flex-wrap:wrap;gap:12px}
+    nav a{margin-left:8px;font-size:13px}
+    .note-card{padding:17px}
+}
+@media print{
+    body{background:white!important;color:black!important}
+    body::before,nav,.actions,.search-box,.section-nav,#topBtn,footer{display:none!important}
+    header{padding:15px}
+    header h1,.section-title,.note-card h3{color:#111!important;text-shadow:none}
+    header p,.note-card p,.note-card li{color:#111!important}
+    .note-card{
+        background:white!important;color:black!important;
+        border:1px solid #aaa;box-shadow:none;
+        break-inside:avoid;
+    }
+    .note-card strong{color:black}
+    .example{background:#eee;color:black}
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <h2>STUDENTVERSE</h2>
+    <div>
+        <a href="index.html">Home</a>
+        <a href="studyhub.html">StudyHub</a>
+    </div>
+</nav>
+
+<header>
+    <h1>CYBER SECURITY</h1>
+    <p>CAE31X | BCA Semester 3</p>
+    <p>Complete Theory Notes and Exam Preparation</p>
+
+    <div class="actions">
+        <button onclick="window.print()">📥 Download / Save as PDF</button>
+        <button onclick="window.location.href='studyhub.html'">← Back to StudyHub</button>
+    </div>
+</header>
+
+<input type="text" id="searchInput" class="search-box"
+placeholder="🔍 Search Cyber Security topics..." oninput="searchNotes()">
+
+<div class="container">
+
+<div class="section-nav">
+    <a href="#basics">Cyber Security Basics</a>
+    <a href="#crime">Cybercrime and Cyber Law</a>
+    <a href="#social">Social Media Security</a>
+    <a href="#tools">Tools and Technologies</a>
+</div>
+
+<p id="noResults">No matching topics found.</p>
+
+<!-- SECTION 1 -->
+
+<h2 class="section-title" id="basics">1. Introduction to Cyber Security</h2>
+
+<div class="note-card">
+<h3>1.1 What is Cyberspace?</h3>
+<p>Cyberspace is the virtual environment created by computers, networks, software and the Internet. It allows people to communicate, share information, access services and perform online activities.</p>
+<p><strong>Examples:</strong> Websites, email, online banking, social media and cloud services.</p>
+</div>
+
+<div class="note-card">
+<h3>1.2 Computer and Web Technology</h3>
+<p>Computer technology includes hardware, software and systems used to process and store information. Web technology refers to tools and protocols used to create and access websites and online applications.</p>
+<ul>
+<li><strong>Hardware:</strong> Physical parts of a computer.</li>
+<li><strong>Software:</strong> Programs and applications.</li>
+<li><strong>Network:</strong> Connected computers that exchange information.</li>
+<li><strong>Web browser:</strong> Software used to access websites.</li>
+<li><strong>Web server:</strong> A system that provides website content to users.</li>
+</ul>
+</div>
+
+<div class="note-card">
+<h3>1.3 Architecture of Cyberspace</h3>
+<p>Cyberspace architecture describes how different components work together to provide digital communication.</p>
+<ul>
+<li><strong>Physical layer:</strong> Computers, cables, routers and servers.</li>
+<li><strong>Logical layer:</strong> IP addresses, protocols and software.</li>
+<li><strong>Application layer:</strong> Websites, email, online services and applications.</li>
+<li><strong>Users:</strong> People and organizations using digital services.</li>
+</ul>
+</div>
+
+<div class="note-card">
+<h3>1.4 Communication and Web Technology</h3>
+<p>Digital communication is the exchange of information between devices through wired or wireless networks.</p>
+<p>Web technologies use HTML, CSS, JavaScript, HTTP and web servers to deliver websites and online applications.</p>
+<p><strong>Examples:</strong> Email, video calls, online messaging and file sharing.</p>
+</div>
+
+<div class="note-card">
+<h3>1.5 Internet and World Wide Web</h3>
+<p>The <strong>Internet</strong> is a worldwide network of interconnected computer networks. It allows devices to exchange information.</p>
+<p>The <strong>World Wide Web (WWW)</strong> is a collection of connected web pages and resources accessed through the Internet.</p>
+<p><strong>Difference:</strong> The Internet is the network infrastructure, while the WWW is a service that operates on it.</p>
+</div>
+
+<div class="note-card">
+<h3>1.6 Internet Infrastructure and Data Transfer</h3>
+<p>Internet infrastructure consists of physical and logical components that help transfer information across networks.</p>
+<ul>
+<li>Routers forward data between networks.</li>
+<li>Switches connect devices within a network.</li>
+<li>Servers provide online services.</li>
+<li>Transmission media carry data.</li>
+<li>Protocols define communication rules.</li>
+<li>DNS translates domain names into IP addresses.</li>
+</ul>
+</div>
+
+<div class="note-card">
+<h3>1.7 Internet Governance and Regulation of Cyberspace</h3>
+<p>Internet governance refers to the development and application of rules, policies and technical standards that support the operation of the Internet.</p>
+<p>It involves governments, technical organizations, private companies and Internet users.</p>
+<p>Regulation of cyberspace includes laws and policies related to online safety, privacy, cybercrime and digital activities.</p>
+</div>
+
+<div class="note-card">
+<h3>1.8 Meaning of Cyber Security</h3>
+<p>Cyber Security is the practice of protecting computers, networks, applications and data from unauthorized access, attacks, damage or theft.</p>
+<p><strong>Main objectives:</strong></p>
+<ul>
+<li><strong>Confidentiality:</strong> Information should be accessible only to authorized people.</li>
+<li><strong>Integrity:</strong> Information should remain accurate and unaltered.</li>
+<li><strong>Availability:</strong> Information and services should be available when required.</li>
+</ul>
+<p>These three principles are known as the CIA Triad.</p>
+</div>
+
+<div class="note-card">
+<h3>1.9 Issues and Challenges of Cyber Security</h3>
+<ul>
+<li>Increasing cybercrime and online fraud.</li>
+<li>Data theft and privacy violations.</li>
+<li>Malware and ransomware attacks.</li>
+<li>Weak passwords and poor authentication.</li>
+<li>Unsecured wireless networks.</li>
+<li>Phishing and social engineering.</li>
+<li>Rapid development of new technologies.</li>
+<li>Lack of cyber security awareness.</li>
+</ul>
+</div>
+
+<!-- SECTION 2 -->
+
+<h2 class="section-title" id="crime">2. Cybercrime and Cyber Law</h2>
+
+<div class="note-card">
+<h3>2.1 What is Cybercrime?</h3>
+<p>Cybercrime refers to illegal activities carried out using computers, mobile devices, networks or the Internet.</p>
+<p><strong>Examples:</strong> Hacking, identity theft, online banking fraud, phishing and spreading malware.</p>
+</div>
+
+<div class="note-card">
+<h3>2.2 Classification of Cybercrimes</h3>
+<ul>
+<li><strong>Against individuals:</strong> Identity theft, cyberstalking and online harassment.</li>
+<li><strong>Against property:</strong> Data theft, intellectual property theft and ransomware.</li>
+<li><strong>Against organizations:</strong> Network attacks, data breaches and service disruption.</li>
+<li><strong>Against government:</strong> Attacks on government systems and digital infrastructure.</li>
+</ul>
+</div>
+
+<div class="note-card">
+<h3>2.3 Cybercrimes Targeting Computers and Mobile Devices</h3>
+<p>These crimes involve unauthorized access, damage or misuse of computers and mobile devices.</p>
+<ul>
+<li>Unauthorized access to computer systems.</li>
+<li>Stealing personal or business information.</li>
+<li>Installing malicious applications.</li>
+<li>Taking control of devices without permission.</li>
+<li>Stealing passwords and login details.</li>
+</ul>
+</div>
+
+<div class="note-card">
+<h3>2.4 Cybercrime Against Women and Children</h3>
+<p>Cybercrime can target women and children through online platforms and digital communication.</p>
+<ul>
+<li>Cyberstalking and online harassment.</li>
+<li>Threatening or abusive messages.</li>
+<li>Impersonation and fake profiles.</li>
+<li>Sharing private images without consent.</li>
+<li>Online exploitation and grooming.</li>
+</ul>
+<p>Such incidents should be reported to the appropriate authorities and cybercrime reporting channels.</p>
+</div>
+
+<div class="note-card">
+<h3>2.5 Financial Frauds</h3>
+<p>Financial cyber fraud involves stealing money or banking information through digital methods.</p>
+<ul>
+<li>UPI payment fraud.</li>
+<li>Fake banking calls and messages.</li>
+<li>Phishing links and fake websites.</li>
+<li>Credit and debit card fraud.</li>
+<li>Fake investment and job offers.</li>
+</ul>
+<p><strong>Prevention:</strong> Never share OTP, PIN, passwords or confidential banking information. Verify payment requests before approving them.</p>
+</div>
+
+<div class="note-card">
+<h3>2.6 Social Engineering Attacks</h3>
+<p>Social engineering is a technique used by attackers to manipulate people into revealing confidential information or performing unsafe actions.</p>
+<ul>
+<li><strong>Phishing:</strong> Fake messages or websites used to steal information.</li>
+<li><strong>Pretexting:</strong> Creating a false story to gain trust.</li>
+<li><strong>Baiting:</strong> Offering something attractive to trick a victim.</li>
+<li><strong>Impersonation:</strong> Pretending to be a trusted person or organization.</li>
+</ul>
+</div>
+
+<div class="note-card">
+<h3>2.7 Malware Attacks</h3>
+<p>Malware means malicious software designed to damage devices, steal information or gain unauthorized access.</p>
+<ul>
+<li><strong>Virus:</strong> Attaches itself to files and spreads when they are executed.</li>
+<li><strong>Worm:</strong> Spreads automatically between systems.</li>
+<li><strong>Trojan horse:</strong> Appears legitimate but performs harmful actions.</li>
+<li><strong>Spyware:</strong> Secretly collects user information.</li>
+<li><strong>Ransomware:</strong> Locks or encrypts data and demands payment.</li>
+<li><strong>Adware:</strong> Displays unwanted advertisements.</li>
+</ul>
+</div>
+
+<div class="note-card">
+<h3>2.8 Zero-Day and Zero-Click Attacks</h3>
+<p><strong>Zero-day attack:</strong> An attack that exploits a software vulnerability before the developer has released a fix or security patch.</p>
+<p><strong>Zero-click attack:</strong> An attack that can compromise a device without requiring the victim to click a link or open a file.</p>
+<p>Both can be dangerous because users may not notice the attack immediately.</p>
+</div>
+
+<div class="note-card">
+<h3>2.9 Modus Operandi of Cybercriminals</h3>
+<p>Modus operandi means the method or procedure used by a criminal to perform an illegal activity.</p>
+<p>Common steps used in cyberattacks include:</p>
+<ul>
+<li>Collecting information about the target.</li>
+<li>Identifying weaknesses in systems or user behaviour.</li>
+<li>Using phishing, malware or other attack methods.</li>
+<li>Gaining unauthorized access.</li>
+<li>Stealing, changing or destroying information.</li>
+</ul>
+</div>
+
+<div class="note-card">
+<h3>2.10 Reporting Cybercrime</h3>
+<p>Victims should report cybercrime as soon as possible.</p>
+<ul>
+<li>Preserve messages, screenshots and transaction details.</li>
+<li>Do not delete important evidence.</li>
+<li>Contact the relevant bank or payment provider immediately in financial fraud cases.</li>
+<li>Report cybercrime through the official Indian cybercrime portal.</li>
+<li>For financial cyber fraud in India, call the national helpline 1930 promptly.</li>
+</ul>
+<div class="example">
+Official portal: https://cybercrime.gov.in
+<br>
+National Cyber Crime Helpline: 1930
+</div>
+</div>
+
+<div class="note-card">
+<h3>2.11 Remedial and Mitigation Measures</h3>
+<p>Remedial measures help reduce the impact of cyberattacks and prevent future incidents.</p>
+<ul>
+<li>Change compromised passwords immediately.</li>
+<li>Enable multi-factor authentication.</li>
+<li>Install security updates.</li>
+<li>Scan devices for malware.</li>
+<li>Back up important data.</li>
+<li>Report the incident to the proper authority.</li>
+<li>Monitor accounts for suspicious activity.</li>
+</ul>
+</div>
+
+<div class="note-card">
+<h3>2.12 Information Technology Act, 2000</h3>
+<p>The Information Technology Act, 2000 is an important Indian law dealing with electronic records, electronic transactions and certain cyber offences.</p>
+<p>It provides a legal framework for electronic records and digital activities and includes provisions dealing with unauthorized access, damage to computer resources and other offences.</p>
+<p>The Act was amended in 2008 to address changes in technology and cyber-related issues.</p>
+</div>
+
+<div class="note-card">
+<h3>2.13 Cyber Security Organizations in India</h3>
+<ul>
+<li><strong>Indian Computer Emergency Response Team (CERT-In):</strong> Handles cyber security incidents and issues security advisories.</li>
+<li><strong>National Cyber Crime Reporting Portal:</strong> Provides a channel for reporting cybercrime.</li>
+<li><strong>National Critical Information Infrastructure Protection Centre (NCIIPC):</strong> Works to protect critical information infrastructure.</li>
+<li><strong>Indian Cyber Crime Coordination Centre (I4C):</strong> Supports coordination and response to cybercrime.</li>
+</ul>
+</div>
+
+<div class="note-card">
+<h3>2.14 Cybercrime Case Studies</h3>
+<p><strong>Example 1 – Phishing:</strong> A user receives a fake bank message asking them to update account details. The user enters their password on a fake website, allowing the attacker to steal the information.</p>
+<p><strong>Example 2 – Ransomware:</strong> An employee opens a malicious attachment. The malware encrypts company files and demands payment to restore access.</p>
+<p><strong>Lesson:</strong> Verify messages, avoid suspicious attachments and maintain secure backups.</p>
+</div>
+
+<!-- SECTION 3 -->
+
+<h2 class="section-title" id="social">3. Social Media Overview and Security</h2>
+
+<div class="note-card">
+<h3>3.1 Introduction to Social Networks</h3>
+<p>Social networks are online platforms that allow people to communicate, share information, create content and build relationships.</p>
+<p><strong>Examples:</strong> Facebook, Instagram, LinkedIn, YouTube and X.</p>
+</div>
+
+<div class="note-card">
+<h3>3.2 Types of Social Media</h3>
+<ul>
+<li><strong>Social networking:</strong> Connecting with friends and communities.</li>
+<li><strong>Media sharing:</strong> Sharing photos and videos.</li>
+<li><strong>Professional networks:</strong> Career and professional communication.</li>
+<li><strong>Discussion platforms:</strong> Sharing ideas and asking questions.</li>
+<li><strong>Blogging platforms:</strong> Publishing articles and opinions.</li>
+</ul>
+</div>
+
+<div class="note-card">
+<h3>3.3 Social Media Platforms</h3>
+<p>Social media platforms provide services for communication and content sharing.</p>
+<ul>
+<li>Instagram – photo and video sharing.</li>
+<li>Facebook – social networking and communities.</li>
+<li>LinkedIn – professional networking.</li>
+<li>YouTube – video publishing and viewing.</li>
+<li>X – short posts and public discussions.</li>
+</ul>
+</div>
+
+<div class="note-card">
+<h3>3.4 Social Media Monitoring</h3>
+<p>Social media monitoring is the process of observing and analyzing online conversations, comments, mentions and activities related to a person, brand or topic.</p>
+<p>It helps organizations understand public opinion, identify problems and respond to users.</p>
+</div>
+
+<div class="note-card">
+<h3>3.5 Hashtags and Viral Content</h3>
+<p><strong>Hashtag:</strong> A word or phrase preceded by the # symbol. It helps organize and discover related posts.</p>
+<p><strong>Viral content:</strong> Content that spreads rapidly across the Internet through sharing, comments and reactions.</p>
+<p>Users should verify information before sharing it because false information can also spread quickly.</p>
+</div>
+
+<div class="note-card">
+<h3>3.6 Social Media Marketing</h3>
+<p>Social media marketing is the use of social media platforms to promote products, services, brands or ideas.</p>
+<ul>
+<li>Creating useful content.</li>
+<li>Connecting with customers.</li>
+<li>Running advertisements.</li>
+<li>Building brand awareness.</li>
+<li>Analyzing audience engagement.</li>
+</ul>
+</div>
+
+<div class="note-card">
+<h3>3.7 Social Media Privacy</h3>
+<p>Social media privacy refers to controlling how personal information is collected, stored and shared on social platforms.</p>
+<p><strong>Privacy protection methods:</strong></p>
+<ul>
+<li>Use private account settings when appropriate.</li>
+<li>Avoid sharing sensitive personal information.</li>
+<li>Review app permissions.</li>
+<li>Use strong passwords and two-factor authentication.</li>
+<li>Think before posting photographs or location details.</li>
+</ul>
+</div>
+
+<div class="note-card">
+<h3>3.8 Challenges and Opportunities in Online Social Networks</h3>
+<p><strong>Opportunities:</strong></p>
+<ul>
+<li>Global communication.</li>
+<li>Education and knowledge sharing.</li>
+<li>Business promotion.</li>
+<li>Professional networking.</li>
+<li>Community support.</li>
+</ul>
+<p><strong>Challenges:</strong></p>
+<ul>
+<li>Fake news and misinformation.</li>
+<li>Privacy violations.</li>
+<li>Cyberbullying.</li>
+<li>Identity theft.</li>
+<li>Online scams.</li>
+</ul>
+</div>
+
+<div class="note-card">
+<h3>3.9 Pitfalls of Online Social Networks</h3>
+<ul>
+<li>Spending excessive time online.</li>
+<li>Sharing unverified information.</li>
+<li>Accepting requests from unknown people.</li>
+<li>Revealing private information.</li>
+<li>Becoming a victim of online harassment.</li>
+<li>Clicking suspicious links.</li>
+</ul>
+</div>
+
+<div class="note-card">
+<h3>3.10 Security Issues Related to Social Media</h3>
+<p>Common social media security problems include fake profiles, account hacking, phishing, malicious links, data leaks and identity theft.</p>
+<p>Users should use official applications, enable account security features and avoid suspicious links.</p>
+</div>
+
+<div class="note-card">
+<h3>3.11 Reporting Inappropriate Content</h3>
+<p>Social media platforms provide reporting options to flag abusive, harmful or inappropriate content.</p>
+<ul>
+<li>Use the platform's report feature.</li>
+<li>Block accounts that send abusive messages.</li>
+<li>Save evidence when necessary.</li>
+<li>Report serious threats or illegal content to the appropriate authorities.</li>
+</ul>
+</div>
+
+<div class="note-card">
+<h3>3.12 Laws Regarding Inappropriate Online Content</h3>
+<p>In India, online content and cyber offences may be governed by applicable provisions of the Information Technology Act, 2000 and other relevant laws.</p>
+<p>Users should avoid publishing threats, harassment, defamatory content or private information without permission.</p>
+</div>
+
+<div class="note-card">
+<h3>3.13 Best Practices for Social Media</h3>
+<ul>
+<li>Use strong and unique passwords.</li>
+<li>Enable two-factor authentication.</li>
+<li>Keep applications updated.</li>
+<li>Check privacy settings regularly.</li>
+<li>Do not share OTPs or passwords.</li>
+<li>Verify information before sharing.</li>
+<li>Avoid unknown links and suspicious offers.</li>
+<li>Report fake accounts and abusive content.</li>
+</ul>
+</div>
+
+<div class="note-card">
+<h3>3.14 Social Media Security Case Study</h3>
+<p>A person receives a message from a fake account claiming to be a friend. The message contains a link asking the person to log in. The fake page collects the login details.</p>
+<p><strong>Security lesson:</strong> Verify the sender, inspect links carefully and use two-factor authentication.</p>
+</div>
+
+<!-- SECTION 4 -->
+
+<h2 class="section-title" id="tools">4. Cyber Security Tools and Technologies</h2>
+
+<div class="note-card">
+<h3>4.1 Antivirus Software</h3>
+<p>Antivirus software is a security program designed to detect, prevent and remove malicious software from computers.</p>
+<p><strong>Functions:</strong></p>
+<ul>
+<li>Scans files and applications.</li>
+<li>Detects known malware.</li>
+<li>Quarantines suspicious files.</li>
+<li>Provides real-time protection.</li>
+</ul>
+<p><strong>Examples:</strong> Microsoft Defender, Avast and Bitdefender.</p>
+</div>
+
+<div class="note-card">
+<h3>4.2 Firewall</h3>
+<p>A firewall is a security system that monitors and controls incoming and outgoing network traffic according to defined security rules.</p>
+<p><strong>Types:</strong></p>
+<ul>
+<li>Hardware firewall.</li>
+<li>Software firewall.</li>
+<li>Network firewall.</li>
+<li>Host-based firewall.</li>
+</ul>
+<p><strong>Example:</strong> A firewall can block unauthorized network connections while allowing approved traffic.</p>
+</div>
+
+<div class="note-card">
+<h3>4.3 Intrusion Detection System (IDS)</h3>
+<p>An Intrusion Detection System monitors network or system activities to identify suspicious behaviour and possible security attacks.</p>
+<p>It generates alerts when it detects unusual or unauthorized activity.</p>
+</div>
+
+<div class="note-card">
+<h3>4.4 Intrusion Prevention System (IPS)</h3>
+<p>An Intrusion Prevention System monitors network traffic and can automatically block or prevent detected malicious activities.</p>
+<p><strong>Difference:</strong> IDS mainly detects and alerts, while IPS can take preventive action to block threats.</p>
+</div>
+
+<div class="note-card">
+<h3>4.5 Encryption Tools</h3>
+<p>Encryption is the process of converting readable information (plaintext) into an unreadable form (ciphertext) using an algorithm and a key.</p>
+<p>Decryption converts ciphertext back into readable information.</p>
+<ul>
+<li><strong>Symmetric encryption:</strong> Uses the same key for encryption and decryption.</li>
+<li><strong>Asymmetric encryption:</strong> Uses a public key and a private key.</li>
+</ul>
+<p>Encryption helps protect sensitive information during storage and transmission.</p>
+</div>
+
+<div class="note-card">
+<h3>4.6 Virtual Private Network (VPN)</h3>
+<p>A VPN creates an encrypted connection between a device and a VPN service or network. It helps protect data while using networks that may not be trusted.</p>
+<p><strong>Uses:</strong></p>
+<ul>
+<li>Protecting data on public Wi-Fi.</li>
+<li>Connecting securely to an organization's network.</li>
+<li>Adding privacy to network communication.</li>
+</ul>
+</div>
+
+<div class="note-card">
+<h3>4.7 Authentication Mechanisms</h3>
+<p>Authentication is the process of verifying the identity of a user or device before granting access.</p>
+<ul>
+<li><strong>Password authentication:</strong> Uses a secret password.</li>
+<li><strong>OTP:</strong> Uses a one-time password.</li>
+<li><strong>Biometric authentication:</strong> Uses fingerprint or facial recognition.</li>
+<li><strong>Multi-factor authentication:</strong> Uses two or more different authentication factors.</li>
+</ul>
+</div>
+
+<div class="note-card">
+<h3>4.8 Cyber Hygiene</h3>
+<p>Cyber hygiene refers to regular practices followed by users to maintain the security and health of digital devices and online accounts.</p>
+<p><strong>Important practices:</strong></p>
+<ul>
+<li>Use strong passwords.</li>
+<li>Update operating systems and applications.</li>
+<li>Back up important data.</li>
+<li>Use antivirus protection.</li>
+<li>Avoid suspicious websites.</li>
+<li>Secure online accounts.</li>
+</ul>
+</div>
+
+<div class="note-card">
+<h3>4.9 Importance of Strong Passwords</h3>
+<p>A strong password makes it more difficult for attackers to access an account.</p>
+<ul>
+<li>Use a long password or passphrase.</li>
+<li>Combine different character types where appropriate.</li>
+<li>Avoid names, birthdays and common words.</li>
+<li>Never reuse the same password everywhere.</li>
+<li>Use a trusted password manager if needed.</li>
+</ul>
+</div>
+
+<div class="note-card">
+<h3>4.10 Regular Software Updates</h3>
+<p>Software updates fix security weaknesses, correct errors and improve performance.</p>
+<p>Outdated software may contain vulnerabilities that attackers can exploit.</p>
+<p>Enable automatic updates when possible and install updates from trusted sources.</p>
+</div>
+
+<div class="note-card">
+<h3>4.11 Data Backups</h3>
+<p>A data backup is an additional copy of important files stored separately so that information can be recovered after accidental deletion, hardware failure or a cyberattack.</p>
+<ul>
+<li><strong>Full backup:</strong> Copies all selected data.</li>
+<li><strong>Incremental backup:</strong> Copies data changed since the previous backup.</li>
+<li><strong>Differential backup:</strong> Copies data changed since the last full backup.</li>
+</ul>
+</div>
+
+<div class="note-card">
+<h3>4.12 Secure Browsing Habits</h3>
+<ul>
+<li>Use trusted websites.</li>
+<li>Check the website address carefully.</li>
+<li>Avoid suspicious downloads.</li>
+<li>Do not enter passwords on unknown pages.</li>
+<li>Keep the browser updated.</li>
+<li>Be careful when using public computers.</li>
+<li>Log out after using shared devices.</li>
+</ul>
+</div>
+
+<div class="note-card">
+<h3>4.13 Network Security Fundamentals</h3>
+<p>Network security refers to protecting computer networks, connected devices and data from unauthorized access, misuse and attacks.</p>
+<p><strong>Main objectives:</strong> Protect information, prevent unauthorized access and maintain reliable network services.</p>
+</div>
+
+<div class="note-card">
+<h3>4.14 Wired Network Security</h3>
+<p>Wired network security protects devices connected through physical cables such as Ethernet.</p>
+<ul>
+<li>Control physical access to network equipment.</li>
+<li>Use secure router and switch configurations.</li>
+<li>Restrict unauthorized connections.</li>
+<li>Monitor network activity.</li>
+<li>Keep network devices updated.</li>
+</ul>
+</div>
+
+<div class="note-card">
+<h3>4.15 Wireless Network Security</h3>
+<p>Wireless network security protects Wi-Fi networks and connected devices from unauthorized access.</p>
+<ul>
+<li>Use WPA2 or WPA3 security where supported.</li>
+<li>Set a strong Wi-Fi password.</li>
+<li>Change default router administrator credentials.</li>
+<li>Update router firmware.</li>
+<li>Disable unnecessary remote administration.</li>
+<li>Use a guest network for visitors when available.</li>
+</ul>
+</div>
+
+<div class="note-card">
+<h3>4.16 Secure Network Configuration</h3>
+<p>Secure network configuration means setting up network devices and services with appropriate security controls.</p>
+<ul>
+<li>Change default passwords.</li>
+<li>Disable unused services and ports.</li>
+<li>Apply security updates.</li>
+<li>Use access control rules.</li>
+<li>Enable encryption.</li>
+<li>Review firewall settings.</li>
+</ul>
+</div>
+
+<div class="note-card">
+<h3>4.17 Network Monitoring</h3>
+<p>Network monitoring is the continuous observation of network performance, traffic and activities to identify problems and security threats.</p>
+<p>It helps administrators detect unusual traffic, unauthorized access and network failures.</p>
+</div>
+
+<!-- QUICK REVISION -->
+
+<h2 class="section-title">Quick Revision</h2>
+
+<div class="note-card">
+<h3>Important Definitions</h3>
+<ul>
+<li><strong>Cyber Security:</strong> Protection of digital systems and information.</li>
+<li><strong>Cybercrime:</strong> Illegal activity involving computers or networks.</li>
+<li><strong>Malware:</strong> Software designed to cause harm.</li>
+<li><strong>Phishing:</strong> A fraudulent attempt to steal sensitive information.</li>
+<li><strong>Firewall:</strong> A system that filters network traffic.</li>
+<li><strong>Encryption:</strong> Converting readable data into protected unreadable data.</li>
+<li><strong>VPN:</strong> An encrypted connection over a network.</li>
+<li><strong>Authentication:</strong> Verifying a user's identity.</li>
+<li><strong>IDS:</strong> Detects suspicious activity.</li>
+<li><strong>IPS:</strong> Detects and can block malicious activity.</li>
+</ul>
+</div>
+
+<div class="note-card">
+<h3>Important Exam Questions</h3>
+<p><strong>Long-answer preparation:</strong></p>
+<ol>
+<li>Explain cyberspace and the architecture of cyberspace.</li>
+<li>Define Cyber Security and explain its issues and challenges.</li>
+<li>Explain the classification of cybercrimes.</li>
+<li>Describe different types of malware attacks.</li>
+<li>Explain social engineering attacks with examples.</li>
+<li>Write a note on the Information Technology Act, 2000.</li>
+<li>Explain social media security issues and best practices.</li>
+<li>Explain antivirus, firewall, IDS and IPS.</li>
+<li>Describe encryption and VPN.</li>
+<li>Explain cyber hygiene and network security practices.</li>
+</ol>
+<p><strong>Short-answer preparation:</strong></p>
+<ol>
+<li>What is cyberspace?</li>
+<li>What is the CIA Triad?</li>
+<li>Define phishing.</li>
+<li>What is ransomware?</li>
+<li>What is a zero-day attack?</li>
+<li>Define cyber hygiene.</li>
+<li>What is authentication?</li>
+<li>What is a firewall?</li>
+<li>Expand IDS and IPS.</li>
+<li>What is a VPN?</li>
+</ol>
+</div>
+
+</div>
+
+<footer>
+    <p>STUDENTVERSE | BCA Semester 3</p>
+    <p>Learn • Practice • Succeed</p>
+</footer>
+
+<button id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+function searchNotes(){
+    const input=document.getElementById("searchInput");
+    const filter=input.value.toLowerCase().trim();
+    const cards=document.querySelectorAll(".note-card");
+    let visible=0;
+
+    cards.forEach(card=>{
+        const match=card.innerText.toLowerCase().includes(filter);
+        card.style.display=match?"block":"none";
+        if(match) visible++;
+    });
+
+    document.querySelectorAll(".section-title").forEach(title=>{
+        let next=title.nextElementSibling;
+        let hasVisible=false;
+
+        while(next && !next.classList.contains("section-title")){
+            if(next.classList.contains("note-card") && next.style.display!=="none"){
+                hasVisible=true;
+            }
+            next=next.nextElementSibling;
+        }
+
+        title.style.display=hasVisible?"block":"none";
+    });
+
+    document.getElementById("noResults").style.display=
+        visible===0?"block":"none";
+}
+
+window.addEventListener("scroll",()=>{
+    document.getElementById("topBtn").style.display=
+        window.scrollY>300?"block":"none";
+});
+</script>
+
+</body>
+</html>

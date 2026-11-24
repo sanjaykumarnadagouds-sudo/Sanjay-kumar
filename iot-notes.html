@@ -1,0 +1,1091 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Internet of Things | STUDENTVERSE</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: radial-gradient(circle at top, #18245a, #080b20 55%, #03040d);
+    color: #fff;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+        radial-gradient(2px 2px at 20% 30%, #fff, transparent),
+        radial-gradient(2px 2px at 70% 60%, #8be9ff, transparent),
+        radial-gradient(1px 1px at 40% 80%, #fff, transparent),
+        radial-gradient(2px 2px at 90% 20%, #fff, transparent);
+    background-size: 250px 250px;
+    opacity: .45;
+    pointer-events: none;
+    z-index: -1;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 7%;
+    background: rgba(5, 10, 35, .85);
+    border-bottom: 1px solid #394b91;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(12px);
+}
+
+.logo {
+    color: #65eaff;
+    font-size: 25px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-shadow: 0 0 15px #00d9ff;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 18px;
+    font-size: 14px;
+}
+
+nav a:hover {
+    color: #63eaff;
+}
+
+header {
+    text-align: center;
+    padding: 75px 20px 55px;
+}
+
+header h1 {
+    font-size: clamp(32px, 6vw, 55px);
+    color: #65eaff;
+    text-shadow: 0 0 20px #00bfff;
+    margin-bottom: 15px;
+}
+
+header p {
+    color: #cbd7ff;
+    line-height: 1.7;
+}
+
+.course-info {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.course-info span {
+    background: rgba(48, 80, 160, .35);
+    border: 1px solid #5275d9;
+    padding: 10px 17px;
+    border-radius: 20px;
+    font-size: 13px;
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 20px;
+}
+
+button {
+    background: linear-gradient(135deg, #00c6ff, #536dfe);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: .3s;
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 18px #00c6ff;
+}
+
+.search-area {
+    max-width: 700px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.search-area input {
+    width: 100%;
+    padding: 16px 20px;
+    border-radius: 30px;
+    border: 1px solid #5275d9;
+    background: rgba(10, 20, 55, .9);
+    color: white;
+    outline: none;
+    font-size: 16px;
+}
+
+.search-area input:focus {
+    box-shadow: 0 0 15px #00c6ff;
+}
+
+.container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 20px;
+}
+
+.section-title {
+    text-align: center;
+    color: #65eaff;
+    font-size: 28px;
+    margin: 45px 0 25px;
+}
+
+.topic {
+    background: linear-gradient(145deg, rgba(23, 36, 86, .9), rgba(9, 13, 39, .95));
+    border: 1px solid rgba(91, 130, 255, .45);
+    border-radius: 18px;
+    padding: 25px;
+    margin-bottom: 22px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .3);
+    transition: .3s;
+}
+
+.topic:hover {
+    transform: translateY(-4px);
+    border-color: #50e5ff;
+    box-shadow: 0 0 22px rgba(0, 198, 255, .2);
+}
+
+.topic h2 {
+    color: #72eaff;
+    margin-bottom: 17px;
+    font-size: 23px;
+}
+
+.topic h3 {
+    color: #a8baff;
+    margin: 20px 0 10px;
+}
+
+.topic p {
+    color: #dce4ff;
+    line-height: 1.8;
+    margin: 10px 0;
+}
+
+.topic ul, .topic ol {
+    margin: 12px 0 12px 25px;
+    color: #dce4ff;
+    line-height: 1.9;
+}
+
+.topic li {
+    padding-left: 4px;
+}
+
+.topic strong {
+    color: #75eaff;
+}
+
+.topic table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 18px 0;
+    overflow: hidden;
+}
+
+.topic th, .topic td {
+    border: 1px solid #465b9e;
+    padding: 12px;
+    text-align: left;
+    color: #e2e9ff;
+}
+
+.topic th {
+    background: rgba(47, 83, 170, .55);
+    color: #7ceaff;
+}
+
+.note {
+    background: rgba(0, 180, 255, .09);
+    border-left: 4px solid #00d9ff;
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 7px;
+    color: #dceaff;
+    line-height: 1.7;
+}
+
+.diagram {
+    background: rgba(4, 10, 32, .8);
+    border: 1px dashed #5b8cff;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    margin: 18px 0;
+    line-height: 2;
+    color: #9beaff;
+    font-weight: bold;
+}
+
+.question {
+    padding: 12px;
+    margin: 9px 0;
+    background: rgba(56, 79, 150, .2);
+    border-radius: 8px;
+    color: #e3eaff;
+}
+
+.no-result {
+    display: none;
+    text-align: center;
+    color: #ffb5b5;
+    padding: 25px;
+}
+
+footer {
+    text-align: center;
+    padding: 30px 15px;
+    margin-top: 50px;
+    border-top: 1px solid #34477e;
+    color: #aab8e8;
+}
+
+#backToTop {
+    position: fixed;
+    bottom: 25px;
+    right: 22px;
+    display: none;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    font-size: 20px;
+}
+
+@media(max-width: 650px) {
+    nav {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    nav a {
+        margin: 0 6px;
+    }
+
+    .topic {
+        padding: 18px;
+    }
+
+    .topic table {
+        display: block;
+        overflow-x: auto;
+    }
+}
+
+@media print {
+    body {
+        background: white !important;
+        color: black !important;
+    }
+
+    body::before {
+        display: none;
+    }
+
+    nav, .actions, .search-area, #backToTop {
+        display: none !important;
+    }
+
+    header {
+        padding: 20px;
+    }
+
+    header h1, .section-title, .topic h2, .topic h3 {
+        color: black !important;
+        text-shadow: none;
+    }
+
+    header p, .topic p, .topic li, .topic td,
+    .topic th, .question, .note {
+        color: black !important;
+    }
+
+    .topic {
+        background: white !important;
+        border: 1px solid #aaa;
+        box-shadow: none;
+        break-inside: avoid;
+    }
+
+    .topic th {
+        background: #eee !important;
+    }
+
+    .diagram {
+        color: black;
+        background: white;
+    }
+
+    footer {
+        color: black;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">STUDENTVERSE</div>
+    <div>
+        <a href="index.html">Home</a>
+        <a href="studyhub.html">StudyHub</a>
+        <a href="digital-marketing.html">Previous Subject</a>
+    </div>
+</nav>
+
+<header>
+    <h1>Internet of Things (IoT)</h1>
+    <p>Semester IV | BCA | Elective 1</p>
+
+    <div class="course-info">
+        <span>Course Code: CAE4E12</span>
+        <span>Credits: 3</span>
+        <span>44 Contact Hours</span>
+        <span>80 Exam Marks</span>
+    </div>
+</header>
+
+<div class="actions">
+    <button onclick="window.print()">Download / Print PDF</button>
+    <button onclick="window.location.href='studyhub.html'">Back to StudyHub</button>
+</div>
+
+<div class="search-area">
+    <input type="text" id="search"
+    placeholder="Search IoT topics, concepts and definitions...">
+</div>
+
+<main class="container">
+
+<h2 class="section-title">UNIT 1 – Introduction to IoT</h2>
+
+<section class="topic">
+<h2>1. Introduction to Internet of Things</h2>
+
+<p><strong>Internet of Things (IoT)</strong> is a technology that connects physical objects to the internet. These objects contain sensors, software and communication devices that allow them to collect and exchange data.</p>
+
+<p>IoT allows devices to communicate with each other and perform tasks with little or no human involvement.</p>
+
+<h3>Examples</h3>
+<ul>
+<li>Smart watches that monitor health and activity.</li>
+<li>Smart bulbs controlled using mobile phones.</li>
+<li>Smart refrigerators that monitor food storage.</li>
+<li>Smart agriculture systems that monitor soil moisture.</li>
+<li>Connected vehicles that share information.</li>
+</ul>
+
+<div class="note">
+<strong>Example:</strong> A smart irrigation system checks soil moisture. If the soil becomes dry, the system automatically switches on the water pump.
+</div>
+</section>
+
+<section class="topic">
+<h2>2. IoT and Digitization</h2>
+
+<p><strong>Digitization</strong> means converting information or physical activities into digital form so that computers can process them.</p>
+
+<p>IoT extends digitization by connecting physical devices to networks. These devices collect real-time information and send it to applications or cloud platforms.</p>
+
+<h3>Difference between Digitization and IoT</h3>
+<table>
+<tr><th>Digitization</th><th>Internet of Things</th></tr>
+<tr><td>Converts information into digital form.</td><td>Connects physical objects to the internet.</td></tr>
+<tr><td>Focuses on digital data.</td><td>Focuses on connected devices and data.</td></tr>
+<tr><td>Example: Digital documents.</td><td>Example: Smart home devices.</td></tr>
+</table>
+</section>
+
+<section class="topic">
+<h2>3. Impact of IoT</h2>
+
+<p>IoT has changed the way people, businesses and industries operate. It provides automation, real-time monitoring and better decision-making.</p>
+
+<h3>Major impacts</h3>
+<ul>
+<li><strong>Automation:</strong> Devices perform tasks automatically.</li>
+<li><strong>Efficiency:</strong> Reduces unnecessary work and saves time.</li>
+<li><strong>Cost reduction:</strong> Helps reduce operational expenses.</li>
+<li><strong>Real-time monitoring:</strong> Provides current information about devices and systems.</li>
+<li><strong>Better decisions:</strong> Data helps users make informed decisions.</li>
+<li><strong>Improved safety:</strong> Sensors can detect dangerous conditions.</li>
+</ul>
+</section>
+
+<section class="topic">
+<h2>4. Convergence of IT and OT</h2>
+
+<p><strong>Information Technology (IT)</strong> deals with computers, software, networks and information management.</p>
+
+<p><strong>Operational Technology (OT)</strong> deals with hardware and software used to monitor and control physical devices, machines and industrial processes.</p>
+
+<h3>Examples of IT</h3>
+<ul>
+<li>Database systems</li>
+<li>Cloud computing</li>
+<li>Computer networks</li>
+<li>Business applications</li>
+</ul>
+
+<h3>Examples of OT</h3>
+<ul>
+<li>Industrial machines</li>
+<li>Factory control systems</li>
+<li>Robotics</li>
+<li>Temperature control equipment</li>
+</ul>
+
+<p><strong>IT and OT convergence</strong> means combining information systems with operational systems to improve monitoring, automation and industrial performance.</p>
+
+<div class="note">
+<strong>Example:</strong> In a smart factory, machine sensors collect production data. IT systems analyse the data and help managers monitor factory performance.
+</div>
+</section>
+
+<section class="topic">
+<h2>5. Challenges of IoT</h2>
+
+<p>Although IoT provides many advantages, it also faces several challenges.</p>
+
+<ul>
+<li><strong>Security:</strong> Connected devices may be attacked by hackers.</li>
+<li><strong>Privacy:</strong> Devices may collect personal information.</li>
+<li><strong>Connectivity:</strong> Internet interruptions can affect device communication.</li>
+<li><strong>Compatibility:</strong> Devices from different manufacturers may not work together.</li>
+<li><strong>Data management:</strong> IoT systems generate large amounts of data.</li>
+<li><strong>Power consumption:</strong> Some devices require frequent battery replacement.</li>
+<li><strong>Cost:</strong> Installation and maintenance can be expensive.</li>
+<li><strong>Scalability:</strong> Managing a large number of connected devices is difficult.</li>
+</ul>
+</section>
+
+<section class="topic">
+<h2>6. Comparing IoT Architectures</h2>
+
+<p>IoT architecture describes how devices, networks, processing systems and applications work together.</p>
+
+<h3>Three-layer architecture</h3>
+<ol>
+<li><strong>Perception Layer:</strong> Collects information using sensors and devices.</li>
+<li><strong>Network Layer:</strong> Transfers data between devices and processing systems.</li>
+<li><strong>Application Layer:</strong> Provides services to users.</li>
+</ol>
+
+<div class="diagram">
+PERCEPTION LAYER<br>
+Sensors and Devices<br>
+↓<br>
+NETWORK LAYER<br>
+Communication and Data Transfer<br>
+↓<br>
+APPLICATION LAYER<br>
+Smart Home, Smart City, Healthcare
+</div>
+
+<h3>Five-layer architecture</h3>
+<ol>
+<li><strong>Perception Layer:</strong> Collects data from the physical environment.</li>
+<li><strong>Transport Layer:</strong> Transfers data through communication networks.</li>
+<li><strong>Processing Layer:</strong> Stores and processes collected information.</li>
+<li><strong>Application Layer:</strong> Provides services to different users.</li>
+<li><strong>Business Layer:</strong> Manages business models, decisions and overall system operations.</li>
+</ol>
+
+<h3>Comparison</h3>
+<table>
+<tr><th>Three-layer</th><th>Five-layer</th></tr>
+<tr><td>Contains three layers.</td><td>Contains five layers.</td></tr>
+<tr><td>Simple architecture.</td><td>More detailed architecture.</td></tr>
+<tr><td>Suitable for basic explanation.</td><td>Separates processing, transport and business functions.</td></tr>
+</table>
+</section>
+
+<section class="topic">
+<h2>7. Core IoT Functional Stack</h2>
+
+<p>The IoT functional stack describes the main functions required for an IoT system to operate.</p>
+
+<ul>
+<li><strong>Things:</strong> Physical devices, sensors and actuators.</li>
+<li><strong>Connectivity:</strong> Transfers information between devices and systems.</li>
+<li><strong>Edge Computing:</strong> Processes data near the device to reduce delay.</li>
+<li><strong>Data Accumulation:</strong> Stores incoming data for future use.</li>
+<li><strong>Data Abstraction:</strong> Organises and prepares data for applications.</li>
+<li><strong>Application:</strong> Provides user services and controls.</li>
+<li><strong>Collaboration and Processes:</strong> Helps people and systems use information to perform actions.</li>
+</ul>
+
+<div class="diagram">
+THINGS → CONNECTIVITY → EDGE COMPUTING<br>
+↓<br>
+DATA ACCUMULATION → DATA ABSTRACTION<br>
+↓<br>
+APPLICATION → COLLABORATION AND PROCESSES
+</div>
+</section>
+
+<section class="topic">
+<h2>8. IoT Data Management and Compute Stack</h2>
+
+<p>IoT devices produce large amounts of data. Data management and computing systems are used to collect, store, process and analyse this information.</p>
+
+<h3>Data management</h3>
+<ul>
+<li>Data collection from sensors.</li>
+<li>Data storage in databases or cloud platforms.</li>
+<li>Data organisation and filtering.</li>
+<li>Data security and backup.</li>
+<li>Data analysis and reporting.</li>
+</ul>
+
+<h3>Computing methods</h3>
+<ul>
+<li><strong>Device Computing:</strong> Processing performed directly by IoT devices.</li>
+<li><strong>Edge Computing:</strong> Processing performed close to the devices.</li>
+<li><strong>Fog Computing:</strong> Processing distributed across local network nodes between devices and cloud.</li>
+<li><strong>Cloud Computing:</strong> Processing and storage provided through remote internet servers.</li>
+</ul>
+
+<div class="note">
+<strong>Example:</strong> A security camera may detect movement locally using edge computing and send selected video information to cloud storage.
+</div>
+</section>
+
+<h2 class="section-title">UNIT 2 – IoT Networks</h2>
+
+<section class="topic">
+<h2>9. Sensors, Actuators and Smart Objects</h2>
+
+<h3>Sensor</h3>
+<p>A sensor is an electronic device that detects changes in the physical environment and converts them into signals or data.</p>
+
+<p><strong>Examples:</strong> Temperature sensor, humidity sensor, light sensor, motion sensor and pressure sensor.</p>
+
+<h3>Actuator</h3>
+<p>An actuator is a device that converts a control signal into a physical action.</p>
+
+<p><strong>Examples:</strong> Electric motor, relay, buzzer, valve and water pump.</p>
+
+<h3>Smart Object</h3>
+<p>A smart object is a physical object containing processing, sensing and communication capabilities that allow it to interact with other devices.</p>
+
+<table>
+<tr><th>Sensor</th><th>Actuator</th></tr>
+<tr><td>Collects information.</td><td>Performs an action.</td></tr>
+<tr><td>Input device.</td><td>Output device.</td></tr>
+<tr><td>Example: Temperature sensor.</td><td>Example: Cooling fan.</td></tr>
+</table>
+</section>
+
+<section class="topic">
+<h2>10. Sensor Networks</h2>
+
+<p>A sensor network is a group of connected sensors that collect information from an environment and communicate it to a central system.</p>
+
+<h3>Components</h3>
+<ul>
+<li>Sensor nodes</li>
+<li>Communication links</li>
+<li>Gateway or base station</li>
+<li>Data processing system</li>
+<li>Power supply</li>
+</ul>
+
+<h3>Applications</h3>
+<ul>
+<li>Environmental monitoring</li>
+<li>Agriculture</li>
+<li>Industrial automation</li>
+<li>Healthcare monitoring</li>
+<li>Smart buildings</li>
+</ul>
+</section>
+
+<section class="topic">
+<h2>11. Communication Criteria</h2>
+
+<p>Communication criteria are the factors considered when selecting a communication technology for IoT devices.</p>
+
+<ul>
+<li><strong>Range:</strong> Distance over which devices can communicate.</li>
+<li><strong>Bandwidth:</strong> Amount of data that can be transferred.</li>
+<li><strong>Power consumption:</strong> Energy required for communication.</li>
+<li><strong>Latency:</strong> Time taken for data to travel.</li>
+<li><strong>Reliability:</strong> Ability to transfer data correctly.</li>
+<li><strong>Security:</strong> Protection of transmitted information.</li>
+<li><strong>Cost:</strong> Cost of devices, installation and communication.</li>
+<li><strong>Scalability:</strong> Ability to support more connected devices.</li>
+</ul>
+</section>
+
+<section class="topic">
+<h2>12. IoT Access Technologies</h2>
+
+<p>IoT access technologies allow connected devices to communicate with gateways, networks and cloud platforms.</p>
+
+<table>
+<tr><th>Technology</th><th>Description</th><th>Example</th></tr>
+<tr><td>Wi-Fi</td><td>Wireless local area networking.</td><td>Smart home devices.</td></tr>
+<tr><td>Bluetooth Low Energy</td><td>Short-range, low-power communication.</td><td>Fitness trackers.</td></tr>
+<tr><td>Zigbee</td><td>Low-power wireless mesh networking.</td><td>Smart lighting.</td></tr>
+<tr><td>Cellular</td><td>Communication through mobile networks.</td><td>Connected vehicles.</td></tr>
+<tr><td>LPWAN</td><td>Long-range communication with low power use.</td><td>Remote sensors.</td></tr>
+<tr><td>Ethernet</td><td>Wired network communication.</td><td>Industrial equipment.</td></tr>
+</table>
+</section>
+
+<section class="topic">
+<h2>13. Need for Optimization in IoT</h2>
+
+<p>Optimization means improving the performance of an IoT system while reducing unnecessary resource usage.</p>
+
+<h3>Why optimization is required</h3>
+<ul>
+<li>To reduce battery consumption.</li>
+<li>To reduce network traffic.</li>
+<li>To improve communication speed.</li>
+<li>To reduce operating costs.</li>
+<li>To improve device performance.</li>
+<li>To support a large number of devices.</li>
+</ul>
+
+<h3>Optimization methods</h3>
+<ul>
+<li>Use low-power communication technologies.</li>
+<li>Send only necessary data.</li>
+<li>Use data compression.</li>
+<li>Process information near the device.</li>
+<li>Use efficient routing methods.</li>
+</ul>
+</section>
+
+<section class="topic">
+<h2>14. Optimizing IP for IoT</h2>
+
+<p>Internet Protocol (IP) allows devices to communicate across networks. IoT devices often have limited memory, processing power and battery capacity.</p>
+
+<p>Optimizing IP for IoT means making IP communication more suitable for resource-constrained devices.</p>
+
+<h3>Important approaches</h3>
+<ul>
+<li><strong>IPv6:</strong> Provides a very large address space for connected devices.</li>
+<li><strong>6LoWPAN:</strong> Enables IPv6 communication over low-power wireless personal area networks.</li>
+<li><strong>Header Compression:</strong> Reduces packet overhead.</li>
+<li><strong>Efficient Routing:</strong> Helps devices find suitable communication paths.</li>
+<li><strong>Low-power Communication:</strong> Reduces energy usage.</li>
+</ul>
+</section>
+
+<h2 class="section-title">UNIT 3 – Protocols and Data Analytics</h2>
+
+<section class="topic">
+<h2>15. Transport Layer</h2>
+
+<p>The transport layer provides communication between applications running on different devices. It manages how data is delivered between communicating systems.</p>
+
+<h3>Main transport protocols</h3>
+
+<p><strong>TCP – Transmission Control Protocol</strong></p>
+<ul>
+<li>Connection-oriented protocol.</li>
+<li>Provides reliable data delivery.</li>
+<li>Uses acknowledgements and retransmission.</li>
+<li>Useful when reliable delivery is important.</li>
+</ul>
+
+<p><strong>UDP – User Datagram Protocol</strong></p>
+<ul>
+<li>Connectionless protocol.</li>
+<li>Has lower communication overhead.</li>
+<li>Does not guarantee delivery.</li>
+<li>Useful for applications that need low delay.</li>
+</ul>
+
+<table>
+<tr><th>TCP</th><th>UDP</th></tr>
+<tr><td>Connection-oriented.</td><td>Connectionless.</td></tr>
+<tr><td>Reliable delivery.</td><td>Delivery is not guaranteed.</td></tr>
+<tr><td>More overhead.</td><td>Less overhead.</td></tr>
+<tr><td>Example: Reliable file transfer.</td><td>Example: Real-time sensor updates.</td></tr>
+</table>
+</section>
+
+<section class="topic">
+<h2>16. IoT Application Transport Methods</h2>
+
+<p>IoT application transport methods describe how application data is exchanged between devices, gateways and servers.</p>
+
+<h3>Common methods and protocols</h3>
+
+<ul>
+<li><strong>HTTP/HTTPS:</strong> Transfers data between clients and web servers.</li>
+<li><strong>MQTT:</strong> Lightweight publish-subscribe messaging protocol used in IoT.</li>
+<li><strong>CoAP:</strong> Lightweight web transfer protocol designed for constrained devices.</li>
+<li><strong>WebSocket:</strong> Supports two-way communication over a persistent connection.</li>
+<li><strong>AMQP:</strong> Messaging protocol used for reliable message exchange.</li>
+</ul>
+
+<h3>MQTT working</h3>
+<div class="diagram">
+PUBLISHER<br>
+IoT Sensor<br>
+↓<br>
+MQTT BROKER<br>
+↓<br>
+SUBSCRIBER<br>
+Mobile App / Dashboard
+</div>
+
+<p>A publisher sends messages to a broker under a topic. Subscribers receive messages from the topics they have subscribed to.</p>
+</section>
+
+<section class="topic">
+<h2>17. Data Analytics for IoT</h2>
+
+<p>IoT data analytics is the process of examining data collected from connected devices to discover patterns, identify problems and support decision-making.</p>
+
+<h3>Types of analytics</h3>
+<ul>
+<li><strong>Descriptive Analytics:</strong> Explains what happened.</li>
+<li><strong>Diagnostic Analytics:</strong> Explains why something happened.</li>
+<li><strong>Predictive Analytics:</strong> Predicts what may happen in the future.</li>
+<li><strong>Prescriptive Analytics:</strong> Suggests actions to achieve a desired result.</li>
+</ul>
+
+<h3>Steps in IoT data analytics</h3>
+<ol>
+<li>Collect data from sensors.</li>
+<li>Clean and prepare the data.</li>
+<li>Store the collected data.</li>
+<li>Analyse the data.</li>
+<li>Identify useful patterns.</li>
+<li>Display results and take action.</li>
+</ol>
+</section>
+
+<section class="topic">
+<h2>18. Machine Learning in IoT</h2>
+
+<p>Machine Learning (ML) is a branch of artificial intelligence that allows computer systems to learn patterns from data and make predictions or decisions.</p>
+
+<p>In IoT, machine learning analyses sensor data to identify patterns and automate actions.</p>
+
+<h3>Applications</h3>
+<ul>
+<li>Predictive maintenance in factories.</li>
+<li>Smart home automation.</li>
+<li>Health monitoring.</li>
+<li>Traffic prediction.</li>
+<li>Crop disease detection.</li>
+<li>Energy consumption prediction.</li>
+</ul>
+
+<h3>Types of Machine Learning</h3>
+<ul>
+<li><strong>Supervised Learning:</strong> Learns from labelled data.</li>
+<li><strong>Unsupervised Learning:</strong> Finds patterns in unlabelled data.</li>
+<li><strong>Reinforcement Learning:</strong> Learns through rewards and penalties.</li>
+</ul>
+</section>
+
+<section class="topic">
+<h2>19. Big Data Analytics Tools and Technology</h2>
+
+<p>Big Data refers to extremely large and complex datasets that require special technologies for storage, processing and analysis.</p>
+
+<h3>Characteristics of Big Data – 5 Vs</h3>
+<ul>
+<li><strong>Volume:</strong> Large amount of data.</li>
+<li><strong>Velocity:</strong> Speed at which data is generated.</li>
+<li><strong>Variety:</strong> Different types of data.</li>
+<li><strong>Veracity:</strong> Accuracy and reliability of data.</li>
+<li><strong>Value:</strong> Useful information obtained from data.</li>
+</ul>
+
+<h3>Tools and technologies</h3>
+<ul>
+<li><strong>Apache Hadoop:</strong> Distributed storage and processing.</li>
+<li><strong>Apache Spark:</strong> Fast data processing and analytics.</li>
+<li><strong>Python:</strong> Data analysis and machine learning.</li>
+<li><strong>Apache Kafka:</strong> Real-time data streaming.</li>
+<li><strong>Cloud Platforms:</strong> Scalable storage and computing services.</li>
+</ul>
+</section>
+
+<section class="topic">
+<h2>20. Network Analytics</h2>
+
+<p>Network analytics is the process of collecting and analysing network data to understand network performance, identify problems and improve communication.</p>
+
+<h3>Important measurements</h3>
+<ul>
+<li><strong>Latency:</strong> Delay in data transmission.</li>
+<li><strong>Throughput:</strong> Amount of data successfully transferred.</li>
+<li><strong>Packet Loss:</strong> Percentage of packets that fail to reach their destination.</li>
+<li><strong>Bandwidth:</strong> Maximum data-carrying capacity of a network.</li>
+<li><strong>Network Availability:</strong> Time during which a network is operational.</li>
+</ul>
+
+<h3>Uses</h3>
+<ul>
+<li>Detect network failures.</li>
+<li>Monitor connected devices.</li>
+<li>Identify unusual network activity.</li>
+<li>Improve network performance.</li>
+<li>Support network security.</li>
+</ul>
+</section>
+
+<h2 class="section-title">UNIT 4 – IoT in Industry and Smart Cities</h2>
+
+<section class="topic">
+<h2>21. IoT in Industry</h2>
+
+<p>Industrial IoT (IIoT) refers to the use of connected devices, sensors, communication networks and data analytics in industrial environments.</p>
+
+<h3>Applications</h3>
+<ul>
+<li><strong>Smart Manufacturing:</strong> Monitors production machines.</li>
+<li><strong>Predictive Maintenance:</strong> Predicts machine failures before they happen.</li>
+<li><strong>Supply Chain:</strong> Tracks goods and materials.</li>
+<li><strong>Energy Management:</strong> Monitors electricity consumption.</li>
+<li><strong>Quality Control:</strong> Detects defects during production.</li>
+<li><strong>Worker Safety:</strong> Monitors dangerous conditions.</li>
+</ul>
+</section>
+
+<section class="topic">
+<h2>22. Smart and Connected Cities</h2>
+
+<p>A smart city uses digital technologies, IoT devices and data analytics to improve public services, infrastructure and quality of life.</p>
+
+<h3>Examples of smart city services</h3>
+<ul>
+<li><strong>Smart Traffic:</strong> Uses sensors to monitor traffic and manage signals.</li>
+<li><strong>Smart Parking:</strong> Detects available parking spaces.</li>
+<li><strong>Smart Lighting:</strong> Adjusts street lights according to conditions.</li>
+<li><strong>Smart Waste Management:</strong> Monitors waste-bin levels.</li>
+<li><strong>Smart Water Supply:</strong> Detects leaks and monitors water usage.</li>
+<li><strong>Smart Environment:</strong> Monitors air quality and pollution.</li>
+</ul>
+</section>
+
+<section class="topic">
+<h2>23. IoT Strategy for Smarter Cities</h2>
+
+<p>An IoT strategy for smart cities is a planned approach to using connected technologies to solve urban problems and improve city services.</p>
+
+<h3>Important steps</h3>
+<ol>
+<li>Identify the city's major problems.</li>
+<li>Set clear goals for improvement.</li>
+<li>Select suitable sensors and IoT devices.</li>
+<li>Build communication infrastructure.</li>
+<li>Collect and analyse data.</li>
+<li>Protect devices and information.</li>
+<li>Monitor performance and improve the system.</li>
+</ol>
+
+<div class="note">
+<strong>Example:</strong> A city may install smart traffic sensors to monitor congestion and adjust traffic signals to improve vehicle movement.
+</div>
+</section>
+
+<section class="topic">
+<h2>24. Smart City IoT Architecture</h2>
+
+<p>Smart city IoT architecture describes how devices, communication networks, data platforms and applications work together to provide city services.</p>
+
+<h3>Main components</h3>
+<ol>
+<li><strong>Device Layer:</strong> Sensors, cameras, meters and smart devices.</li>
+<li><strong>Communication Layer:</strong> Transfers data using Wi-Fi, cellular, LPWAN and other technologies.</li>
+<li><strong>Platform Layer:</strong> Stores, processes and analyses information.</li>
+<li><strong>Application Layer:</strong> Provides smart traffic, parking, water and lighting services.</li>
+<li><strong>Management and Security:</strong> Controls access, monitors devices and protects information across the system.</li>
+</ol>
+
+<div class="diagram">
+SMART DEVICES AND SENSORS<br>
+↓<br>
+COMMUNICATION NETWORK<br>
+↓<br>
+DATA PLATFORM AND ANALYTICS<br>
+↓<br>
+SMART CITY APPLICATIONS<br>
+↓<br>
+CITIZENS AND CITY ADMINISTRATION
+</div>
+</section>
+
+<section class="topic">
+<h2>25. Smart City Security Architecture</h2>
+
+<p>Smart city security architecture protects connected devices, networks, applications and data from unauthorised access and cyberattacks.</p>
+
+<h3>Important security measures</h3>
+<ul>
+<li><strong>Authentication:</strong> Verifies the identity of users and devices.</li>
+<li><strong>Authorization:</strong> Controls what users and devices are allowed to do.</li>
+<li><strong>Encryption:</strong> Protects data during storage and transmission.</li>
+<li><strong>Access Control:</strong> Limits access to authorised people and systems.</li>
+<li><strong>Network Security:</strong> Protects communication networks.</li>
+<li><strong>Software Updates:</strong> Fixes security weaknesses.</li>
+<li><strong>Monitoring:</strong> Detects unusual activities and attacks.</li>
+<li><strong>Backup:</strong> Helps recover important information after failures.</li>
+</ul>
+</section>
+
+<section class="topic">
+<h2>26. Smart City Use-Case Examples</h2>
+
+<h3>Smart Traffic Management</h3>
+<p>Traffic sensors collect information about vehicles. The system analyses traffic conditions and can adjust traffic signals to reduce congestion.</p>
+
+<h3>Smart Parking</h3>
+<p>Parking sensors detect whether a space is occupied. Drivers can use an application to find available parking spaces.</p>
+
+<h3>Smart Waste Management</h3>
+<p>Sensors installed in waste bins measure their filling levels. Collection teams can plan routes based on the information.</p>
+
+<h3>Smart Water Management</h3>
+<p>Connected meters and sensors monitor water consumption, detect leakage and help manage water distribution.</p>
+
+<h3>Smart Street Lighting</h3>
+<p>Light and motion sensors can control street lights according to surrounding conditions and activity.</p>
+
+<h3>Smart Environment Monitoring</h3>
+<p>Air-quality and environmental sensors collect information about pollution, temperature and other environmental conditions.</p>
+</section>
+
+<h2 class="section-title">Important Examination Questions</h2>
+
+<section class="topic">
+<h2>Short Answer Questions – 2 Marks</h2>
+<div class="question">1. Define Internet of Things.</div>
+<div class="question">2. What is digitization?</div>
+<div class="question">3. Define sensor.</div>
+<div class="question">4. What is an actuator?</div>
+<div class="question">5. What is a smart object?</div>
+<div class="question">6. Define IoT architecture.</div>
+<div class="question">7. What is edge computing?</div>
+<div class="question">8. Define MQTT.</div>
+<div class="question">9. What is machine learning?</div>
+<div class="question">10. Define smart city.</div>
+<div class="question">11. What is network analytics?</div>
+<div class="question">12. Expand 6LoWPAN.</div>
+</section>
+
+<section class="topic">
+<h2>Long Answer Questions – 15 Marks</h2>
+<div class="question">1. Explain the concept, impact and challenges of IoT.</div>
+<div class="question">2. Explain three-layer and five-layer IoT architecture.</div>
+<div class="question">3. Explain the core IoT functional stack.</div>
+<div class="question">4. Describe sensors, actuators and smart objects with examples.</div>
+<div class="question">5. Explain different IoT access technologies.</div>
+<div class="question">6. Explain the need for optimization and optimizing IP for IoT.</div>
+<div class="question">7. Explain TCP, UDP and IoT application transport methods.</div>
+<div class="question">8. Explain data analytics, machine learning and Big Data in IoT.</div>
+<div class="question">9. Explain IoT strategy and architecture for smart cities.</div>
+<div class="question">10. Explain smart city security architecture and use cases.</div>
+</section>
+
+<section class="topic">
+<h2>Quick Revision – Important Differences</h2>
+
+<table>
+<tr><th>Concept 1</th><th>Concept 2</th><th>Main Difference</th></tr>
+<tr><td>Sensor</td><td>Actuator</td><td>Sensor collects data; actuator performs an action.</td></tr>
+<tr><td>IT</td><td>OT</td><td>IT manages information; OT monitors and controls physical processes.</td></tr>
+<tr><td>TCP</td><td>UDP</td><td>TCP provides reliable delivery; UDP has lower overhead.</td></tr>
+<tr><td>Edge</td><td>Cloud</td><td>Edge processes data near devices; cloud uses remote servers.</td></tr>
+<tr><td>IPv4</td><td>IPv6</td><td>IPv6 provides a much larger address space.</td></tr>
+<tr><td>Digitization</td><td>IoT</td><td>Digitization converts information into digital form; IoT connects physical objects.</td></tr>
+</table>
+</section>
+
+</main>
+
+<div class="no-result" id="noResult">
+    No matching topics found. Try another search.
+</div>
+
+<footer>
+    <p>STUDENTVERSE – Learn Today, Lead Tomorrow</p>
+    <p>Internet of Things | BCA Semester IV</p>
+</footer>
+
+<button id="backToTop" onclick="window.scrollTo({top:0, behavior:'smooth'})">↑</button>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const searchBox = document.getElementById("search");
+    const topics = document.querySelectorAll(".container .topic");
+    const noResult = document.getElementById("noResult");
+
+    searchBox.addEventListener("input", function () {
+
+        const query = searchBox.value.trim().toLowerCase();
+        let visibleCount = 0;
+
+        topics.forEach(function (topic) {
+
+            const content = topic.textContent.toLowerCase();
+
+            if (content.includes(query)) {
+                topic.style.display = "";
+                visibleCount++;
+            } else {
+                topic.style.display = "none";
+            }
+        });
+
+        noResult.style.display =
+            visibleCount === 0 ? "block" : "none";
+    });
+
+    const backToTop = document.getElementById("backToTop");
+
+    window.addEventListener("scroll", function () {
+        backToTop.style.display =
+            window.scrollY > 300 ? "block" : "none";
+    });
+
+});
+</script>
+
+</body>
+</html>

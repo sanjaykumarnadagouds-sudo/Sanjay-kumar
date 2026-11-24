@@ -1,0 +1,1202 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Java Theory Notes | STUDENTVERSE</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    color: white;
+    background: linear-gradient(135deg, #08001f, #16002f, #08001f);
+    overflow-x: hidden;
+}
+
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    width: 450px;
+    height: 450px;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.35;
+    z-index: -1;
+    animation: glow 8s infinite alternate ease-in-out;
+}
+
+body::before {
+    background: #9333ea;
+    top: -100px;
+    left: -100px;
+}
+
+body::after {
+    background: #ec4899;
+    bottom: -100px;
+    right: -100px;
+    animation-delay: 3s;
+}
+
+@keyframes glow {
+    from { transform: translate(0,0) scale(1); }
+    to { transform: translate(100px,80px) scale(1.3); }
+}
+
+/* NAVBAR */
+.main-navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 15px;
+    background: rgba(10,5,30,0.9);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(192,132,252,0.3);
+}
+
+.main-navbar a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 18px;
+    border-radius: 20px;
+    transition: 0.3s;
+}
+
+.main-navbar a:hover {
+    background: #9333ea;
+    box-shadow: 0 0 15px #9333ea;
+    transform: translateY(-3px);
+}
+
+/* HEADER */
+header {
+    text-align: center;
+    padding: 65px 15px 35px;
+}
+
+header h1 {
+    font-size: clamp(25px,5vw,42px);
+    color: #e9d5ff;
+    text-shadow: 0 0 20px #a855f7;
+    margin-bottom: 15px;
+}
+
+header p {
+    color: #d8b4fe;
+    margin: 8px;
+}
+
+/* PDF BUTTON */
+.action-buttons {
+    text-align: center;
+    margin: 20px;
+}
+
+.action-buttons button {
+    padding: 13px 25px;
+    border: none;
+    border-radius: 25px;
+    background: linear-gradient(135deg,#9333ea,#db2777);
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+    box-shadow: 0 5px 20px #9333ea66;
+    transition: 0.3s;
+}
+
+.action-buttons button:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0 25px #c084fc;
+}
+
+/* UNIT NAVIGATION */
+.unit-nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 20px;
+}
+
+.unit-nav a {
+    text-decoration: none;
+    color: white;
+    background: rgba(147,51,234,0.25);
+    border: 1px solid #a855f7;
+    padding: 12px 22px;
+    border-radius: 25px;
+    transition: 0.3s;
+}
+
+.unit-nav a:hover {
+    background: #9333ea;
+    transform: translateY(-4px);
+    box-shadow: 0 0 18px #a855f7;
+}
+
+/* SEARCH BAR */
+.program-search {
+    text-align: center;
+    margin: 25px auto;
+    padding: 10px;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    width: 90%;
+    max-width: 550px;
+    margin: auto;
+    padding: 5px 12px;
+    border: 1px solid #a855f7;
+    border-radius: 30px;
+    background: rgba(20,10,45,0.9);
+    box-shadow: 0 0 18px #a855f766;
+}
+
+.search-box input {
+    flex: 1;
+    min-width: 0;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: white;
+    padding: 14px;
+    font-size: 16px;
+}
+
+.search-box input::placeholder {
+    color: #c4b5fd;
+}
+
+#clearSearch {
+    border: none;
+    background: transparent;
+    color: #f9a8d4;
+    font-size: 22px;
+    cursor: pointer;
+    padding: 8px 12px;
+}
+
+#clearSearch:hover {
+    color: white;
+    transform: scale(1.2);
+}
+
+#noResults {
+    display: none;
+    color: #f9a8d4;
+    margin-top: 15px;
+}
+
+/* UNIT SECTION */
+.unit {
+    max-width: 1100px;
+    margin: 35px auto;
+    padding: 25px;
+    scroll-margin-top: 90px;
+}
+
+.unit h2 {
+    color: #e9d5ff;
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 27px;
+    text-shadow: 0 0 15px #9333ea;
+}
+
+/* THEORY CARDS */
+.theory-card {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(192,132,252,0.3);
+    border-radius: 18px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    backdrop-filter: blur(10px);
+    transition: 0.4s;
+}
+
+.theory-card:hover {
+    transform: translateY(-6px);
+    border-color: #c084fc;
+    box-shadow: 0 12px 35px #9333ea55;
+}
+
+.theory-card h3 {
+    color: #f0abfc;
+    margin-bottom: 18px;
+    font-size: 22px;
+}
+
+.theory-card h4 {
+    color: #c4b5fd;
+    margin: 18px 0 10px;
+}
+
+.theory-card p,
+.theory-card li {
+    color: #e9d5ff;
+    line-height: 1.8;
+    font-size: 15px;
+}
+
+.theory-card ul,
+.theory-card ol {
+    padding-left: 24px;
+}
+
+.theory-card li {
+    margin-bottom: 5px;
+}
+
+.theory-card strong {
+    color: #f0abfc;
+}
+
+/* UNIT ANIMATION */
+.unit.animate-unit {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s, transform 0.7s;
+}
+
+.unit.animate-unit.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* BACK TO TOP */
+#backToTop {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 50%;
+    background: linear-gradient(135deg,#9333ea,#db2777);
+    color: white;
+    font-size: 23px;
+    cursor: pointer;
+    box-shadow: 0 0 20px #9333ea;
+    display: none;
+    z-index: 999;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 30px 15px;
+    color: #c4b5fd;
+    border-top: 1px solid #9333ea55;
+    margin-top: 50px;
+}
+
+/* MOBILE */
+@media(max-width:600px) {
+    .unit {
+        padding: 15px;
+    }
+
+    .theory-card {
+        padding: 18px;
+    }
+
+    .main-navbar a {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+}
+
+/* PDF PRINT */
+@media print {
+    body {
+        background: white;
+        color: black;
+    }
+
+    .main-navbar,
+    .action-buttons,
+    .unit-nav,
+    .program-search,
+    #noResults,
+    #backToTop {
+        display: none !important;
+    }
+
+    header h1,
+    .unit h2,
+    .theory-card h3,
+    .theory-card h4 {
+        color: black;
+        text-shadow: none;
+    }
+
+    .theory-card,
+    .theory-card p,
+    .theory-card li {
+        color: black;
+        background: white;
+        box-shadow: none;
+        border: 1px solid #aaa;
+    }
+
+    .theory-card strong {
+        color: black;
+    }
+
+    .unit {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="main-navbar">
+    <a href="index.html">Dashboard</a>
+    <a href="studyhub.html">StudyHub</a>
+    <a href="skillup.html">SkillUp</a>
+    <a href="index.html">Home</a>
+</nav>
+
+<!-- HEADER -->
+<header>
+    <h1>OBJECT ORIENTED PROGRAMMING WITH JAVA</h1>
+    <p>BCA | Semester 2</p>
+    <p>Complete Theory Notes and Exam Preparation</p>
+</header>
+
+<!-- PDF BUTTON -->
+<div class="action-buttons">
+    <button onclick="window.print()">📥 Download / Save as PDF</button>
+</div>
+
+<!-- UNIT NAVIGATION -->
+<div class="unit-nav">
+    <a href="#unit1">UNIT 1</a>
+    <a href="#unit2">UNIT 2</a>
+    <a href="#unit3">UNIT 3</a>
+    <a href="#unit4">UNIT 4</a>
+</div>
+
+<!-- SEARCH -->
+<div class="program-search">
+    <div class="search-box">
+        <input type="text" id="programSearch"
+        placeholder="🔍 Search Java theory topics...">
+        <button type="button" id="clearSearch">✕</button>
+    </div>
+    <p id="noResults">😕 No topics found. Try another keyword!</p>
+</div>
+
+<!-- ================= UNIT 1 ================= -->
+
+<section class="unit" id="unit1">
+<h2>UNIT 1 – INTRODUCTION TO JAVA</h2>
+
+<div class="theory-card">
+<h3>1. Introduction to Java</h3>
+
+<h4>Definition</h4>
+<p>Java is a high-level, object-oriented, class-based programming language developed by Sun Microsystems. It is designed to be simple, secure, portable and platform independent.</p>
+
+<h4>History of Java</h4>
+<ul>
+<li>Java was developed by James Gosling and his team at Sun Microsystems.</li>
+<li>Development started in 1991.</li>
+<li>It was originally called Oak.</li>
+<li>It was officially released in 1995 and renamed Java.</li>
+<li>Oracle acquired Sun Microsystems in 2010.</li>
+</ul>
+
+<h4>Applications of Java</h4>
+<ul>
+<li>Desktop applications.</li>
+<li>Web applications.</li>
+<li>Enterprise applications.</li>
+<li>Android application development.</li>
+<li>Banking and financial software.</li>
+<li>Cloud-based applications.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>2. Features of Java</h3>
+
+<p>The important features of Java are:</p>
+
+<ol>
+<li><strong>Simple:</strong> Java has an easy-to-understand syntax and removes many complex features of C++.</li>
+<li><strong>Object-Oriented:</strong> Java uses classes and objects to organize programs.</li>
+<li><strong>Platform Independent:</strong> Java bytecode can run on different operating systems using a compatible JVM.</li>
+<li><strong>Secure:</strong> Java provides security features such as bytecode verification and controlled memory access.</li>
+<li><strong>Robust:</strong> Java supports exception handling and automatic memory management.</li>
+<li><strong>Multithreaded:</strong> Java supports running multiple tasks concurrently.</li>
+<li><strong>Portable:</strong> Java programs can be moved between supported platforms.</li>
+<li><strong>High Performance:</strong> The Just-In-Time compiler helps improve execution speed.</li>
+<li><strong>Distributed:</strong> Java provides networking features for developing distributed applications.</li>
+</ol>
+</div>
+
+<div class="theory-card">
+<h3>3. Java Virtual Machine (JVM)</h3>
+
+<h4>Definition</h4>
+<p>JVM stands for Java Virtual Machine. It is an abstract machine that executes Java bytecode and provides the runtime environment for Java programs.</p>
+
+<h4>Functions of JVM</h4>
+<ul>
+<li>Loads Java class files.</li>
+<li>Verifies bytecode.</li>
+<li>Executes bytecode.</li>
+<li>Manages memory.</li>
+<li>Performs garbage collection.</li>
+<li>Provides runtime security.</li>
+</ul>
+
+<h4>Advantages of JVM</h4>
+<ul>
+<li>Supports platform independence.</li>
+<li>Manages memory automatically.</li>
+<li>Provides a secure execution environment.</li>
+<li>Supports optimized program execution.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>4. JDK, JRE and JVM</h3>
+
+<h4>JDK – Java Development Kit</h4>
+<p>JDK is a software development kit used to develop, compile, debug and run Java programs. It includes development tools and the runtime environment.</p>
+
+<h4>JRE – Java Runtime Environment</h4>
+<p>JRE provides the environment and libraries required to run Java applications.</p>
+
+<h4>JVM – Java Virtual Machine</h4>
+<p>JVM executes Java bytecode and manages program execution.</p>
+
+<h4>Difference between JDK, JRE and JVM</h4>
+<ul>
+<li><strong>JDK:</strong> Used to develop and run Java programs.</li>
+<li><strong>JRE:</strong> Used to run Java programs.</li>
+<li><strong>JVM:</strong> Executes Java bytecode.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>5. Java Tokens</h3>
+
+<h4>Definition</h4>
+<p>Tokens are the smallest individual elements of a Java program that have a specific meaning.</p>
+
+<h4>Types of Java Tokens</h4>
+<ol>
+<li><strong>Keywords:</strong> Reserved words with special meanings, such as class, int, public and static.</li>
+<li><strong>Identifiers:</strong> Names given to classes, variables and methods.</li>
+<li><strong>Literals:</strong> Constant values such as 10, 25.5, 'A' and "Hello".</li>
+<li><strong>Operators:</strong> Symbols used to perform operations, such as +, -, * and /.</li>
+<li><strong>Separators:</strong> Symbols used to separate program elements, such as semicolons, commas and brackets.</li>
+</ol>
+</div>
+
+<div class="theory-card">
+<h3>6. Data Types in Java</h3>
+
+<h4>Definition</h4>
+<p>A data type specifies the type of value that a variable can store.</p>
+
+<h4>Types of Data Types</h4>
+
+<p><strong>1. Primitive Data Types</strong></p>
+<ul>
+<li>byte – stores small integer values.</li>
+<li>short – stores short integer values.</li>
+<li>int – stores integer values.</li>
+<li>long – stores large integer values.</li>
+<li>float – stores decimal values.</li>
+<li>double – stores larger precision decimal values.</li>
+<li>char – stores a single character.</li>
+<li>boolean – stores true or false.</li>
+</ul>
+
+<p><strong>2. Non-Primitive Data Types</strong></p>
+<ul>
+<li>String</li>
+<li>Arrays</li>
+<li>Classes</li>
+<li>Interfaces</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>7. Operators in Java</h3>
+
+<p>Operators are special symbols used to perform operations on variables and values.</p>
+
+<h4>Types of Operators</h4>
+<ol>
+<li><strong>Arithmetic Operators:</strong> +, -, *, /, %</li>
+<li><strong>Relational Operators:</strong> ==, !=, greater than, less than, greater than or equal to, less than or equal to.</li>
+<li><strong>Logical Operators:</strong> &&, ||, !</li>
+<li><strong>Assignment Operators:</strong> =, +=, -=, *=, /=</li>
+<li><strong>Unary Operators:</strong> ++, --</li>
+<li><strong>Conditional Operator:</strong> ? :</li>
+<li><strong>Bitwise Operators:</strong> &, |, ^, ~</li>
+</ol>
+</div>
+
+</section>
+
+<!-- ================= UNIT 2 ================= -->
+
+<section class="unit" id="unit2">
+<h2>UNIT 2 – CLASSES, OBJECTS AND METHODS</h2>
+
+<div class="theory-card">
+<h3>8. Object-Oriented Programming</h3>
+
+<h4>Definition</h4>
+<p>Object-Oriented Programming (OOP) is a programming approach based on classes and objects. It organizes programs into reusable and manageable components.</p>
+
+<h4>Main Principles of OOP</h4>
+<ol>
+<li><strong>Encapsulation:</strong> Wrapping data and methods into a single unit called a class.</li>
+<li><strong>Inheritance:</strong> Acquiring the properties and methods of one class into another class.</li>
+<li><strong>Polymorphism:</strong> One name or interface having multiple forms.</li>
+<li><strong>Abstraction:</strong> Hiding implementation details and showing essential features.</li>
+</ol>
+
+<h4>Advantages of OOP</h4>
+<ul>
+<li>Code reusability.</li>
+<li>Data security.</li>
+<li>Easy maintenance.</li>
+<li>Better program organization.</li>
+<li>Reduced code duplication.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>9. Class and Object</h3>
+
+<h4>Class</h4>
+<p>A class is a blueprint or template used to create objects. It contains data members and methods.</p>
+
+<h4>Object</h4>
+<p>An object is an instance of a class. It represents a real-world entity and has state and behaviour.</p>
+
+<h4>Characteristics of an Object</h4>
+<ul>
+<li><strong>Identity:</strong> Uniquely identifies an object.</li>
+<li><strong>State:</strong> Represents the data or properties of an object.</li>
+<li><strong>Behaviour:</strong> Represents the actions performed by an object.</li>
+</ul>
+
+<h4>Difference between Class and Object</h4>
+<ul>
+<li>Class is a blueprint; object is an instance of a class.</li>
+<li>Class defines properties; object contains actual values.</li>
+<li>A class is declared using the class keyword; objects are generally created using new.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>10. Methods in Java</h3>
+
+<h4>Definition</h4>
+<p>A method is a block of code that performs a specific task. It helps divide a program into smaller reusable parts.</p>
+
+<h4>Types of Methods</h4>
+<ol>
+<li><strong>Predefined Methods:</strong> Methods already provided by Java libraries, such as println() and sqrt().</li>
+<li><strong>User-Defined Methods:</strong> Methods created by programmers according to their requirements.</li>
+</ol>
+
+<h4>Advantages of Methods</h4>
+<ul>
+<li>Code reusability.</li>
+<li>Reduces code repetition.</li>
+<li>Makes programs easier to understand.</li>
+<li>Simplifies debugging and maintenance.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>11. Constructors in Java</h3>
+
+<h4>Definition</h4>
+<p>A constructor is a special member of a class that is called automatically when an object is created. It is mainly used to initialize objects.</p>
+
+<h4>Characteristics</h4>
+<ul>
+<li>The constructor name must be the same as the class name.</li>
+<li>A constructor has no return type.</li>
+<li>It is called automatically when an object is created.</li>
+<li>Constructors can be overloaded.</li>
+</ul>
+
+<h4>Types of Constructors</h4>
+<ol>
+<li><strong>Default Constructor:</strong> A no-argument constructor supplied by the compiler when no constructor is declared.</li>
+<li><strong>No-Argument Constructor:</strong> A constructor explicitly written without parameters.</li>
+<li><strong>Parameterized Constructor:</strong> A constructor that accepts parameters to initialize an object.</li>
+</ol>
+</div>
+
+<div class="theory-card">
+<h3>12. Constructor Overloading</h3>
+
+<h4>Definition</h4>
+<p>Constructor overloading means defining more than one constructor in the same class with different parameter lists.</p>
+
+<h4>Features</h4>
+<ul>
+<li>All constructors have the same class name.</li>
+<li>They have different parameter lists.</li>
+<li>They allow objects to be initialized in different ways.</li>
+<li>The appropriate constructor is selected based on the arguments.</li>
+</ul>
+
+<h4>Advantages</h4>
+<ul>
+<li>Provides flexibility in object creation.</li>
+<li>Supports different initialization methods.</li>
+<li>Improves code readability.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>13. Method Overloading</h3>
+
+<h4>Definition</h4>
+<p>Method overloading is a feature in Java where multiple methods have the same name but different parameter lists.</p>
+
+<h4>Rules</h4>
+<ul>
+<li>Methods must have the same name.</li>
+<li>Parameters must differ in number, type or order.</li>
+<li>Changing only the return type does not create valid overloading.</li>
+</ul>
+
+<h4>Advantages</h4>
+<ul>
+<li>Improves readability.</li>
+<li>Supports compile-time polymorphism.</li>
+<li>Allows similar operations to use the same method name.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>14. Static Members in Java</h3>
+
+<h4>Definition</h4>
+<p>The static keyword is used to declare members that belong to the class rather than individual objects.</p>
+
+<h4>Types of Static Members</h4>
+<ul>
+<li><strong>Static Variable:</strong> A variable shared by all objects of a class.</li>
+<li><strong>Static Method:</strong> A method that can be called using the class name.</li>
+<li><strong>Static Block:</strong> A block used to initialize static data when the class is initialized.</li>
+</ul>
+
+<h4>Advantages</h4>
+<ul>
+<li>Reduces repeated storage of shared data.</li>
+<li>Can be accessed without creating an object in suitable cases.</li>
+<li>Useful for common utility methods.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>15. Encapsulation</h3>
+
+<h4>Definition</h4>
+<p>Encapsulation is the process of combining data and methods into a single unit called a class and controlling access to that data.</p>
+
+<h4>How to Achieve Encapsulation</h4>
+<ol>
+<li>Declare class variables as private.</li>
+<li>Provide public getter methods.</li>
+<li>Provide setter methods when modification is required.</li>
+<li>Access the data through these methods.</li>
+</ol>
+
+<h4>Advantages</h4>
+<ul>
+<li>Provides data protection.</li>
+<li>Improves security.</li>
+<li>Allows controlled access to data.</li>
+<li>Makes code easier to maintain.</li>
+</ul>
+</div>
+
+</section>
+
+<!-- ================= UNIT 3 ================= -->
+
+<section class="unit" id="unit3">
+<h2>UNIT 3 – INHERITANCE AND POLYMORPHISM</h2>
+
+<div class="theory-card">
+<h3>16. Inheritance in Java</h3>
+
+<h4>Definition</h4>
+<p>Inheritance is an OOP concept in which one class acquires the properties and methods of another class.</p>
+
+<h4>Important Terms</h4>
+<ul>
+<li><strong>Superclass:</strong> The parent class whose properties are inherited.</li>
+<li><strong>Subclass:</strong> The child class that inherits from another class.</li>
+<li><strong>extends:</strong> The keyword used for class inheritance.</li>
+</ul>
+
+<h4>Types of Inheritance</h4>
+<ol>
+<li><strong>Single Inheritance:</strong> One child class inherits from one parent class.</li>
+<li><strong>Multilevel Inheritance:</strong> A class inherits from a class that itself inherits from another class.</li>
+<li><strong>Hierarchical Inheritance:</strong> Multiple child classes inherit from one parent class.</li>
+<li><strong>Multiple Inheritance:</strong> A class inherits from multiple parents. Java does not support this through classes, but similar behaviour can be achieved using interfaces.</li>
+<li><strong>Hybrid Inheritance:</strong> A combination of different inheritance types, which can be designed using interfaces.</li>
+</ol>
+
+<h4>Advantages</h4>
+<ul>
+<li>Code reusability.</li>
+<li>Reduces duplication.</li>
+<li>Supports method overriding.</li>
+<li>Improves program organization.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>17. Method Overriding</h3>
+
+<h4>Definition</h4>
+<p>Method overriding occurs when a subclass provides its own implementation of an inherited method with a compatible method signature.</p>
+
+<h4>Rules</h4>
+<ul>
+<li>The method must be inherited from a parent class.</li>
+<li>The method name and parameter list must match.</li>
+<li>The return type must be compatible.</li>
+<li>The access level cannot be more restrictive.</li>
+<li>Static methods are hidden, not overridden.</li>
+</ul>
+
+<h4>Advantages</h4>
+<ul>
+<li>Supports runtime polymorphism.</li>
+<li>Allows specialized behaviour in subclasses.</li>
+<li>Improves flexibility.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>18. Polymorphism</h3>
+
+<h4>Definition</h4>
+<p>Polymorphism means one name or interface can represent many forms. It allows the same operation to behave differently in different situations.</p>
+
+<h4>Types of Polymorphism</h4>
+
+<p><strong>1. Compile-Time Polymorphism</strong></p>
+<p>It is achieved mainly through method overloading. The compiler determines which method to call.</p>
+
+<p><strong>2. Runtime Polymorphism</strong></p>
+<p>It is achieved through method overriding. The actual method is selected at runtime based on the object.</p>
+
+<h4>Advantages</h4>
+<ul>
+<li>Improves flexibility.</li>
+<li>Supports reusable code.</li>
+<li>Allows one interface to work with different implementations.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>19. Dynamic Method Dispatch</h3>
+
+<h4>Definition</h4>
+<p>Dynamic method dispatch is the mechanism through which an overridden method call is resolved at runtime based on the actual object.</p>
+
+<h4>Characteristics</h4>
+<ul>
+<li>It is related to runtime polymorphism.</li>
+<li>It involves inheritance and method overriding.</li>
+<li>A parent class reference can refer to a child class object.</li>
+<li>The overridden method of the actual object is executed.</li>
+</ul>
+
+<h4>Advantages</h4>
+<ul>
+<li>Provides runtime flexibility.</li>
+<li>Supports extensible applications.</li>
+<li>Reduces dependency on specific implementations.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>20. Abstract Class and Abstract Method</h3>
+
+<h4>Abstract Class</h4>
+<p>An abstract class is a class declared using the abstract keyword. It cannot be instantiated directly.</p>
+
+<h4>Abstract Method</h4>
+<p>An abstract method is a method declared without a method body. Its implementation is provided by a concrete subclass.</p>
+
+<h4>Features</h4>
+<ul>
+<li>An abstract class can contain abstract and concrete methods.</li>
+<li>It can contain variables and constructors.</li>
+<li>A subclass must implement inherited abstract methods unless it is also abstract.</li>
+<li>An abstract class cannot be instantiated directly.</li>
+</ul>
+
+<h4>Advantages</h4>
+<ul>
+<li>Provides a common base for related classes.</li>
+<li>Supports abstraction.</li>
+<li>Encourages code reuse.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>21. Interfaces in Java</h3>
+
+<h4>Definition</h4>
+<p>An interface is a reference type in Java that defines a contract which implementing classes agree to follow.</p>
+
+<h4>Features</h4>
+<ul>
+<li>Declared using the interface keyword.</li>
+<li>Implemented using the implements keyword.</li>
+<li>Supports multiple inheritance of type.</li>
+<li>Fields declared in an interface are public, static and final by default.</li>
+<li>Methods can include abstract, default, static and private methods, subject to Java version rules.</li>
+</ul>
+
+<h4>Advantages</h4>
+<ul>
+<li>Supports abstraction.</li>
+<li>Allows multiple interface implementation.</li>
+<li>Promotes loose coupling.</li>
+<li>Improves code flexibility.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>22. Difference Between Abstract Class and Interface</h3>
+
+<ul>
+<li><strong>Abstract Class:</strong> Declared using the abstract keyword.</li>
+<li><strong>Interface:</strong> Declared using the interface keyword.</li>
+<li><strong>Inheritance:</strong> A class can extend only one class.</li>
+<li><strong>Implementation:</strong> A class can implement multiple interfaces.</li>
+<li><strong>Constructors:</strong> Abstract classes can have constructors; interfaces cannot have constructors.</li>
+<li><strong>Variables:</strong> Abstract classes can have instance variables; interface fields are public, static and final by default.</li>
+<li><strong>Methods:</strong> Abstract classes can have abstract and concrete methods; interfaces can have abstract, default, static and private methods depending on Java version.</li>
+</ul>
+</div>
+
+</section>
+
+<!-- ================= UNIT 4 ================= -->
+
+<section class="unit" id="unit4">
+<h2>UNIT 4 – PACKAGES, EXCEPTIONS AND MULTITHREADING</h2>
+
+<div class="theory-card">
+<h3>23. Packages in Java</h3>
+
+<h4>Definition</h4>
+<p>A package is a collection of related classes, interfaces and subpackages. It is used to organize Java programs.</p>
+
+<h4>Types of Packages</h4>
+<ol>
+<li><strong>Built-in Packages:</strong> Packages provided by Java, such as java.lang, java.util and java.io.</li>
+<li><strong>User-Defined Packages:</strong> Packages created by programmers to organize their own classes.</li>
+</ol>
+
+<h4>Advantages</h4>
+<ul>
+<li>Organizes related classes.</li>
+<li>Avoids naming conflicts.</li>
+<li>Provides access control.</li>
+<li>Supports code reuse.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>24. Access Modifiers in Java</h3>
+
+<h4>Definition</h4>
+<p>Access modifiers control the visibility and accessibility of classes, methods and variables.</p>
+
+<h4>Types of Access Modifiers</h4>
+<ol>
+<li><strong>Public:</strong> Accessible from anywhere, subject to class and module visibility.</li>
+<li><strong>Private:</strong> Accessible only within the declaring top-level class or its enclosing nest.</li>
+<li><strong>Protected:</strong> Accessible within the same package and through inheritance in other packages, subject to Java access rules.</li>
+<li><strong>Default:</strong> When no modifier is specified, access is limited to the same package.</li>
+</ol>
+
+<h4>Importance</h4>
+<ul>
+<li>Provides data security.</li>
+<li>Controls access to class members.</li>
+<li>Supports encapsulation.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>25. Exception Handling</h3>
+
+<h4>Definition</h4>
+<p>Exception handling is a mechanism used to handle runtime errors so that a program can continue or terminate in a controlled manner.</p>
+
+<h4>Types of Exceptions</h4>
+<ol>
+<li><strong>Checked Exceptions:</strong> Exceptions checked by the compiler, such as IOException.</li>
+<li><strong>Unchecked Exceptions:</strong> Runtime exceptions, such as ArithmeticException and NullPointerException.</li>
+<li><strong>Errors:</strong> Serious problems, generally not intended to be handled by ordinary application code.</li>
+</ol>
+
+<h4>Exception Handling Keywords</h4>
+<ul>
+<li><strong>try:</strong> Contains code that may cause an exception.</li>
+<li><strong>catch:</strong> Handles an exception.</li>
+<li><strong>finally:</strong> Contains cleanup code that normally executes after try/catch completion.</li>
+<li><strong>throw:</strong> Used to explicitly throw an exception.</li>
+<li><strong>throws:</strong> Declares exceptions that a method may pass to its caller.</li>
+</ul>
+
+<h4>Advantages</h4>
+<ul>
+<li>Prevents abnormal program termination in handled situations.</li>
+<li>Separates error-handling code from normal code.</li>
+<li>Improves program reliability.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>26. User-Defined Exceptions</h3>
+
+<h4>Definition</h4>
+<p>A user-defined exception is a custom exception created by a programmer to represent a specific application error.</p>
+
+<h4>Steps to Create</h4>
+<ol>
+<li>Create a new exception class.</li>
+<li>Extend Exception for a checked exception or RuntimeException for an unchecked exception.</li>
+<li>Define a constructor to pass an error message.</li>
+<li>Use throw to raise the exception.</li>
+<li>Handle it using try-catch when appropriate.</li>
+</ol>
+
+<h4>Advantages</h4>
+<ul>
+<li>Handles application-specific errors.</li>
+<li>Makes error messages meaningful.</li>
+<li>Improves code readability.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>27. Multithreading in Java</h3>
+
+<h4>Definition</h4>
+<p>Multithreading is a Java feature that allows multiple threads to execute concurrently within a program.</p>
+
+<h4>Thread</h4>
+<p>A thread is a lightweight unit of execution within a process.</p>
+
+<h4>Ways to Create Threads</h4>
+<ol>
+<li><strong>Extending Thread Class:</strong> Create a class that extends Thread and override run().</li>
+<li><strong>Implementing Runnable Interface:</strong> Create a class that implements Runnable and define run().</li>
+</ol>
+
+<h4>Important Thread Methods</h4>
+<ul>
+<li><strong>start():</strong> Starts a new thread and causes its run method to execute.</li>
+<li><strong>run():</strong> Contains the task performed by the thread.</li>
+<li><strong>sleep():</strong> Pauses the current thread temporarily.</li>
+<li><strong>join():</strong> Waits for another thread to finish.</li>
+<li><strong>isAlive():</strong> Checks whether a thread is still alive.</li>
+</ul>
+
+<h4>Advantages</h4>
+<ul>
+<li>Supports concurrent tasks.</li>
+<li>Can improve responsiveness.</li>
+<li>Useful for background operations.</li>
+<li>Can make better use of processor resources.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>28. Thread Life Cycle</h3>
+
+<h4>Definition</h4>
+<p>The thread life cycle describes the different states through which a thread passes during execution.</p>
+
+<h4>Thread States in Java</h4>
+<ol>
+<li><strong>NEW:</strong> Thread object is created but not started.</li>
+<li><strong>RUNNABLE:</strong> Thread is ready to run or running, as managed by the JVM and operating system.</li>
+<li><strong>BLOCKED:</strong> Thread is waiting to acquire a monitor lock.</li>
+<li><strong>WAITING:</strong> Thread is waiting indefinitely for another thread's action.</li>
+<li><strong>TIMED_WAITING:</strong> Thread is waiting for a specified period.</li>
+<li><strong>TERMINATED:</strong> Thread has completed execution.</li>
+</ol>
+</div>
+
+<div class="theory-card">
+<h3>29. Synchronization in Java</h3>
+
+<h4>Definition</h4>
+<p>Synchronization is a mechanism used to control access to shared resources when multiple threads are working at the same time.</p>
+
+<h4>Need for Synchronization</h4>
+<ul>
+<li>Prevents unwanted interference between threads.</li>
+<li>Helps protect shared data.</li>
+<li>Controls access to critical sections.</li>
+<li>Helps avoid certain race conditions.</li>
+</ul>
+
+<h4>Types</h4>
+<ul>
+<li><strong>Synchronized Method:</strong> Synchronizes access to an instance method using the object's monitor.</li>
+<li><strong>Synchronized Block:</strong> Synchronizes only a selected block of code.</li>
+<li><strong>Static Synchronization:</strong> Synchronizes access using the class monitor.</li>
+</ul>
+</div>
+
+<div class="theory-card">
+<h3>30. Garbage Collection in Java</h3>
+
+<h4>Definition</h4>
+<p>Garbage collection is the automatic process of identifying and reclaiming memory occupied by objects that are no longer reachable.</p>
+
+<h4>Features</h4>
+<ul>
+<li>Memory management is handled automatically by the JVM.</li>
+<li>Unreachable objects may become eligible for garbage collection.</li>
+<li>The programmer does not directly free object memory.</li>
+<li>Garbage collection timing is not guaranteed.</li>
+</ul>
+
+<h4>Advantages</h4>
+<ul>
+<li>Reduces manual memory management.</li>
+<li>Helps reclaim unused memory.</li>
+<li>Reduces certain memory-related programming errors.</li>
+</ul>
+</div>
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <p>STUDENTVERSE | Learn • Practice • Succeed</p>
+    <p>Object Oriented Programming with Java – Theory Notes</p>
+</footer>
+
+<!-- BACK TO TOP -->
+<button id="backToTop"
+onclick="window.scrollTo({top:0,behavior:'smooth'})">
+↑
+</button>
+
+<script>
+
+/* SEARCH FUNCTION */
+const programSearch = document.getElementById("programSearch");
+const noResults = document.getElementById("noResults");
+const clearSearch = document.getElementById("clearSearch");
+
+function filterTopics() {
+    const searchText = programSearch.value.toLowerCase().trim();
+    let visibleCount = 0;
+
+    document.querySelectorAll(".theory-card").forEach(card => {
+        const match = card.textContent.toLowerCase().includes(searchText);
+
+        card.style.display = match ? "" : "none";
+
+        if (match) visibleCount++;
+    });
+
+    document.querySelectorAll(".unit").forEach(unit => {
+        const visibleCards = unit.querySelectorAll(
+            ".theory-card:not([style*='display: none'])"
+        );
+
+        unit.style.display = visibleCards.length > 0 ? "" : "none";
+    });
+
+    noResults.style.display =
+        visibleCount === 0 ? "block" : "none";
+}
+
+programSearch.addEventListener("input", filterTopics);
+
+clearSearch.addEventListener("click", function() {
+    programSearch.value = "";
+    filterTopics();
+    programSearch.focus();
+});
+
+/* BACK TO TOP */
+const backToTop = document.getElementById("backToTop");
+
+window.addEventListener("scroll", function() {
+    backToTop.style.display =
+        window.scrollY > 300 ? "block" : "none";
+});
+
+/* UNIT ANIMATION */
+const units = document.querySelectorAll(".unit");
+
+if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {threshold: 0.05});
+
+    units.forEach(unit => {
+        unit.classList.add("animate-unit");
+        observer.observe(unit);
+    });
+} else {
+    units.forEach(unit => unit.classList.add("visible"));
+}
+
+</script>
+
+</body>
+</html>

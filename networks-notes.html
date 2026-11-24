@@ -1,0 +1,511 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Computer Networks Notes | STUDENTVERSE</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial,sans-serif;color:#fff;background:#080b20;line-height:1.7}
+body:before{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradient(circle at 15% 20%,#173b70,transparent 35%),radial-gradient(circle at 85% 75%,#43165e,transparent 35%),linear-gradient(135deg,#050817,#101432)}
+header{text-align:center;padding:45px 15px;background:#17234ddd;border-bottom:1px solid #6b7cff}
+header h1{font-size:clamp(27px,5vw,42px);color:#8deaff;text-shadow:0 0 15px #00cfff}
+header p{color:#d6dcff;margin-top:8px}
+nav{position:sticky;top:0;z-index:5;display:flex;justify-content:center;flex-wrap:wrap;gap:10px;padding:13px;background:#080b20ee}
+nav a{color:white;text-decoration:none;background:#202b55;padding:8px 13px;border-radius:20px}
+nav a:hover{background:#4657a0}
+.container{width:min(1100px,94%);margin:25px auto}
+.search{display:block;width:min(600px,95%);margin:20px auto;padding:13px;background:#111a38;color:white;border:1px solid #657cff;border-radius:10px;font-size:16px}
+.actions{text-align:center;margin:20px}
+button{background:#6655e8;color:white;border:0;padding:11px 18px;border-radius:9px;cursor:pointer;margin:5px}
+section{background:#141d3cdd;border:1px solid #7185ff55;border-radius:15px;padding:24px;margin:22px 0;box-shadow:0 8px 25px #0005}
+h2{color:#8deaff;margin-bottom:15px;border-left:4px solid #8deaff;padding-left:12px}
+h3{color:#d4b7ff;margin:20px 0 8px}
+p,li{color:#e0e5fa}
+ul,ol{padding-left:25px}
+li{margin:5px 0}
+table{width:100%;border-collapse:collapse;margin:15px 0}
+td,th{border:1px solid #6476aa;padding:10px;text-align:left}
+th{background:#293968;color:#9beaff}
+.diagram{background:#080e27;border:1px solid #5266aa;border-radius:10px;padding:18px;text-align:center;margin:15px 0;color:#a8f5cf;white-space:pre-wrap}
+.note{background:#17284b;border-left:4px solid #50dfff;padding:14px;margin:15px 0;border-radius:7px}
+.formula{background:#080e27;padding:13px;border-radius:8px;color:#a8f5cf;margin:10px 0}
+footer{text-align:center;padding:30px;color:#9ca9d4}
+@media print{
+body{background:white;color:black}
+body:before,nav,.search,.actions{display:none}
+header{background:white;color:black}
+header h1,h2,h3{color:black;text-shadow:none}
+section{background:white;color:black;box-shadow:none;border:1px solid #aaa;break-inside:avoid}
+p,li{color:black}
+.diagram,.formula,.note{background:#eee;color:black}
+}
+</style>
+</head>
+<body>
+
+<header>
+<h1>COMPUTER NETWORKS</h1>
+<p>CAM41T | BCA Semester 4 | Theory Notes</p>
+<p>University of Mysore | STUDENTVERSE</p>
+</header>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="studyhub.html">StudyHub</a>
+<a href="#intro">Introduction</a>
+<a href="#physical">Physical Layer</a>
+<a href="#data">Data Link & Network</a>
+<a href="#transport">Transport & Application</a>
+</nav>
+
+<div class="container">
+<div class="actions">
+<button onclick="window.print()">Save as PDF</button>
+<button onclick="window.scrollTo({top:0,behavior:'smooth'})">Back to Top</button>
+</div>
+
+<input class="search" id="search" onkeyup="searchNotes()" placeholder="Search computer networks notes...">
+
+<section id="intro">
+<h2>1. Introduction to Computer Networks</h2>
+
+<h3>Meaning of Computer Network</h3>
+<p>A computer network is a collection of two or more computers and devices connected together to share information, resources and services.</p>
+
+<h3>Advantages of Computer Networks</h3>
+<ul>
+<li>Sharing files and information.</li>
+<li>Sharing hardware such as printers.</li>
+<li>Fast communication between users.</li>
+<li>Centralized data management.</li>
+<li>Internet and resource sharing.</li>
+<li>Reduced communication cost.</li>
+</ul>
+
+<h3>Characteristics of Data Communication</h3>
+<ul>
+<li><b>Delivery:</b> Data must reach the correct destination.</li>
+<li><b>Accuracy:</b> Data should arrive without errors.</li>
+<li><b>Timeliness:</b> Data must reach within the required time.</li>
+<li><b>Jitter:</b> Variation in the arrival time of packets.</li>
+</ul>
+
+<h3>Components of Data Communication</h3>
+<ol>
+<li><b>Message:</b> Information being transmitted.</li>
+<li><b>Sender:</b> Device that sends information.</li>
+<li><b>Receiver:</b> Device that receives information.</li>
+<li><b>Transmission Medium:</b> Path through which data travels.</li>
+<li><b>Protocol:</b> Rules governing communication.</li>
+</ol>
+
+<h3>Network Topologies</h3>
+<p>Topology is the physical or logical arrangement of devices in a network.</p>
+
+<h3>Mesh Topology</h3>
+<p>In mesh topology, devices are connected through multiple dedicated links. It provides high reliability but requires more cables.</p>
+<div class="diagram">A -------- B
+|\        /|
+| \      / |
+|  \    /  |
+|   \  /   |
+D -------- C
+</div>
+
+<h3>Star Topology</h3>
+<p>All computers are connected to a central hub or switch. If one cable fails, other computers can continue working. Failure of the central device affects the network.</p>
+<div class="diagram">       PC1
+        |
+PC2 -- SWITCH -- PC3
+        |
+       PC4</div>
+
+<h3>Bus Topology</h3>
+<p>All devices share a single main communication cable called the backbone. It is simple but failure of the backbone can stop the network.</p>
+<div class="diagram">PC1 ---- PC2 ---- PC3 ---- PC4</div>
+
+<h3>Ring Topology</h3>
+<p>Each device is connected to two neighbouring devices, forming a closed loop.</p>
+<div class="diagram">PC1 ------ PC2
+ |          |
+PC4 ------ PC3</div>
+
+<h3>Tree Topology</h3>
+<p>Tree topology has a hierarchical structure that combines multiple star networks.</p>
+
+<h3>Hybrid Topology</h3>
+<p>Hybrid topology combines two or more different network topologies.</p>
+
+<h3>Transmission Modes</h3>
+<table>
+<tr><th>Mode</th><th>Meaning</th><th>Example</th></tr>
+<tr><td>Simplex</td><td>Communication in one direction only.</td><td>Keyboard to computer</td></tr>
+<tr><td>Half Duplex</td><td>Both directions, but one at a time.</td><td>Walkie-talkie</td></tr>
+<tr><td>Full Duplex</td><td>Both directions simultaneously.</td><td>Telephone call</td></tr>
+</table>
+
+<h3>Categories of Networks</h3>
+<ul>
+<li><b>LAN:</b> Local Area Network covers a small area such as a home, office or college.</li>
+<li><b>MAN:</b> Metropolitan Area Network covers a city or large campus.</li>
+<li><b>WAN:</b> Wide Area Network covers large geographical areas. The Internet is an example.</li>
+</ul>
+
+<h3>ISO/OSI Reference Model</h3>
+<p>The OSI model is a seven-layer reference model used to understand network communication.</p>
+<table>
+<tr><th>Layer</th><th>Name</th><th>Function</th></tr>
+<tr><td>7</td><td>Application</td><td>Provides network services to applications.</td></tr>
+<tr><td>6</td><td>Presentation</td><td>Data translation, encryption and compression.</td></tr>
+<tr><td>5</td><td>Session</td><td>Establishes and manages sessions.</td></tr>
+<tr><td>4</td><td>Transport</td><td>End-to-end delivery and reliability.</td></tr>
+<tr><td>3</td><td>Network</td><td>Logical addressing and routing.</td></tr>
+<tr><td>2</td><td>Data Link</td><td>Framing and error detection.</td></tr>
+<tr><td>1</td><td>Physical</td><td>Transmission of bits through media.</td></tr>
+</table>
+<div class="diagram">APPLICATION
+PRESENTATION
+SESSION
+TRANSPORT
+NETWORK
+DATA LINK
+PHYSICAL</div>
+
+<h3>TCP/IP Reference Model</h3>
+<p>The TCP/IP model is used for communication over the Internet.</p>
+<table>
+<tr><th>Layer</th><th>Function</th></tr>
+<tr><td>Application</td><td>Provides services such as HTTP, FTP, DNS and email.</td></tr>
+<tr><td>Transport</td><td>Provides communication using TCP and UDP.</td></tr>
+<tr><td>Internet</td><td>Handles IP addressing and routing.</td></tr>
+<tr><td>Network Access</td><td>Handles physical transmission and local network delivery.</td></tr>
+</table>
+
+<h3>Digital-to-Analog Conversion</h3>
+<p>Digital-to-analog conversion changes digital data into analog signals for transmission over suitable communication channels.</p>
+<ul>
+<li><b>ASK – Amplitude Shift Keying:</b> Changes the amplitude of the carrier signal to represent digital data.</li>
+<li><b>FSK – Frequency Shift Keying:</b> Changes the frequency of the carrier signal.</li>
+<li><b>PSK – Phase Shift Keying:</b> Changes the phase of the carrier signal.</li>
+</ul>
+</section>
+
+<section id="physical">
+<h2>2. Analog Conversion and Physical Layer</h2>
+
+<h3>Analog-to-Analog Conversion</h3>
+<p>Analog-to-analog conversion changes an analog signal into another analog signal suitable for transmission.</p>
+<ul>
+<li><b>Amplitude Modulation (AM):</b> Carrier amplitude changes according to the message signal.</li>
+<li><b>Frequency Modulation (FM):</b> Carrier frequency changes according to the message signal.</li>
+<li><b>Phase Modulation (PM):</b> Carrier phase changes according to the message signal.</li>
+</ul>
+
+<h3>Physical Layer</h3>
+<p>The physical layer is the lowest layer of the OSI model. It transmits raw bits over a communication medium.</p>
+
+<h3>Transmission Media</h3>
+<p>Transmission media are the paths through which data travels from sender to receiver.</p>
+
+<h3>Twisted Pair Cable</h3>
+<p>It consists of two insulated copper wires twisted together to reduce electromagnetic interference. It is commonly used in telephone and Ethernet networks.</p>
+<ul><li>UTP – Unshielded Twisted Pair</li><li>STP – Shielded Twisted Pair</li></ul>
+
+<h3>Coaxial Cable</h3>
+<p>It contains a central copper conductor, insulation, metallic shielding and an outer protective cover. It is used in cable television and communication systems.</p>
+
+<h3>Optical Fiber</h3>
+<p>Optical fiber carries data as light signals through thin glass or plastic fibers. It supports high bandwidth and long-distance communication.</p>
+
+<h3>Wireless Transmission Media</h3>
+<ul>
+<li><b>Radio Waves:</b> Used in radio broadcasting and wireless communication.</li>
+<li><b>Microwaves:</b> Used in satellite and point-to-point communication.</li>
+<li><b>Infrared:</b> Used for short-range communication, such as remote controls.</li>
+</ul>
+
+<h3>Switching</h3>
+<p>Switching is the process of transferring data from a source to a destination through network nodes.</p>
+<p><b>Message Switching:</b> The complete message is stored at an intermediate node and then forwarded to the next node.</p>
+
+<h3>Multiplexing</h3>
+<p>Multiplexing combines multiple signals and sends them through a shared communication channel.</p>
+<ul>
+<li><b>FDM:</b> Frequency Division Multiplexing divides the channel into frequency bands.</li>
+<li><b>TDM:</b> Time Division Multiplexing assigns different time slots to signals.</li>
+<li><b>WDM:</b> Wavelength Division Multiplexing carries multiple light wavelengths through optical fiber.</li>
+</ul>
+
+<h3>Connecting Devices</h3>
+<table>
+<tr><th>Device</th><th>Function</th></tr>
+<tr><td>Repeater</td><td>Regenerates weak signals.</td></tr>
+<tr><td>Hub</td><td>Connects devices and broadcasts received data to its ports.</td></tr>
+<tr><td>Bridge</td><td>Connects network segments and filters frames using MAC addresses.</td></tr>
+<tr><td>Router</td><td>Connects networks and forwards packets using IP addresses.</td></tr>
+</table>
+</section>
+
+<section id="data">
+<h2>3. Data Link Layer and Network Layer</h2>
+
+<h3>Data Link Layer</h3>
+<p>The data link layer provides node-to-node data delivery. It organizes bits into frames and detects transmission errors.</p>
+
+<h3>Data Link Layer Design Issues</h3>
+<ul>
+<li>Providing services to the network layer.</li>
+<li>Framing the data.</li>
+<li>Error control.</li>
+<li>Flow control.</li>
+<li>Managing access to a shared medium.</li>
+</ul>
+
+<h3>Error Detection</h3>
+<p>Error detection techniques help identify errors introduced during data transmission.</p>
+
+<h3>Single Parity Checking</h3>
+<p>A parity bit is added to data so that the total number of 1s becomes even or odd, according to the selected parity method.</p>
+<div class="formula">Even parity example:
+Data = 1011
+Number of 1s = 3
+Parity bit = 1
+Transmitted data = 10111</div>
+
+<h3>Checksum</h3>
+<p>Checksum is an error-detection method in which data units are added together and a complement of the sum is transmitted. The receiver checks the result.</p>
+
+<h3>Polynomial Codes – CRC</h3>
+<p>Cyclic Redundancy Check (CRC) uses binary polynomial division to calculate a remainder. The remainder is appended to the data before transmission.</p>
+
+<h3>Error Correction – Hamming Code</h3>
+<p>Hamming code adds redundant bits at specific positions to detect and correct certain transmission errors.</p>
+<div class="formula">For m data bits and r parity bits:
+2<sup>r</sup> ≥ m + r + 1</div>
+
+<h3>Elementary Data Link Protocols</h3>
+<ul>
+<li><b>Unrestricted Simplex Protocol:</b> Assumes an ideal communication channel.</li>
+<li><b>Simplex Stop-and-Wait:</b> Sender waits for acknowledgement before sending the next frame.</li>
+<li><b>Noisy Channel Protocol:</b> Uses acknowledgements and retransmission to handle errors.</li>
+</ul>
+
+<h3>Sliding Window Protocols</h3>
+<p>Sliding window protocols allow multiple frames to be sent before acknowledgements are received.</p>
+<ul>
+<li><b>Go-Back-N:</b> Retransmits the frame with an error and subsequent frames.</li>
+<li><b>Selective Repeat:</b> Retransmits only the specific lost or damaged frames.</li>
+</ul>
+
+<h3>Network Layer</h3>
+<p>The network layer handles logical addressing, packet forwarding and routing between different networks.</p>
+
+<h3>Network Layer Design Issues</h3>
+<ul>
+<li>Logical addressing.</li>
+<li>Routing and forwarding.</li>
+<li>Internetworking.</li>
+<li>Congestion control.</li>
+<li>Packet fragmentation where required.</li>
+</ul>
+
+<h3>Routing Algorithms</h3>
+<p>Routing algorithms select paths through a network to deliver packets to their destinations.</p>
+
+<h3>Dijkstra's Shortest Path Algorithm</h3>
+<p>Dijkstra's algorithm finds the shortest path from a starting node to other nodes in a graph with non-negative edge weights.</p>
+<ol>
+<li>Set the source distance to zero.</li>
+<li>Set all other distances to infinity.</li>
+<li>Select the unvisited node with the smallest distance.</li>
+<li>Update the distances of its neighbouring nodes.</li>
+<li>Repeat until all reachable nodes are processed.</li>
+</ol>
+
+<h3>Flooding</h3>
+<p>In flooding, a router forwards an incoming packet through all outgoing links except the one on which it arrived, subject to controls such as hop count.</p>
+
+<h3>Distance Vector Routing</h3>
+<p>Each router shares routing information with its neighbouring routers and updates its routing table using distance information.</p>
+
+<h3>Hierarchical Routing</h3>
+<p>The network is divided into regions or areas. Routers maintain detailed routes within their area and summarized routes for other areas.</p>
+
+<h3>Link State Routing</h3>
+<p>Each router builds a map of network connectivity by sharing link-state information and calculates shortest paths.</p>
+
+<h3>Congestion Control</h3>
+<p>Congestion occurs when too much data enters a network, causing delays and packet loss.</p>
+<ul>
+<li><b>Leaky Bucket Algorithm:</b> Sends packets at a controlled, fixed rate.</li>
+<li><b>Token Bucket Algorithm:</b> Uses tokens to regulate traffic while allowing controlled bursts.</li>
+<li><b>Admission Control:</b> Decides whether a new traffic flow can be accepted.</li>
+<li><b>Hop-by-Hop Choke Packets:</b> Sends congestion notifications to upstream routers to reduce traffic.</li>
+</ul>
+</section>
+
+<section id="transport">
+<h2>4. Transport Layer and Application Layer</h2>
+
+<h3>Transport Layer</h3>
+<p>The transport layer provides process-to-process communication between applications running on different computers.</p>
+
+<h3>Elements of Transport Service</h3>
+<ul>
+<li>Service-point addressing through port numbers.</li>
+<li>Segmentation and reassembly.</li>
+<li>Connection establishment and release.</li>
+<li>Flow control and error control.</li>
+<li>Reliable data transfer when required.</li>
+</ul>
+
+<h3>TCP – Transmission Control Protocol</h3>
+<p>TCP is a connection-oriented and reliable transport protocol. It uses acknowledgements, sequence numbers and retransmissions to support reliable delivery.</p>
+<ul>
+<li>Connection-oriented.</li>
+<li>Reliable and ordered delivery.</li>
+<li>Flow and congestion control.</li>
+<li>Used by applications such as web browsing and file transfer.</li>
+</ul>
+
+<h3>UDP – User Datagram Protocol</h3>
+<p>UDP is a connectionless transport protocol. It provides faster, low-overhead communication but does not guarantee delivery or ordering.</p>
+<ul>
+<li>Connectionless.</li>
+<li>Low overhead.</li>
+<li>No built-in retransmission or ordering guarantee.</li>
+<li>Used in real-time applications, streaming and DNS queries.</li>
+</ul>
+
+<h3>TCP and UDP Differences</h3>
+<table>
+<tr><th>TCP</th><th>UDP</th></tr>
+<tr><td>Connection-oriented</td><td>Connectionless</td></tr>
+<tr><td>Reliable delivery</td><td>No delivery guarantee</td></tr>
+<tr><td>Ordered data delivery</td><td>No ordering guarantee</td></tr>
+<tr><td>More protocol overhead</td><td>Less protocol overhead</td></tr>
+<tr><td>Example: HTTPS</td><td>Example: DNS commonly uses UDP</td></tr>
+</table>
+
+<h3>Application Layer</h3>
+<p>The application layer provides network services directly to user applications.</p>
+
+<h3>DNS – Domain Name System</h3>
+<p>DNS converts human-readable domain names into IP addresses. For example, it helps a browser find the server associated with a website name.</p>
+
+<h3>Electronic Mail</h3>
+<p>Electronic mail is a system used to send and receive digital messages over networks.</p>
+
+<h3>SMTP – Simple Mail Transfer Protocol</h3>
+<p>SMTP is used to send email from a client to a mail server and between mail servers.</p>
+
+<h3>POP3 – Post Office Protocol Version 3</h3>
+<p>POP3 is used by an email client to retrieve messages from a mail server, often downloading them to the local device.</p>
+
+<h3>SNMP – Simple Network Management Protocol</h3>
+<p>SNMP is used to monitor and manage network devices such as routers, switches and servers.</p>
+
+<h3>FTP – File Transfer Protocol</h3>
+<p>FTP is used to transfer files between a client and a server over a network.</p>
+
+<h3>TELNET</h3>
+<p>Telnet provides remote text-based access to another computer. It does not encrypt communication, so SSH is preferred for secure remote access.</p>
+
+<h3>World Wide Web (WWW)</h3>
+<p>The World Wide Web is a collection of linked web pages and resources accessed through the Internet using web browsers and web protocols.</p>
+
+<div class="note">
+<b>Important:</b> The Internet is the global network infrastructure. The World Wide Web is a service that operates over the Internet.
+</div>
+</section>
+
+<section>
+<h2>Important Short Questions</h2>
+<ol>
+<li>Define computer network.</li>
+<li>What are the four characteristics of data communication?</li>
+<li>List the five components of data communication.</li>
+<li>What is network topology?</li>
+<li>Differentiate LAN, MAN and WAN.</li>
+<li>What is the OSI reference model?</li>
+<li>List the seven layers of the OSI model.</li>
+<li>What is the TCP/IP model?</li>
+<li>Define ASK, FSK and PSK.</li>
+<li>What is modulation?</li>
+<li>Differentiate AM, FM and PM.</li>
+<li>What is optical fiber?</li>
+<li>Define multiplexing.</li>
+<li>What is CRC?</li>
+<li>What is Hamming code?</li>
+<li>What is sliding window protocol?</li>
+<li>Define routing.</li>
+<li>What is congestion control?</li>
+<li>Differentiate TCP and UDP.</li>
+<li>What is DNS?</li>
+<li>What is SMTP?</li>
+<li>What is FTP?</li>
+<li>What is SNMP?</li>
+<li>What is TELNET?</li>
+<li>What is the World Wide Web?</li>
+</ol>
+</section>
+
+<section>
+<h2>Important Long-Answer Topics</h2>
+<ul>
+<li>Explain the OSI reference model with a neat diagram.</li>
+<li>Explain the TCP/IP reference model and compare it with OSI.</li>
+<li>Explain different network topologies with diagrams.</li>
+<li>Explain ASK, FSK and PSK.</li>
+<li>Explain transmission media with advantages and disadvantages.</li>
+<li>Explain multiplexing techniques.</li>
+<li>Explain error detection and correction methods.</li>
+<li>Explain sliding window protocols.</li>
+<li>Explain Dijkstra's shortest path algorithm.</li>
+<li>Explain distance vector and link state routing.</li>
+<li>Explain leaky bucket and token bucket algorithms.</li>
+<li>Explain TCP and UDP with differences.</li>
+<li>Explain DNS, SMTP, POP3, SNMP, FTP and TELNET.</li>
+</ul>
+</section>
+
+</div>
+
+<footer>
+<p>STUDENTVERSE | Learn • Practise • Succeed</p>
+<p>CAM41T – Computer Networks</p>
+</footer>
+
+<script>
+
+function searchNotes() {
+    const input = document.getElementById("search").value.toLowerCase().trim();
+
+    const sections = document.querySelectorAll(".container section");
+
+    sections.forEach(section => {
+        let sectionMatch = false;
+
+        const elements = section.querySelectorAll(
+            "h2, h3, p, li, tr, .note"
+        );
+
+        elements.forEach(element => {
+            const matches = element.innerText.toLowerCase().includes(input);
+
+            element.style.display = matches || input === "" ? "" : "none";
+
+            if (matches) {
+                sectionMatch = true;
+            }
+        });
+
+        section.style.display = sectionMatch || input === "" ? "block" : "none";
+    });
+}
+
+</script>
+</body>
+</html>

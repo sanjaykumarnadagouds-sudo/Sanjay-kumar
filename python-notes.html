@@ -1,0 +1,1777 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Python Programming Notes | STUDENTVERSE</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    color: #fff;
+    background: radial-gradient(circle at top, #20245c, #090b20 55%, #03040d);
+    min-height: 100vh;
+    line-height: 1.7;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+        radial-gradient(white 1px, transparent 1px),
+        radial-gradient(#9b8cff 1px, transparent 1px);
+    background-size: 70px 70px, 110px 110px;
+    background-position: 0 0, 35px 45px;
+    opacity: .25;
+    pointer-events: none;
+    z-index: -1;
+}
+
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    padding: 15px 7%;
+    background: rgba(5, 7, 25, .92);
+    border-bottom: 1px solid #5149a5;
+    backdrop-filter: blur(12px);
+}
+
+.logo {
+    color: #a99aff;
+    font-size: 23px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 18px;
+}
+
+nav a:hover {
+    color: #a99aff;
+}
+
+.hero {
+    text-align: center;
+    padding: 55px 20px 35px;
+}
+
+.hero h1 {
+    font-size: clamp(30px, 5vw, 48px);
+    color: #b5a8ff;
+    text-shadow: 0 0 20px #7564ff;
+}
+
+.hero p {
+    color: #d0d0e8;
+    margin-top: 10px;
+}
+
+.course-tag {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 7px 17px;
+    border: 1px solid #8274ff;
+    border-radius: 30px;
+    color: #c8c0ff;
+}
+
+.toolbar {
+    max-width: 1050px;
+    margin: 15px auto 30px;
+    padding: 0 20px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.toolbar input {
+    flex: 1;
+    min-width: 220px;
+    padding: 14px;
+    border-radius: 10px;
+    border: 1px solid #6258bb;
+    background: #11152f;
+    color: white;
+    outline: none;
+}
+
+.toolbar button {
+    padding: 12px 18px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #6856e8, #a35be9);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.container {
+    max-width: 1050px;
+    padding: 0 20px 60px;
+    margin: auto;
+}
+
+section {
+    margin-bottom: 25px;
+    padding: 25px;
+    background: rgba(19, 22, 55, .88);
+    border: 1px solid rgba(139, 125, 255, .45);
+    border-radius: 17px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, .25);
+}
+
+section h2 {
+    color: #b5a8ff;
+    margin-bottom: 15px;
+    font-size: 23px;
+}
+
+h3 {
+    color: #8edcff;
+    margin: 20px 0 8px;
+}
+
+p {
+    color: #e1e2f3;
+    margin: 8px 0;
+}
+
+ul, ol {
+    padding-left: 25px;
+    color: #e1e2f3;
+    margin: 10px 0;
+}
+
+li {
+    margin: 5px 0;
+}
+
+pre {
+    background: #080b1d;
+    color: #9ef5c5;
+    border: 1px solid #343b73;
+    border-radius: 10px;
+    padding: 16px;
+    margin: 12px 0;
+    overflow-x: auto;
+    white-space: pre;
+}
+
+.note {
+    background: rgba(104, 86, 232, .13);
+    border-left: 4px solid #9c8aff;
+    padding: 12px 15px;
+    border-radius: 7px;
+    margin: 12px 0;
+    color: #e8e4ff;
+}
+
+.question {
+    padding: 12px;
+    margin: 9px 0;
+    border-radius: 9px;
+    background: rgba(255, 255, 255, .05);
+    border: 1px solid rgba(255, 255, 255, .1);
+}
+
+footer {
+    text-align: center;
+    padding: 25px;
+    color: #aaa9d0;
+    border-top: 1px solid #37345f;
+}
+
+#topBtn {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    background: #7664ef;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+@media(max-width:600px) {
+    nav {
+        justify-content: center;
+    }
+
+    nav a {
+        margin: 5px;
+    }
+
+    section {
+        padding: 18px;
+    }
+}
+
+@media print {
+    body {
+        background: white;
+        color: black;
+    }
+
+    body::before, nav, .toolbar, #topBtn, footer {
+        display: none !important;
+    }
+
+    .hero h1, section h2, h3, p, li {
+        color: black !important;
+        text-shadow: none;
+    }
+
+    section {
+        background: white;
+        color: black;
+        border: 1px solid #aaa;
+        box-shadow: none;
+        break-inside: avoid;
+    }
+
+    pre {
+        color: black;
+        background: #f2f2f2;
+        white-space: pre-wrap;
+    }
+
+    .note, .question {
+        color: black;
+        background: #f5f5f5;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">STUDENTVERSE</div>
+    <div>
+        <a href="index.html">Home</a>
+        <a href="studyhub.html">StudyHub</a>
+        <a href="networking-practical.html">Previous</a>
+    </div>
+</nav>
+
+<header class="hero">
+    <h1>Python Programming</h1>
+    <p>Semester 4 | Theory Notes</p>
+    <span class="course-tag">Course Code: CAM42T</span>
+</header>
+
+<div class="toolbar">
+    <input type="text" id="search" placeholder="Search Python topics...">
+    <button onclick="window.print()">Download / Print PDF</button>
+</div>
+
+<main class="container">
+
+<section>
+<h2>1. Introduction to Python</h2>
+
+<h3>What is Python?</h3>
+<p>Python is a high-level, interpreted, general-purpose programming language. It was developed by Guido van Rossum and first released in 1991. Python is popular because its syntax is simple and easy to understand.</p>
+
+<h3>Features of Python</h3>
+<ul>
+<li>Easy to learn and use.</li>
+<li>High-level programming language.</li>
+<li>Interpreted language.</li>
+<li>Supports object-oriented programming.</li>
+<li>Portable across different operating systems.</li>
+<li>Free and open-source.</li>
+<li>Large collection of libraries.</li>
+<li>Supports GUI and database programming.</li>
+</ul>
+
+<h3>Applications of Python</h3>
+<ul>
+<li>Web development</li>
+<li>Artificial Intelligence and Machine Learning</li>
+<li>Data Science and Data Analysis</li>
+<li>Automation and scripting</li>
+<li>Desktop applications</li>
+<li>Scientific computing</li>
+<li>Game development</li>
+</ul>
+
+<h3>Python Versions</h3>
+<p>Python 2 and Python 3 are major versions. Python 3 is the modern version used for current development. Python 2 is no longer officially supported.</p>
+
+<h3>Installing Python</h3>
+<ol>
+<li>Visit the official Python website.</li>
+<li>Download the appropriate Python installer.</li>
+<li>Run the installer.</li>
+<li>Select the option to add Python to PATH when using Windows.</li>
+<li>Complete the installation.</li>
+<li>Open Command Prompt and type <b>python --version</b> to check installation.</li>
+</ol>
+
+<h3>Python Command Line Mode and IDE</h3>
+<p><b>Command Line Mode:</b> Python statements are entered and executed directly in the Python interactive shell.</p>
+<p><b>IDE:</b> An Integrated Development Environment provides tools to write, edit, run and debug programs. Examples include IDLE, PyCharm and Visual Studio Code.</p>
+
+<h3>First Python Program</h3>
+<pre>
+print("Hello, World!")
+</pre>
+<p><b>Output:</b></p>
+<pre>
+Hello, World!
+</pre>
+</section>
+
+<section>
+<h2>2. Python Fundamentals</h2>
+
+<h3>Identifiers</h3>
+<p>Identifiers are names given to variables, functions, classes and other objects in a Python program.</p>
+<p>Rules:</p>
+<ul>
+<li>An identifier can contain letters, digits and underscore.</li>
+<li>It cannot start with a digit.</li>
+<li>Spaces are not allowed.</li>
+<li>Python keywords cannot be used as identifiers.</li>
+<li>Identifiers are case-sensitive.</li>
+</ul>
+
+<h3>Keywords</h3>
+<p>Keywords are reserved words that have special meanings in Python.</p>
+<p>Examples: if, else, elif, for, while, break, continue, def, class, return, try, except, True, False and None.</p>
+
+<h3>Variables</h3>
+<p>A variable is a named memory reference used to store data.</p>
+<pre>
+name = "Sanju"
+age = 20
+marks = 85.5
+
+print(name)
+print(age)
+print(marks)
+</pre>
+
+<h3>Statements and Expressions</h3>
+<p><b>Statement:</b> An instruction executed by Python.</p>
+<p><b>Expression:</b> A combination of values, variables and operators that produces a result.</p>
+<pre>
+x = 10
+y = 20
+total = x + y
+print(total)
+</pre>
+
+<h3>Data Types</h3>
+<p>Data types specify the kind of value stored in a variable.</p>
+<ul>
+<li>int – Integer values, such as 10.</li>
+<li>float – Decimal values, such as 10.5.</li>
+<li>complex – Complex numbers, such as 2+3j.</li>
+<li>str – Text values, such as "Python".</li>
+<li>bool – True or False.</li>
+<li>list – Ordered and changeable collection.</li>
+<li>tuple – Ordered and unchangeable collection.</li>
+<li>set – Unordered collection of unique values.</li>
+<li>dict – Key-value collection.</li>
+</ul>
+
+<h3>Checking Data Type</h3>
+<pre>
+x = 25
+print(type(x))
+</pre>
+<p><b>Output:</b> &lt;class 'int'&gt;</p>
+
+<h3>Operators in Python</h3>
+<p>Operators are symbols used to perform operations on values and variables.</p>
+<ul>
+<li><b>Arithmetic:</b> +, -, *, /, //, %, **</li>
+<li><b>Comparison:</b> ==, !=, &gt;, &lt;, &gt;=, &lt;=</li>
+<li><b>Assignment:</b> =, +=, -=, *=, /=</li>
+<li><b>Logical:</b> and, or, not</li>
+<li><b>Membership:</b> in, not in</li>
+<li><b>Identity:</b> is, is not</li>
+<li><b>Bitwise:</b> &amp;, |, ^, ~, &lt;&lt;, &gt;&gt;</li>
+</ul>
+
+<h3>Operator Precedence</h3>
+<p>Operator precedence determines which operation is performed first in an expression.</p>
+<p>For example, multiplication is performed before addition.</p>
+<pre>
+result = 10 + 5 * 2
+print(result)
+</pre>
+<p><b>Output:</b> 20</p>
+
+<h3>Indentation</h3>
+<p>Indentation means spaces at the beginning of a line. Python uses indentation to identify blocks of code.</p>
+<pre>
+if 10 > 5:
+    print("Ten is greater")
+</pre>
+
+<h3>Comments</h3>
+<p>Comments are notes written in a program. Python does not execute comments.</p>
+<pre>
+# This is a single-line comment
+
+print("Welcome")
+</pre>
+
+<h3>Built-in Functions</h3>
+<p>Built-in functions are functions already available in Python.</p>
+<ul>
+<li>print() – Displays output.</li>
+<li>input() – Accepts user input.</li>
+<li>len() – Returns length.</li>
+<li>type() – Returns data type.</li>
+<li>int() – Converts to integer.</li>
+<li>float() – Converts to float.</li>
+<li>str() – Converts to string.</li>
+<li>range() – Generates a sequence of numbers.</li>
+<li>max() – Returns the largest value.</li>
+<li>min() – Returns the smallest value.</li>
+</ul>
+
+<h3>Input and Output</h3>
+<pre>
+name = input("Enter your name: ")
+print("Welcome", name)
+</pre>
+
+<h3>Type Conversion</h3>
+<p>Type conversion means changing a value from one data type to another.</p>
+<pre>
+number = input("Enter a number: ")
+number = int(number)
+
+print(number + 10)
+</pre>
+
+<h3>Python Libraries and Modules</h3>
+<p>A module is a Python file containing reusable code. A library is a collection of modules and related tools.</p>
+<pre>
+import math
+
+print(math.sqrt(25))
+print(math.factorial(5))
+</pre>
+<p><b>Output:</b></p>
+<pre>
+5.0
+120
+</pre>
+</section>
+
+<section>
+<h2>3. Conditional Statements and Loops</h2>
+
+<h3>Conditional Statements</h3>
+<p>Conditional statements are used to execute different blocks of code depending on a condition.</p>
+
+<h3>if Statement</h3>
+<pre>
+age = 20
+
+if age >= 18:
+    print("Eligible to vote")
+</pre>
+
+<h3>if-else Statement</h3>
+<pre>
+number = 7
+
+if number % 2 == 0:
+    print("Even")
+else:
+    print("Odd")
+</pre>
+
+<h3>if-elif-else Statement</h3>
+<pre>
+marks = 75
+
+if marks >= 90:
+    print("A Grade")
+elif marks >= 60:
+    print("B Grade")
+elif marks >= 35:
+    print("C Grade")
+else:
+    print("Fail")
+</pre>
+
+<h3>Nested if Statement</h3>
+<p>A nested if is an if statement placed inside another if statement.</p>
+<pre>
+number = 15
+
+if number > 0:
+    if number % 2 == 0:
+        print("Positive even number")
+    else:
+        print("Positive odd number")
+</pre>
+
+<h3>match-case Statement</h3>
+<p>The match-case statement compares a value against different patterns. It is available in Python 3.10 and later.</p>
+<pre>
+day = 2
+
+match day:
+    case 1:
+        print("Monday")
+    case 2:
+        print("Tuesday")
+    case 3:
+        print("Wednesday")
+    case _:
+        print("Other day")
+</pre>
+
+<h3>Looping Statements</h3>
+<p>Loops are used to execute a block of code repeatedly.</p>
+
+<h3>for Loop</h3>
+<pre>
+for i in range(1, 6):
+    print(i)
+</pre>
+<p><b>Output:</b> 1 2 3 4 5</p>
+
+<h3>while Loop</h3>
+<pre>
+i = 1
+
+while i <= 5:
+    print(i)
+    i += 1
+</pre>
+
+<h3>Nested Loop</h3>
+<p>A loop inside another loop is called a nested loop.</p>
+<pre>
+for i in range(1, 4):
+    for j in range(1, 3):
+        print(i, j)
+</pre>
+
+<h3>break Statement</h3>
+<p>The break statement immediately terminates a loop.</p>
+<pre>
+for i in range(1, 6):
+    if i == 3:
+        break
+    print(i)
+</pre>
+
+<h3>continue Statement</h3>
+<p>The continue statement skips the current iteration and moves to the next iteration.</p>
+<pre>
+for i in range(1, 6):
+    if i == 3:
+        continue
+    print(i)
+</pre>
+
+<h3>pass Statement</h3>
+<p>The pass statement does nothing. It is used as a placeholder where a statement is required.</p>
+<pre>
+for i in range(5):
+    pass
+</pre>
+</section>
+
+<section>
+<h2>4. Strings in Python</h2>
+
+<h3>What is a String?</h3>
+<p>A string is a sequence of characters enclosed in single quotes, double quotes or triple quotes.</p>
+<pre>
+name = "Python"
+print(name)
+</pre>
+
+<h3>String Indexing</h3>
+<p>Each character in a string has an index. Positive indexing starts from zero, while negative indexing starts from -1.</p>
+<pre>
+word = "PYTHON"
+
+print(word[0])
+print(word[-1])
+</pre>
+<p><b>Output:</b></p>
+<pre>
+P
+N
+</pre>
+
+<h3>String Slicing</h3>
+<p>Slicing is used to access a part of a string.</p>
+<pre>
+word = "PYTHON"
+
+print(word[0:3])
+print(word[2:5])
+</pre>
+
+<h3>String Operations</h3>
+<ul>
+<li>Concatenation – Joining strings using +.</li>
+<li>Repetition – Repeating strings using *.</li>
+<li>Membership – Checking using in and not in.</li>
+<li>Slicing – Extracting a portion of a string.</li>
+</ul>
+
+<h3>Important String Methods</h3>
+<pre>
+text = "hello python"
+
+print(text.upper())
+print(text.lower())
+print(text.title())
+print(text.capitalize())
+print(text.replace("python", "world"))
+print(text.find("python"))
+print(text.count("o"))
+print(text.split())
+print(text.startswith("hello"))
+print(text.endswith("python"))
+</pre>
+
+<h3>String Immutability</h3>
+<p>Strings are immutable. This means that individual characters of an existing string cannot be changed directly. A new string must be created instead.</p>
+</section>
+
+<section>
+<h2>5. Lists, Tuples and Sets</h2>
+
+<h3>Lists</h3>
+<p>A list is an ordered and changeable collection. It allows duplicate values and can store different data types.</p>
+<pre>
+numbers = [10, 20, 30, 40]
+
+print(numbers)
+print(numbers[0])
+
+numbers.append(50)
+numbers.remove(20)
+
+print(numbers)
+</pre>
+
+<h3>List Methods</h3>
+<ul>
+<li>append() – Adds an element at the end.</li>
+<li>insert() – Adds an element at a specified position.</li>
+<li>remove() – Removes a specified element.</li>
+<li>pop() – Removes and returns an element.</li>
+<li>sort() – Sorts the list.</li>
+<li>reverse() – Reverses the list.</li>
+<li>index() – Returns the position of an element.</li>
+<li>count() – Counts occurrences of an element.</li>
+<li>clear() – Removes all elements.</li>
+</ul>
+
+<h3>List Slicing</h3>
+<pre>
+numbers = [10, 20, 30, 40, 50]
+
+print(numbers[1:4])
+print(numbers[:3])
+print(numbers[::-1])
+</pre>
+
+<h3>List Comprehension</h3>
+<p>List comprehension provides a short way to create a list.</p>
+<pre>
+squares = [x*x for x in range(1, 6)]
+print(squares)
+</pre>
+<p><b>Output:</b> [1, 4, 9, 16, 25]</p>
+
+<h3>Tuples</h3>
+<p>A tuple is an ordered and unchangeable collection. It allows duplicate values.</p>
+<pre>
+colors = ("red", "green", "blue")
+
+print(colors)
+print(colors[0])
+</pre>
+
+<h3>Tuple Methods</h3>
+<ul>
+<li>count() – Counts occurrences of an element.</li>
+<li>index() – Returns the position of an element.</li>
+</ul>
+
+<h3>Sets</h3>
+<p>A set is an unordered collection of unique elements. Duplicate values are automatically removed.</p>
+<pre>
+numbers = {10, 20, 20, 30}
+
+print(numbers)
+
+numbers.add(40)
+numbers.remove(10)
+
+print(numbers)
+</pre>
+
+<h3>Set Operations</h3>
+<pre>
+A = {1, 2, 3}
+B = {3, 4, 5}
+
+print(A.union(B))
+print(A.intersection(B))
+print(A.difference(B))
+</pre>
+
+<h3>Difference Between List, Tuple and Set</h3>
+<ul>
+<li><b>List:</b> Ordered, changeable and allows duplicates.</li>
+<li><b>Tuple:</b> Ordered, unchangeable and allows duplicates.</li>
+<li><b>Set:</b> Unordered, changeable and does not allow duplicates.</li>
+</ul>
+</section>
+
+<section>
+<h2>6. Dictionaries in Python</h2>
+
+<h3>What is a Dictionary?</h3>
+<p>A dictionary is a collection of key-value pairs. Each key is unique and is used to access its corresponding value.</p>
+<pre>
+student = {
+    "name": "Sanju",
+    "age": 20,
+    "course": "BCA"
+}
+
+print(student["name"])
+print(student["course"])
+</pre>
+
+<h3>Adding and Updating Elements</h3>
+<pre>
+student = {"name": "Sanju", "age": 20}
+
+student["marks"] = 85
+student["age"] = 21
+
+print(student)
+</pre>
+
+<h3>Dictionary Methods</h3>
+<ul>
+<li>keys() – Returns all keys.</li>
+<li>values() – Returns all values.</li>
+<li>items() – Returns key-value pairs.</li>
+<li>get() – Returns the value of a key.</li>
+<li>update() – Updates dictionary elements.</li>
+<li>pop() – Removes an item using its key.</li>
+<li>clear() – Removes all items.</li>
+</ul>
+
+<h3>Traversing a Dictionary</h3>
+<pre>
+student = {
+    "name": "Sanju",
+    "age": 20,
+    "marks": 85
+}
+
+for key, value in student.items():
+    print(key, ":", value)
+</pre>
+
+<h3>Nested Dictionary</h3>
+<p>A dictionary containing another dictionary is called a nested dictionary.</p>
+<pre>
+students = {
+    "student1": {
+        "name": "Ravi",
+        "marks": 80
+    },
+    "student2": {
+        "name": "Asha",
+        "marks": 90
+    }
+}
+
+print(students["student1"]["name"])
+</pre>
+</section>
+
+<section>
+<h2>7. Functions in Python</h2>
+
+<h3>What is a Function?</h3>
+<p>A function is a reusable block of code designed to perform a specific task. Functions reduce repetition and make programs easier to understand.</p>
+
+<h3>Defining and Calling a Function</h3>
+<pre>
+def greet():
+    print("Welcome to Python")
+
+greet()
+</pre>
+
+<h3>Function with Parameters</h3>
+<pre>
+def add(a, b):
+    print("Sum =", a + b)
+
+add(10, 20)
+</pre>
+
+<h3>Function with Return Value</h3>
+<pre>
+def square(number):
+    return number * number
+
+result = square(5)
+print(result)
+</pre>
+
+<h3>Types of Function Arguments</h3>
+<ul>
+<li>Positional arguments – Values are passed according to parameter position.</li>
+<li>Keyword arguments – Values are passed using parameter names.</li>
+<li>Default arguments – Parameters have default values.</li>
+<li>Variable-length arguments – Functions accept a variable number of arguments using *args or **kwargs.</li>
+</ul>
+
+<h3>Default Argument Example</h3>
+<pre>
+def greet(name="Student"):
+    print("Hello", name)
+
+greet()
+greet("Sanju")
+</pre>
+
+<h3>Variable-Length Arguments</h3>
+<pre>
+def total(*numbers):
+    print(sum(numbers))
+
+total(10, 20, 30, 40)
+</pre>
+
+<h3>Lambda Function</h3>
+<p>A lambda function is a small anonymous function written using the lambda keyword.</p>
+<pre>
+square = lambda x: x * x
+
+print(square(5))
+</pre>
+
+<h3>Recursion</h3>
+<p>Recursion is a process in which a function calls itself to solve a problem. A recursive function must have a stopping condition.</p>
+<pre>
+def factorial(n):
+    if n == 0:
+        return 1
+    return n * factorial(n - 1)
+
+print(factorial(5))
+</pre>
+<p><b>Output:</b> 120</p>
+
+<h3>Scope of Variables</h3>
+<ul>
+<li>Local variable – Declared inside a function.</li>
+<li>Global variable – Declared outside functions and accessible throughout the module.</li>
+</ul>
+<pre>
+x = 100
+
+def display():
+    y = 20
+    print(x)
+    print(y)
+
+display()
+</pre>
+</section>
+
+<section>
+<h2>8. Modules and Packages</h2>
+
+<h3>Modules</h3>
+<p>A module is a file containing Python code such as functions, variables and classes. Modules help organize reusable code.</p>
+
+<h3>Importing a Module</h3>
+<pre>
+import math
+
+print(math.sqrt(64))
+</pre>
+
+<h3>Importing Specific Functions</h3>
+<pre>
+from math import factorial
+
+print(factorial(5))
+</pre>
+
+<h3>Using an Alias</h3>
+<pre>
+import math as m
+
+print(m.pi)
+</pre>
+
+<h3>Creating a User-Defined Module</h3>
+<p>Create a file named <b>mymodule.py</b>:</p>
+<pre>
+def welcome():
+    print("Welcome to STUDENTVERSE")
+</pre>
+
+<p>Create another Python file in the same folder:</p>
+<pre>
+import mymodule
+
+mymodule.welcome()
+</pre>
+
+<h3>Packages</h3>
+<p>A package is a way of organizing related Python modules in a directory. Packages help organize large programs into smaller parts.</p>
+
+<h3>Important Standard Modules</h3>
+<ul>
+<li>math – Mathematical functions.</li>
+<li>random – Random number generation.</li>
+<li>datetime – Date and time operations.</li>
+<li>os – Operating system operations.</li>
+<li>sys – System-specific functions.</li>
+<li>statistics – Statistical calculations.</li>
+</ul>
+</section>
+
+<section>
+<h2>9. Object-Oriented Programming in Python</h2>
+
+<h3>What is OOP?</h3>
+<p>Object-Oriented Programming is a programming approach based on classes and objects. It helps organize programs and supports code reuse.</p>
+
+<h3>Class</h3>
+<p>A class is a blueprint or template used to create objects. It defines attributes and methods.</p>
+
+<h3>Object</h3>
+<p>An object is an instance of a class. It contains data and can use the methods defined by its class.</p>
+
+<h3>Class and Object Example</h3>
+<pre>
+class Student:
+    def display(self):
+        print("Welcome Student")
+
+s1 = Student()
+s1.display()
+</pre>
+
+<h3>Constructor</h3>
+<p>A constructor is a special method that is automatically called when an object is created. In Python, __init__() is commonly used as the constructor.</p>
+<pre>
+class Student:
+    def __init__(self, name):
+        self.name = name
+
+    def display(self):
+        print("Name:", self.name)
+
+s1 = Student("Sanju")
+s1.display()
+</pre>
+
+<h3>self Keyword</h3>
+<p>The self parameter refers to the current object. It is used to access the attributes and methods of that object.</p>
+
+<h3>Inheritance</h3>
+<p>Inheritance allows one class to acquire the properties and methods of another class.</p>
+<pre>
+class Animal:
+    def eat(self):
+        print("Animal eats food")
+
+class Dog(Animal):
+    def bark(self):
+        print("Dog barks")
+
+d = Dog()
+d.eat()
+d.bark()
+</pre>
+
+<h3>Types of Inheritance</h3>
+<ul>
+<li>Single inheritance – One child class inherits from one parent class.</li>
+<li>Multiple inheritance – One child class inherits from multiple parent classes.</li>
+<li>Multilevel inheritance – A class inherits from a child class in a chain.</li>
+<li>Hierarchical inheritance – Multiple child classes inherit from one parent class.</li>
+<li>Hybrid inheritance – Combination of different inheritance types.</li>
+</ul>
+
+<h3>Polymorphism</h3>
+<p>Polymorphism means one interface can be used with different forms of objects or behavior.</p>
+<pre>
+class Dog:
+    def sound(self):
+        print("Bark")
+
+class Cat:
+    def sound(self):
+        print("Meow")
+
+for animal in (Dog(), Cat()):
+    animal.sound()
+</pre>
+
+<h3>Method Overriding</h3>
+<p>Method overriding occurs when a child class provides its own implementation of a method already defined in its parent class.</p>
+<pre>
+class Parent:
+    def show(self):
+        print("Parent class")
+
+class Child(Parent):
+    def show(self):
+        print("Child class")
+
+obj = Child()
+obj.show()
+</pre>
+
+<h3>Encapsulation</h3>
+<p>Encapsulation means combining data and methods inside a class and controlling access to the data. Python uses naming conventions and name mangling for access control.</p>
+
+<h3>Abstraction</h3>
+<p>Abstraction means hiding implementation details and showing only essential features. Python supports abstraction using the abc module.</p>
+</section>
+
+<section>
+<h2>10. File Handling in Python</h2>
+
+<h3>What is File Handling?</h3>
+<p>File handling is used to create, read, write and modify files using Python programs. It helps store information permanently.</p>
+
+<h3>Opening a File</h3>
+<p>The open() function is used to open a file.</p>
+<pre>
+file = open("sample.txt", "r")
+</pre>
+
+<h3>File Opening Modes</h3>
+<ul>
+<li>r – Read mode.</li>
+<li>w – Write mode; creates or overwrites a file.</li>
+<li>a – Append mode; adds content at the end.</li>
+<li>x – Creates a new file and fails if it already exists.</li>
+<li>r+ – Read and write mode.</li>
+<li>b – Binary mode modifier.</li>
+<li>t – Text mode modifier.</li>
+</ul>
+
+<h3>Writing to a File</h3>
+<pre>
+file = open("sample.txt", "w")
+file.write("Welcome to Python")
+file.close()
+</pre>
+
+<h3>Reading from a File</h3>
+<pre>
+file = open("sample.txt", "r")
+data = file.read()
+print(data)
+file.close()
+</pre>
+
+<h3>Appending to a File</h3>
+<pre>
+file = open("sample.txt", "a")
+file.write("\nLearning file handling")
+file.close()
+</pre>
+
+<h3>Using with Statement</h3>
+<p>The with statement automatically closes a file after the block is completed.</p>
+<pre>
+with open("sample.txt", "r") as file:
+    data = file.read()
+    print(data)
+</pre>
+
+<h3>File Methods</h3>
+<ul>
+<li>read() – Reads the entire file or a specified number of characters.</li>
+<li>readline() – Reads one line.</li>
+<li>readlines() – Returns lines as a list.</li>
+<li>write() – Writes text to a file.</li>
+<li>writelines() – Writes a sequence of strings.</li>
+<li>close() – Closes the file.</li>
+</ul>
+</section>
+
+<section>
+<h2>11. Exception Handling</h2>
+
+<h3>What is an Exception?</h3>
+<p>An exception is an error that occurs while a program is running. Exception handling prevents a program from stopping unexpectedly.</p>
+
+<h3>Common Exceptions</h3>
+<ul>
+<li>ZeroDivisionError – Dividing by zero.</li>
+<li>ValueError – Invalid value.</li>
+<li>TypeError – Operation on an unsuitable data type.</li>
+<li>IndexError – Accessing an invalid sequence index.</li>
+<li>KeyError – Accessing a missing dictionary key.</li>
+<li>FileNotFoundError – Requested file does not exist.</li>
+</ul>
+
+<h3>try and except</h3>
+<pre>
+try:
+    a = int(input("Enter first number: "))
+    b = int(input("Enter second number: "))
+    print(a / b)
+
+except ZeroDivisionError:
+    print("Cannot divide by zero")
+
+except ValueError:
+    print("Enter valid numbers")
+</pre>
+
+<h3>else Block</h3>
+<p>The else block executes when no exception occurs in the try block.</p>
+<pre>
+try:
+    number = int(input("Enter number: "))
+except ValueError:
+    print("Invalid input")
+else:
+    print("Number:", number)
+</pre>
+
+<h3>finally Block</h3>
+<p>The finally block executes whether an exception occurs or not. It is commonly used for cleanup operations.</p>
+<pre>
+try:
+    print("Try block")
+finally:
+    print("Finally block")
+</pre>
+
+<h3>raise Keyword</h3>
+<p>The raise keyword is used to generate an exception manually.</p>
+<pre>
+age = 15
+
+if age < 18:
+    raise ValueError("Age must be 18 or above")
+</pre>
+
+<h3>User-Defined Exceptions</h3>
+<p>Programmers can create their own exception classes by inheriting from the Exception class.</p>
+<pre>
+class InvalidAgeError(Exception):
+    pass
+
+age = 15
+
+try:
+    if age < 18:
+        raise InvalidAgeError("Not eligible")
+except InvalidAgeError as e:
+    print(e)
+</pre>
+</section>
+
+<section>
+<h2>12. GUI Programming Using Tkinter</h2>
+
+<h3>What is GUI?</h3>
+<p>GUI stands for Graphical User Interface. It allows users to interact with applications through windows, buttons, text boxes and other graphical elements.</p>
+
+<h3>What is Tkinter?</h3>
+<p>Tkinter is Python's standard interface for creating graphical desktop applications using the Tk toolkit.</p>
+
+<h3>Creating a Simple Tkinter Window</h3>
+<pre>
+import tkinter as tk
+
+root = tk.Tk()
+root.title("My First App")
+root.geometry("300x200")
+
+label = tk.Label(root, text="Welcome to Python")
+label.pack()
+
+root.mainloop()
+</pre>
+
+<h3>Important Tkinter Widgets</h3>
+<ul>
+<li>Label – Displays text or images.</li>
+<li>Button – Performs an action when clicked.</li>
+<li>Entry – Accepts single-line input.</li>
+<li>Text – Accepts multi-line text.</li>
+<li>Checkbutton – Allows selection of options.</li>
+<li>Radiobutton – Allows selection of one option from a group.</li>
+<li>Listbox – Displays a list of items.</li>
+<li>Frame – Groups other widgets.</li>
+</ul>
+
+<h3>Button Example</h3>
+<pre>
+import tkinter as tk
+
+def show_message():
+    label.config(text="Button Clicked!")
+
+root = tk.Tk()
+root.title("Button Example")
+
+label = tk.Label(root, text="Click the button")
+label.pack()
+
+button = tk.Button(root, text="Click Me",
+                   command=show_message)
+button.pack()
+
+root.mainloop()
+</pre>
+
+<h3>Geometry Managers</h3>
+<ul>
+<li>pack() – Arranges widgets in blocks.</li>
+<li>grid() – Arranges widgets in rows and columns.</li>
+<li>place() – Positions widgets using coordinates.</li>
+</ul>
+</section>
+
+<section>
+<h2>13. Database Connectivity Using Python</h2>
+
+<h3>What is a Database?</h3>
+<p>A database is an organized collection of information that can be stored, accessed and managed electronically.</p>
+
+<h3>What is SQLite?</h3>
+<p>SQLite is a lightweight relational database engine. It stores data in a local database file and does not require a separate database server.</p>
+
+<h3>Python SQLite Connectivity</h3>
+<p>Python provides the sqlite3 module for working with SQLite databases.</p>
+
+<h3>Creating a Database and Table</h3>
+<pre>
+import sqlite3
+
+con = sqlite3.connect("college.db")
+cur = con.cursor()
+
+cur.execute("""
+CREATE TABLE IF NOT EXISTS student(
+    id INTEGER PRIMARY KEY,
+    name TEXT,
+    marks INTEGER
+)
+""")
+
+con.commit()
+con.close()
+</pre>
+
+<h3>Inserting Records</h3>
+<pre>
+import sqlite3
+
+con = sqlite3.connect("college.db")
+cur = con.cursor()
+
+cur.execute(
+    "INSERT INTO student(name, marks) VALUES (?, ?)",
+    ("Sanju", 85)
+)
+
+con.commit()
+con.close()
+</pre>
+
+<h3>Displaying Records</h3>
+<pre>
+import sqlite3
+
+con = sqlite3.connect("college.db")
+cur = con.cursor()
+
+cur.execute("SELECT * FROM student")
+
+for row in cur.fetchall():
+    print(row)
+
+con.close()
+</pre>
+
+<h3>Updating Records</h3>
+<pre>
+cur.execute(
+    "UPDATE student SET marks=? WHERE name=?",
+    (90, "Sanju")
+)
+con.commit()
+</pre>
+
+<h3>Deleting Records</h3>
+<pre>
+cur.execute(
+    "DELETE FROM student WHERE name=?",
+    ("Sanju",)
+)
+con.commit()
+</pre>
+
+<div class="note">
+Always use parameterized SQL queries with placeholders such as ? when inserting user-provided values. This helps prevent SQL injection.
+</div>
+</section>
+
+<section>
+<h2>14. NumPy Library</h2>
+
+<h3>What is NumPy?</h3>
+<p>NumPy stands for Numerical Python. It is a Python library used for numerical calculations and working with multidimensional arrays.</p>
+
+<h3>Features of NumPy</h3>
+<ul>
+<li>Supports multidimensional arrays.</li>
+<li>Provides mathematical functions.</li>
+<li>Performs array operations efficiently.</li>
+<li>Supports linear algebra operations.</li>
+<li>Useful in scientific and data analysis applications.</li>
+</ul>
+
+<h3>Creating a NumPy Array</h3>
+<pre>
+import numpy as np
+
+numbers = np.array([10, 20, 30, 40])
+
+print(numbers)
+print(numbers[0])
+</pre>
+
+<h3>Two-Dimensional Array</h3>
+<pre>
+import numpy as np
+
+matrix = np.array([
+    [1, 2, 3],
+    [4, 5, 6]
+])
+
+print(matrix)
+</pre>
+
+<h3>Important NumPy Functions</h3>
+<pre>
+import numpy as np
+
+a = np.array([10, 20, 30, 40])
+
+print(np.sum(a))
+print(np.mean(a))
+print(np.max(a))
+print(np.min(a))
+print(np.zeros(3))
+print(np.ones(3))
+</pre>
+
+<h3>Array Operations</h3>
+<pre>
+import numpy as np
+
+a = np.array([1, 2, 3])
+b = np.array([4, 5, 6])
+
+print(a + b)
+print(a * b)
+</pre>
+</section>
+
+<section>
+<h2>15. Data Visualization Using Matplotlib</h2>
+
+<h3>What is Matplotlib?</h3>
+<p>Matplotlib is a Python library used to create graphs and charts. It helps represent data visually.</p>
+
+<h3>Features</h3>
+<ul>
+<li>Creates different types of charts.</li>
+<li>Supports line graphs and bar charts.</li>
+<li>Allows titles, labels and legends.</li>
+<li>Useful for data analysis and presentations.</li>
+</ul>
+
+<h3>Line Graph</h3>
+<pre>
+import matplotlib.pyplot as plt
+
+x = [1, 2, 3, 4]
+y = [10, 20, 15, 30]
+
+plt.plot(x, y)
+plt.title("Line Graph")
+plt.xlabel("X Values")
+plt.ylabel("Y Values")
+plt.show()
+</pre>
+
+<h3>Bar Chart</h3>
+<pre>
+import matplotlib.pyplot as plt
+
+subjects = ["C", "Java", "Python"]
+marks = [80, 75, 90]
+
+plt.bar(subjects, marks)
+plt.title("Student Marks")
+plt.xlabel("Subjects")
+plt.ylabel("Marks")
+plt.show()
+</pre>
+
+<h3>Pie Chart</h3>
+<pre>
+import matplotlib.pyplot as plt
+
+values = [40, 30, 20, 10]
+labels = ["A", "B", "C", "D"]
+
+plt.pie(values, labels=labels, autopct="%1.1f%%")
+plt.title("Sample Pie Chart")
+plt.show()
+</pre>
+
+<h3>Histogram</h3>
+<pre>
+import matplotlib.pyplot as plt
+
+marks = [45, 50, 55, 60, 60, 70, 75, 80, 90]
+
+plt.hist(marks, bins=5)
+plt.title("Marks Distribution")
+plt.show()
+</pre>
+</section>
+
+<section>
+<h2>16. Data Analysis Using Pandas</h2>
+
+<h3>What is Pandas?</h3>
+<p>Pandas is a Python library used for data manipulation and analysis. It provides powerful data structures for handling structured data.</p>
+
+<h3>Features of Pandas</h3>
+<ul>
+<li>Reads and writes data from files.</li>
+<li>Handles missing values.</li>
+<li>Filters and sorts data.</li>
+<li>Performs data analysis.</li>
+<li>Works with CSV and Excel files.</li>
+</ul>
+
+<h3>Series</h3>
+<p>A Series is a one-dimensional labeled data structure in Pandas.</p>
+<pre>
+import pandas as pd
+
+data = [10, 20, 30, 40]
+
+s = pd.Series(data)
+
+print(s)
+</pre>
+
+<h3>DataFrame</h3>
+<p>A DataFrame is a two-dimensional labeled data structure arranged in rows and columns.</p>
+<pre>
+import pandas as pd
+
+data = {
+    "Name": ["Ravi", "Asha", "Sanju"],
+    "Marks": [80, 90, 85]
+}
+
+df = pd.DataFrame(data)
+
+print(df)
+</pre>
+
+<h3>Reading a CSV File</h3>
+<pre>
+import pandas as pd
+
+df = pd.read_csv("students.csv")
+print(df)
+</pre>
+
+<h3>Important Pandas Methods</h3>
+<ul>
+<li>head() – Displays the first five rows by default.</li>
+<li>tail() – Displays the last five rows by default.</li>
+<li>info() – Displays information about the DataFrame.</li>
+<li>describe() – Displays statistical information.</li>
+<li>shape – Returns the number of rows and columns.</li>
+<li>dropna() – Removes missing values.</li>
+<li>fillna() – Replaces missing values.</li>
+<li>sort_values() – Sorts data.</li>
+<li>to_csv() – Saves data to a CSV file.</li>
+</ul>
+</section>
+
+<section>
+<h2>17. Important Differences</h2>
+
+<h3>Compiler vs Interpreter</h3>
+<ul>
+<li><b>Compiler:</b> Translates the program into machine code before execution.</li>
+<li><b>Interpreter:</b> Executes program instructions through an interpreter at runtime.</li>
+</ul>
+
+<h3>List vs Tuple</h3>
+<ul>
+<li>List uses square brackets [ ].</li>
+<li>Tuple uses parentheses ( ).</li>
+<li>List is mutable.</li>
+<li>Tuple is immutable.</li>
+</ul>
+
+<h3>break vs continue</h3>
+<ul>
+<li>break terminates the loop.</li>
+<li>continue skips the current iteration.</li>
+</ul>
+
+<h3>Function vs Method</h3>
+<ul>
+<li>Function is a reusable block of code called independently.</li>
+<li>Method is a function associated with an object or class.</li>
+</ul>
+
+<h3>Errors vs Exceptions</h3>
+<ul>
+<li>Errors are problems in a program that may prevent correct execution.</li>
+<li>Exceptions are runtime events that can often be handled using try and except.</li>
+</ul>
+
+<h3>Series vs DataFrame</h3>
+<ul>
+<li>Series is one-dimensional.</li>
+<li>DataFrame is two-dimensional.</li>
+</ul>
+</section>
+
+<section>
+<h2>18. Important Examination Questions</h2>
+
+<h3>Short Answer Questions</h3>
+<div class="question">1. What is Python?</div>
+<div class="question">2. List any five features of Python.</div>
+<div class="question">3. Define identifiers and keywords.</div>
+<div class="question">4. What are Python data types?</div>
+<div class="question">5. What is indentation?</div>
+<div class="question">6. Define list and tuple.</div>
+<div class="question">7. What is a dictionary?</div>
+<div class="question">8. What is recursion?</div>
+<div class="question">9. Define module and package.</div>
+<div class="question">10. What is inheritance?</div>
+<div class="question">11. What is polymorphism?</div>
+<div class="question">12. Define file handling.</div>
+<div class="question">13. What is exception handling?</div>
+<div class="question">14. What is Tkinter?</div>
+<div class="question">15. What is NumPy?</div>
+<div class="question">16. Define Pandas and Matplotlib.</div>
+
+<h3>Long Answer Questions</h3>
+<div class="question">1. Explain the features and applications of Python.</div>
+<div class="question">2. Explain Python data types and operators with examples.</div>
+<div class="question">3. Explain conditional and looping statements with examples.</div>
+<div class="question">4. Explain lists, tuples, sets and dictionaries with examples.</div>
+<div class="question">5. Explain functions and types of function arguments.</div>
+<div class="question">6. Explain recursion with a suitable Python program.</div>
+<div class="question">7. Explain object-oriented programming concepts in Python.</div>
+<div class="question">8. Explain inheritance and its types with examples.</div>
+<div class="question">9. Explain file handling operations and file modes.</div>
+<div class="question">10. Explain exception handling using try, except, else and finally.</div>
+<div class="question">11. Explain GUI programming using Tkinter and its widgets.</div>
+<div class="question">12. Explain Python database connectivity using SQLite.</div>
+<div class="question">13. Explain NumPy arrays and their operations.</div>
+<div class="question">14. Explain data visualization using Matplotlib.</div>
+<div class="question">15. Explain Series and DataFrame in Pandas.</div>
+</section>
+
+<section>
+<h2>19. Important Python Programs for Practice</h2>
+
+<h3>1. Addition of Two Numbers</h3>
+<pre>
+a = int(input("Enter first number: "))
+b = int(input("Enter second number: "))
+
+print("Sum =", a + b)
+</pre>
+
+<h3>2. Check Even or Odd</h3>
+<pre>
+n = int(input("Enter a number: "))
+
+if n % 2 == 0:
+    print("Even number")
+else:
+    print("Odd number")
+</pre>
+
+<h3>3. Find Largest of Three Numbers</h3>
+<pre>
+a = int(input("Enter first number: "))
+b = int(input("Enter second number: "))
+c = int(input("Enter third number: "))
+
+if a >= b and a >= c:
+    print("Largest:", a)
+elif b >= a and b >= c:
+    print("Largest:", b)
+else:
+    print("Largest:", c)
+</pre>
+
+<h3>4. Factorial of a Number</h3>
+<pre>
+n = int(input("Enter a number: "))
+fact = 1
+
+for i in range(1, n + 1):
+    fact *= i
+
+print("Factorial:", fact)
+</pre>
+
+<h3>5. Check Prime Number</h3>
+<pre>
+n = int(input("Enter a number: "))
+
+if n <= 1:
+    print("Not Prime")
+else:
+    for i in range(2, n):
+        if n % i == 0:
+            print("Not Prime")
+            break
+    else:
+        print("Prime")
+</pre>
+
+<h3>6. Fibonacci Series</h3>
+<pre>
+n = int(input("Enter number of terms: "))
+
+a, b = 0, 1
+
+for i in range(n):
+    print(a, end=" ")
+    a, b = b, a + b
+</pre>
+
+<h3>7. Reverse a String</h3>
+<pre>
+text = input("Enter a string: ")
+
+print("Reverse:", text[::-1])
+</pre>
+
+<h3>8. Sum of List Elements</h3>
+<pre>
+numbers = [10, 20, 30, 40]
+
+total = sum(numbers)
+
+print("Sum:", total)
+</pre>
+
+<h3>9. Find Maximum in a List</h3>
+<pre>
+numbers = [10, 50, 20, 80, 30]
+
+print("Maximum:", max(numbers))
+</pre>
+
+<h3>10. Count Vowels in a String</h3>
+<pre>
+text = input("Enter a string: ")
+count = 0
+
+for ch in text.lower():
+    if ch in "aeiou":
+        count += 1
+
+print("Vowels:", count)
+</pre>
+</section>
+
+<div class="note">
+<b>Study tip:</b> Practise the programs by typing and executing them yourself. For theory exams, learn definitions, features, differences, syntax and at least one example for each major concept.
+</div>
+
+</main>
+
+<footer>
+    <p>STUDENTVERSE | Learn • Practise • Succeed</p>
+    <p>CAM42T – Python Programming</p>
+</footer>
+
+<button id="topBtn" onclick="window.scrollTo({top:0, behavior:'smooth'})">↑</button>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const searchBox = document.getElementById("search");
+    const sections = document.querySelectorAll(".container section");
+
+    searchBox.addEventListener("input", function () {
+        const query = searchBox.value.trim().toLowerCase();
+
+        sections.forEach(function (section) {
+            section.hidden =
+                query !== "" &&
+                !section.textContent.toLowerCase().includes(query);
+        });
+    });
+});
+</script>
+
+</body>
+</html>

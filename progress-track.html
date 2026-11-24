@@ -1,0 +1,437 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Progress Track | STUDENTVERSE</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    min-height: 100vh;
+    background: radial-gradient(circle at top, #29205c, #09051c 65%);
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 7%;
+    background: rgba(255,255,255,.06);
+    border-bottom: 1px solid rgba(255,255,255,.12);
+    backdrop-filter: blur(15px);
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 800;
+    color: #c6a5ff;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 14px;
+}
+
+.navbar a:hover {
+    color: #c6a5ff;
+}
+
+.hero {
+    text-align: center;
+    padding: 65px 20px 35px;
+}
+
+.hero h1 {
+    font-size: clamp(30px,5vw,48px);
+    background: linear-gradient(90deg,#fff,#bd9aff,#67d9ff);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.hero p {
+    color: #c5bddb;
+    margin-top: 12px;
+}
+
+.container {
+    width: 86%;
+    max-width: 1100px;
+    margin: auto;
+}
+
+.overview {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+    gap: 20px;
+    margin: 25px 0 40px;
+}
+
+.card {
+    background: rgba(255,255,255,.07);
+    border: 1px solid rgba(255,255,255,.14);
+    border-radius: 18px;
+    padding: 24px;
+    transition: .3s;
+    box-shadow: 0 10px 30px rgba(0,0,0,.2);
+}
+
+.card:hover {
+    transform: translateY(-7px);
+    border-color: #a77bff;
+    box-shadow: 0 12px 30px rgba(132,75,255,.2);
+}
+
+.icon {
+    font-size: 32px;
+    margin-bottom: 12px;
+}
+
+.card h3 {
+    color: #d7c0ff;
+    font-size: 16px;
+}
+
+.number {
+    font-size: 30px;
+    font-weight: 800;
+    margin-top: 8px;
+}
+
+.card small {
+    color: #aaa0c5;
+}
+
+.section-title {
+    font-size: 25px;
+    margin: 35px 0 20px;
+}
+
+.progress-card {
+    background: rgba(255,255,255,.07);
+    border: 1px solid rgba(255,255,255,.14);
+    padding: 25px;
+    border-radius: 18px;
+    margin-bottom: 25px;
+}
+
+.progress-card h3 {
+    color: #d7c0ff;
+    margin-bottom: 12px;
+}
+
+.progress-bar {
+    height: 13px;
+    width: 100%;
+    background: rgba(255,255,255,.12);
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 12px 0;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg,#8b5cf6,#38bdf8);
+    border-radius: 20px;
+    transition: width .4s;
+}
+
+.semester-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+    gap: 18px;
+}
+
+.subject-list {
+    margin-top: 15px;
+}
+
+.subject-list label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    color: #d5cde6;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.subject-list input {
+    accent-color: #a77bff;
+    width: 17px;
+    height: 17px;
+    cursor: pointer;
+}
+
+.reset-btn {
+    margin: 25px 0;
+    padding: 12px 22px;
+    background: #8b5cf6;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-family: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.reset-btn:hover {
+    background: #7040dc;
+}
+
+footer {
+    text-align: center;
+    padding: 30px;
+    color: #aaa0c5;
+    font-size: 13px;
+    margin-top: 30px;
+}
+
+@media(max-width:600px) {
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .navbar a {
+        margin: 0 6px;
+        font-size: 12px;
+    }
+
+    .container {
+        width: 92%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav class="navbar">
+    <div class="logo">STUDENTVERSE</div>
+    <div>
+        <a href="index.html">Home</a>
+        <a href="studyhub.html">StudyHub</a>
+        <a href="skillup.html">SkillUp</a>
+        <a href="career-path.html">Career Path</a>
+    </div>
+</nav>
+
+<header class="hero">
+    <h1>My Learning Progress</h1>
+    <p>Track your learning journey and achieve your goals.</p>
+</header>
+
+<main class="container">
+
+    <div class="overview">
+
+        <div class="card">
+            <div class="icon">📚</div>
+            <h3>Total Subjects</h3>
+            <div class="number" id="totalSubjects">0</div>
+            <small>Subjects in your tracker</small>
+        </div>
+
+        <div class="card">
+            <div class="icon">✅</div>
+            <h3>Completed Subjects</h3>
+            <div class="number" id="completedSubjects">0</div>
+            <small>Subjects completed</small>
+        </div>
+
+        <div class="card">
+            <div class="icon">📈</div>
+            <h3>Overall Progress</h3>
+            <div class="number" id="overallPercent">0%</div>
+            <small>Your learning progress</small>
+        </div>
+
+    </div>
+
+    <h2 class="section-title">🎯 Overall Progress</h2>
+
+    <div class="progress-card">
+        <h3>My BCA Learning Journey</h3>
+        <div class="progress-bar">
+            <div class="progress-fill" id="overallBar"></div>
+        </div>
+        <p id="overallText">0% completed</p>
+    </div>
+
+    <h2 class="section-title">📖 Semester-wise Progress</h2>
+
+    <div class="semester-grid" id="semesterContainer"></div>
+
+    <button class="reset-btn" onclick="resetProgress()">Reset All Progress</button>
+
+</main>
+
+<footer>
+    © 2026 STUDENTVERSE | Keep Learning, Keep Growing
+</footer>
+
+<script>
+const semesters = {
+    "Semester 1": [
+        "C Programming",
+        "Computer Fundamentals",
+        "Mathematics",
+        "English",
+        "Kannada"
+    ],
+
+    "Semester 2": [
+        "C++ Programming",
+        "Data Structures",
+        "Database Management System",
+        "Digital Electronics",
+        "English"
+    ],
+
+    "Semester 3": [
+        "Java Programming",
+        "Operating System",
+        "Web Technology",
+        "Computer Networks",
+        "Kannada"
+    ],
+
+    "Semester 4": [
+        "Python Programming",
+        "PHP Programming",
+        "Computer Networks Practical",
+        "Digital Marketing",
+        "Internet of Things"
+    ]
+};
+
+const STORAGE_KEY = "studentverse_progress_v1";
+
+let progress = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+
+function saveProgress() {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
+}
+
+function createSemesters() {
+    const container = document.getElementById("semesterContainer");
+    container.innerHTML = "";
+
+    Object.entries(semesters).forEach(([semester, subjects], index) => {
+        const card = document.createElement("div");
+        card.className = "progress-card";
+
+        const heading = document.createElement("h3");
+        heading.textContent = semester;
+        card.appendChild(heading);
+
+        const bar = document.createElement("div");
+        bar.className = "progress-bar";
+
+        const fill = document.createElement("div");
+        fill.className = "progress-fill";
+        fill.id = "bar" + index;
+
+        bar.appendChild(fill);
+        card.appendChild(bar);
+
+        const percentage = document.createElement("p");
+        percentage.id = "percent" + index;
+        percentage.textContent = "0% completed";
+        card.appendChild(percentage);
+
+        const list = document.createElement("div");
+        list.className = "subject-list";
+
+        subjects.forEach(subject => {
+            const label = document.createElement("label");
+            const checkbox = document.createElement("input");
+
+            checkbox.type = "checkbox";
+            checkbox.checked = !!progress[semester + "|" + subject];
+
+            checkbox.addEventListener("change", () => {
+                progress[semester + "|" + subject] = checkbox.checked;
+                saveProgress();
+                updateProgress();
+            });
+
+            const span = document.createElement("span");
+            span.textContent = subject;
+
+            label.appendChild(checkbox);
+            label.appendChild(span);
+            list.appendChild(label);
+        });
+
+        card.appendChild(list);
+        container.appendChild(card);
+    });
+
+    updateProgress();
+}
+
+function updateProgress() {
+    let total = 0;
+    let completed = 0;
+
+    Object.entries(semesters).forEach(([semester, subjects], index) => {
+        let semesterCompleted = 0;
+
+        subjects.forEach(subject => {
+            total++;
+
+            if (progress[semester + "|" + subject]) {
+                completed++;
+                semesterCompleted++;
+            }
+        });
+
+        const percent = Math.round(
+            semesterCompleted / subjects.length * 100
+        );
+
+        document.getElementById("bar" + index).style.width = percent + "%";
+        document.getElementById("percent" + index).textContent =
+            percent + "% completed";
+    });
+
+    const overall = total ? Math.round(completed / total * 100) : 0;
+
+    document.getElementById("totalSubjects").textContent = total;
+    document.getElementById("completedSubjects").textContent = completed;
+    document.getElementById("overallPercent").textContent = overall + "%";
+    document.getElementById("overallBar").style.width = overall + "%";
+    document.getElementById("overallText").textContent =
+        overall + "% completed";
+}
+
+function resetProgress() {
+    if (confirm("Are you sure you want to reset all your progress?")) {
+        progress = {};
+        saveProgress();
+        createSemesters();
+    }
+}
+
+createSemesters();
+</script>
+
+</body>
+</html>
